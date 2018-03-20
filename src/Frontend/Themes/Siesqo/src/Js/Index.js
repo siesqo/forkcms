@@ -2,6 +2,7 @@
 import 'bootstrap/dist/js/bootstrap'
 
 /* Utilities imports */
+import {BackToTop} from './Utilities/BackToTop'
 import SweetScroll from 'sweet-scroll'
 import { Resize } from './Utilities/Resize'
 /* import {Fancybox} from './Utilities/Fancybox' */
