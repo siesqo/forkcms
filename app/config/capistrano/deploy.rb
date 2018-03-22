@@ -14,3 +14,12 @@ set :repo_url, "git@bitbucket.org:siesqo/???.git"
 set :deploytag_utc, false
 set :deploytag_time_format, "%Y%m%d-%H%M%S"
 set :files_dir, %w(src/Frontend/Files)
+
+## Gulp build our custom theme
+require 'json'
+namespace :deploy do
+  package = JSON.parse(File.read('composer.json'))
+
+  # compile and upload the assets, but only if it's a Fork CMS project
+  after :updated, 'siesqo:assets:put' if package['name'] == 'forkcms/forkcms'
+end
