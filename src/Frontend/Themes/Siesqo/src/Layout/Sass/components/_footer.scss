@@ -24,3 +24,25 @@
 
 // set the footer height to use a sticky footer
 @include sticky-footer(40px);
+
+#websiteBuilderCredits {
+  @media (min-width:768px) {
+    margin-left: auto;
+  }
+
+  .nav-link {
+    padding-right: 0;
+  }
+
+  a {
+    svg {
+      display: inline-block;
+      vertical-align: baseline;
+      width: 110px;
+    }
+
+    &:hover svg g {
+      fill: $black;
+    }
+  }
+}
