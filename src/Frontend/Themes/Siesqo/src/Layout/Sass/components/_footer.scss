@@ -25,6 +25,27 @@
 // set the footer height to use a sticky footer
 @include sticky-footer(40px);
 
+
+// Back to top
+#backToTop {
+  cursor: pointer;
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  display:none;
+}
+
+#backToTop {
+  &:hover,
+  &:active,
+  &:focus {
+
+    .fa {
+      color: white!important;
+    }
+  }
+}
+
 #websiteBuilderCredits {
   @media (min-width:768px) {
     margin-left: auto;
