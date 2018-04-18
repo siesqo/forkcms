@@ -22,8 +22,10 @@
   }
 }
 
-// set the footer height to use a sticky footer
-@include sticky-footer(40px);
+@include media-breakpoint-up(md) {
+  // set the footer height to use a sticky footer
+  @include sticky-footer(40px);
+}
 
 
 // Back to top
