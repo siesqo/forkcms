@@ -436,7 +436,7 @@ gulp.task('serve', function () {
         'serve:backend',
         'serve:frontend',
         // 'serve:theme-fork',
-        'serve:theme' // @remark custom for SumoCoders
+        'serve:theme' // @remark custom for Siesqo
     )
 })
 
@@ -445,6 +445,6 @@ gulp.task('build', function () {
         'build:backend',
         'build:frontend',
         // 'build:theme-fork',
-        'build:theme' // @remark custom for SumoCoders
+        'build:theme' // @remark custom for Siesqo
     )
 })
