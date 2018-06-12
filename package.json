@@ -7,13 +7,18 @@
   "author": "Tijs Verkoyen <tijs@verkoyen.eu>",
   "license": "MIT",
   "devDependencies": {
+<<<<<<< HEAD
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "bootstrap": "^4.0.0",
+=======
+    "bootstrap-accessibility-plugin": "^1.0.5",
+>>>>>>> upstream/master
     "bootstrap-datepicker": "^1.7.0",
     "bootstrap-sass": "~3.3",
     "bootstrap-tagsinput": "https://github.com/mathiashelin/bootstrap-tagsinput.git",
+    "ckeditor": "^4.7.3",
     "cropper": "^3.0.0-rc.2",
     "del": "^3.0.0",
     "fancybox": "^3.0.0",
@@ -39,12 +44,16 @@
     "requestanimationframe": "^0.0.23",
     "simple-ajax-uploader": "^2.5.5",
     "slick-carousel": "^1.6.0",
+<<<<<<< HEAD
     "bootstrap-accessibility-plugin": "^1.0.5",
     "standard": "^10.0.3",
     "sweet-scroll": "^2.2.1",
     "webpack": "^3.5.4",
     "webpack-stream": "^4.0.0",
     "ckeditor": "^4.7.3"
+=======
+    "standard": "^10.0.3"
+>>>>>>> upstream/master
   },
   "scripts": {
     "test": "standard"
