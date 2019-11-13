@@ -3,6 +3,7 @@ imports:
 
 parameters:
     site.multilanguage: true
+    site.default_language: en
 
 framework:
     test: ~
@@ -11,7 +12,7 @@ framework:
     profiler:
         collect: false
     router:
-        resource: "%kernel.project_dir%/app/config/routing_install.yml"
+        resource: "%kernel.project_dir%/app/config/routing.yml"
 
 web_profiler:
     toolbar: false

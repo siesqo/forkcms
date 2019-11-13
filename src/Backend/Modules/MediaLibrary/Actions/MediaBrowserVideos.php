@@ -10,13 +10,9 @@ use Backend\Modules\MediaLibrary\Domain\MediaItem\Type;
 
 class MediaBrowserVideos extends MediaBrowser
 {
-    public function execute(): void
+    public function display(string $template = null): void
     {
-        $this->mediaFolder = $this->getMediaFolder();
-
-        parent::parseJsFiles();
-        $this->parse();
-        $this->display('/' . $this->getModule() . '/Layout/Templates/MediaBrowser.html.twig');
+        parent::display($template ?? '/' . $this->getModule() . '/Layout/Templates/MediaBrowser.html.twig');
     }
 
     protected function parse(): void
@@ -30,6 +26,7 @@ class MediaBrowserVideos extends MediaBrowser
         $mediaFolderId = ($this->mediaFolder instanceof MediaFolder) ? $this->mediaFolder->getId() : null;
 
         $this->template->assign('folderId', $mediaFolderId);
+        $this->template->assign('mediaType', 'video');
         $this->template->assign('tree', $this->get('media_library.manager.tree_media_browser_videos')->getHTML());
         $this->header->addJsData('MediaLibrary', 'openedFolderId', $mediaFolderId);
     }

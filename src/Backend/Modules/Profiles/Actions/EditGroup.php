@@ -58,6 +58,8 @@ class EditGroup extends BackendBaseActionEdit
 
         // assign the active record and additional variables
         $this->template->assign('group', $this->group);
+
+        $this->header->appendDetailToBreadcrumbs($this->group['name']);
     }
 
     private function validateForm(): void
@@ -85,7 +87,7 @@ class EditGroup extends BackendBaseActionEdit
                 $values = ['name' => $txtName->getValue()];
 
                 // update values
-                BackendProfilesModel::updateGroup($this->id, ['name' => $values]);
+                BackendProfilesModel::updateGroup($this->id, $values);
 
                 // everything is saved, so redirect to the overview
                 $this->redirect(

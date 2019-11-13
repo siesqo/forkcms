@@ -20,6 +20,7 @@ framework:
         engines: ['twig']
     session:
         handler_id: ~
+        cookie_secure: '%session.cookie_secure%'
     cache:
         app: cache.adapter.filesystem
         pools:
@@ -48,7 +49,7 @@ monolog:
     handlers:
         main:
             type:  rotating_file
-            path:  "%site.path_www%/var/logs/%kernel.environment%.log"
+            path:  "%site.path_www%/var/logs/%kernel.environment%/error.log"
             level: error
             max_files: 10
         # swift:
@@ -208,6 +209,11 @@ services:
         arguments:
             - "@fork.settings"
 
+    ForkCMS\Utility\Thumbnails:
+        public: true
+        arguments:
+            - "%site.path_www%"
+
     templating:
         class: Frontend\Core\Engine\TwigTemplate
         public: true
@@ -221,3 +227,8 @@ services:
         public: true
         arguments:
             - "@translator.selector"
+
+    Common\Core\Twig\Extensions\IncludeOnceExtension:
+        public: false
+        tags:
+            - { name: twig.extension }

@@ -12,6 +12,7 @@ use Symfony\Bridge\Twig\Extension\FormExtension as SymfonyFormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormRenderer;
 use Twig_Environment;
 use Twig_Extension_Debug;
@@ -48,12 +49,14 @@ class TwigTemplate extends BaseTwigTemplate
         if ($this->debugMode) {
             $this->environment->enableAutoReload();
             $this->environment->setCache(false);
+            $this->environment->addExtension(new Twig_Extension_Debug());
         }
         $this->language = BL::getWorkingLanguage();
         $this->connectSymfonyForms();
         $this->connectSymfonyTranslator();
         $this->connectSpoonForm();
         TwigFilters::addFilters($this->environment, 'Backend');
+        $this->autoloadMissingTaggedExtensions($container);
     }
 
     /**
@@ -105,7 +108,13 @@ class TwigTemplate extends BaseTwigTemplate
 
     private function connectSymfonyForms(): void
     {
-        $rendererEngine = new TwigRendererEngine(['Layout/Templates/FormLayout.html.twig'], $this->environment);
+        $rendererEngine = new TwigRendererEngine(
+            [
+                'Layout/Templates/FormLayout.html.twig',
+                'MediaLibrary/Resources/views/FormLayout.html.twig',
+            ],
+            $this->environment
+        );
         $csrfTokenManager = Model::get('security.csrf.token_manager');
         $this->environment->addRuntimeLoader(
             new Twig_FactoryRuntimeLoader(
@@ -339,5 +348,14 @@ class TwigTemplate extends BaseTwigTemplate
             $bodyClass = $url->getModule() . 'AddEdit';
         }
         $this->assign('bodyClass', $bodyClass);
+    }
+
+    private function autoloadMissingTaggedExtensions(ContainerInterface $container): void
+    {
+        foreach ($container->get('twig')->getExtensions() as $id => $extension) {
+            if (!$this->environment->hasExtension($id)) {
+                $this->environment->addExtension($extension);
+            }
+        }
     }
 }
