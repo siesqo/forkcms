@@ -188,7 +188,7 @@ class Installer extends ModuleInstaller
             // insert modules page
             $modulesPageId = $this->insertPage(
                 [
-                    'id' => 4,
+                    'id' => 5,
                     'title' => \SpoonFilter::ucfirst(
                         $this->getLocale('Modules', 'Core', $language, 'lbl', 'Frontend')
                     ),
@@ -436,26 +436,10 @@ class Installer extends ModuleInstaller
                 ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
             );
 
-            // insert sitemap
-            $this->insertPage(
-                [
-                    'id' => 2,
-                    'title' => \SpoonFilter::ucfirst(
-                        $this->getLocale('Sitemap', 'Core', $language, 'lbl', 'Frontend')
-                    ),
-                    'type' => 'footer',
-                    'language' => $language,
-                ],
-                null,
-                ['html' => __DIR__ . '/Data/' . $language . '/sitemap.txt'],
-                ['extra_id' => $this->getExtraId('sitemap')],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
-            );
-
             // insert disclaimer
             $this->insertPage(
                 [
-                    'id' => 3,
+                    'id' => 2,
                     'title' => \SpoonFilter::ucfirst(
                         $this->getLocale('Disclaimer', 'Core', $language, 'lbl', 'Frontend')
                     ),
@@ -466,6 +450,42 @@ class Installer extends ModuleInstaller
                 [
                     'html' => __DIR__ . '/Data/' . $language .
                         '/disclaimer.txt',
+                ],
+                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+            );
+
+            // insert privacy policy
+            $this->insertPage(
+                [
+                    'id' => 3,
+                    'title' => \SpoonFilter::ucfirst(
+                        $this->getLocale('PrivacyPolicy', 'Core', $language, 'lbl', 'Frontend')
+                    ),
+                    'type' => 'footer',
+                    'language' => $language,
+                ],
+                ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
+                [
+                    'html' => __DIR__ . '/Data/' . $language .
+                        '/privacy-policy.txt',
+                ],
+                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+            );
+
+            // insert cookie policy
+            $this->insertPage(
+                [
+                    'id' => 4,
+                    'title' => \SpoonFilter::ucfirst(
+                        $this->getLocale('CookiePolicy', 'Core', $language, 'lbl', 'Frontend')
+                    ),
+                    'type' => 'footer',
+                    'language' => $language,
+                ],
+                ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
+                [
+                    'html' => __DIR__ . '/Data/' . $language .
+                        '/cookie-policy.txt',
                 ],
                 ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
             );
@@ -483,7 +503,6 @@ class Installer extends ModuleInstaller
                 ],
                 null,
                 ['html' => __DIR__ . '/Data/' . $language . '/404.txt'],
-                ['extra_id' => $this->getExtraId('sitemap')],
                 ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
             );
         }

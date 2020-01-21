@@ -1346,6 +1346,22 @@
         <translation language="el"><![CDATA[προηγούμενη σελίδα]]></translation>
         <translation language="pl"><![CDATA[poprzednia strona]]></translation>
       </item>
+      <item type="label" name="PrivacyPolicy">
+        <translation language="nl"><![CDATA[privacy policy]]></translation>
+        <translation language="en"><![CDATA[privacy policy]]></translation>
+        <translation language="hu"><![CDATA[adatvédelmi irányelvek]]></translation>
+        <translation language="it"><![CDATA[politica sulla riservatezza]]></translation>
+        <translation language="fr"><![CDATA[politique de confidentialité]]></translation>
+        <translation language="ru"><![CDATA[политика конфиденциальности]]></translation>
+        <translation language="zh"><![CDATA[隱私政策]]></translation>
+        <translation language="de"><![CDATA[datenschutz-Bestimmungen]]></translation>
+        <translation language="es"><![CDATA[política de privacidad]]></translation>
+        <translation language="lt"><![CDATA[privātuma politika]]></translation>
+        <translation language="uk"><![CDATA[політика конфіденційності]]></translation>
+        <translation language="sv"><![CDATA[integritetspolicy]]></translation>
+        <translation language="el"><![CDATA[πολιτική απορρήτου]]></translation>
+        <translation language="pl"><![CDATA[polityka prywatności]]></translation>
+      </item>
       <item type="label" name="ProfileSettings">
         <translation language="nl"><![CDATA[instellingen]]></translation>
         <translation language="en"><![CDATA[settings]]></translation>
@@ -2375,6 +2391,21 @@
         <translation language="sv"><![CDATA[E-post via kontaktformulär.]]></translation>
         <translation language="el"><![CDATA[Στείλτε email από τη φόρμα επικοινωνίας.]]></translation>
         <translation language="pl"><![CDATA[E-mail poprzez formularz kontaktowy.]]></translation>
+      </item>
+      <item type="label" name="CookiePolicy">
+        <translation language="nl"><![CDATA[cookie policy]]></translation>
+        <translation language="en"><![CDATA[cookie policy]]></translation>
+        <translation language="hu"><![CDATA[süti házirend]]></translation>
+        <translation language="it"><![CDATA[gestione dei cookie]]></translation>
+        <translation language="fr"><![CDATA[politique de cookies]]></translation>
+        <translation language="ru"><![CDATA[политика в отношении файлов cookie]]></translation>
+        <translation language="de"><![CDATA[cookie-richtlinie]]></translation>
+        <translation language="uk"><![CDATA[політика щодо файлів cookie]]></translation>
+        <translation language="sv"><![CDATA[cookie policy]]></translation>
+        <translation language="lt"><![CDATA[slapukų politika]]></translation>
+        <translation language="el"><![CDATA[cookie policy]]></translation>
+        <translation language="zh"><![CDATA[Cookie政策]]></translation>
+        <translation language="pl"><![CDATA[polityka cookie]]></translation>
       </item>
       <item type="message" name="CookiesWarning">
         <translation language="nl"><![CDATA[Om de gebruikerservaring van deze site te verbeteren gebruikt deze website <a href="/disclaimer">cookies</a>.]]></translation>
