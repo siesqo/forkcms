@@ -2392,6 +2392,15 @@
         <translation language="el"><![CDATA[Στείλτε email από τη φόρμα επικοινωνίας.]]></translation>
         <translation language="pl"><![CDATA[E-mail poprzez formularz kontaktowy.]]></translation>
       </item>
+      <item type="label" name="ContinueBrowsing">
+        <translation language="nl"><![CDATA[verder surfen]]></translation>
+        <translation language="en"><![CDATA[continue browsing]]></translation>
+        <translation language="fr"><![CDATA[continuer à naviguer]]></translation>
+        <translation language="de"><![CDATA[weiter surfen]]></translation>
+        <translation language="es"><![CDATA[continuar navegando]]></translation>
+        <translation language="ru"><![CDATA[продолжить просмотр]]></translation>
+        <translation language="pl"><![CDATA[przeglądaj dalej]]></translation>
+      </item>
       <item type="label" name="CookiePolicy">
         <translation language="nl"><![CDATA[cookie policy]]></translation>
         <translation language="en"><![CDATA[cookie policy]]></translation>
@@ -2408,13 +2417,13 @@
         <translation language="pl"><![CDATA[polityka cookie]]></translation>
       </item>
       <item type="message" name="CookiesWarning">
-        <translation language="nl"><![CDATA[Om de gebruikerservaring van deze site te verbeteren gebruikt deze website <a href="/disclaimer">cookies</a>.]]></translation>
-        <translation language="en"><![CDATA[To improve the user experience on this site we use <a href="/disclaimer">cookies</a>.]]></translation>
-        <translation language="fr"><![CDATA[Pour améliorer l'expérience utilisateur sur ce site, nous utilisons des <a href="/disclaimer">cookies</a>.]]></translation>
-        <translation language="de"><![CDATA[Wir verwenden <a href="/disclaimer">Cookies</a> um Ihr Benutzer-Erlebnis zu verbessern.]]></translation>
-        <translation language="es"><![CDATA[Para mejorar la experiencia del usuario en este sitio utilizamos <a href="/disclaimer">cookies</a>.]]></translation>
-        <translation language="ru"><![CDATA[Чтобы улучшить работу пользователей на этом сайте, мы используем <a href="/disclaimer">cookies</a>.]]></translation>
-        <translation language="pl"><![CDATA[Aby poprawić wygodę korzystania z witryny, używamy plików <a href="/disclaimer"> cookie </a>]]></translation>
+        <translation language="nl"><![CDATA[Deze website gebruikt cookies om uw online ervaring te optimaliseren en verbeteren. Door verder te surfen op deze website stemt u in met het gebruik van cookies. Voor meer informatie lees onze <a href="/cookie-policy">cookie policy</a>.]]></translation>
+        <translation language="en"><![CDATA[This website uses cookies to improve and optimize your online experience. By continuing to use this website you agree with the use of cookies. For more information read our <a href="/cookie-policy">cookie policy</a>.]]></translation>
+        <translation language="fr"><![CDATA[Ce site web utilise des cookies pour améliorer et optimiser votre expérience en ligne. En continuant à utiliser ce site web, vous acceptez l'utilisation de cookies. Pour plus d'informations, lisez notre <a href="/politique-de-cookies">politique de cookies</a>]]></translation>
+        <translation language="de"><![CDATA[Diese website verwendet cookies, um ihr online-erlebnis zu verbessern und zu optimieren. Durch die weitere nutzung dieser website stimmen sie der verwendung von cookies zu. Für weitere informationen lesen sie unsere <a href="/cookie-richtlinie">cookie-richtlinie</a>]]></translation>
+        <translation language="es"><![CDATA[Este sitio web utiliza cookies para mejorar y optimizar su experiencia en línea. Al continuar utilizando este sitio web, usted acepta el uso de cookies.]]></translation>
+        <translation language="ru"><![CDATA[Этот веб-сайт использует куки для улучшения и оптимизации вашей работы в Интернете. Продолжая использовать этот сайт, вы соглашаетесь с использованием куки.]]></translation>
+        <translation language="pl"><![CDATA[Ta strona korzysta z plików cookie w celu poprawy i optymalizacji korzystania z Internetu. Kontynuując korzystanie z tej witryny, zgadzasz się na stosowanie plików cookie.]]></translation>
       </item>
       <item type="message" name="EN">
         <translation language="nl"><![CDATA[Engels]]></translation>
@@ -3260,6 +3269,15 @@
         <translation language="sv"><![CDATA[Välkommen, %1$s]]></translation>
         <translation language="el"><![CDATA[Καλωσήλθες, %1$s]]></translation>
         <translation language="pl"><![CDATA[Witaj, %1$s]]></translation>
+      </item>
+      <item type="label" name="WeRespectPrivacy">
+        <translation language="nl"><![CDATA[wij respecteren uw privacy]]></translation>
+        <translation language="en"><![CDATA[we respect your privacy]]></translation>
+        <translation language="fr"><![CDATA[nous respectons votre vie privée]]></translation>
+        <translation language="de"><![CDATA[wir respektieren deine privatsphäre]]></translation>
+        <translation language="es"><![CDATA[respetamos tu privacidad]]></translation>
+        <translation language="ru"><![CDATA[мы уважаем вашу конфиденциальность]]></translation>
+        <translation language="pl"><![CDATA[szanujemy twoją prywatność]]></translation>
       </item>
       <item type="message" name="WrittenBy">
         <translation language="nl"><![CDATA[geschreven door %1$s]]></translation>

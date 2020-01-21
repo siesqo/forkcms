@@ -1,31 +1,41 @@
-.cookiebar {
-  border: 0;
-  border-radius: 0;
+.cookie-background {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.cookie-content {
+  display: flex;
   margin-bottom: 0;
+  position: fixed;
+  z-index: 999999;
+  background-color: #fff;
+  border-radius: 0;
 }
 
-@include media-breakpoint-down(sm) {
-  .cookiebar {
-    text-align: center;
-  }
-  
-  .cookiebar-content,
-  .cookiebar-buttons {
-    float: none;
-  }
-
-  .cookiebar-content {
-    margin-bottom: 8px;
-  }
-
-  .cookiebar-buttons .btn {
-    margin-bottom: 8px;
-  }
+.cookie-content > .container p a {
+  // Link to cookie policy
+  color: $black; // @todo enter theme accent color
+  text-decoration: underline;
 }
 
-@include media-breakpoint-down(xs) {
-  .cookiebar {
-    padding: 25px 15px;
-  }
+.cookie-content .cookie-action {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 
+// Continue browsing button
+.cookie-content .cookie-action button {
+  background-color: $black; // @todo enter theme accent color
+  color: #fff;
+  border-radius: 0;
+  padding: 10px 20px;
+}
+
+.cookie-content .cookie-action button:hover {
+  opacity: .8;
+}
