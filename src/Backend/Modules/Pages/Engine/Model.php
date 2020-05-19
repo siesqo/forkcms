@@ -310,7 +310,7 @@ class Model
             // loop elements
             foreach ($navigation[$navigationType][$depth][$parentId] as $key => $aValue) {
                 $html .= "\t<li>" . "\n";
-                $html .= "\t\t" . '<a href="#">' . $aValue['navigation_title'] . '</a>' . "\n";
+                $html .= "\t\t" . '<a href="#">' . htmlspecialchars($aValue['navigation_title']) . '</a>' . "\n";
 
                 // insert recursive here!
                 if (isset($navigation[$navigationType][$depth + 1][$key])) {
@@ -520,8 +520,8 @@ class Model
              FROM modules_tags AS mt
              INNER JOIN tags AS t ON mt.tag_id = t.id
              INNER JOIN pages AS i ON mt.other_id = i.id
-             WHERE mt.module = ? AND mt.tag_id = ? AND i.status = ?',
-            ['pages', $tagId, 'active']
+             WHERE mt.module = ? AND mt.tag_id = ? AND i.status = ? AND i.language = ?',
+            ['pages', $tagId, 'active', BL::getWorkingLanguage()]
         );
 
         // loop items
@@ -676,7 +676,7 @@ class Model
                 $sequences[$page['type'] === 'footer' ? 'footer' : 'pages'][$keys[$pageID]] = $pageID;
 
                 $parentTitle = str_replace([$homepageTitle . ' → ', $homepageTitle], '', $titles[$parentID] ?? '');
-                $titles[$pageID] = trim($parentTitle . ' → ' . $page['title'], ' → ');
+                $titles[$pageID] = htmlspecialchars(trim($parentTitle . ' → ' . $page['title'], ' → '));
             }
         }
 
@@ -706,7 +706,7 @@ class Model
 
         foreach ($navigation['page'][$parentId] as $page) {
             $pageId = $page['page_id'];
-            $pageTitle = $parentTitle . ' → ' . $page['navigation_title'];
+            $pageTitle = htmlspecialchars($parentTitle . ' → ' . $page['navigation_title']);
             $tree['pages'][$pageId] = $pageTitle;
             $tree['attributes'][$pageId] = $attributesFunction($page);
 
@@ -844,7 +844,7 @@ class Model
                     null,
                     null,
                     ['id' => $page['page_id']]
-                ) . '"><ins>&#160;</ins>' . $page['navigation_title'] . '</a>' . "\n";
+                ) . '"><ins>&#160;</ins>' . htmlspecialchars($page['navigation_title']) . '</a>' . "\n";
 
                 // get childs
                 $html .= self::getSubtree($navigation, $page['page_id']);
@@ -971,7 +971,7 @@ class Model
                         null,
                         null,
                         ['id' => $page['page_id']]
-                    ) . '"><ins>&#160;</ins>' . $page['navigation_title'] . '</a>' . "\n";
+                    ) . '"><ins>&#160;</ins>' . htmlspecialchars($page['navigation_title']) . '</a>' . "\n";
 
                     // insert subtree
                     $html .= self::getSubtree($navigation, $page['page_id']);
@@ -1006,7 +1006,7 @@ class Model
                     null,
                     null,
                     ['id' => $page['page_id']]
-                ) . '"><ins>&#160;</ins>' . $page['navigation_title'] . '</a>' . "\n";
+                ) . '"><ins>&#160;</ins>' . htmlspecialchars($page['navigation_title']) . '</a>' . "\n";
 
                 // insert subtree
                 $html .= self::getSubtree($navigation, $page['page_id']);
@@ -1040,7 +1040,7 @@ class Model
                     null,
                     null,
                     ['id' => $page['page_id']]
-                ) . '"><ins>&#160;</ins>' . $page['navigation_title'] . '</a>' . "\n";
+                ) . '"><ins>&#160;</ins>' . htmlspecialchars($page['navigation_title']) . '</a>' . "\n";
 
                 // insert subtree
                 $html .= self::getSubtree($navigation, $page['page_id']);
@@ -1184,7 +1184,7 @@ class Model
         $parentPageInfo = self::get($parentId, null, BL::getWorkingLanguage());
 
         // does the parent have extras?
-        if (!$isAction && $parentPageInfo['has_extra']) {
+        if (!$isAction && is_array($parentPageInfo) && isset($parentPageInfo['has_extra']) && $parentPageInfo['has_extra']) {
             // set locale
             FrontendLanguage::setLocale(BL::getWorkingLanguage(), true);
 
