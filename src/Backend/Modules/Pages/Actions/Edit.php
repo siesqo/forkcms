@@ -19,6 +19,7 @@ use Backend\Modules\Tags\Engine\Model as BackendTagsModel;
 use Backend\Modules\Profiles\Engine\Model as BackendProfilesModel;
 use ForkCMS\Utility\Thumbnails;
 use SpoonFormHidden;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * This is the edit-action, it will display a form to update an item
@@ -195,7 +196,7 @@ class Edit extends BackendBaseActionEdit
             ['[edited_on]'],
             'edited_on'
         );
-        $this->dgDrafts->setColumnFunction('htmlspecialchars', ['[title]'], 'title');
+        $this->dgDrafts->setColumnFunction('htmlspecialchars', ['[title]'], 'title', false);
 
         // our JS needs to know an id, so we can highlight it
         $this->dgDrafts->setRowAttributes(['id' => 'row-[revision_id]']);
@@ -369,6 +370,9 @@ class Edit extends BackendBaseActionEdit
             }
 
             $this->form->addMultiCheckbox('allow', $values, $checked);
+
+            // css link class
+            $page['link_class'] = $this->form->addText('link_class', isset($this->record['data']['link_class']) ? $this->record['data']['link_class'] : null);
         }
 
         // build prototype block
@@ -601,7 +605,7 @@ class Edit extends BackendBaseActionEdit
             ['[edited_on]'],
             'edited_on'
         );
-        $this->dgRevisions->setColumnFunction('htmlspecialchars', ['[title]'], 'title');
+        $this->dgRevisions->setColumnFunction('htmlspecialchars', ['[title]'], 'title', false);
 
         // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
@@ -637,7 +641,7 @@ class Edit extends BackendBaseActionEdit
         $this->template->assign('isGod', $this->isGod);
         $this->template->assign('templates', $this->templates);
         $this->template->assign('positions', $this->positions);
-        $this->template->assign('extrasData', json_encode(BackendExtensionsModel::getExtrasData()));
+        $this->template->assign('extrasData', json_encode(BackendModel::recursiveHtmlspecialchars(BackendExtensionsModel::getExtrasData())));
         $this->template->assign('extrasById', json_encode($this->extras));
         $this->template->assign('prefixURL', rtrim(BackendPagesModel::getFullUrl($this->record['parent_id']), '/'));
         $this->template->assign('formErrors', (string) $this->form->getErrors());
@@ -859,7 +863,7 @@ class Edit extends BackendBaseActionEdit
         if ($redirectValue === 'internal') {
             $data['internal_redirect'] = [
                 'page_id' => $this->form->getField('internal_redirect')->getValue(),
-                'code' => '301',
+                'code' => Response::HTTP_TEMPORARY_REDIRECT,
             ];
         }
         if ($redirectValue === 'external') {
@@ -867,7 +871,7 @@ class Edit extends BackendBaseActionEdit
                 'url' => BackendPagesModel::getEncodedRedirectUrl(
                     $this->form->getField('external_redirect')->getValue()
                 ),
-                'code' => '301',
+                'code' => Response::HTTP_TEMPORARY_REDIRECT,
             ];
         }
         if (array_key_exists('image', $this->templates[$templateId]['data'])) {
@@ -901,6 +905,12 @@ class Edit extends BackendBaseActionEdit
                     $data['hreflang_' . $language] = $this->form->getfield('hreflang_' . $language)->getValue();
                 }
             }
+        }
+
+        // link class
+        $data['link_class'] = $this->record['data']['link_class'] ?? null;
+        if ($this->isGod) {
+            $data['link_class'] = $this->form->getField('link_class')->getValue();
         }
 
         return $data;

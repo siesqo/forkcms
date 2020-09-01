@@ -226,6 +226,9 @@ class Model extends \Common\Core\Model
 
     /**
      * Get the visitor's id (using a tracking cookie)
+     * @deprecated remove this in Fork 6, this should not be part of Fork.
+     *      It should be implemented by the developer, and respect a visitors
+     *      privacy preferences.
      *
      * @return string
      */
@@ -296,7 +299,7 @@ class Model extends \Common\Core\Model
     private static function unserializeArrayContent(array $array, string $key): array
     {
         if (isset($array[$key]) && $array[$key] !== '') {
-            $array[$key] = unserialize($array[$key]);
+            $array[$key] = unserialize($array[$key], ['allowed_classes' => false]);
 
             return $array;
         }

@@ -16,6 +16,8 @@
         "php": "^7.1",
         "ext-json": "*",
         "ext-zip": "*",
+        "ext-gd": "*",
+        "ext-intl": "*",
         "behat/transliterator": "~1.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
@@ -46,7 +48,8 @@
         "tijsverkoyen/css-to-inline-styles": "1.5.*",
         "monolog/monolog": "^1.23",
         "bugsnag/bugsnag-symfony": "^1.0",
-        "mead-steve/mono-snag": "^3.0.0"
+        "mead-steve/mono-snag": "^3.0.0",
+        "phpoffice/phpspreadsheet": "^1.12"
     },
     "require-dev": {
         "jdorn/sql-formatter": "1.2.17",
