@@ -381,7 +381,7 @@
         <translation language="pt"><![CDATA[contacto]]></translation>
       </item>
       <item type="label" name="Content">
-        <translation language="nl"><![CDATA[content]]></translation>
+        <translation language="nl"><![CDATA[inhoud]]></translation>
         <translation language="en"><![CDATA[content]]></translation>
         <translation language="fr"><![CDATA[contenu]]></translation>
         <translation language="hu"><![CDATA[tartalom]]></translation>
@@ -4459,6 +4459,11 @@
       <item type="message" name="PrivacyConsentDialogSave">
         <translation language="nl"><![CDATA[Bewaar mijn voorkeuren]]></translation>
         <translation language="en"><![CDATA[Save my preferences]]></translation>
+      </item>
+      <item type="message" name="ReCaptchaInfo">
+        <translation language="nl"><![CDATA[Deze site is beschermd door reCAPTCHA en het Google <a href="https://policies.google.com/privacy">Privacybeleid</a> en <a href="https://policies.google.com/terms">Servicevoorwaarden</a> zijn van toepassing.]]></translation>
+        <translation language="en"><![CDATA[This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.]]></translation>
+        <translation language="fr"><![CDATA[Ce site est protégé par reCAPTCHA. Les <a href="https://policies.google.com/privacy">règles de confidentialité</a> et les <a href="https://policies.google.com/terms">conditions d'utilisation</a> de Google s'appliquent.]]></translation>
       </item>
     </Core>
   </Frontend>
@@ -13578,7 +13583,7 @@
         <translation language="en"><![CDATA[hide]]></translation>
       </item>
       <item type="label" name="EditContent">
-        <translation language="nl"><![CDATA[inhoud bewerekn]]></translation>
+        <translation language="nl"><![CDATA[inhoud bewerken]]></translation>
         <translation language="en"><![CDATA[edit content]]></translation>
       </item>
     </Core>
