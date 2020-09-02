@@ -1,0 +1,41 @@
+#privacyConsentDialog {
+  position: fixed;
+  bottom: 0;
+  z-index: $zindex-modal - 1;
+  font-size: $font-size-sm;
+
+  &:focus {
+    outline: none;
+  }
+
+  .modal-dialog {
+    margin: 1.5rem;
+
+    .modal-header {
+
+      h5 {
+        margin-bottom: 0;
+      }
+    }
+
+    .modal-body {
+
+      .checkbox {
+        margin-bottom: .5rem;
+
+        label {
+          display: block;
+          margin-bottom: 0;
+        }
+      }
+
+      #privacyConsentDialogBefore {
+        margin-bottom: 1rem;
+      }
+
+      #privacyConsentDialogAfter {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
