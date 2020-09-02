@@ -72,9 +72,9 @@
     <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js" data-apikey="<YOUR-API-KEY-HERE>" data-releasestage="{{SITE_URL}}"></script>
   {% endif %}
 
-  {# Site wide HTML #}
+  {# Site wide HTML in the head tag #}
   {% block htmlHeader %}
-    {{ siteHTMLHeader|raw }}
+    {{ siteHTMLHead|raw }}
   {% endblock %}
 
   {# Extra stuff you want to put in the header #}
@@ -83,6 +83,8 @@
   {% endblock %}
 </head>
 <body class="{{ FRONTEND_LANGUAGE }}" itemscope itemtype="http://schema.org/WebPage">
+  {# Site wide HTML just after body tag #}
+  {{ siteHTMLStartOfBody|raw }}
   <div id="root">
     {% import 'Core/Layout/Templates/Alerts.html.twig' as alerts %}
 
@@ -107,9 +109,9 @@
     {% include 'Core/Layout/Templates/Footer.html.twig' %}
   {% endblock %}
 
-  {# Site wide HTML #}
+  {# Site wide HTML just before closing body tag #}
   {% block htmlFooter %}
-    {{ siteHTMLFooter|raw }}
+    {{ siteHTMLEndOfBody|raw }}
   {% endblock %}
 
   {% block footerScripts %}
