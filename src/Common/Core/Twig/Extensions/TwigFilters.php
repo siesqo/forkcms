@@ -52,6 +52,7 @@ class TwigFilters
         $twig->addFilter(new TwigFilter('formatnumber', $app . '::formatNumber'));
         $twig->addFilter(new TwigFilter('tolabel', $app . '::toLabel'));
         $twig->addFilter(new TwigFilter('cleanupplaintext', $app . '::cleanupPlainText'));
+        $twig->addFilter(new TwigFilter('getfilemtime', $app . '::getFileMTime'));
 
         // exposed PHP functions
         $twig->addFilter(new TwigFilter('urlencode', 'urlencode'));
