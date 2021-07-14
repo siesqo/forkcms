@@ -241,7 +241,7 @@
       <div class="form-group{% if show_preview and preview_url %} col-md-9 col-lg-10{% endif %}">
         {{ form_widget(form.file) }}
         {% if help_text_message %}
-          <div class="help-text">{{ help_text_message|trans|format(help_text_argument) }}</div>
+          <div class="help-text">{{ help_text_message|trans|format(help_text_argument)|raw }}</div>
         {% endif %}
         {{ form_errors(form.file) }}
         {% if show_remove_image %}
@@ -258,7 +258,7 @@
     <div class="form-group">
       {{ form_widget(form.file) }}
       {% if help_text_message %}
-        <div class="help-text">{{ help_text_message|trans|format(help_text_argument) }}</div>
+        <div class="help-text">{{ help_text_message|trans|format(help_text_argument)|raw }}</div>
       {% endif %}
       {{ form_errors(form.file) }}
     </div>
