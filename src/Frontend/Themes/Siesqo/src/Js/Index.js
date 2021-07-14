@@ -1,5 +1,5 @@
 /* Bootstrap imports */
-import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap'
 
 /* Utilities imports */
 import { BackToTop } from './Utilities/BackToTop'
