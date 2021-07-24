@@ -44,8 +44,7 @@
     "standard": "^10.0.3",
     "sweet-scroll": "^2.2.1",
     "webpack": "^3.5.4",
-    "webpack-stream": "^4.0.0",
-    "ckeditor": "^4.7.3"
+    "webpack-stream": "^4.0.0"
   },
   "scripts": {
     "test": "standard"
