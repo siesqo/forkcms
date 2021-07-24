@@ -3,7 +3,7 @@ import 'bootstrap'
 
 /* Utilities imports */
 import { BackToTop } from './Utilities/BackToTop'
-import SweetScroll from 'sweet-scroll'
+import { ScrollTo } from './Utilities/ScrollTo'
 import { Resize } from './Utilities/Resize'
 /* import {Fancybox} from './Utilities/Fancybox' */
 
@@ -13,7 +13,7 @@ import { Pagination } from './Theme/Pagination'
 import { FormBuilder } from './Theme/FormBuilder'
 
 /* Renders */
-window.sweetscroll = new SweetScroll()
+window.scrollto = new ScrollTo()
 window.resizeFunction = new Resize()
 window.pagination = new Pagination()
 window.backToTop = new BackToTop()
