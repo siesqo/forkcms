@@ -1,5 +1,6 @@
 /* Bootstrap imports */
 import 'bootstrap'
+import '@fortawesome/fontawesome-free/js/all'
 
 /* Utilities imports */
 import { BackToTop } from './Utilities/BackToTop'
