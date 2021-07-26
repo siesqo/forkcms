@@ -16,7 +16,7 @@ variables that are available:
       <h1 itemprop="name">{{ item.title }}</h1>
       {{ 'msg.WrittenBy'|trans|ucfirst|format(nickname) }}
       {{ 'lbl.On'|trans }}
-      <time itemprop="datePublished" datetime="{{ item.publish_on|date('Y-m-d\TH:i:s' ) }}">{{ item.publish_on|spoondate(dateFormatLong,LANGUAGE ) }}</time>
+      <time itemprop="datePublished" datetime="{{ item.publish_on|date('Y-m-d\\TH:i:s.vP' ) }}">{{ item.publish_on|spoondate(dateFormatLong,LANGUAGE ) }}</time>
 
       <p class="mb-0">
         <span class="sr-only">{{ 'lbl.InThe'|trans }} </span>{{ 'lbl.Category'|trans|ucfirst }}:
@@ -34,16 +34,16 @@ variables that are available:
       {% endif %}
 
       {% if item.allow_comments %}
-      <div class="commentCount">
-        {% if comments %}
-          <i class="fas fa-comment"></i>
-          {% if blogCommentsMultiple %}
-            <a href="{{ item.full_url }}#{{ 'act.Comments'|trans }}" itemprop="discussionUrl">{{ 'msg.BlogNumberOfComments'|trans|format(commentsCount) }}</a>
-          {% else %}
-            <a href="{{ item.full_url }}#{{ 'act.Comments'|trans }}" itemprop="discussionUrl">{{ 'msg.BlogOneComment'|trans }}</a>
+        <div class="commentCount">
+          {% if comments %}
+            <i class="fas fa-comment"></i>
+            {% if blogCommentsMultiple %}
+              <a href="{{ item.full_url }}#{{ 'act.Comments'|trans }}" itemprop="discussionUrl">{{ 'msg.BlogNumberOfComments'|trans|format(commentsCount) }}</a>
+            {% else %}
+              <a href="{{ item.full_url }}#{{ 'act.Comments'|trans }}" itemprop="discussionUrl">{{ 'msg.BlogOneComment'|trans }}</a>
+            {% endif %}
           {% endif %}
-        {% endif %}
-      </div>
+        </div>
       {% endif %}
     </header>
 
@@ -60,9 +60,9 @@ variables that are available:
           </a>
         {% endif %}
         {% if navigation.next %}
-        <a class="btn btn-secondary pull-right" href="{{ navigation.next.url }}" rel="next" title="{{ navigation.next.title }}">
-          <span class="sr-only">{{ 'lbl.NextArticle'|trans|ucfirst }}: </span><span class="title">{{ navigation.next.title }}</span> &rarr;
-        </a>
+          <a class="btn btn-secondary pull-right" href="{{ navigation.next.url }}" rel="next" title="{{ navigation.next.title }}">
+            <span class="sr-only">{{ 'lbl.NextArticle'|trans|ucfirst }}: </span><span class="title">{{ navigation.next.title }}</span> &rarr;
+          </a>
         {% endif %}
       </nav>
     </footer>
@@ -80,9 +80,9 @@ variables that are available:
           {# Do not alter the id! It is used as an anchor #}
           <div id="comment-{{ comment.id }}" class="media mb-4" itemprop="comment" itemscope itemtype="http://schema.org/UserComments">
             <meta itemprop="discusses" content="{{ item.title }}" />
-            <img src="{{ FRONTEND_CORE_URL }}/Layout/images/default_author_avatar.gif" alt="{{ comment.author }}" class="d-flex mr-3 img-circle" data-gravatar-id="{{ comment.gravatar_id }}">
+            <img src="{{ FRONTEND_CORE_URL }}/Layout/images/default_author_avatar.gif" alt="{{ comment.author }}" class="d-flex me-3 img-circle" data-gravatar-id="{{ comment.gravatar_id }}">
             <div class="media-body">
-              <time class="text-muted" itemprop="commentTime" datetime="{{ comment.created_on|date('Y-m-d\TH:i:s' ) }}">
+              <time class="text-muted" itemprop="commentTime" datetime="{{ comment.created_on|date('Y-m-d\\TH:i:s.vP' ) }}">
                 <small>{{ comment.created_on|timeago|raw }}</small>
               </time>
               <h5 itemprop="creator name" class="my-0">
@@ -124,22 +124,22 @@ variables that are available:
               <div class="form-group{% if txtMessageError %} has-danger{% endif %}">
                 <label class="form-control-label" for="message">{{ 'lbl.Message'|trans|ucfirst }}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr></label>
                 <div class="controls">
-                  {% form_field_error message %} {% form_field message %}
+                  {% form_field message %} {% form_field_error message %}
                 </div>
               </div>
             </div>
             <div class="col-sm-5">
               <div class="form-group{% if txtAuthorError %} has-danger{% endif %}">
                 <label class="form-control-label" for="author">{{ 'lbl.Name'|trans|ucfirst }}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr></label>
-                {% form_field_error author %} {% form_field author %}
+                {% form_field author %} {% form_field_error author %}
               </div>
               <div class="form-group{% if txtEmailError %} has-danger{% endif %}">
                 <label class="form-control-label" for="email">{{ 'lbl.Email'|trans|ucfirst }}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr></label>
-                {% form_field_error email %} {% form_field email %}
+                {% form_field email %} {% form_field_error email %}
               </div>
               <div class="form-group{% if txtWebsiteError %} has-danger{% endif %}">
                 <label class="form-control-label" for="website">{{ 'lbl.Website'|trans|ucfirst }}</label>
-                {% form_field_error website %} {% form_field website %}
+                {% form_field website %} {% form_field_error website %}
               </div>
             </div>
           </div>
