@@ -123,8 +123,6 @@
     {% for jsFile in jsFiles %}
       <script src="{{ jsFile.file|raw }}?m={{ jsFile.file|getfilemtime }}"></script>
     {% endfor %}
-
-    <script src="{{ THEME_URL }}/Core/Js/bundle.js?m={{ (THEME_URL ~ '/Core/Js/bundle.js')|getfilemtime }}"></script>
   {% endblock %}
 
 </body>
