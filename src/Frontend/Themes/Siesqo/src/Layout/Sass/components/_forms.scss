@@ -1,5 +1,4 @@
 .has-danger {
-
   .form-control-feedback,
   .form-control-label {
     color: theme-color("danger");
@@ -12,6 +11,15 @@
 
 .invalid-feedback {
   display: block;
+}
+
+abbr[title] {
+  border: 0;
+  text-decoration: none;
+}
+
+select.form-control[size] {
+  height: $input-height;
 }
 
 /* reCAPTCHA */
