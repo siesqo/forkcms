@@ -1,0 +1,11 @@
+/* TEAM */
+	Developer: Alessandro Craeye
+	Contact: alessandro.craeye [at] gmail.com
+	Github: https://github.com/alessandrocraeye
+	From: Belgium, Waregem
+
+/* SITE */
+	Doctype: HTML5
+	IDE: PHPStorm, Photoshop
+	Components: jQuery, Twitter Bootstrap
+	Runs on: Fork CMS, PHP, MySQL, Symfony
