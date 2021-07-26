@@ -1,4 +1,7 @@
-.navbar h1 {
-  margin: 0;
-}
+.navbar-toggler {
+  border: none;
 
+  &:focus {
+    outline: $primary;
+  }
+}
