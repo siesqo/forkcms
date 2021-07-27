@@ -1,41 +1,22 @@
 #privacyConsentDialog {
-  position: fixed;
-  bottom: 0;
-  z-index: $zindex-modal - 1;
-  font-size: $font-size-sm;
-
-  &:focus {
-    outline: none;
-  }
+  box-shadow: 0 0.5rem 1rem rgba($black, 0.5);
+  bottom: $spacer/2;
+  display: block;
+  height: auto;
+  left: $spacer/2;
+  right: $spacer/2;
+  top: auto;
+  width: auto;
 
   .modal-dialog {
-    margin: 1.5rem;
+    margin: 0;
+  }
+}
 
-    .modal-header {
-
-      h5 {
-        margin-bottom: 0;
-      }
-    }
-
-    .modal-body {
-
-      .checkbox {
-        margin-bottom: .5rem;
-
-        label {
-          display: block;
-          margin-bottom: 0;
-        }
-      }
-
-      #privacyConsentDialogBefore {
-        margin-bottom: 1rem;
-      }
-
-      #privacyConsentDialogAfter {
-        margin-top: 1rem;
-      }
-    }
+@include media-breakpoint-up(sm) {
+  #privacyConsentDialog {
+    bottom: $spacer;
+    left: $spacer;
+    right: auto;
   }
 }

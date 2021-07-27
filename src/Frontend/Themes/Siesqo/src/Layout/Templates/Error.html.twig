@@ -7,17 +7,12 @@
   </div>
 
   <div class="container">
-    <div class="row">
-      <div id="errorIcon">
-        <img src="{{ THEME_URL }}/apple-touch-icon.png" class="img-circle">
-      </div>
-    </div>
-    {% for main in positions.main %}
-      {% if main.html %}
-        {{ main.html|raw }}
+    <img src="{{ THEME_URL }}/apple-touch-icon-180.png" class="mb-3">
+    {% for block in positions.main %}
+      {% if block.html %}
+        {{ block.html|raw }}
       {% endif %}
     {% endfor %}
   </div>
 
 {% endblock %}
-

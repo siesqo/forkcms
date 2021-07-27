@@ -55,12 +55,12 @@ variables that are available:
     <footer class="module-footer">
       <nav class="py-4 clearfix" aria-label="page navigation">
         {% if navigation.previous %}
-          <a class="btn btn-secondary pull-left" href="{{ navigation.previous.url }}" rel="prev" title="{{ navigation.previous.title }}">
+          <a class="btn btn-secondary float-start" href="{{ navigation.previous.url }}" rel="prev" title="{{ navigation.previous.title }}">
             &larr; <span class="sr-only">{{ 'lbl.PreviousArticle'|trans|ucfirst }}: </span><span class="title">{{ navigation.previous.title }}</span>
           </a>
         {% endif %}
         {% if navigation.next %}
-          <a class="btn btn-secondary pull-right" href="{{ navigation.next.url }}" rel="next" title="{{ navigation.next.title }}">
+          <a class="btn btn-secondary float-end" href="{{ navigation.next.url }}" rel="next" title="{{ navigation.next.title }}">
             <span class="sr-only">{{ 'lbl.NextArticle'|trans|ucfirst }}: </span><span class="title">{{ navigation.next.title }}</span> &rarr;
           </a>
         {% endif %}

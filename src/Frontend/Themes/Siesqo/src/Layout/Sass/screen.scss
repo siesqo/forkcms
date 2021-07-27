@@ -1,8 +1,8 @@
 @charset 'UTF-8';
 
 // Bootstrap
-@import "bootstrap/scss/functions";
-@import 'bootstrap/scss/variables';
+@import "bootstrap5/scss/functions";
+@import 'bootstrap5/scss/variables';
 @import 'bootstrap-variables';
 @import 'bootstrap-imports';
 
@@ -19,10 +19,10 @@
 
 // Components
 @import 'components/cookiebar';
-@import 'components/privacy_dialog';
 @import 'components/footer';
 @import 'components/forms';
 @import 'components/navbar';
+@import 'components/privacy_dialog';
 
 // Custom page styling
 // eg. @import 'pages/footer';
