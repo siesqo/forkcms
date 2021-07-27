@@ -19,6 +19,7 @@ class Installer extends ModuleInstaller
         $this->configureBackendRights();
         $this->configureFrontendExtras();
         $this->configureFrontendForkTheme();
+        $this->configureFrontendCustomTheme(); // @remark custom for Siesqo
     }
 
     private function configureBackendActionRightsForModules(): void
@@ -140,6 +141,78 @@ class Installer extends ModuleInstaller
 
         // set default template
         $this->setSetting('Pages', 'default_template', $this->getTemplateId('Default'));
+
+        // disable meta navigation
+        $this->setSetting('Pages', 'meta_navigation', false);
+    }
+
+    /**
+     * @remark custom for Siesqo
+     */
+    private function configureFrontendCustomTheme(): void
+    {
+        // Bootstrap template
+
+        // build templates
+        $templates['siesqo']['default'] = [
+            'theme' => 'Siesqo',
+            'label' => 'Default',
+            'path' => 'Core/Layout/Templates/Default.html.twig',
+            'active' => true,
+            'data' => serialize(
+                [
+                    'format' => '[/,main,main,main,/]',
+                    'names' => [
+                        'main',
+                    ],
+                ]
+            ),
+        ];
+
+        $templates['siesqo']['error'] = [
+            'theme' => 'Siesqo',
+            'label' => 'Error',
+            'path' => 'Core/Layout/Templates/Error.html.twig',
+            'active' => true,
+            'data' => serialize(
+                [
+                    'format' => '[/,main,main,main,/]',
+                    'names' => [
+                        'main',
+                    ],
+                ]
+            ),
+        ];
+
+        $templates['siesqo']['home'] = [
+            'theme' => 'Siesqo',
+            'label' => 'Home',
+            'path' => 'Core/Layout/Templates/Home.html.twig',
+            'active' => true,
+            'data' => serialize(
+                [
+                    'format' => '[/,main,main,main,/]',
+                    'names' => [
+                        'main',
+                    ],
+                ]
+            ),
+        ];
+
+        // insert templates
+        $this->getDatabase()->insert('themes_templates', $templates['siesqo']['default']);
+        $this->getDatabase()->insert('themes_templates', $templates['siesqo']['home']);
+        $this->getDatabase()->insert('themes_templates', $templates['siesqo']['error']);
+
+        /*
+         * General theme settings
+         */
+
+        // set the theme
+        $this->setSetting('Core', 'theme', 'Siesqo', true);
+
+        // set default template
+        $this->setSetting('Pages', 'default_template', $this->getTemplateId('Default', 'Siesqo'), true);
 
         // disable meta navigation
         $this->setSetting('Pages', 'meta_navigation', false);
