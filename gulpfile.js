@@ -392,7 +392,7 @@ gulp.task('build:theme:images:minify-images', function () {
     .pipe(livereload())
 })
 
-const buildTheme = gulp.series(
+gulp.task('build:theme', gulp.series(
   'build:theme:empty-destination-folders',
   gulp.parallel(
     'build:assets:copy-images-vendors',
@@ -403,7 +403,7 @@ const buildTheme = gulp.series(
     'build:theme:assets:copy-templates',
     'build:theme:images:minify-images'
   )
-)
+))
 
 gulp.task('serve:theme', function () {
   livereload.listen()
@@ -427,7 +427,7 @@ gulp.task('build', gulp.series(
   buildBackend,
   buildFrontend,
   // buildThemeFork,
-  buildTheme // @remark custom for Siesqo
+  'build:theme' // @remark custom for Siesqo
 ))
 
 gulp.task('default', gulp.series('build'))
