@@ -82,6 +82,8 @@ liip_imagine:
                 locator: filesystem_insecure
     cache: default
     data_loader: default
+    controller:
+        filter_action:  ForkCMS\ImagineController:filterAction
 
     # your filter sets are defined here
     filter_sets:
@@ -277,3 +279,7 @@ services:
         arguments:
             - "@fork.settings"
             - "@fork.cookie"
+
+    ForkCMS\ImagineController:
+        public: true
+        autowire: true
