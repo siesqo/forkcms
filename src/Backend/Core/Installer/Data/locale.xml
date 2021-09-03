@@ -4436,29 +4436,60 @@
         <translation language="el"><![CDATA[φόρτωση]]></translation>
         <translation language="pt"><![CDATA[a carregar]]></translation>
       </item>
+      <item type="message" name="PrivacyConsentInfoTitle">
+        <translation language="nl"><![CDATA[Cookies op onze website]]></translation>
+        <translation language="en"><![CDATA[Cookies on our website]]></translation>
+        <translation language="fr"><![CDATA[Cookies sur notre site]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentInfoBody">
+        <translation language="nl"><![CDATA[Deze website maakt gebruik van cookies. Je kan hieronder jouw voorkeuren instellen.<br><br>Wil je meer weten? Dan kan je onze <a href="/cookie-policy">cookie policy</a> nalezen.]]></translation>
+        <translation language="en"><![CDATA[This website uses cookies. You can set your personal preferences below.<br><br>Want to know more? You can read our <a href="/cookie-policy">cookie policy</a>.]]></translation>
+        <translation language="fr"><![CDATA[Ce site web utilise des cookies. Vous pouvez définir vos préférences ci-dessous.<br><br>Voulez-vous en savoir plus? Vous pouvez lire notre <a href="/politique-de-cookies">politique de cookies</a>.]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentInfoSettings">
+        <translation language="nl"><![CDATA[cookie instellingen]]></translation>
+        <translation language="en"><![CDATA[cookie settings]]></translation>
+        <translation language="fr"><![CDATA[paramètres des cookies]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentInfoSaveAll">
+        <translation language="nl"><![CDATA[Accepteer alles]]></translation>
+        <translation language="en"><![CDATA[Accept all]]></translation>
+        <translation language="fr"><![CDATA[Tout accepter]]></translation>
+      </item>
       <item type="message" name="PrivacyConsentDialogTitle">
         <translation language="nl"><![CDATA[Jouw privacy voorkeuren]]></translation>
         <translation language="en"><![CDATA[Your privacy]]></translation>
+        <translation language="fr"><![CDATA[Vos préférences de confidentialité]]></translation>
       </item>
-      <item type="message" name="PrivacyConsentDialogBefore">
-        <translation language="nl"><![CDATA[Deze website maakt gebruik van cookies. Je kan hieronder jouw voorkeuren instellen.]]></translation>
-        <translation language="en"><![CDATA[This website uses cookies. You can set your personal preferences below.]]></translation>
-      </item>
-      <item type="message" name="PrivacyConsentDialogAfter">
-        <translation language="nl"><![CDATA[Wil je meer weten? Dan kan je ons <a href="/disclaimer">privacy-beleid</a> nalezen.]]></translation>
-        <translation language="en"><![CDATA[If you need more information you find it in our <a href="/disclaimer">disclaimer</a>.]]></translation>
+      <item type="message" name="PrivacyConsentDialogBody">
+        <translation language="nl"><![CDATA[Jouw privacy is belangrijk! Daarom kan je zelf kiezen welke cookies je toelaat. We gebruiken cookies om je een betere website-ervaring aan te bieden, deze cookies zijn noodzakelijk voor een goede werking van de website en zijn dan ook altijd aanwezig. Daarnaast maken we ook gebruik van functionele en third-party cookies die ons helpen om de website te analyseren en te begrijpen hoe er gebruik van wordt gemaakt. Deze cookies worden enkel geplaatst na een expliciete toestemming van jouw kant. Wil je dit niet, dan kan je deze gewoon uitschakelen in onderstaand menu. Hou er wel rekening mee dat dit je ervaring op de website kan verminderen.]]></translation>
+        <translation language="en"><![CDATA[Your privacy is important! That's why you can decide yourself which cookies you'll allow. We use cookies to provide you a better website-experience, these cookies are needed to ensure the website works well and are always present. Besides that we also use functional and third-party cookies that help us analyze the website and understand how it gets used. These cookies will only be used when you grant us permission to do so. If you don't want these cookies, you can simply disable them in the menu below. Keep in mind that this can diminish your experience on the website.]]></translation>
+        <translation language="fr"><![CDATA[Votre vie privée est importante! C'est pourquoi vous pouvez choisir les cookies que vous autorisez. Nous utilisons des cookies pour vous offrir une meilleure expérience du site Web, ces cookies sont nécessaires au bon fonctionnement du site Web et sont donc toujours présents. En outre, nous utilisons également des cookies fonctionnels et tiers qui nous aident à analyser le site Web et à comprendre comment il est utilisé. Ces cookies ne sont placés qu'après autorisation explicite de votre part. Si vous ne le souhaitez pas, vous pouvez simplement le désactiver dans le menu ci-dessous. Gardez à l'esprit que cela peut réduire votre expérience sur le site Web.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelFunctionalTitle">
         <translation language="nl"><![CDATA[Functionele cookies]]></translation>
         <translation language="en"><![CDATA[Functional cookies]]></translation>
+        <translation language="fr"><![CDATA[Cookies fonctionnels]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelFunctionalText">
         <translation language="nl"><![CDATA[Deze cookies zijn nodig om de website correct te laten werken. Dit is bijvoorbeeld je taalvoorkeur, &hellip;]]></translation>
         <translation language="en"><![CDATA[These cookies are needed to let the website function correctly. For instance we store your language preference, &hellip;]]></translation>
+        <translation language="fr"><![CDATA[Ces cookies sont nécessaires au bon fonctionnement du site. Par exemple, il s'agit de votre préférence linguistique, &hellip;]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelStatisticsTitle">
+        <translation language="nl"><![CDATA[Statistische cookies]]></translation>
+        <translation language="en"><![CDATA[Statistical cookies]]></translation>
+        <translation language="fr"><![CDATA[Cookies statistiques]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelStatisticsText">
+        <translation language="nl"><![CDATA[Deze cookies worden gebruikt om via Google Analytics anonieme data te verzamelen, zoals welke pagina's je bezoekt, welke links je op klikt, &hellip;<br>Dit helpt ons om de website te verbeteren.]]></translation>
+        <translation language="en"><![CDATA[These cookies are used to collect anonymous data via Google Analytics, like the pages you visit, links you click on, &hellip;<br>This helps us to improve the website.]]></translation>
+        <translation language="fr"><![CDATA[Ces cookies sont utilisés pour collecter des données anonymes via Google Analytics, telles que les pages que vous visitez, les liens sur lesquels vous cliquez, &hellip;<br>Cela nous aide à améliorer le site Web.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogSave">
         <translation language="nl"><![CDATA[Bewaar mijn voorkeuren]]></translation>
         <translation language="en"><![CDATA[Save my preferences]]></translation>
+        <translation language="fr"><![CDATA[Enregistrer mes préférences]]></translation>
       </item>
       <item type="message" name="ReCaptchaInfo">
         <translation language="nl"><![CDATA[Deze site is beschermd door reCAPTCHA en het Google <a href="https://policies.google.com/privacy">Privacybeleid</a> en <a href="https://policies.google.com/terms">Servicevoorwaarden</a> zijn van toepassing.]]></translation>

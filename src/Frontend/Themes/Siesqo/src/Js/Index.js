@@ -15,6 +15,7 @@ import { Pagination } from './Theme/Pagination'
 import { FormBuilder } from './Theme/FormBuilder'
 
 /* Renders */
+window.bootstrap = require('bootstrap5/dist/js/bootstrap.js') // Make bootstrap plugins available
 window.scrollto = new ScrollTo()
 window.resizeFunction = new Resize()
 window.pagination = new Pagination()
