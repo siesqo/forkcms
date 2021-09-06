@@ -1,2 +1,4 @@
+<h1 class="text-primary my-5">404 - Pagina niet gevonden</h1>
 <p>De pagina die u zoekt bestaat niet of is niet beschikbaar op dit ogenblik.</p>
 <a href="/">Klik hier om terug te gaan naar de homepagina.</a>
+<p>&nbsp;</p>

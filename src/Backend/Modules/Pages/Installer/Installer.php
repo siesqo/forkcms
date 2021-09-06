@@ -504,8 +504,7 @@ class Installer extends ModuleInstaller
                     'allow_delete' => false,
                 ],
                 null,
-                ['html' => __DIR__ . '/Data/' . $language . '/404.txt'],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+                ['html' => __DIR__ . '/Data/' . $language . '/404.txt']
             );
         }
 

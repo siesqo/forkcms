@@ -1,2 +1,4 @@
-<iframe src="http://notfound-static.fwebservices.be/404/index.html" width="100%" height="650" frameborder="0"></iframe>
-<p>Cette page n'existe plus ou n'est pas accessible en ce moment. Vous pouvez consulter le plan du site:</p>
+<h1 class="text-primary my-5">404 - Page non trouvée</h1>
+<p>La page que vous recherchez n'existe pas ou n'est pas disponible pour le moment.</p>
+<a href="/">Cliquez ici pour revenir à la page d'accueil.</a>
+<p>&nbsp;</p>

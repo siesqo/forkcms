@@ -29,14 +29,9 @@
     <template label="Error" path="Core/Layout/Templates/Error.html.twig">
       <positions>
         <position name="main" />
-        <position name="top">
-          <defaults>
-            <widget module="search" action="form" />
-          </defaults>
-        </position>
       </positions>
       <format>
-        [/,/,/,top,/],[/,main,main,main,/]
+        [/,main,main,main,/]
       </format>
     </template>
     <template label="Home" path="Core/Layout/Templates/Home.html.twig">
