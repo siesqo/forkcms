@@ -402,7 +402,6 @@ class Installer extends ModuleInstaller
     {
         $this->extraIds['search'] = $this->insertExtra('Search', ModuleExtraType::block(), 'Search');
         $this->extraIds['search_form'] = $this->insertExtra('Search', ModuleExtraType::widget(), 'SearchForm', 'Form');
-        $this->extraIds['sitemap'] = $this->insertExtra($this->getModule(), ModuleExtraType::widget(), 'Sitemap', 'Sitemap');
         $this->extraIds['subpages'] = $this->insertExtra(
             $this->getModule(),
             ModuleExtraType::widget(),
@@ -442,54 +441,42 @@ class Installer extends ModuleInstaller
             $this->insertPage(
                 [
                     'id' => 2,
-                    'title' => \SpoonFilter::ucfirst(
+                    'title' => SpoonFilter::ucfirst(
                         $this->getLocale('Disclaimer', 'Core', $language, 'lbl', 'Frontend')
                     ),
                     'type' => 'footer',
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                [
-                    'html' => __DIR__ . '/Data/' . $language .
-                        '/disclaimer.txt',
-                ],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+                ['html' => __DIR__ . '/Data/' . $language . '/disclaimer.txt']
             );
 
             // insert privacy policy
             $this->insertPage(
                 [
                     'id' => 3,
-                    'title' => \SpoonFilter::ucfirst(
+                    'title' => SpoonFilter::ucfirst(
                         $this->getLocale('PrivacyPolicy', 'Core', $language, 'lbl', 'Frontend')
                     ),
                     'type' => 'footer',
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                [
-                    'html' => __DIR__ . '/Data/' . $language .
-                        '/privacy-policy.txt',
-                ],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+                ['html' => __DIR__ . '/Data/' . $language . '/privacy-policy.txt']
             );
 
             // insert cookie policy
             $this->insertPage(
                 [
                     'id' => 4,
-                    'title' => \SpoonFilter::ucfirst(
+                    'title' => SpoonFilter::ucfirst(
                         $this->getLocale('CookiePolicy', 'Core', $language, 'lbl', 'Frontend')
                     ),
                     'type' => 'footer',
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                [
-                    'html' => __DIR__ . '/Data/' . $language .
-                        '/cookie-policy.txt',
-                ],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+                ['html' => __DIR__ . '/Data/' . $language . '/cookie-policy.txt']
             );
 
             // insert 404
