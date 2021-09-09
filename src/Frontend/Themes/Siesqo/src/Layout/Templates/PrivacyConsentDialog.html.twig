@@ -43,7 +43,8 @@
     aria-hidden="true"
     aria-labelledby="privacyConsentDialogTitle"
     data-role="privacy_consent_dialog"
-    data-bs-backdrop="false"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
     {% if privacyConsentDialogHide %}
       style="display: none"
     {% endif %}
@@ -53,7 +54,7 @@
         <form data-role="privacy_consent_dialog_form">
           <div class="modal-header">
             <h4 id="privacyConsentDialogTitle">{{ 'msg.PrivacyConsentDialogTitle'|trans|raw }}</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'lbl.Close'|trans }}"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#privacyConsentInfo" aria-label="{{ 'lbl.Close'|trans }}"></button>
           </div>
           <div class="modal-body">
             <div>

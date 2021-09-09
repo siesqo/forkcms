@@ -142,12 +142,8 @@ jsFrontend.consentDialog = {
     var $consentForm = $('form[data-role=privacy_consent_dialog_form]')
 
     // Init modals
-    var privacyConsentInfoModal = new bootstrap.Modal($consentInfo, {
-      keyboard: false
-    })
-    var privacyConsentDialogModal = new bootstrap.Modal($consentDialog, {
-      keyboard: true
-    })
+    var privacyConsentInfoModal = new bootstrap.Modal($consentInfo)
+    var privacyConsentDialogModal = new bootstrap.Modal($consentDialog)
     privacyConsentInfoModal.toggle()
 
     $consentForm.on('click', '*[data-dismiss=modal]', function (e) {
@@ -174,7 +170,7 @@ jsFrontend.consentDialog = {
           var gtmData = {}
           gtmData['privacyConsentLevel' + niceName + 'Agreed'] = isChecked
           dataLayer.push(gtmData)
-          dataLayer.push({ 'event': 'privacyConsentLevel' + niceName + 'Agreed' })
+          dataLayer.push({'event': 'privacyConsentLevel' + niceName + 'Agreed'})
         }
 
         // store data in functional cookies for later usage
@@ -212,7 +208,7 @@ jsFrontend.consentDialog = {
             var gtmData = {}
             gtmData['privacyConsentLevel' + niceName + 'Agreed'] = isChecked
             dataLayer.push(gtmData)
-            dataLayer.push({ 'event': 'privacyConsentLevel' + niceName + 'Agreed' })
+            dataLayer.push({'event': 'privacyConsentLevel' + niceName + 'Agreed'})
           }
         }
 

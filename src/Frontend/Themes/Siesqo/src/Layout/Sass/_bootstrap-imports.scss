@@ -1,9 +1,15 @@
 /*!
- * Bootstrap v5.0.1 (https://getbootstrap.com/)
+ * Bootstrap v5.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+// Default variable overrides
+$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$link-decoration:             none;
+$modal-fade-transform:        scale(0.9);
+$enable-smooth-scroll:        false; // Disabled because it breaks the easing of back to top and scrollTo methods
 
 // scss-docs-start import-stack
 // Configuration
