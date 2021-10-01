@@ -1,5 +1,6 @@
 /* External library imports */
-import * as bootstrap from "bootstrap5/dist/js/bootstrap.js"
+import * as bootstrap from 'bootstrap5/dist/js/bootstrap.js'
+window.bootstrap = bootstrap
 import '@fortawesome/fontawesome-free/js/all'
 // import '@fancyapps/fancybox/dist/jquery.fancybox'
 
@@ -15,7 +16,6 @@ import { Pagination } from './Theme/Pagination'
 import { FormBuilder } from './Theme/FormBuilder'
 
 /* Renders */
-window.bootstrap = require('bootstrap5/dist/js/bootstrap.js') // Make bootstrap plugins available
 window.scrollto = new ScrollTo()
 window.resizeFunction = new Resize()
 window.pagination = new Pagination()
