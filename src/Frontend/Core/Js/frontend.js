@@ -146,11 +146,6 @@ jsFrontend.consentDialog = {
     var privacyConsentDialogModal = new bootstrap.Modal($consentDialog)
     privacyConsentInfoModal.toggle()
 
-    $consentForm.on('click', '*[data-dismiss=modal]', function (e) {
-      e.preventDefault()
-      $consentDialog.hide()
-    })
-
     // Accept all cookies
     $acceptAllCookies.on('click', function (e) {
       e.preventDefault()
