@@ -22,7 +22,8 @@ gulp.task('build:backend:assets:copy-css-vendors', function () {
 
 gulp.task('build:backend:assets:copy-fonts-vendors', function () {
   return gulp.src([
-    'node_modules/font-awesome/fonts/**'
+    'node_modules/font-awesome/fonts/**', // FontAwesome 4 (backend)
+    'node_modules/@fortawesome/fontawesome-free/webfonts/**' // FontAwesome 5 (frontend)
   ])
     .pipe(gulp.dest('fonts/vendors'))
 })
