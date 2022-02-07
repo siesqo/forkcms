@@ -1,11 +1,8 @@
 <p><strong>Ce site web est la propri&eacute;t&eacute; de [Bedrijfsnaam].</strong></p>
-<p>Informations personnelles:</p>
-<p>[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p>Adresse du si&egrave;ge social:</p>
-<p>[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p>T&eacute;l&eacute;phone:<br />E-mail:</p>
+<p><strong>Informations personnelles:</strong><br />[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]<br />T&eacute;l&eacute;phone: [Telefoon nummer]<br />E-mail: [Email adres bedrijf]</p>
+<p><strong>Adresse du si&egrave;ge social:</strong><br />[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]</p>
 <p>Num&eacute;ro d&rsquo;entreprise: TVA BE 0 [BTW-nummer]</p>
-<p>L&rsquo;autorit&eacute; de surveillance : (lorsque votre activit&eacute; est soumise &agrave; des conditions d&rsquo;autorisation)</p>
+<p>L&rsquo;autorit&eacute; de surveillance : (wanneer uw activiteit aan een vergunningsstelsel is onderworpen)</p>
 <p>En acc&eacute;dant &agrave; ce site web et en l&rsquo;utilisant, vous marquez explicitement votre accord avec les conditions g&eacute;n&eacute;rales suivantes.</p>
 <h3>Droits de propri&eacute;t&eacute; intellectuelle</h3>
 <p>Le contenu de ce site, y compris les marques, logos, dessins, donn&eacute;es, noms de produits ou d&rsquo;entreprises, textes, images, etc. sont prot&eacute;g&eacute;s par des droits de propri&eacute;t&eacute; intellectuelle appartenant &agrave; [Bedrijfsnaam] ou &agrave; des tiers titulaires de ces droits.</p>

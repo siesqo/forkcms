@@ -1,9 +1,8 @@
 <p><strong>Веб-сайт является собственностью [Bedrijfsnaam].</strong></p>
-<p><strong>Контактная информация:</strong><br />[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p><strong>Адрес зарегистрированного офиса:</strong><br />[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p>Телефон:<br />E-mail:</p>
+<p><strong>Контактная информация:</strong><br />[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]<br />Телефон: [Telefoon nummer]<br />E-mail: [Email adres bedrijf]</p>
+<p><strong>Адрес зарегистрированного офиса:</strong><br />[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]</p>
 <p>Номер компании: BTW BE 0 [BTW-nummer]</p>
-<p>Надзорный орган: (если ваша деятельность подлежит схемы авторизации)</p>
+<p>Надзорный орган: (wanneer uw activiteit aan een vergunningsstelsel is onderworpen)</p>
 <p>Посещая и используя сайт, Вы принимаете следующие условия.</p>
 <h3>Право интеллектуальной собственности</h3>
 <p>Содержимое этого сайта, включая товарные знаки, логотипы, рисунки, данные, названия продуктов и компаний, текстов, изображений, и т.д. находятся под защитой прав интеллектуальной собственности и принадлежат [Bedrijfsnaam] или третьим лицам.</p>

@@ -1,9 +1,8 @@
 <p><strong>This website is property of [Bedrijfsnaam].</strong></p>
-<p><strong>Contact info:</strong><br />[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p><strong>Adres maatschappelijk zetel:</strong><br />[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente]</p>
-<p>Telefoon:<br />E-mail:</p>
-<p>Ondernemingsnummer: BTW BE 0 [BTW-nummer]</p>
-<p>De toezichthoudende autoriteit: (wanneer uw activiteit aan een vergunningsstelsel is onderworpen)</p>
+<p><strong>Contact info:</strong><br />[Bedrijfsnaam]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]<br />Phone: [Telefoon nummer]<br />E-mail: [Email adres bedrijf]</p>
+<p><strong>Address registered office:</strong><br />[Maatschappelijke zetel]<br /> [Straatnaam] [Nummer]<br /> [Postcode] [Gemeente], [Land]</p>
+<p>Company number: BTW BE 0 [BTW-nummer]</p>
+<p>The supervisory authority: (wanneer uw activiteit aan een vergunningsstelsel is onderworpen)</p>
 <p>By accessing and using the website, you have expressly agreed to the following general conditions.</p>
 <h3>Intellectual property rights</h3>
 <p>The contents of this site, including trade marks, logos, drawings, data, product or company names, texts, images, etc. are protected by intellectual property rights and belong to [Bedrijfsnaam] or entitled third parties.</p>
@@ -15,4 +14,4 @@
 <p>[Bedrijfsnaam] can in no case be held liable, directly or indirectly, specifically or otherwise, vis-&agrave;-vis anyone for any damage attributable to the use of this site or any other one, in particular as the result of links or hyperlinks including, but not limited to, any loss, work interruption, damage of the user&rsquo;s programs or other data on the computer system, hardware, software or otherwise.</p>
 <p>The website may contain hyperlinks to websites or pages of third parties or refer to these indirectly. The placing of links on these websites or pages shall not imply in any way the implicit approval of the contents thereof.&nbsp;  [Bedrijfsnaam] expressly declares that it has no authority over the contents or over other features of these websites and can in no case be held responsible for the contents or features thereof or for any other type of damage resulting from their use.</p>
 <h3>Applicable legislation and competent courts</h3>
-<p>This site is governed by Belgian law. Only the courts of the district of Ghent are competent to settle any disputes.</p>
+<p>This site is governed by Belgian law. Only the courts of the district of [Naam arondissement] are competent to settle any disputes.</p>
