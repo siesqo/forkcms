@@ -13,7 +13,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [7.1, 7.2, 7.3, 7.4]
+                php: [7.4]
                 testsuite: ["functional", "unit", "installer"]
         name: PHPUnit - ${{ matrix.testsuite }} (PHP ${{ matrix.php }})
         services:
@@ -78,8 +78,8 @@ jobs:
               uses: codecov/codecov-action@v1
               if: ${{ matrix.php == '7.4' }}
               with:
-                file: ${{ matrix.testsuite}}.clover
-                flags: ${{ matrix.testsuite}}
+                  file: ${{ matrix.testsuite}}.clover
+                  flags: ${{ matrix.testsuite}}
 
     phpstan:
         name: PHPStan - Static Code Analysis
@@ -151,9 +151,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
             - name: Install Node
-              uses: actions/setup-node@v2-beta
+              uses: actions/setup-node@v2
               with:
-                  node-version: 12 # current LTS
+                  node-version: lts/erbium
             - run: yarn install
             - run: yarn test
 
