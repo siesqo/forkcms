@@ -11,7 +11,7 @@
     "@babel/preset-env": "^7.15.4",
     "@fancyapps/fancybox": "^3.4.2",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@popperjs/core": "^2.10.1",
+    "@popperjs/core": "^2.10.2",
     "babel-loader": "^8.2.2",
     "bootstrap": "^4.5.0",
     "bootstrap-accessibility-plugin": "^1.0.5",
