@@ -408,12 +408,12 @@ gulp.task('build:theme', gulp.series(
 
 gulp.task('serve:theme', function () {
   livereload.listen()
-  gulp.watch(`${paths.src}/Js/**/*.js`, gulp.parallel('build:theme:webpack:generate-development-js'))
-  gulp.watch(`${paths.src}/Layout/Sass/**/*.scss`, gulp.parallel('build:theme:sass:generate-development-css'))
-  gulp.watch(`${paths.src}/Layout/Templates/**/*`, gulp.parallel('build:theme:assets:copy-templates'))
-  gulp.watch(`${paths.src}/Layout/Images/**/*`, gulp.parallel('build:theme:images:minify-images'))
-  gulp.watch(`${paths.src}/Layout/icon-sources/*`, gulp.parallel('build:theme:fonts:generate-iconfont'))
-  gulp.watch(`${paths.src}/Layout/Fonts/**/*`, gulp.parallel('build:theme:fonts:generate-webfonts'))
+  gulp.watch(`${paths.src}/Js/**/*.js`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:webpack:generate-development-js'))
+  gulp.watch(`${paths.src}/Layout/Sass/**/*.scss`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:sass:generate-development-css'))
+  gulp.watch(`${paths.src}/Layout/Templates/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:assets:copy-templates'))
+  gulp.watch(`${paths.src}/Layout/Images/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:images:minify-images'))
+  gulp.watch(`${paths.src}/Layout/icon-sources/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:fonts:generate-iconfont'))
+  gulp.watch(`${paths.src}/Layout/Fonts/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:fonts:generate-webfonts'))
 })
 
 // public tasks
