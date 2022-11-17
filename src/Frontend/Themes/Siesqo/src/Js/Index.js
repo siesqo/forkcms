@@ -1,6 +1,5 @@
 /* External library imports */
 import * as bootstrap from 'bootstrap5/dist/js/bootstrap.js'
-window.bootstrap = bootstrap
 // import '@fancyapps/fancybox/dist/jquery.fancybox'
 
 /* Utilities imports */
@@ -15,6 +14,7 @@ import { Pagination } from './Theme/Pagination'
 import { FormBuilder } from './Theme/FormBuilder'
 
 /* Renders */
+window.bootstrap = bootstrap
 window.scrollto = new ScrollTo()
 window.resizeFunction = new Resize()
 window.pagination = new Pagination()

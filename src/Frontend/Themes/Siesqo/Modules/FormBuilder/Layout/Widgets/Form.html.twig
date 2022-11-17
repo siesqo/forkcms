@@ -13,10 +13,10 @@
       <form id="{{ formName }}" method="post" action="{{ formAction }}">
         <fieldset class="form">
           {% if formToken %}
-            <input type="hidden" name="form_token" id="formToken{{ formName|ucfirst }}" value="{{ formToken }}" />
+            <input type="hidden" name="form_token" id="formToken{{ formName|ucfirst }}" value="{{ formToken }}"/>
           {% endif %}
 
-          <input type="hidden" name="form" value="{{ formName }}" />
+          <input type="hidden" name="form" value="{{ formName }}"/>
 
           {% for field in fields %}
             <div class="row" id="field{{ field.name }}">
@@ -39,7 +39,7 @@
                   </div>
                 {% endif %}
 
-                {# Mailmotor#}
+                {# Mailmotor #}
                 {% if field.isMailmotor %}
                   <div class="form-group{% if field.error %} has-danger{% endif %}">
                     <label class="form-label" for="{{ field.name }}">
@@ -56,9 +56,10 @@
                       {{ field.label|raw }}{% if field.required %}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr>{% endif %}
                     </p>
                     {% for checkbox in field.html %}
-                      <div class="checkbox">
-                        <label for="{{ checkbox.id|raw }}">
-                          {{ checkbox.field|raw }} {{ checkbox.label|raw }}
+                      <div class="form-check">
+                        {{ checkbox.field|raw }}
+                        <label for="{{ checkbox.id|raw }}" class="form-check-label">
+                          {{ checkbox.label|raw }}
                         </label>
                       </div>
                     {% endfor %}
@@ -74,7 +75,7 @@
                 {% if hasRecaptchaField %}
                   <script>
                     function recaptcha{{ formToken }}Submitted (token, data) {
-                      document.getElementById("{{ formName }}").submit();
+                      document.getElementById("{{ formName }}").submit()
                     }
                   </script>
                   <p class="recaptcha-info">

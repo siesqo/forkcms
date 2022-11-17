@@ -1,14 +1,12 @@
-/*!
- * Bootstrap v5.1.1 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+@import "bootstrap5/scss/mixins/banner";
+@include bsBanner("");
+
 
 // scss-docs-start import-stack
 // Configuration
 //@import "bootstrap5/scss/functions";
 //@import "bootstrap5/scss/variables";
+@import "bootstrap5/scss/maps";
 @import "bootstrap5/scss/mixins";
 @import "bootstrap5/scss/utilities";
 
@@ -43,6 +41,7 @@
 @import "bootstrap5/scss/carousel";
 @import "bootstrap5/scss/spinners";
 @import "bootstrap5/scss/offcanvas";
+@import "bootstrap5/scss/placeholders";
 
 // Helpers
 @import "bootstrap5/scss/helpers";
