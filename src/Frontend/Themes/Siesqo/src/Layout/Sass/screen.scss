@@ -8,7 +8,9 @@
 
 // Font Awesome
 $fa-font-path: '/fonts/vendors/';
-@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss'; // core styling file
+
+// project specific needs
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fortawesome/fontawesome-free/scss/regular.scss';
 
