@@ -4439,76 +4439,91 @@
       <item type="message" name="PrivacyConsentInfoTitle">
         <translation language="nl"><![CDATA[We hechten belang aan je privacy]]></translation>
         <translation language="en"><![CDATA[We value your privacy]]></translation>
+        <translation language="de"><![CDATA[Wir schätzen Ihre Privatsphäre]]></translation>
         <translation language="fr"><![CDATA[Nous apprécions votre privacy]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoBody">
         <translation language="nl"><![CDATA[We gebruiken cookies om de functionaliteit van de website te optimaliseren en u de best mogelijk ervaring te bieden. Klik op “Cookies accepteren” om alle cookies te aanvaarden of stel zelf je voorkeuren in. Meer weten? Lees meer over ons <a href="/cookie-policy">cookiebeleid</a>.]]></translation>
         <translation language="en"><![CDATA[We use cookies to optimize the functionality of the website and to provide you with the best possible experience. Click on “Accept cookies” to accept all cookies or set your own preferences. Read more about our <a href="/cookie-policy">cookie policy</a>.]]></translation>
+        <translation language="de"><![CDATA[Wir verwenden Cookies um die Funktionalität der Website zu optimieren und Ihnen das bestmögliche Erlebnis zu bieten. Klicken Sie auf „Cookies akzeptieren“ um alle Cookies zu akzeptieren oder legen Sie Ihre eigenen Einstellungen fest. Mehr wissen? Lesen Sie mehr über unsere <a href="/cookie-policy">Cookie-Richtlinie</a>.]]></translation>
         <translation language="fr"><![CDATA[Nous utilisons des cookies pour optimiser la fonctionnalité du site Web et pour vous offrir la meilleure expérience possible. Cliquez sur « Accepter les cookies » pour accepter tous les cookies ou définir vos propres préférences. En savoir plus ? Lire notre <a href="/cookie-policy">politique en matière de cookies</a>.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoSettings">
         <translation language="nl"><![CDATA[Stel je voorkeuren in]]></translation>
         <translation language="en"><![CDATA[Set your preferences]]></translation>
+        <translation language="de"><![CDATA[Legen Sie Ihre Einstellungen fest]]></translation>
         <translation language="fr"><![CDATA[Définissez vos préférences]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoSaveAll">
         <translation language="nl"><![CDATA[Cookies accepteren]]></translation>
         <translation language="en"><![CDATA[Accept cookies]]></translation>
+        <translation language="de"><![CDATA[Cookies akzeptieren]]></translation>
         <translation language="fr"><![CDATA[Accepter les cookies]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogTitle">
         <translation language="nl"><![CDATA[Jouw privacy voorkeuren]]></translation>
         <translation language="en"><![CDATA[Your privacy preferences]]></translation>
+        <translation language="de"><![CDATA[Ihre Datenschutzeinstellungen]]></translation>
         <translation language="fr"><![CDATA[Vos préférences de confidentialité]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogBody">
         <translation language="nl"><![CDATA[Je kan zelf kiezen welke cookies je toelaat. Hou er wel rekening mee dat dit je ervaring op de website kan verminderen.]]></translation>
         <translation language="en"><![CDATA[You can choose which cookies you allow. Keep in mind that this can reduce your experience on the website.]]></translation>
+        <translation language="de"><![CDATA[Sie können auswählen welche Cookies Sie zulassen. Beachten Sie dass dies Ihre Erfahrung auf der Website beeinträchtigen kann.]]></translation>
         <translation language="fr"><![CDATA[Vous pouvez choisir les cookies que vous autorisez. Gardez à l'esprit que cela peut réduire votre expérience sur le site Web.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelFunctionalTitle">
         <translation language="nl"><![CDATA[Functionele cookies]]></translation>
         <translation language="en"><![CDATA[Functional cookies]]></translation>
+        <translation language="de"><![CDATA[Funktionale Cookies]]></translation>
         <translation language="fr"><![CDATA[Cookies fonctionnels]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelFunctionalText">
         <translation language="nl"><![CDATA[Cookies die noodzakelijk zijn voor de normale werking van de website.]]></translation>
         <translation language="en"><![CDATA[Cookies that are necessary for the normal functioning of the website.]]></translation>
+        <translation language="de"><![CDATA[Cookies die für das normale Funktionieren der Website erforderlich sind.]]></translation>
         <translation language="fr"><![CDATA[Cookies nécessaires au fonctionnement normal du site Web.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelStatisticsTitle">
         <translation language="nl"><![CDATA[Statistische cookies]]></translation>
         <translation language="en"><![CDATA[Statistical cookies]]></translation>
+        <translation language="de"><![CDATA[Statistik-Cookies]]></translation>
         <translation language="fr"><![CDATA[Cookies statistiques]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelStatisticsText">
         <translation language="nl"><![CDATA[Cookies die gebruikt worden om analyses van surfgedrag op de website mogelijk te maken.]]></translation>
         <translation language="en"><![CDATA[Cookies that are used to enable analysis of surfing behavior on the website.]]></translation>
+        <translation language="de"><![CDATA[Cookies die verwendet werden um eine Analyse des Surfverhaltens auf der Website zu ermöglichen.]]></translation>
         <translation language="fr"><![CDATA[Cookies utilisés pour permettre l'analyse du comportement de navigation sur le site Web.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelMarketingTitle">
         <translation language="nl"><![CDATA[Marketing cookies]]></translation>
         <translation language="en"><![CDATA[Marketing cookies]]></translation>
+        <translation language="de"><![CDATA[Marketing-Cookies]]></translation>
         <translation language="fr"><![CDATA[Cookies commerciaux]]></translation>
       </item>
       <item type="message" name="PrivacyConsentLevelMarketingText">
         <translation language="nl"><![CDATA[Cookies die het mogelijk maken meer relevante advertenties te tonen.]]></translation>
         <translation language="en"><![CDATA[Cookies that make it possible to show more relevant advertisements.]]></translation>
+        <translation language="de"><![CDATA[Cookies die es ermöglichen relevantere Werbung anzuzeigen.]]></translation>
         <translation language="fr"><![CDATA[Cookies qui permettent d'afficher des publicités plus pertinentes.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogAcceptNecessary">
         <translation language="nl"><![CDATA[Accepteer enkel noodzakelijke cookies]]></translation>
         <translation language="en"><![CDATA[Only accept necessary cookies]]></translation>
+        <translation language="de"><![CDATA[Nur notwendige Cookies akzeptieren]]></translation>
         <translation language="fr"><![CDATA[N'acceptez que les cookies nécessaires]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogSave">
         <translation language="nl"><![CDATA[Bewaar mijn voorkeuren]]></translation>
         <translation language="en"><![CDATA[Save my preferences]]></translation>
+        <translation language="de"><![CDATA[Speichern Sie meine Einstellungen]]></translation>
         <translation language="fr"><![CDATA[Enregistrer mes préférences]]></translation>
       </item>
       <item type="message" name="ReCaptchaInfo">
         <translation language="nl"><![CDATA[Deze site is beschermd door reCAPTCHA en het Google <a href="https://policies.google.com/privacy">Privacybeleid</a> en <a href="https://policies.google.com/terms">Servicevoorwaarden</a> zijn van toepassing.]]></translation>
         <translation language="en"><![CDATA[This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.]]></translation>
+        <translation language="de"><![CDATA[Diese Website ist durch reCAPTCHA und Es gelten die <a href="https://policies.google.com/privacy">Datenschutzerklärung</a> und <a href="https://policies.google.com/terms">Nutzungsbedingungen</a> von Google.]]></translation>
         <translation language="fr"><![CDATA[Ce site est protégé par reCAPTCHA. Les <a href="https://policies.google.com/privacy">règles de confidentialité</a> et les <a href="https://policies.google.com/terms">conditions d'utilisation</a> de Google s'appliquent.]]></translation>
       </item>
     </Core>
@@ -4791,7 +4806,7 @@
         <translation language="sv"><![CDATA[aktivera]]></translation>
         <translation language="ru"><![CDATA[активировать]]></translation>
         <translation language="pt"><![CDATA[activar]]></translation>
-		    <translation language="pl"><![CDATA[aktywować]]></translation>
+        <translation language="pl"><![CDATA[aktywować]]></translation>
       </item>
       <item type="label" name="AllEmailAddresses">
         <translation language="en"><![CDATA[all e-mail addresses]]></translation>
@@ -4879,7 +4894,7 @@
         <translation language="zh"><![CDATA[全部问题]]></translation>
         <translation language="tr"><![CDATA[Tüm sorular]]></translation>
         <translation language="pt"><![CDATA[todas as questões]]></translation>
-		    <translation language="pl"><![CDATA[wszystkie pytania]]></translation>
+        <translation language="pl"><![CDATA[wszystkie pytania]]></translation>
       </item>
       <item type="label" name="Amount">
         <translation language="nl"><![CDATA[aantal]]></translation>
