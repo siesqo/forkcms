@@ -28,6 +28,10 @@
 var/docker/db/data/*
 docker-compose.override.yml
 
+# Ignore sitemaps
+sitemap.xml
+sitemap_*.xml
+
 # Symfony's dotenv
 /.env.local
 

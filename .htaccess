@@ -52,6 +52,10 @@ deny from env=stayout
     # allow our root index.php
     RewriteRule ^index\.php$ - [L]
 
+    # allow sitemaps
+    RewriteRule ^sitemap.xml$ - [L]
+    RewriteRule ^sitemap_(.*).xml$ - [L]
+
     # forbidden extensions
     RewriteRule \.asp - [F]
     RewriteRule \.cgi - [F]

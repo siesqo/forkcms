@@ -51,7 +51,8 @@
         "bugsnag/bugsnag-symfony": "^1.0",
         "mead-steve/mono-snag": "^3.0.0",
         "phpoffice/phpspreadsheet": "^1.12",
-        "composer/package-versions-deprecated": "^1.11"
+        "composer/package-versions-deprecated": "^1.11",
+        "jeroendesloovere/sitemap-bundle": "^2.0"
     },
     "require-dev": {
         "jdorn/sql-formatter": "1.2.17",
@@ -80,7 +81,8 @@
             "php bin/console assetic:dump .",
             "php bin/console forkcms:cache:clear",
             "php bin/console cache:clear --no-warmup",
-            "php bin/console cache:warmup"
+            "php bin/console cache:warmup",
+            "php bin/console sitemap:generate"
         ]
     },
     "autoload": {

@@ -23,3 +23,16 @@ namespace :deploy do
   # compile and upload the assets, but only if it's a Fork CMS project
   after :updated, 'siesqo:assets:put' if package['name'] == 'forkcms/forkcms'
 end
+
+## Generate sitemap
+namespace :sitemap do
+  desc "Generate the sitemap.xml and sitemap files per provider."
+  task :generate do
+    on roles(:db) do
+      execute "cd #{current_path} && bin/console sitemap:generate"
+    end
+  end
+end
+
+before "deploy:cleanup", "sitemap:generate"
+after "deploy:rollback", "sitemap:generate"

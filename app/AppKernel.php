@@ -34,6 +34,8 @@ class AppKernel extends Kernel
             new \MailMotor\Bundle\CampaignMonitorBundle\MailMotorCampaignMonitorBundle(),
             new \Liip\ImagineBundle\LiipImagineBundle(),
             new \Bugsnag\BugsnagBundle\BugsnagBundle(),
+            new \Backend\Modules\Sitemaps\Sitemaps(),
+            new \JeroenDesloovere\SitemapBundle\SitemapBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
