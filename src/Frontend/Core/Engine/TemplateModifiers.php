@@ -11,6 +11,7 @@ use Frontend\Core\Language\Locale;
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
 use Common\Core\Twig\Extensions\BaseTwigModifiers;
 use SpoonDate;
+use Symfony\Component\Intl\Intl;
 
 /**
  * Contains all Frontend-related custom modifiers
@@ -528,5 +529,16 @@ class TemplateModifiers extends BaseTwigModifiers
             $change_date = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
         }
         return $change_date;
+    }
+
+    /**
+     * Convert the given country code into its full name based on the current locale
+     *
+     * @param string $countryCode
+     * @return string|null
+     */
+    public static function languageName(?string $countryCode): ?string
+    {
+        return $countryCode ?: Intl::getRegionBundle()->getCountryName($countryCode, Locale::frontendLanguage()->getLocale());
     }
 }
