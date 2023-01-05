@@ -433,8 +433,7 @@ class Installer extends ModuleInstaller
                     'allow_delete' => false,
                 ],
                 null,
-                ['html' => __DIR__ . '/Data/' . $language . '/sample1.txt'],
-                ['extra_id' => $this->getExtraId('search_form'), 'position' => 'top']
+                ['html' => __DIR__ . '/Data/' . $language . '/sample1.txt']
             );
 
             // insert disclaimer
@@ -448,7 +447,7 @@ class Installer extends ModuleInstaller
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                ['html' => __DIR__ . '/Data/' . $language . '/disclaimer.txt']
+                ['extra_id' => $this->insertExtra('Policies', ModuleExtraType::widget(), 'Disclaimer', 'Disclaimer', ['edit_url' => '/private/' . $language . '/policies/settings'])]
             );
 
             // insert privacy policy
@@ -462,7 +461,7 @@ class Installer extends ModuleInstaller
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                ['html' => __DIR__ . '/Data/' . $language . '/privacy-policy.txt']
+                ['extra_id' => $this->insertExtra('Policies', ModuleExtraType::widget(), 'PrivacyPolicy', 'PrivacyPolicy', ['edit_url' => '/private/' . $language . '/policies/settings'])]
             );
 
             // insert cookie policy
@@ -476,7 +475,7 @@ class Installer extends ModuleInstaller
                     'language' => $language,
                 ],
                 ['seo_index' => 'noindex', 'seo_follow' => 'nofollow'],
-                ['html' => __DIR__ . '/Data/' . $language . '/cookie-policy.txt']
+                ['extra_id' => $this->insertExtra('Policies', ModuleExtraType::widget(), 'CookiePolicy', 'CookiePolicy', ['edit_url' => '/private/' . $language . '/policies/settings'])]
             );
 
             // insert 404

@@ -90,10 +90,9 @@ class ForkInstaller
             'Groups',
             'Extensions',
             'Pages',
-            'Search',
             'ContentBlocks',
-            'Tags',
             'MediaLibrary',
+            'Policies',
         ];
     }
 
