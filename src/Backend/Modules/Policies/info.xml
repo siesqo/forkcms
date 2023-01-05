@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>Policies</name>
+    <version>1.0.0</version>
+    <requirements>
+        <minimum_version>5.4.0</minimum_version>
+    </requirements>
+    <description>
+        <![CDATA[
+            Handle company info to use in the various policies (disclaimer, privacy policy, cookie policy).
+        ]]>
+    </description>
+    <authors>
+        <author>
+            <name><![CDATA[Alessandro Craeye]]></name>
+            <url><![CDATA[mailto:alessandro.craeye@gmail.com]]></url>
+        </author>
+    </authors>
+</module>

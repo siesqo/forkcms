@@ -1,0 +1,39 @@
+<div class="py-5">
+  <p><strong>{{ 'msg.WebsiteOwnedBy'|trans|format(company.companyName)|ucfirst }}</strong></p>
+
+  <p><strong>{{ 'lbl.ContactDetails'|trans|ucfirst }}:</strong><br/>
+    {{ company.companyName }}<br/>
+    {{ company.streetName }} {{ company.streetNumber }}<br/>
+    {{ company.postalCode }} {{ company.city }}, {{ company.country|language_name }}<br/>
+    Telefoon: <a href="tel:{{ company.telephone }}">{{ company.telephone }}</a><br/>
+    E-mail: <a href="mailto:{{ company.email }}">{{ company.email }}</a></p>
+
+  <p><strong>{{ 'lbl.AddressRegisteredOffice'|trans|ucfirst }}:</strong><br/>
+    {% if company.registeredOffice %}
+      {{ company.registeredOffice }}<br/>
+      {{ company.streetNameRegisteredOffice }} {{ company.streetNumberRegisteredOffice }}<br/>
+      {{ company.postalCodeRegisteredOffice }} {{ company.cityRegisteredOffice }}, {{ company.countryRegisteredOffice|language_name }}<br/>
+    {% else %}
+      {{ company.companyName }}<br/>
+      {{ company.streetName }} {{ company.streetNumber }}<br/>
+      {{ company.postalCode }} {{ company.city }}, {{ company.country|language_name }}<br/>
+    {% endif %}
+  </p>
+
+  <p>{{ 'lbl.EnterpriseNumber'|trans|ucfirst }}: BTW BE {{ company.enterpriseNumber }}</p>
+
+  {% if company.supervisoryAuthority %}
+    <p>{{ 'lbl.SupervisoryAuthority'|trans|ucfirst }}: {{ company.supervisoryAuthority }}</p>
+  {% endif %}
+
+  <p>{{ 'msg.AccessAgreement'|trans }}</p>
+
+  <h3>{{ 'lbl.IntellectualPropertyRights'|trans|ucfirst }}</h3>
+  <p>{{ 'msg.IntellectualPropertyRights'|trans|format(company.companyName) }}</p>
+
+  <h3>{{ 'lbl.LimitationOfLiability'|trans|ucfirst }}</h3>
+  {{ 'msg.LimitationOfLiability'|trans|format(company.companyName)|raw }}
+
+  <h3>{{ 'lbl.ApplicableLaw'|trans|ucfirst }}</h3>
+  <p>{{ 'msg.ApplicableLaw'|trans|format(company.district) }}</p>
+</div>

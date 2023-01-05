@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Backend\Modules\Policies\Domain\Settings\Command\SaveSettingsHandler:
+        tags:
+            - { name: command_handler, handles: Backend\Modules\Policies\Domain\Settings\Command\SaveSettings }

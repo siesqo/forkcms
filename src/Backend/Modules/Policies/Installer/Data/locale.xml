@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Core>
+      <item type="label" name="Policies">
+        <translation language="nl"><![CDATA[Policies]]></translation>
+      </item>
+    </Core>
+    <Policies>
+      <item type="label" name="ContactDetails">
+        <translation language="nl"><![CDATA[contactgegevens]]></translation>
+      </item>
+      <item type="label" name="CompanyName">
+        <translation language="nl"><![CDATA[bedrijfsnaam]]></translation>
+      </item>
+      <item type="label" name="PostalCode">
+        <translation language="nl"><![CDATA[postcode]]></translation>
+      </item>
+      <item type="label" name="StreetName">
+        <translation language="nl"><![CDATA[straat]]></translation>
+      </item>
+      <item type="label" name="StreetNumber">
+        <translation language="nl"><![CDATA[nummer]]></translation>
+      </item>
+      <item type="label" name="Telephone">
+        <translation language="nl"><![CDATA[telefoonnummer]]></translation>
+      </item>
+      <item type="label" name="RegisteredOffice">
+        <translation language="nl"><![CDATA[maatschappelijke zetel]]></translation>
+      </item>
+      <item type="message" name="RegisteredOfficeHelp">
+        <translation language="nl">
+          <![CDATA[Indien de maatschappelijke zetel afwijkt van de hierboven ingevoerde bedrijfsgegevens vul je dit hier in.<br>Bij het leeg laten van deze velden zullen de hierboven ingevoerde gegevens worden getoond als maatschappelijke zetel.]]></translation>
+      </item>
+      <item type="label" name="Other">
+        <translation language="nl"><![CDATA[overige]]></translation>
+      </item>
+      <item type="label" name="VATNumber">
+        <translation language="nl"><![CDATA[BTW-nummer]]></translation>
+      </item>
+      <item type="label" name="SupervisoryAuthority">
+        <translation language="nl"><![CDATA[toezichthoudende autoriteit]]></translation>
+      </item>
+      <item type="message" name="SupervisoryAuthorityHelp">
+        <translation language="nl"><![CDATA[Vul dit veld in wanneer uw activiteit aan een vergunningsstelsel is onderworpen.]]></translation>
+      </item>
+      <item type="label" name="District">
+        <translation language="nl"><![CDATA[arondissement]]></translation>
+      </item>
+      <item type="message" name="DistrictHelp">
+        <translation language="nl"><![CDATA[Rechtbanken van onderstaand arondissement zijn bevoegd.]]></translation>
+      </item>
+    </Policies>
+    <Pages>
+      <item type="label" name="Disclaimer">
+        <translation language="nl"><![CDATA[disclaimer]]></translation>
+      </item>
+      <item type="label" name="PrivacyPolicy">
+        <translation language="nl"><![CDATA[privacy policy]]></translation>
+      </item>
+      <item type="label" name="CookiePolicy">
+        <translation language="nl"><![CDATA[cookie policy]]></translation>
+      </item>
+    </Pages>
+  </Backend>
+  <Frontend>
+    <Policies>
+      <item type="message" name="WebsiteOwnedBy">
+        <translation language="de"><![CDATA[Diese Website ist Eigentum von %s.]]></translation>
+        <translation language="en"><![CDATA[this website is owned by %s.]]></translation>
+        <translation language="fr"><![CDATA[ce site Web est la propriété de %s.]]></translation>
+        <translation language="nl"><![CDATA[deze website is eigendom van %s.]]></translation>
+      </item>
+      <item type="label" name="ContactDetails">
+        <translation language="de"><![CDATA[Kontaktdetails]]></translation>
+        <translation language="en"><![CDATA[contact details]]></translation>
+        <translation language="fr"><![CDATA[détails du contact]]></translation>
+        <translation language="nl"><![CDATA[contactgegevens]]></translation>
+      </item>
+      <item type="label" name="Telephone">
+        <translation language="de"><![CDATA[telefon]]></translation>
+        <translation language="en"><![CDATA[telephone]]></translation>
+        <translation language="fr"><![CDATA[téléphone]]></translation>
+        <translation language="nl"><![CDATA[telefoon]]></translation>
+      </item>
+      <item type="label" name="Email">
+        <translation language="de"><![CDATA[Email]]></translation>
+        <translation language="en"><![CDATA[e-mail]]></translation>
+        <translation language="fr"><![CDATA[e-mail]]></translation>
+        <translation language="nl"><![CDATA[e-mail]]></translation>
+      </item>
+      <item type="label" name="AddressRegisteredOffice">
+        <translation language="de"><![CDATA[Adresse eingetragener Firmensitz]]></translation>
+        <translation language="en"><![CDATA[address of registered office]]></translation>
+        <translation language="fr"><![CDATA[adresse du siège social]]></translation>
+        <translation language="nl"><![CDATA[adres maatschappelijke zetel]]></translation>
+      </item>
+      <item type="label" name="EnterpriseNumber">
+        <translation language="de"><![CDATA[Unternehmensnummer]]></translation>
+        <translation language="en"><![CDATA[enterprise number]]></translation>
+        <translation language="fr"><![CDATA[numéro de l'entreprise]]></translation>
+        <translation language="nl"><![CDATA[ondernemingsnummer]]></translation>
+      </item>
+      <item type="label" name="SupervisoryAuthority">
+        <translation language="de"><![CDATA[Die Aufsichtsbehörde]]></translation>
+        <translation language="en"><![CDATA[the supervisory authority]]></translation>
+        <translation language="fr"><![CDATA[l'autorité de tutelle]]></translation>
+        <translation language="nl"><![CDATA[de toezichthoudende autoriteit]]></translation>
+      </item>
+      <item type="message" name="AccessAgreement">
+        <translation language="de"><![CDATA[Durch den Zugriff auf und die Nutzung der Website erklären Sie sich ausdrücklich mit den folgenden Bedingungen einverstanden.]]></translation>
+        <translation language="en"><![CDATA[By accessing and using the website, you expressly agree to the following terms and conditions.]]></translation>
+        <translation language="fr"><![CDATA[En accédant et en utilisant le site Web, vous acceptez expressément les termes et conditions suivants.]]></translation>
+        <translation language="nl"><![CDATA[Door de toegang tot en het gebruik van de website verklaart u zich uitdrukkelijk akkoord met de volgende algemene voorwaarden.]]></translation>
+      </item>
+      <item type="label" name="IntellectualPropertyRights">
+        <translation language="de"><![CDATA[Rechte an geistigem Eigentum]]></translation>
+        <translation language="en"><![CDATA[intellectual property rights]]></translation>
+        <translation language="fr"><![CDATA[droits de propriété intellectuelle]]></translation>
+        <translation language="nl"><![CDATA[intellectuele eigendomsrechten]]></translation>
+      </item>
+      <item type="message" name="IntellectualPropertyRights">
+        <translation language="de">
+          <![CDATA[Die Inhalte dieser Website, einschließlich Marken, Logos, Zeichnungen, Daten, Produkt- oder Firmennamen, Texte, Bilder usw. sind urheberrechtlich geschützt und gehören %s oder berechtigten Dritten.]]></translation>
+        <translation language="en">
+          <![CDATA[the contents of this site, including brands, logos, drawings, data, product or company names, texts, images, etc. are protected by intellectual rights and belong to %s or rightful third parties.]]></translation>
+        <translation language="fr">
+          <![CDATA[le contenu de ce site, y compris les marques, logos, dessins, données, noms de produits ou de sociétés, textes, images, etc. sont protégés par des droits de propriété intellectuelle et appartiennent à %s ou à des tiers ayants droit.]]></translation>
+        <translation language="nl">
+          <![CDATA[De inhoud van deze site, met inbegrip van de merken, logo's, tekeningen, data, product- of bedrijfsnamen, teksten, beelden e.d. zijn beschermd door intellectuele rechten en behoren toe aan %s of rechthoudende derden.]]></translation>
+      </item>
+      <item type="label" name="LimitationOfLiability">
+        <translation language="de"><![CDATA[Haftungsbeschränkung]]></translation>
+        <translation language="en"><![CDATA[limitation of Liability]]></translation>
+        <translation language="fr"><![CDATA[limitation de responsabilité]]></translation>
+        <translation language="nl"><![CDATA[beperking van aansprakelijkheid]]></translation>
+      </item>
+      <item type="message" name="LimitationOfLiability">
+        <translation language="de"><![CDATA[<p>Die Informationen auf der Website sind allgemeiner Natur. Die Informationen sind nicht an persönliche oder spezifische Umstände angepasst und können daher nicht als persönliche, professionelle oder rechtliche Beratung des Benutzers angesehen werden.</p>
+           <p>%1$s ist bemüht sicherzustellen, dass die bereitgestellten Informationen vollständig, richtig, genau und aktuell sind. Trotz dieser Bemühungen können Ungenauigkeiten in den bereitgestellten Informationen auftreten. Wenn die bereitgestellten Informationen Ungenauigkeiten enthalten oder bestimmte Informationen auf oder über die Website nicht verfügbar sind, wird sich %1$s bemühen, dies so schnell wie möglich zu korrigieren.</p>
+           <p>%1$s kann jedoch nicht für direkte oder indirekte Schäden haftbar gemacht werden, die sich aus der Nutzung der Informationen auf dieser Website ergeben.</p>
+           <p>Wenn Sie Ungenauigkeiten in den über die Website bereitgestellten Informationen entdecken, können Sie sich an den Website-Administrator wenden.</p>
+           <p>Der Inhalt der Website (einschließlich Links) kann jederzeit ohne Vorankündigung oder Benachrichtigung modifiziert, geändert oder ergänzt werden. %1$s garantiert nicht das ordnungsgemäße Funktionieren der Website und kann in keiner Weise für die Fehlfunktion oder vorübergehende (Nicht-)Verfügbarkeit der Website oder für direkte oder indirekte Schäden jeglicher Art haftbar gemacht werden, die sich aus dem Zugriff auf oder ergeben können Nutzung der Website.</p>
+           <p>%1$s kann unter keinen Umständen gegenüber irgendjemandem direkt oder indirekt, insbesondere oder anderweitig, für Schäden haftbar gemacht werden, die auf die Nutzung dieser Website oder einer anderen Website zurückzuführen sind, insbesondere als Ergebnis von Links oder Hyperlinks, einschließlich , ohne Einschränkung, alle Verluste, Arbeitsunterbrechungen, Beschädigungen von Programmen oder anderen Daten auf dem Computersystem, der Hardware, Software oder anderweitig des Benutzers.</p>
+           <p>Die Website kann Hyperlinks zu Websites oder Seiten Dritter enthalten oder indirekt darauf verweisen. Das Setzen von Links zu diesen Websites oder Seiten impliziert in keiner Weise eine implizite Zustimmung zu deren Inhalten.</p>
+           <p>%1$s erklärt ausdrücklich, dass es keine Kontrolle über den Inhalt oder andere Funktionen dieser Websites hat und unter keinen Umständen für den Inhalt oder die Funktionen davon oder für irgendwelche anderen Schäden, die sich aus ihrer Nutzung ergeben, haftbar gemacht werden kann.< /p>]]>
+        </translation>
+        <translation language="en"><![CDATA[<p>The information on the website is general in nature. It is not adapted to personal or specific circumstances and can therefore not be regarded as personal, professional or judicial advice for the user.</p>
+          <p>%1$s does everything in its power to ensure that the information made available is complete, correct, accurate and updated. However, despite these efforts inaccuracies may occur when providing information. If the information provided contains inaccuracies or if specific information on or via the site is unavailable, %1$s shall make the greatest effort to ensure that this is rectified as soon as possible.</p>
+          <p>%1$s cannot be held responsible for direct or indirect damage caused by the use of the information on this site.</p>
+          <p>The site manager should be contacted if the user has noticed any inaccuracies in the information provided by the site.</p>
+          <p>The contents of the site (including links) may be adjusted, changed or extended at any time without any announcement or advance notice. %1$s gives no guarantees for the smooth operation of the website and cannot be held responsible in any way for the poor operation or temporary unavailability of the website or for any type of damage, direct or indirect, which may occur due to the access to or use of the website.</p>
+          <p>%1$s can in no case be held liable, directly or indirectly, specifically or otherwise, vis-&agrave;-vis anyone for any damage attributable to the use of this site or any other one, in particular as the result of links or hyperlinks including, but not limited to, any loss, work interruption, damage of the user&rsquo;s programs or other data on the computer system, hardware, software or otherwise.</p>
+          <p>The website may contain hyperlinks to websites or pages of third parties or refer to these indirectly. The placing of links on these websites or pages shall not imply in any way the implicit approval of the contents thereof.</p>
+          <p>%1$s expressly declares that it has no authority over the contents or over other features of these websites and can in no case be held responsible for the contents or features thereof or for any other type of damage resulting from their use.</p>]]>
+        </translation>
+        <translation language="fr"><![CDATA[<p>Les informations contenues sur ce site web sont de nature g&eacute;n&eacute;rale. Ces informations ne sont pas adapt&eacute;es &agrave; des circonstances personnelles ou sp&eacute;cifiques et ne peuvent donc &ecirc;tre consid&eacute;r&eacute;es comme un conseil personnel, professionnel ou juridique &agrave; l&rsquo;utilisateur.</p>
+          <p>%1$s consent de gros efforts pour que les informations mises &agrave; disposition soient compl&egrave;tes, correctes, exhaustives et &agrave; jour. Malgr&eacute; ces efforts, des erreurs peuvent figurer dans les informations mises &agrave; votre disposition. Si les informations diffus&eacute;es sur le site comportaient des erreurs ou si certaines informations &eacute;taient indisponibles sur ou via le site, %1$s mettra tout en oeuvre pour rectifier la situation.</p>
+          <p>%1$s ne peut toutefois pas &ecirc;tre tenue responsable de dommages directs ou indirects r&eacute;sultant de l'utilisation des informations mises &agrave; disposition sur le site.</p>
+          <p>Si vous veniez &agrave; constater des erreurs dans les informations mises &agrave; disposition sur le site, vous pouvez contacter le gestionnaire du site.</p>
+          <p>Le contenu du site (y compris les liens) peut &ecirc;tre adapt&eacute;, modifi&eacute; ou compl&eacute;t&eacute; &agrave; tout moment sans avertissement ni communication aucune. %1$s n&rsquo;octroie aucune garantie de bon fonctionnement du site web et ne peut en aucune mani&egrave;re &ecirc;tre tenue responsable d&rsquo;un dysfonctionnement du site, d&rsquo;une non-disponibilit&eacute; provisoire du site ou de toute forme de dommages, directs ou indirects, pouvant r&eacute;sulter de l&rsquo;acc&egrave;s au site et de l&rsquo;usage du site.</p>
+          <p>En aucun cas, %1$s ne pourra &ecirc;tre tenue pour responsable envers quiconque, d'une mani&egrave;re directe, indirecte, sp&eacute;ciale ou autre, des dommages qui pourraient r&eacute;sulter de l'usage de ce site ou d'un autre, en raison notamment des connexions ou des liens hypertextes, incluant, sans limitation, toute perte, interruption du travail, d&eacute;t&eacute;rioration de programmes ou de donn&eacute;es sur le syst&egrave;me informatique, le mat&eacute;riel, les logiciels, etc. de l'utilisateur.</p>
+          <p>Le site web peut contenir des liens hypertextes vers des sites ou pages web de tiers ou y faire r&eacute;f&eacute;rence de mani&egrave;re indirecte. La pr&eacute;sence de liens vers ces sites ou pages web ne signifie nullement une approbation implicite du contenu de ces sites ou pages.</p>
+          <p>%1$s d&eacute;clare explicitement qu&rsquo;elle n&rsquo;a aucune autorit&eacute; sur le contenu ou sur les autres caract&eacute;ristiques de ces sites ou pages web et ne peut en aucun cas &ecirc;tre tenue responsable du contenu ou des caract&eacute;ristiques desdits sites ou pages web, ni de dommages pouvant r&eacute;sulter de leur utilisation.</p>]]>
+        </translation>
+        <translation language="nl"><![CDATA[<p>De informatie op de website is van algemene aard. De informatie is niet aangepast aan persoonlijke of specifieke omstandigheden, en kan dus niet als een persoonlijk, professioneel of juridisch advies aan de gebruiker worden beschouwd.</p>
+          <p>%1$s levert grote inspanningen opdat de ter beschikking gestelde informatie volledig, juist, nauwkeurig en bijgewerkt zou zijn. Ondanks deze inspanningen kunnen onjuistheden zich voordoen in de ter beschikking gestelde informatie. Indien de verstrekte informatie onjuistheden zou bevatten of indien bepaalde informatie op of via de site onbeschikbaar zou zijn, zal %1$s de grootst mogelijke inspanning leveren om dit zo snel mogelijk recht te zetten.</p>
+          <p>%1$s kan evenwel niet aansprakelijk worden gesteld voor rechtstreekse of onrechtstreekse schade die onstaat uit het gebruik van de informatie op deze site.</p>
+          <p>Indien u onjuistheden zou vaststellen in de informatie die via de site ter beschikking wordt gesteld, kan u de beheerder van de site contacteren.</p>
+          <p>De inhoud van de site (links inbegrepen) kan te allen tijde zonder aankondiging of kennisgeving aangepast, gewijzigd of aangevuld worden. %1$s geeft geen garanties voor de goede werking van de website en kan op geen enkele wijze aansprakelijk gehouden worden voor een slechte werking of tijdelijke (on)beschikbaarheid van de website of voor enige vorm van schade, rechtstreekse of onrechtstreekse, die zou voortvloeien uit de toegang tot of het gebruik van de website.</p>
+          <p>%1$s kan in geen geval tegenover wie dan ook, op directe of indirecte, bijzondere of andere wijze aansprakelijk worden gesteld voor schade te wijten aan het gebruik van deze site of van een andere, inzonderheid als gevolg van links of hyperlinks, met inbegrip, zonder beperking, van alle verliezen, werkonderbrekingen, beschadiging van programma's of andere gegevens op het computersysteem, van apparatuur, programmatuur of andere van de gebruiker.</p>
+          <p>De website kan hyperlinks bevatten naar websites of pagina's van derden, of daar onrechtstreeks naar verwijzen. Het plaatsen van links naar deze websites of pagina's impliceert op geen enkele wijze een impliciete goedkeuring van de inhoud ervan.</p>
+          <p>%1$s verklaart uitdrukkelijk dat zij geen zeggenschap heeft over de inhoud of over andere kenmerken van deze websites en kan in geen geval aansprakelijk gehouden worden voor de inhoud of de kenmerken ervan of voor enige andere vorm van schade door het gebruik ervan.</p>]]>
+        </translation>
+      </item>
+      <item type="label" name="ApplicableLaw">
+        <translation language="de"><![CDATA[Anwendbares Recht und zuständige Gerichte]]></translation>
+        <translation language="en"><![CDATA[applicable law and competent courts]]></translation>
+        <translation language="fr"><![CDATA[loi applicable et tribunaux compétents]]></translation>
+        <translation language="nl"><![CDATA[toepasselijk recht en bevoegde rechtbanken]]></translation>
+      </item>
+      <item type="message" name="ApplicableLaw">
+        <translation language="de"><![CDATA[Auf diese Website findet belgisches Recht Anwendung. Im Streitfall sind ausschließlich die Gerichte des Bezirks %s zuständig.]]></translation>
+        <translation language="en"><![CDATA[This site is governed by Belgian law. Only the courts of the district of %s are competent to settle any disputes.]]></translation>
+        <translation language="fr"><![CDATA[Ce site est r&eacute;gi par le droit belge en vigueur. Seuls les tribunaux de l&rsquo;arrondissement de %s sont comp&eacute;tents en cas de litige.]]></translation>
+        <translation language="nl"><![CDATA[Het Belgisch recht is van toepassing op deze site. In geval van een geschil zijn enkel de rechtbanken van het arrondissement %s bevoegd.]]></translation>
+      </item>
+      <item type="label" name="WhyThisPrivacyPolicy">
+        <translation language="de"><![CDATA[Warum diese Datenschutzerklärung?]]></translation>
+        <translation language="en"><![CDATA[why this privacy policy?]]></translation>
+        <translation language="fr"><![CDATA[pourquoi cette politique de confidentialité?]]></translation>
+        <translation language="nl"><![CDATA[waarom deze privacy policy?]]></translation>
+      </item>
+      <item type="message" name="PersonalDataProcessing">
+        <translation language="de">
+          <![CDATA[Diese Datenschutzrichtlinie ("Datenschutzrichtlinie") regelt die Verarbeitung Ihrer personenbezogenen Daten im Rahmen Ihrer Nutzung unserer Website (die "Website") und der damit verbundenen Dienste (zusammenfassend als "Dienste" bezeichnet). Diese Verarbeitung erfolgt durch %1$s als Verantwortlicher mit Sitz in %2$s %3$s, %4$s %5$s, %6$s ("wir", "uns"), registriert bei der CBE unter der Nummer BE %7$s gemäß den geltenden Gesetzen zum Schutz personenbezogener Daten.]]></translation>
+        <translation language="en">
+          <![CDATA[This privacy policy ("Privacy Policy") governs the processing of your personal data as part of your use of our website (the "Website") and the services related thereto (collectively referred to as the "Services"). Such processing is carried out by %1$s as data controller, having its registered office at %2$s %3$s, %4$s %5$s, %6$s ("we", "us"), registered with the CBE under the number BE %7$s, in accordance with applicable data protection legislation.]]></translation>
+        <translation language="fr">
+          <![CDATA[La présente politique de confidentialité ("Politique de confidentialité") régit le traitement de vos données personnelles dans le cadre de votre utilisation de notre site web (le "Site web") et des services qui y sont liés (collectivement dénommés les "Services"). Ce traitement est effectué par %1$s en tant que responsable du traitement des données, ayant son siège social à %2$s %3$s, %4$s %5$s, %6$s ("nous", "nous"), enregistré auprès de la CBE sous le numéro BE %7$s, conformément à la législation applicable en matière de protection des données personnelles.]]></translation>
+        <translation language="nl">
+          <![CDATA[Deze privacy policy (“Privacy Policy”) regelt de verwerking van je persoonsgegevens als een onderdeel van je gebruik van onze website (de “Website”) en de diensten die daarmee verband houden (gezamenlijk aangeduid als de “Diensten”). Deze verwerking wordt uitgevoerd door %1$s als verantwoordelijke voor de verwerking, met zetel te %2$s %3$s, %4$s %5$s, %6$s ("wij”, “ons"), geregistreerd bij de KBO onder het nummer BE %7$s, in overeenstemming met de toepasselijke wetgeving inzake de bescherming van persoonsgegevens.]]></translation>
+      </item>
+      <item type="message" name="PrivacyPolicyAgreement">
+        <translation language="de">
+          <![CDATA[Durch die Nutzung unserer Website und/oder unserer Dienste bestätigen Sie, dass Sie diese Datenschutzrichtlinie sorgfältig gelesen haben und dass Sie ihr vorbehaltlos zustimmen. Wir behalten uns das Recht vor, die Datenschutzerklärung regelmäßig nach eigenem Ermessen zu ändern. Eine solche Änderung wird über die Website mitgeteilt.]]></translation>
+        <translation language="en">
+          <![CDATA[By using our Website and/or our Services, you acknowledge that you have carefully read this Privacy Policy and agree to it without reservation. We reserve the right to change the Privacy Policy from time to time according to our sole discretion. Such change will be communicated through the Website.]]></translation>
+        <translation language="fr">
+          <![CDATA[En utilisant notre site Web et/ou nos services, vous reconnaissez avoir lu attentivement la présente politique de confidentialité et l'accepter sans réserve. Nous nous réservons le droit de modifier la politique de confidentialité de temps à autre, à notre seule discrétion. Cette modification sera communiquée sur le site web.]]></translation>
+        <translation language="nl">
+          <![CDATA[Door het gebruik van onze Website en/of onze Diensten, erken je dat je deze Privacy Policy zorgvuldig hebt gelezen en dat je hiermee zonder voorbehoud instemt. Wij behouden ons het recht voor om de Privacy Policy regelmatig te wijzigen volgens ons eigen inzicht. Zulke wijziging zal via de Website gecommuniceerd worden.]]></translation>
+      </item>
+      <item type="message" name="CookieWarning">
+        <translation language="de">
+          <![CDATA[Bitte beachten Sie, dass wir im Rahmen der Website und/oder der Dienste möglicherweise sogenannte „Cookies“ oder ähnliche Technologien verwenden. Cookies sind kleine Textdateien, die auf der Festplatte eines Geräts abgelegt werden und bestimmte Informationen enthalten, manchmal auch personenbezogene Daten. Weitere Informationen zu unserer Verwendung von Cookies finden Sie in unserer <a href="/cookie-policy">Cookie-Richtlinie</a>.]]></translation>
+        <translation language="en">
+          <![CDATA[Please note that we may use so-called 'cookies' or similar technology as part of the Website and/or the Services. Cookies are small text files placed on the hard drive of a device, which contain certain information, sometimes including personal data. For more information regarding our use of cookies, please read our <a href="/cookie-policy">cookie policy</a>.]]></translation>
+        <translation language="fr">
+          <![CDATA[Veuillez noter que nous pouvons utiliser des "cookies" ou des technologies similaires dans le cadre du site Web et/ou des services. Les cookies sont de petits fichiers texte placés sur le disque dur d'un appareil, qui contiennent certaines informations, dont parfois des données personnelles. Pour plus d'informations concernant notre utilisation des cookies, veuillez lire notre <a href="/cookie-policy">politique en matière de cookies</a>.]]></translation>
+        <translation language="nl">
+          <![CDATA[Hou er rekening mee dat we zogenaamde ‘cookies’ of gelijkaardige technologie kunnen gebruiken als deel van de Website en/of de Diensten. Cookies zijn kleine tekstbestanden die geplaatst worden op de harde schijf van een toestel, en die bepaalde informatie bevatten, waaronder soms persoonsgegevens. Voor meer informatie betreffende ons gebruik van cookies, gelieve onze <a href="/cookie-policy">cookie policy</a> te lezen.]]></translation>
+      </item>
+      <item type="label" name="WhyDataProcessing">
+        <translation language="de"><![CDATA[Warum verarbeiten wir Daten?]]></translation>
+        <translation language="en"><![CDATA[why do we process data?]]></translation>
+        <translation language="fr"><![CDATA[pourquoi traitons-nous les données?]]></translation>
+        <translation language="nl"><![CDATA[waarom verwerken wij gegevens?]]></translation>
+      </item>
+      <item type="message" name="WhyDataProcessing">
+        <translation language="de">
+          <![CDATA[Wenn Sie die Website und/oder Dienste nutzen, verarbeiten wir Sie betreffende personenbezogene Daten. Grundsätzlich erhalten wir die vorgenannten personenbezogenen Daten direkt von Ihnen. Wenn Sie sich jedoch über ein Social-Media-Konto (z. B. Facebook) registrieren, werden diese Daten über Ihr Social-Media-Profil erfasst. Wir empfehlen Ihnen, die Datenschutzerklärung Ihres Social-Media-Dienstleisters zu konsultieren, um zu erfahren, welche Daten von Ihrem Social-Media-Dienstleister verarbeitet werden, wenn Sie den Social-Media-Login verwenden. Wir geben keine der personenbezogenen Daten, die Sie über die Website bereitstellen, an Social-Media-Anbieter weiter, es sei denn, Sie stimmen zu.]]></translation>
+        <translation language="en">
+          <![CDATA[When you use the Website and/or Services, we process personal data relating to you. In principle, we obtain the aforementioned personal data directly from you. However, if you choose to register via a social media account (e.g. Facebook), this data is collected via your social media profile. We recommend that you consult the privacy policy of your social media service provider to find out what data is processed by your social media service provider when you use social media login. We do not transmit any of the personal data you provide through the Website to social media providers unless you consent.]]></translation>
+        <translation language="fr">
+          <![CDATA[Lorsque vous utilisez le site web et/ou les services, nous traitons les données personnelles vous concernant. En principe, nous obtenons les données personnelles susmentionnées directement auprès de vous. Toutefois, si vous choisissez de vous inscrire via un compte de média social (par exemple, Facebook), ces données sont collectées via votre profil de média social. Nous vous recommandons de consulter la politique de confidentialité de votre fournisseur de services de médias sociaux pour savoir quelles données sont traitées par ce dernier lorsque vous utilisez la connexion aux médias sociaux. Nous ne transmettons aucune des données personnelles que vous fournissez par le biais du site web aux fournisseurs de médias sociaux, sauf si vous y consentez.]]></translation>
+        <translation language="nl">
+          <![CDATA[Wanneer je de Website en/of Diensten gebruikt, verwerken we persoonsgegevens die op jou betrekking hebben. In principe verkrijgen wij de hierboven genoemde persoonsgegevens rechtstreeks van jou. Als je er echter voor kiest om zich te registreren via een social media account (bijvoorbeeld Facebook), worden deze gegevens verzameld via je socialmedia-profiel. Wij raden je aan om de privacy policy van je socialmedia-serviceprovider te raadplegen om na te gaan welke gegevens door je socialmedia-serviceprovider worden verwerkt wanneer je gebruik maakt van het inloggen via social media. Wij sturen geen van de persoonlijke gegevens die je via de Website verstrekt door aan providers van social media, tenzij je hiermee instemt.]]></translation>
+      </item>
+      <item type="message" name="ExtraDataProcessing">
+        <translation language="de"><![CDATA[<p>Zusätzlich zu den oben genannten Zwecken können wir Ihre personenbezogenen Daten auch verarbeiten:</p>
+          <ul>
+          <li>Um Ihnen die Informationen über Produkte und Dienstleistungen, die Sie anfordern, auf personalisierte und effiziente Weise bereitzustellen, sei es über die Website, E-Mail, Telefon oder soziale Medien.</li>
+          <li>Um Ihre personenbezogenen Daten zu verarbeiten, damit wir die Dienste bereitstellen können.</li>
+          <li>Für Direktmarketingzwecke, d. h. um Ihnen gezielte Mitteilungen, Werbeaktionen, Angebote und andere Werbung von uns oder unseren ausgewählten Partnern zukommen zu lassen. Hierfür werden wir Sie um Ihre vorherige Zustimmung bitten.</li>
+          <li>Um statistische Analysen durchzuführen, um unsere Website und/oder Dienstleistungen zu verbessern oder um neue Produkte oder Dienstleistungen zu entwickeln.</li>
+          <li>Um einem Finanzinstitut oder Zahlungsdienstleister zur Verfügung zu stellen, damit Ihr Finanzinstitut und der Zahlungsdienstleister ihren gesetzlichen Verpflichtungen nachkommen können.</li>
+          <li>Zur Übermittlung an die Polizei oder Justizbehörden als Beweismittel für mögliche Straftaten oder bei begründetem Verdacht auf eine rechtswidrige Handlung oder Straftat, die Sie durch Ihre Registrierung bei oder Nutzung der Website oder der Dienste begangen haben.</li>
+          <li>Im Zusammenhang mit einer möglichen Fusion mit, einem Erwerb von/durch oder einer Teilung durch einen Dritten, selbst wenn dieser Dritte seinen Sitz außerhalb des EWR hat.</li>
+          </ul>
+          <p>Falls und wann Ihre Registrierung auf der Website oder die Nutzung der Website oder der Dienste als (a) Verletzung der Nutzungsbedingungen oder der geistigen Eigentumsrechte oder anderer Rechte Dritter, (b) als Bedrohung der Sicherheit oder Integrität der Dienste, (c) eine Bedrohung unserer Website oder der Dienste oder Systeme unserer Subunternehmer oder unserer Subunternehmer durch Viren, Trojaner, Spyware, Malware oder andere Formen von bösartigem Code, oder (d) illegal oder rechtswidrig ist , diskriminierend oder in irgendeiner Weise anstößig ist, können wir Ihre Daten im eigenen Interesse, im Interesse unserer Partner oder Dritter verarbeiten.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>In addition to the above purposes, we may also process your personal data:</p>
+          <ul>
+          <li>To provide you with the information on products and services you request in a personalised and efficient manner, whether via the Website, email, telephone or social media.</li>
+          <li>To process your personal data so that we can provide the Services.</li>
+          <li>For direct marketing purposes, i.e. to provide you with targeted communications, promotions, offers and other advertisements from us or our selected partners. For this, we will seek your prior consent.</li>
+          <li>To perform statistical analysis to improve our Website and/or Services, or to develop new products or services.</li>
+          <li>To provide to a financial institution or payment service provider, to enable your financial institution and the payment service provider to comply with their legal obligations.</li>
+          <li>To transfer to the police or judicial authorities as evidence of possible crimes or if there are justified suspicions of an unlawful act or crime committed by you through your registration with or use of the Website or the Services.</li>
+          <li>In the context of a possible merger with, acquisition of/by or demerger by a third party, even if that third party is located outside the EEA.</li>
+          </ul>
+          <p>If and when your registration to the Website or use of the Website or Services may be considered (a) a violation of the terms and conditions or intellectual property rights or any other right of a third party, (b) a threat to the security or integrity of the Services, (c) a threat to the Website or Services or systems of us or our subcontractors due to viruses, Trojans, spyware, malware, or any other form of malicious code, or (d) in any way illegal or unlawful, discriminatory or offensive, we may process your data in the interests of ourselves, our partners or third parties.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Outre les objectifs susmentionnés, nous pouvons également traiter vos données personnelles :</p>
+          <ul>
+          <li>Pour vous fournir les informations sur les produits et services que vous demandez de manière personnalisée et efficace, que ce soit via le site web, le courrier électronique, le téléphone ou les médias sociaux.</li>
+          <li>Traiter vos données personnelles afin que nous puissions fournir les services.</li>
+          <li>À des fins de marketing direct, c'est-à-dire pour vous fournir des communications, des promotions, des offres et d'autres publicités ciblées de notre part ou de celle de nos partenaires sélectionnés. Pour cela, nous demanderons votre consentement préalable.</li>
+          <li>Effectuer des analyses statistiques pour améliorer notre site web et/ou nos services, ou pour développer de nouveaux produits ou services.</li>
+          <li>Pour fournir à un établissement financier ou à un prestataire de services de paiement, afin de permettre à votre établissement financier et au prestataire de services de paiement de se conformer à leurs obligations légales.</li>
+          <li>Transférer à la police ou aux autorités judiciaires comme preuve d'éventuels délits ou s'il existe des soupçons justifiés d'un acte illégal ou d'un délit commis par vous dans le cadre de votre inscription ou de votre utilisation du site web ou des services.</li>
+          <li>Dans le cadre d'une éventuelle fusion avec, acquisition de/par ou scission par un tiers, même si ce tiers est situé en dehors de l'EEE.</li>
+          </ul>
+          <p>Si et quand votre inscription au site Web ou l'utilisation du site Web ou des services peut être considérée comme (a) une violation des conditions générales ou des droits de propriété intellectuelle ou de tout autre droit d'un tiers, (b) une menace pour la sécurité ou l'intégrité des services, (c) une menace pour le site Web ou les services ou les systèmes de nous ou de nos sous-traitants en raison de virus, de chevaux de Troie, de logiciels espions, de logiciels malveillants ou de toute autre forme de code malveillant, ou (d) de toute manière illégale ou illicite, discriminatoire ou offensante, nous pouvons traiter vos données dans notre intérêt, celui de nos partenaires ou de tiers.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Naast de bovengenoemde doeleinden kunnen wij je persoonlijke gegevens ook verwerken:</p>
+          <ul>
+          <li>Om je op een gepersonaliseerde en efficiënte manier te voorzien van de informatie over producten en diensten die je aanvraagt, hetzij via de Website, e-mail, telefoon of social media.</li>
+          <li>Om je persoonsgegevens te verwerken zodat wij de Diensten kunnen verstrekken.</li>
+          <li>Voor direct marketing doeleinden, d.w.z. om je te kunnen voorzien van gerichte communicatie, promoties, aanbiedingen en andere advertenties van ons of onze geselecteerde partners. Hiervoor zullen wij je voorafgaande toestemming vragen.</li>
+          <li>Voor het uitvoeren van statistische analyses om onze Website en/of Diensten te verbeteren, of het ontwikkelen van nieuwe producten of diensten.</li>
+          <li>Om te verstrekken aan een financiële instelling of betalingsdienstaanbieder, om uw financiële instelling en de betalingsdienstaanbieder in staat te stellen aan hun wettelijke verplichtingen te voldoen.</li>
+          <li>Om over te dragen aan de politie of de gerechtelijke autoriteiten als bewijs van mogelijke misdrijven of indien er gegronde verdenkingen bestaan van een onrechtmatige daad of misdrijf door jou gepleegd door middel van je registratie bij of gebruik van de Website of de Diensten.</li>
+          <li>In het kader van een mogelijke fusie met, overname van/door of splitsing door een derde partij, zelfs indien die derde zich buiten de EER bevindt.</li>
+          </ul>
+          <p>Als en wanneer je registratie op de Website of gebruik van de Website of Diensten kan worden beschouwd (a) als een schending van de voorwaarden of de intellectuele eigendomsrechten of enig ander recht van een derde partij, (b) een bedreiging voor de veiligheid of integriteit van de Diensten, (c) een gevaar voor de Website of Diensten of systemen van ons of van onze onderaannemers als gevolg van virussen, Trojaanse paarden, spyware, malware, of enige andere vorm van kwaadaardige code, of (d) op welke manier dan ook illegaal of onrechtmatig, discriminerend of beledigend is, mogen wij je gegevens verwerken in het belang van onszelf, onze partners of derden.</p>]]></translation>
+      </item>
+      <item type="label" name="DataSharing">
+        <translation language="de"><![CDATA[Mit wem teilen wir Ihre Daten?]]></translation>
+        <translation language="en"><![CDATA[with whom do we share your data?]]></translation>
+        <translation language="fr"><![CDATA[avec qui partageons-nous vos données?]]></translation>
+        <translation language="nl"><![CDATA[met wie delen wij jouw gegevens?]]></translation>
+      </item>
+      <item type="message" name="DataSharing">
+        <translation language="de"><![CDATA[<p>Wir geben Ihre personenbezogenen Daten ohne Ihre ausdrückliche Zustimmung nicht auf identifizierbare Weise an Dritte weiter, wenn dies nicht zur Erbringung der Dienste erforderlich ist.</p>
+          <p>Wir können externe Auftragsverarbeiter einsetzen, um Ihnen die Website und/oder Dienste bereitzustellen. Wir stellen sicher, dass Drittverarbeiter Ihre personenbezogenen Daten nur in unserem Namen und nach schriftlicher Anweisung von uns verarbeiten dürfen. Wir garantieren, dass alle externen Auftragsverarbeiter sorgfältig ausgewählt werden, damit wir uns auf die Sicherheit und Integrität Ihrer personenbezogenen Daten verlassen können.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>We will not transmit your personal data in an identifiable manner to third parties if this is not required to provide the Services, without your explicit consent to do so.</p>
+          <p>We may use third party processors to provide you with the Website and/or Services. We ensure that third party processors may only process your personal data on our behalf, and upon written instructions from us. We ensure that all third party processors are selected with due care to ensure the security and integrity of your personal data.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Nous ne transmettrons pas vos données personnelles de manière identifiable à des tiers si cela n'est pas nécessaire pour fournir les services, sans votre consentement explicite à cet effet.</p>
+          <p>Nous pouvons utiliser des processeurs tiers pour vous fournir le site web et/ou les services. Nous veillons à ce que les sous-traitants tiers ne puissent traiter vos données personnelles qu'en notre nom, et sur instructions écrites de notre part. Nous veillons à ce que tous les processeurs tiers soient sélectionnés avec le soin nécessaire pour garantir la sécurité et l'intégrité de vos données personnelles.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wij verzenden je persoonsgegevens niet op een identificeerbare manier naar derden als dit niet vereist is om de Diensten te verlenen, zonder je uitdrukkelijke toestemming daartoe.</p>
+          <p>Wij kunnen een beroep doen op externe verwerkers om je de Website en/of Diensten aan te bieden. Wij zorgen ervoor dat derde verwerkers je persoonsgegevens alleen namens ons, en op schriftelijke instructie van ons, mogen verwerken. Wij garanderen dat alle externe verwerkers met de nodige zorgvuldigheid worden geselecteerd zodat wij kunnen rekenen op de veiligheid en integriteit van je persoonsgegevens.</p>]]></translation>
+      </item>
+      <item type="label" name="WhereDoWeProcessYourData">
+        <translation language="de"><![CDATA[Wo verarbeiten wir Ihre Daten?]]></translation>
+        <translation language="en"><![CDATA[where do we process your data?]]></translation>
+        <translation language="fr"><![CDATA[où traitons-nous vos données?]]></translation>
+        <translation language="nl"><![CDATA[waar verwerken wij jouw gegevens?]]></translation>
+      </item>
+      <item type="message" name="WhereDoWeProcessYourData">
+        <translation language="de"><![CDATA[<p>Wir und unsere Drittverarbeiter werden Ihre identifizierbaren personenbezogenen Daten nur im EWR verarbeiten. Wir können Ihre anonymisierten und/oder aggregierten Daten an Organisationen außerhalb des EWR übermitteln. Wenn eine solche Übertragung stattfindet, werden wir sicherstellen, dass geeignete Sicherheitsvorkehrungen getroffen werden, um die Sicherheit und Integrität Ihrer personenbezogenen Daten zu gewährleisten, und dass alle Rechte in Bezug auf personenbezogene Daten, die Sie nach geltendem zwingendem Recht genießen können, gewährleistet sind.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>We and our third party processors will only process your identifiable personal data in the EEA. We may transfer your anonymised and/or aggregated data to organisations outside the EEA. If such a transfer takes place, we will ensure that appropriate safeguards are in place to guarantee the security and integrity of your personal data, and that all rights relating to personal data that you might enjoy under applicable mandatory law are guaranteed.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Nous-mêmes et nos sous-traitants tiers ne traiterons vos données personnelles identifiables que dans l'EEE. Nous pouvons transférer vos données anonymes et/ou agrégées à des organisations situées en dehors de l'EEE. Si un tel transfert a lieu, nous veillerons à ce que des garanties appropriées soient mises en place pour assurer la sécurité et l'intégrité de vos données personnelles, et à ce que tous les droits relatifs aux données personnelles dont vous pourriez bénéficier en vertu du droit obligatoire applicable soient garantis.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wijzelf en onze externe verwerkers zullen je identificeerbare persoonsgegevens alleen in de EER verwerken. Wij kunnen je geanonimiseerde en/of geaggregeerde gegevens overdragen aan organisaties buiten de EER. Indien een dergelijke overdracht plaatsvindt, zullen wij ervoor zorgen dat er passende waarborgen zijn om de veiligheid en integriteit van je persoonlijke gegevens te garanderen, en dat alle rechten met betrekking tot persoonsgegevens gegarandeerd worden die je zou kunnen genieten onder toepasselijk dwingend recht.</p>]]></translation>
+      </item>
+      <item type="label" name="HowDoWeProcessYourData">
+        <translation language="de"><![CDATA[Wie verarbeiten wir Ihre Daten?]]></translation>
+        <translation language="en"><![CDATA[how do we process your data?]]></translation>
+        <translation language="fr"><![CDATA[comment traitons-nous vos données?]]></translation>
+        <translation language="nl"><![CDATA[hoe verwerken wij jouw gegevens?]]></translation>
+      </item>
+      <item type="message" name="HowDoWeProcessYourData">
+        <translation language="de"><![CDATA[<p>Wir werden unser Möglichstes tun, um nur die personenbezogenen Daten zu verarbeiten, die zum Erreichen der in dieser Datenschutzrichtlinie genannten Zwecke erforderlich sind. Wir werden Ihre personenbezogenen Daten auf legale, faire und transparente Weise verarbeiten. Wir werden unser Möglichstes tun, um die personenbezogenen Daten korrekt und aktuell zu halten. Ihre personenbezogenen Daten werden nur so lange verarbeitet, wie dies zur Erreichung der in dieser Datenschutzerklärung genannten Zwecke erforderlich ist oder bis Sie Ihre Einwilligung zur Verarbeitung widerrufen. Bitte beachten Sie, dass der Widerruf der Einwilligung bedeuten kann, dass Sie die Website und/oder Dienste ganz oder teilweise nicht mehr nutzen können. Wir treffen geeignete technische und organisatorische Maßnahmen, um Ihre personenbezogenen Daten vor unbefugtem Zugriff oder Diebstahl sowie vor zufälligem Verlust, Manipulation oder Zerstörung zu schützen. Der Zugriff durch unsere Mitarbeiter oder Mitarbeiter unserer Drittverarbeiter ist nur auf Need-to-know-Basis möglich und unterliegt strengen Vertraulichkeitsverpflichtungen. Sie verstehen jedoch, dass die Sorge um Sicherheit und Schutz nur Verpflichtungen nach besten Kräften sind, die niemals garantiert werden können.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>We will make every effort to process only the personal data necessary to fulfil the purposes set out in this Privacy Policy. We will process your personal data in a lawful, fair and transparent manner. We will make every effort to keep personal data accurate and up-to-date. Your personal data will only be processed for as long as necessary to achieve the purposes stated in this Privacy Policy or until the moment you withdraw your consent to its processing. Please note that withdrawal of consent may imply that you are no longer able to use all or part of the Website and/or Services. We will take appropriate technical and organisational measures to keep your personal data safe from unauthorised access or theft and from accidental loss, manipulation or destruction. Access by our staff or staff of our third-party processors is only possible on a need-to-know basis and is subject to strict confidentiality obligations. However, you understand that the care for safety and security are only best-efforts obligations which can never be guaranteed.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Nous nous efforcerons de ne traiter que les données personnelles nécessaires pour atteindre les objectifs définis dans la présente politique de confidentialité. Nous traiterons vos données personnelles de manière légale, équitable et transparente. Nous ferons tout notre possible pour que les données personnelles soient exactes et à jour. Vos données personnelles ne seront traitées qu'aussi longtemps que nécessaire pour atteindre les objectifs énoncés dans la présente politique de confidentialité ou jusqu'à ce que vous retiriez votre consentement à leur traitement. Veuillez noter que le retrait du consentement peut impliquer que vous ne soyez plus en mesure d'utiliser tout ou partie du site Web et/ou des services. Nous prendrons les mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé ou vol et contre toute perte, manipulation ou destruction accidentelle. L'accès par notre personnel ou celui de nos sous-traitants tiers n'est possible que sur la base du besoin d'en connaître et est soumis à de strictes obligations de confidentialité. Toutefois, vous comprenez que les mesures de sécurité et de sûreté ne sont que des obligations de moyens qui ne peuvent jamais être garanties.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wij zullen ons uiterste best doen om alleen de persoonsgegevens te verwerken die nodig zijn om de in deze Privacy Policy vermelde doeleinden te bereiken. Wij zullen je persoonsgegevens op een wettelijke, eerlijke en transparante manier verwerken. Wij zullen ons uiterste best doen om de persoonsgegevens accuraat en up-to-date te houden. Je persoonsgegevens worden alleen verwerkt zolang als nodig is om de in deze Privacy Policy vermelde doeleinden te bereiken of tot het moment waarop je je toestemming voor de verwerking ervan intrekt. Hou er rekening mee dat de intrekking van de toestemming kan impliceren dat je niet langer in staat bent om de Website en/of Diensten geheel of gedeeltelijk te gebruiken. Wij zullen de gepaste technische en organisatorische maatregelen nemen om je persoonsgegevens veilig te houden tegen ongeoorloofde toegang of diefstal en tegen onopzettelijk verlies, manipulatie of vernietiging. Toegang door ons personeel of personeel van onze externe verwerkers is alleen mogelijk op een need-to-know-basis en is onderworpen aan strikte geheimhoudingsverplichtingen. Je begrijpt echter dat de zorg voor veiligheid en beveiliging slechts inspanningsverplichtingen naar beste vermogen zijn, die nooit kunnen worden gegarandeerd.</p>]]></translation>
+      </item>
+      <item type="label" name="HowLongDoWeKeepYourData">
+        <translation language="de"><![CDATA[Wie verarbeiten wir Ihre Daten?]]></translation>
+        <translation language="en"><![CDATA[how do we process your data?]]></translation>
+        <translation language="fr"><![CDATA[comment traitons-nous vos données?]]></translation>
+        <translation language="nl"><![CDATA[hoe lang bewaren wij jouw gegevens?]]></translation>
+      </item>
+      <item type="message" name="HowLongDoWeKeepYourData">
+        <translation language="de"><![CDATA[<p>Die Aufbewahrungsfristen variieren je nach Art des bereitgestellten Dienstes. Wir speichern Ihre Daten:</p>
+          <ul>
+          <li>so lange wie es für die Zwecke, für die sie erhoben und verarbeitet werden, erforderlich ist.</li>
+          <li>solange sie erforderlich sind, um unseren gesetzlichen, vertraglichen und rechtlichen Verpflichtungen nachzukommen und unseren gewerblichen Geschäftsbetrieb zu erfüllen.</li>
+          </ul>]]></translation>
+        <translation language="en"><![CDATA[<p>Retention periods vary depending on the nature of the service provided. We keep your data:</p>
+          <ul>
+          <li>as long as necessary for the purposes for which they are collected and processed.</li>
+          <li>As long as they are necessary to comply with our legal, contractual and judicial obligations and to fulfil our commercial operational activities.</li>
+          </ul>]]></translation>
+        <translation language="fr"><![CDATA[<p>Les délais de conservation varient en fonction de la nature du service fourni. Nous conservons vos données:</p>
+          <ul>
+          <li>aussi longtemps que nécessaire pour les finalités pour lesquelles elles sont collectées et traitées.</li>
+          <li>Aussi longtemps qu'elles sont nécessaires pour se conformer à nos obligations légales, contractuelles et judiciaires et pour mener à bien nos activités opérationnelles commerciales.</li>
+          </ul>]]></translation>
+        <translation language="nl"><![CDATA[<p>De bewaartermijnen variëren afhankelijk van de aard van de verleende dienst. We bewaren je gegevens:</p>
+          <ul>
+          <li>zo lang als nodig voor de doeleinden waarvoor ze worden verzameld en verwerkt.</li>
+          <li>zo lang ze nodig zijn om onze wettelijke, contractuele en juridische verplichtingen na te leven en te voldoen aan onze commerciële operationele activiteiten.</li>
+          </ul>]]></translation>
+      </item>
+      <item type="label" name="WhatAreYourRights">
+        <translation language="de"><![CDATA[Welche Rechte haben Sie?]]></translation>
+        <translation language="en"><![CDATA[what are your rights?]]></translation>
+        <translation language="fr"><![CDATA[quels sont vos droits?]]></translation>
+        <translation language="nl"><![CDATA[wat zijn jouw rechten?]]></translation>
+      </item>
+      <item type="message" name="WhatAreYourRights">
+        <translation language="de"><![CDATA[<p>Sie haben das Recht, Zugang zu allen personenbezogenen Daten zu verlangen, die wir über Sie verarbeiten. Zugriffsanfragen, die eindeutig in der Absicht gestellt werden, uns zu belästigen oder uns Schaden zuzufügen, werden jedoch nicht bearbeitet.</p>
+          <p>Sie haben das Recht zu verlangen, dass Sie betreffende personenbezogene Daten, die falsch oder ungenau sind, kostenlos korrigiert werden. Wenn eine solche Anfrage gestellt wird, müssen Sie dieser Anfrage auch einen Nachweis beifügen, dass die personenbezogenen Daten, für die eine Berichtigung angefordert wird, falsch sind. Sie haben das Recht, Ihre zuvor erteilte Einwilligung zur Verarbeitung Ihrer personenbezogenen Daten zu widerrufen. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie eine E-Mail an <a href="mailto:%1$s">%1$s</a> senden.</p>
+          <p>Wenn Sie eine Beschwerde über die Verarbeitung Ihrer personenbezogenen Daten durch uns haben, können Sie uns jederzeit über die E-Mail-Adresse <a href="mailto:%1$s">%1$s</a> kontaktieren . Wenn Sie mit unserer Antwort weiterhin unzufrieden sind, steht es Ihnen frei, eine Beschwerde bei der zuständigen Datenschutzbehörde, der belgischen Datenschutzbehörde (Drukpersstraat 35, 1000 Brüssel), einzureichen. Sie erreichen sie telefonisch unter +32 2 274 48 00. Weitere Informationen finden Sie unter <a href="https://www.datenschutzbehorde.be" target="_blank">datenschutzbehorde.be</a>.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>You have the right to request access to all personal data we process about you. However, access requests made with the apparent intention of causing inconvenience or damage to us will not be processed.</p>
+          <p>You have the right to request that any personal data about you that is incorrect or inaccurate be corrected free of charge. If such a request is made, you must also enclose with this request proof that the personal data for which correction is requested is incorrect. You have the right to withdraw your previously given consent to the processing of your personal data. You can withdraw your consent at any time by sending an e-mail to <a href="mailto:%1$s">%1$s</a>.</p>
+          <p>If you have a complaint about the processing of your personal data by us, you can always contact us at the e-mail address <a href="mailto:%1$s">%1$s</a>. If you remain dissatisfied with our response, you are free to lodge a complaint with the competent data protection authority, the Belgian Data Protection Authority (Drukpersstraat 35, 1000 Brussels). You can reach them by phone at +32 2 274 48 00. For more information, visit <a href="https://www.dataprotectionauthority.be" target="_blank">dataprotectionauthority.be</a>.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Vous avez le droit de demander l'accès à toutes les données personnelles que nous traitons à votre sujet. Toutefois, les demandes d'accès faites dans l'intention manifeste de nous causer des désagréments ou des dommages ne seront pas traitées.</p>
+          <p>Vous avez le droit de demander que les données personnelles vous concernant qui sont incorrectes ou inexactes soient corrigées gratuitement. Si une telle demande est faite, vous devez également joindre à cette demande la preuve que les données à caractère personnel pour lesquelles la correction est demandée sont incorrectes. Vous avez le droit de retirer le consentement que vous avez donné précédemment au traitement de vos données personnelles. Vous pouvez retirer votre consentement à tout moment en envoyant un courriel à <a href="mailto:%1$s">%1$s</a>.</p>
+          <p>Si vous avez une plainte à formuler concernant le traitement de vos données personnelles par nos soins, vous pouvez toujours nous contacter à l'adresse électronique <a href="mailto:%1$s">%1$s</a>. Si vous n'êtes toujours pas satisfait de notre réponse, vous êtes libre d'introduire une plainte auprès de l'autorité compétente en matière de protection des données, l'Autorité belge de protection des données (rue Drukpers 35, 1000 Bruxelles). Vous pouvez les joindre par téléphone au +32 2 274 48 00. Pour plus d'informations, consultez le site <a href="https://www.autoriteprotectiondonnees.be" target="_blank">autoriteprotectiondonnees.be</a>.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Je hebt het recht om toegang te vragen tot alle persoonsgegevens die wij over jou verwerken. Verzoeken om toegang die klaarblijkelijk worden ingediend met oog op het veroorzaken van overlast of schade voor ons, worden echter niet behandeld.</p>
+          <p>Je hebt het recht om te vragen dat alle persoonsgegevens over jou die onjuist of onnauwkeurig zijn, kosteloos worden gecorrigeerd. Indien een dergelijk verzoek wordt ingediend, moet je bij dit verzoek ook het bewijs toevoegen dat de persoonsgegevens waarvoor correctie wordt gevraagd, onjuist zijn. Je hebt het recht om je eerder gegeven toestemming voor de verwerking van je persoonsgegevens in te trekken. Je kan je toestemming ten allen tijde intrekken door een e-mail te sturen naar <a href="mailto:%1$s">%1$s</a>.</p>
+          <p>Als je een klacht hebt over de verwerking van je persoonsgegevens door ons, kan je altijd contact opnemen via het e-mailadres <a href="mailto:%1$s">%1$s</a>. Blijf je ontevreden over ons antwoord, dan staat het je vrij om een klacht in te dienen bij de bevoegde gegevensbeschermingsautoriteit, de Belgische Gegevensbeschermingsautoriteit (Drukpersstraat 35, 1000 Brussel). Je kan hen telefonisch bereiken via +32 2 274 48 00. Ga voor meer informatie naar <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank">gegevensbeschermingsautoriteit.be</a>.</p>]]></translation>
+      </item>
+      <item type="label" name="WhatIsTheCookiePolicy">
+        <translation language="de"><![CDATA[Was ist die Cookie-Richtlinie?]]></translation>
+        <translation language="en"><![CDATA[what is the cookie policy?]]></translation>
+        <translation language="fr"><![CDATA[qu'est-ce que la politique en matière de cookies?]]></translation>
+        <translation language="nl"><![CDATA[wat is de cookie policy?]]></translation>
+      </item>
+      <item type="message" name="WhatIsTheCookiePolicy">
+        <translation language="de"><![CDATA[Diese Cookie-Richtlinie ("Cookie-Richtlinie") regelt die Verwendung von Cookies und ähnlichen Technologien im Rahmen Ihrer Nutzung unserer Website (die "Website") und damit verbundener Dienste (im Folgenden gemeinsam als "Dienste" bezeichnet). Diese Verarbeitung wird von %1$s als Datenverantwortlicher mit Sitz in %2$s %3$s, %4$s %5$s, %6$s ("wir", "uns") durchgeführt, beim KBO unter der Nummer BE %7$s in Übereinstimmung mit den geltenden Gesetzen zum Schutz personenbezogener Daten registriert.]]></translation>
+        <translation language="en"><![CDATA[This cookie policy ("Cookie Policy") governs the use of cookies and similar technologies as part of your use of our website (the "Website") and related services (collectively referred to hereinafter as "Services"). This processing is carried out by %1$s as data controller, having its registered office at %2$s %3$s, %4$s %5$s, %6$s ("we", "us"), registered with the CBE under the number BE %7$s in accordance with applicable personal data protection legislation.]]></translation>
+        <translation language="fr"><![CDATA[La présente politique en matière de cookies ("Politique en matière de cookies") régit l'utilisation des cookies et des technologies similaires dans le cadre de votre utilisation de notre site web (le "Site web") et des services connexes (ci-après dénommés collectivement "Services"). Ce traitement est effectué par %1$s en tant que responsable du traitement des données, dont le siège social est situé à %2$s %3$s, %4$s %5$s, %6$s ("nous", "nous"), enregistré auprès du CBE sous le numéro BE %7$s conformément à la législation applicable en matière de protection des données personnelles.]]></translation>
+        <translation language="nl"><![CDATA[Deze cookie policy ("Cookie Policy") regelt het gebruik van cookies en soortgelijke technologieën als onderdeel van jouw gebruik van onze website (de "Website") en de bijbehorende diensten (hierna samen aangeduid als "Diensten"). Deze verwerking wordt uitgevoerd door %1$s als verantwoordelijke voor de verwerking, met zetel te %2$s %3$s, %4$s %5$s, %6$s ("wij”, “ons"), geregistreerd bij de KBO onder het nummer BE %7$s in overeenstemming met de toepasselijke wetgeving inzake de bescherming van persoonsgegevens.]]></translation>
+      </item>
+      <item type="label" name="WhatIsThePurposeOfThisCookiePolicy">
+        <translation language="de"><![CDATA[Wozu dient diese Richtlinie?]]></translation>
+        <translation language="en"><![CDATA[what is the purpose of this policy?]]></translation>
+        <translation language="fr"><![CDATA[quel est l'objectif de cette politique?]]></translation>
+        <translation language="nl"><![CDATA[waar dient deze policy voor?]]></translation>
+      </item>
+      <item type="message" name="WhatIsThePurposeOfThisCookiePolicy">
+        <translation language="de"><![CDATA[<p>Indem Sie unsere Website und/oder Dienste weiterhin nutzen oder zustimmen, nachdem Sie über die Verwendung von Cookies und ähnlichen Technologien informiert wurden, bestätigen Sie, dass Sie diese Cookie-Richtlinie sorgfältig gelesen haben und dass Sie daran gebunden sind. Wie in dieser Cookie-Richtlinie dargelegt, können Sie Ihre Cookie-Einstellungen jederzeit ändern.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>By continuing to use our Website and/or Services or by agreeing after being informed of the use of cookies and similar technologies, you acknowledge that you have read this Cookie Policy carefully and agree to it without reservation. As set out in this Cookie Policy, you may change your cookie preferences at any time.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>En continuant à utiliser notre Site et/ou nos Services ou en acceptant après avoir été informé de l'utilisation de cookies et de technologies similaires, vous reconnaissez avoir lu attentivement la présente Politique en matière de cookies et l'accepter sans réserve. Comme indiqué dans la présente politique en matière de cookies, vous pouvez modifier vos préférences en matière de cookies à tout moment.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Door gebruik te blijven maken van onze Website en/of Diensten of door akkoord te gaan nadat je op de hoogte bent gesteld van het gebruik van cookies en soortgelijke technologieën, erken je dat je deze Cookie Policy zorgvuldig hebt gelezen en dat je ermee instemt zonder voorbehoud. Zoals uiteengezet in deze Cookie Policy kan je je cookie-voorkeuren ten allen tijde wijzigen.</p>]]></translation>
+      </item>
+      <item type="label" name="WhatAreCookies">
+        <translation language="de"><![CDATA[Was sind Cookies?]]></translation>
+        <translation language="en"><![CDATA[what are cookies?]]></translation>
+        <translation language="fr"><![CDATA[que sont les cookies ?]]></translation>
+        <translation language="nl"><![CDATA[wat zijn cookies?]]></translation>
+      </item>
+      <item type="message" name="WhatAreCookies">
+        <translation language="de"><![CDATA[<p>Cookies sind kleine Textdateien, die auf der Festplatte eines Geräts gespeichert werden und bestimmte Informationen enthalten, manchmal auch personenbezogene Daten. Wenn Sie unsere Website und/oder Dienste nutzen, erfassen und verarbeiten wir auch andere personenbezogene Daten als durch Cookies und ähnliche Technologien. Wenn Sie mehr wissen möchten, lesen Sie unsere <a href="/privacy-policy">Datenschutzerklärung</a>.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>Cookies are small text files that are stored on a device's hard drive and contain certain information, some of which may include personal data. When you use our Website and/or Services, we also collect and process personal information other than through cookies and similar technologies. If you want to know more, please read our <a href="/privacy-policy">Privacy Policy</a>.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Les cookies sont de petits fichiers texte qui sont stockés sur le disque dur d'un appareil et contiennent certaines informations, dont certaines peuvent inclure des données personnelles. Lorsque vous utilisez notre site web et/ou nos services, nous recueillons et traitons également des informations personnelles autrement que par le biais de cookies et de technologies similaires. Si vous souhaitez en savoir plus, veuillez lire notre <a href="/privacy-policy">politique de confidentialité</a>.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Cookies zijn kleine tekstbestanden die op de harde schijf van een toestel worden opgeslagen en bepaalde informatie bevatten, waaronder soms ook persoonsgegevens. Wanneer je onze Website en/of Diensten gebruikt, verzamelen en verwerken wij ook andere persoonlijke informatie dan via cookies en soortgelijke technologieën. Als je meer wilt weten, lees dan onze <a href="/privacy-policy">Privacy Policy</a>.</p>]]></translation>
+      </item>
+      <item type="label" name="Changes">
+        <translation language="de"><![CDATA[Änderungen]]></translation>
+        <translation language="en"><![CDATA[changes]]></translation>
+        <translation language="fr"><![CDATA[changements]]></translation>
+        <translation language="nl"><![CDATA[wijzigingen]]></translation>
+      </item>
+      <item type="message" name="Changes">
+        <translation language="de"><![CDATA[<p>Wir behalten uns das Recht vor, diese Cookie-Richtlinie von Zeit zu Zeit zu ändern, zu ergänzen oder zu ersetzen. Solche Änderungen, Ergänzungen oder Ersetzungen werden Ihnen über unsere Website und/oder Dienste mitgeteilt. Wenn Sie mit diesen Änderungen, Ergänzungen oder Ersetzungen nicht einverstanden sind, senden Sie bitte eine E-Mail an <a href="mailto:%1$s">%1$s</a>. Wenn wir innerhalb von drei (3) Werktagen, nachdem Ihnen die Änderungen, Ergänzungen oder Ersetzungen über unsere Website oder Dienste mitgeteilt wurden, keine Benachrichtigung darüber erhalten haben, wird davon ausgegangen, dass Sie alle Änderungen, Ergänzungen oder Ersetzungen akzeptiert haben.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>We reserve the right to amend, supplement or replace this Cookie Policy from time to time. Such changes, additions or replacements will be brought to your attention via our Website and/or Services. If you disagree with these changes, additions or replacements, please send an e-mail to <a href="mailto:%1$s">%1$s</a>. If we have not received such notification within three (3) working days after the changes, additions or replacements have been communicated to you via our Website or Services, you will be deemed to have accepted all such changes, additions or replacements.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Nous nous réservons le droit de modifier, compléter ou remplacer la présente politique en matière de cookies de temps à autre. Ces modifications, ajouts ou remplacements seront portés à votre attention via notre site web et/ou nos services. Si vous n'êtes pas d'accord avec ces changements, ajouts ou remplacements, veuillez envoyer un courriel à <a href="mailto:%1$s">%1$s</a>. Si nous n'avons pas reçu cette notification dans un délai de trois (3) jours ouvrables après que les modifications, ajouts ou remplacements vous ont été communiqués via notre site Web ou nos services, vous serez réputé avoir accepté l'ensemble de ces modifications, ajouts ou remplacements.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wij behouden ons het recht voor deze Cookie Policy van tijd tot tijd te wijzigen, aan te vullen of te vervangen. Dergelijke wijzigingen, toevoegingen of vervangingen zullen onder je aandacht worden gebracht via onze Website en/of Diensten. Als je het niet eens bent met deze wijzigingen, toevoegingen of vervangingen, vragen wij je een e-mail te sturen naar <a href="mailto:%1$s">%1$s</a>. Indien wij hiervan geen mededeling hebben ontvangen binnen drie (3) werkdagen nadat de wijzigingen, aanvullingen of vervangingen via onze Website of Diensten aan je zijn meegedeeld, word je geacht alle wijzigingen, aanvullingen of vervangingen te hebben aanvaard.</p>]]></translation>
+      </item>
+      <item type="label" name="WhichCookies">
+        <translation language="de"><![CDATA[Welche Cookies]]></translation>
+        <translation language="en"><![CDATA[which cookies]]></translation>
+        <translation language="fr"><![CDATA[quels cookies]]></translation>
+        <translation language="nl"><![CDATA[welke cookies]]></translation>
+      </item>
+      <item type="message" name="WhichCookies">
+        <translation language="de"><![CDATA[<p>Wenn Sie unsere Website besuchen und/oder nutzen, platzieren wir Cookies oder verwenden ähnliche Technologien, mit denen wir personenbezogene Daten über Sie erheben und verarbeiten. Wir verwenden Anwendungen wie Cookies, um den Inhalt unserer Website an Ihre Benutzerpräferenzen anzupassen, Funktionen für soziale Medien bereitzustellen und den Website-Verkehr zu optimieren. Dazu verwenden wir temporäre und permanente First-Party- und Third-Party-Cookies. Darüber hinaus verwenden wir auch Google AdWords, Google Tag Manager, Google Analytics und Facebook Pixel, um zu verfolgen, welche Dienste Sie interessieren, sowie für Remarketing-Zwecke: Die Cookies in Kombination mit dem Google-Netzwerk ermöglichen es uns, Ihnen Werbung auf anderen anzuzeigen Websites für Dienste, die Sie interessieren könnten.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>When you visit and/or use our Website, we set cookies or use similar technologies through which we collect and process personal data about you. We use applications such as cookies to optimise the content of our Website according to your user preferences, to provide social media features and to optimise website traffic. For this purpose, we use temporary and permanent first-party and third-party cookies. Additionally, we also use Google AdWords, Google Tag Manager, Google Analytics and Facebook Pixel to track which services interest you, as well as for remarketing purposes: the cookies in combination with Google's network enable us to show you ads on other websites for services that may interest you.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Lorsque vous visitez et/ou utilisez notre site web, nous installons des cookies ou utilisons des technologies similaires grâce auxquelles nous collectons et traitons des données personnelles vous concernant. Nous utilisons des applications telles que les cookies pour optimiser le contenu de notre site Web en fonction de vos préférences d'utilisateur, pour fournir des fonctionnalités de médias sociaux et pour optimiser le trafic du site Web. À cette fin, nous utilisons des cookies temporaires et permanents de première partie et de tierce partie. En outre, nous utilisons également Google AdWords, Google Tag Manager, Google Analytics et Facebook Pixel pour savoir quels services vous intéressent, ainsi qu'à des fins de remarketing : les cookies, combinés au réseau de Google, nous permettent de vous montrer des annonces sur d'autres sites web pour des services susceptibles de vous intéresser.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wanneer je onze Website bezoekt en/of gebruikt, plaatsen wij cookies of gebruiken we soortgelijke technologieën waarmee we persoonsgegevens over jou verzamelen en verwerken. Wij gebruiken toepassingen als cookies om de inhoud van onze website te optimaliseren aan jouw gebruiksvoorkeuren, om sociale media functies te bieden en het website verkeer te optimaliseren. Hiervoor gebruiken we tijdelijke en permanente first-party en third-party cookies. Aanvullend gebruiken wij ook Google AdWords, Google Tag Manager, Google Analytics en Facebook Pixel om bij te houden welke diensten je interesseren, alsook voor remarketing-doeleinden: de cookies in combinatie met het netwerk van Google stellen ons in staat jouw op andere websites advertenties te tonen voor diensten die je eventueel interesseren.</p>]]></translation>
+      </item>
+      <item type="label" name="HowLongDoCookiesStayOnMyDevice">
+        <translation language="de"><![CDATA[Wie lange bleiben Cookies auf meinem Gerät?]]></translation>
+        <translation language="en"><![CDATA[how long do cookies stay on my device?]]></translation>
+        <translation language="fr"><![CDATA[combien de temps les cookies restent-ils sur mon appareil?]]></translation>
+        <translation language="nl"><![CDATA[hoe lang blijven cookies op mijn apparaat?]]></translation>
+      </item>
+      <item type="message" name="HowLongDoCookiesStayOnMyDevice">
+        <translation language="de"><![CDATA[<p>Die meisten Cookies verschwinden, wenn Sie Ihren Browser schließen, andere bleiben einige Tage bis mehrere Jahre bestehen. Sie haben jederzeit die Möglichkeit, alle Cookies über Ihren Browser zu löschen.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>Most cookies disappear when you close your browser, others stay for a few days to a few years. You can delete all cookies via your browser at any time.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>La plupart des cookies disparaissent lorsque vous fermez votre navigateur, d'autres restent pendant quelques jours à quelques années. Vous pouvez à tout moment supprimer tous les cookies via votre navigateur.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>De meeste cookies verdwijnen bij het afsluiten van uw browser, anderen blijven enkele dagen tot enkele jaren staan. U heeft op elk moment de mogelijkheid om alle cookies via u browser te verwijderen.</p>]]></translation>
+      </item>
+      <item type="label" name="IDoNotWantCookies">
+        <translation language="de"><![CDATA[Ich will keine Cookies]]></translation>
+        <translation language="en"><![CDATA[i do not want cookies]]></translation>
+        <translation language="fr"><![CDATA[je ne veux pas de cookies]]></translation>
+        <translation language="nl"><![CDATA[ik wil geen cookies]]></translation>
+      </item>
+      <item type="message" name="IDoNotWantCookies">
+        <translation language="de"><![CDATA[<p>Sie können das Setzen von Cookies verhindern oder bereits gesetzte Cookies löschen, indem Sie Ihre Einstellungen im Browser anpassen. Hilfe zum Anpassen dieser Einstellungen finden Sie auf der Website des von Ihnen verwendeten Browsers. Bitte beachten Sie, dass das Nichtzulassen von Cookies beim Besuch der Website dazu führen kann, dass einige oder alle Funktionen der Website nicht richtig funktionieren.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>You can prevent the installation of cookies or delete already installed cookies by adjusting your browser settings. Help with adjusting these settings can be found on the website of the browser you are using. Please note that not allowing cookies when visiting the website may result in some or all functions of the Website not working properly.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Vous pouvez empêcher l'installation de cookies ou supprimer les cookies déjà installés en ajustant les paramètres de votre navigateur. Vous trouverez de l'aide pour régler ces paramètres sur le site web du navigateur que vous utilisez. Veuillez noter que le fait de ne pas autoriser les cookies lors de la visite du site Web peut entraîner le dysfonctionnement de certaines ou de toutes les fonctions du site.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Je kan voorkomen dat cookies worden geplaatst of reeds geplaatste cookies verwijderen door je instellingen in de browser aan te passen. Hulp bij het aanpassen van deze instellingen kan je vinden op de website van de browser die je gebruikt. Hou er rekening mee dat het niet toestaan van cookies bij het bezoeken van de website ertoe kan leiden dat sommige of alle functies van de Website niet naar behoren werken.</p>]]></translation>
+      </item>
+      <item type="label" name="IHaveQuestionsOrComments">
+        <translation language="de"><![CDATA[Ich habe Fragen oder Anmerkungen]]></translation>
+        <translation language="en"><![CDATA[i have questions or comments]]></translation>
+        <translation language="fr"><![CDATA[j'ai des questions ou des commentaires]]></translation>
+        <translation language="nl"><![CDATA[ik heb vragen of opmerkingen]]></translation>
+      </item>
+      <item type="message" name="IHaveQuestionsOrComments">
+        <translation language="de"><![CDATA[<p>Wenn Sie Fragen oder Anmerkungen zu den in diesen Cookies gespeicherten Daten haben, können Sie uns unter <a href="mailto:%1$s">%1$s</a> kontaktieren. Wenn Sie mit unserer Antwort weiterhin unzufrieden sind, steht es Ihnen frei, eine Beschwerde bei der zuständigen Datenschutzbehörde, der belgischen Datenschutzbehörde, einzureichen. Weitere Informationen finden Sie unter <a href="https://www.datenschutzbehorde.be" target="_blank">datenschutzbehorde.be</a>. Weitere Informationen zu Cookies finden Sie auch auf dem Portal <a href="https://www.allaboutcookies.org" target="_blank">allaboutcookies.org</a>.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>If you have any questions or comments regarding the data stored on these cookies, please contact us at <a href="mailto:%1$s">%1$s</a>. If you remain dissatisfied with our response, you are free to lodge a complaint with the competent data protection authority, the Belgian Data Protection Authority. For more information, visit <a href="https://www.dataprotectionauthority.be" target="_blank">dataprotectionauthority.be</a>. You can also find more info on cookies at the portal <a href="https://www.allaboutcookies.org" target="_blank">allaboutcookies.org</a>.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Si vous avez des questions ou des commentaires concernant les données stockées sur ces cookies, veuillez nous contacter à l'adresse <a href="mailto:%1$s">%1$s</a>. Si vous n'êtes toujours pas satisfait de notre réponse, vous êtes libre d'introduire une plainte auprès de l'autorité compétente en matière de protection des données, l'autorité belge de protection des données. Pour plus d'informations, consultez le site <a href="https://www.autoriteprotectiondonnees.be" target="_blank">autoriteprotectiondonnees.be</a>. Vous pouvez également trouver plus d'informations sur les cookies sur le portail <a href="https://www.allaboutcookies.org" target="_blank">allaboutcookies.org</a>.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Indien u vragen of opmerkingen heeft met betrekking tot de opgeslagen data op deze cookies, kan u ons contacteren via <a href="mailto:%1$s">%1$s</a>. Blijf je ontevreden over ons antwoord, dan staat het je vrij om een klacht in te dienen bij de bevoegde gegevensbeschermingsautoriteit, de Belgische Gegevensbeschermingsautoriteit. Ga voor meer informatie naar <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank">gegevensbeschermingsautoriteit.be</a>. Meer info over cookies vindt u ook op het portaal <a href="https://www.allaboutcookies.org" target="_blank">allaboutcookies.org</a>.</p>]]></translation>
+      </item>
+    </Policies>
+  </Frontend>
+</locale>

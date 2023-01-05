@@ -1,0 +1,29 @@
+<div class="py-5">
+  <h3>1. {{ 'lbl.WhyThisPrivacyPolicy'|trans|ucfirst }}</h3>
+  {% if company.registeredOffice %}
+    <p>{{ 'msg.PersonalDataProcessing'|trans|format(company.registeredOffice, company.streetNameRegisteredOffice, company.streetNumberRegisteredOffice, company.postalCodeRegisteredOffice, company.cityRegisteredOffice, company.countryRegisteredOffice|language_name, company.enterpriseNumber)|ucfirst }}</p>
+  {% else %}
+    <p>{{ 'msg.PersonalDataProcessing'|trans|format(company.companyName, company.streetName, company.streetNumber, company.postalCode, company.city, company.country|language_name, company.enterpriseNumber)|ucfirst }}</p>
+  {% endif %}
+  <p>{{ 'msg.PrivacyPolicyAgreement'|trans }}</p>
+  <p>{{ 'msg.CookieWarning'|trans|raw }}</p>
+
+  <h3>2. {{ 'lbl.WhyDataProcessing'|trans|ucfirst }}</h3>
+  <p>{{ 'msg.WhyDataProcessing'|trans }}</p>
+  {{ 'msg.ExtraDataProcessing'|trans|raw }}
+
+  <h3>3. {{ 'lbl.DataSharing'|trans|ucfirst }}</h3>
+  {{ 'msg.DataSharing'|trans|raw }}
+
+  <h3>4. {{ 'lbl.WhereDoWeProcessYourData'|trans|ucfirst }}</h3>
+  {{ 'msg.WhereDoWeProcessYourData'|trans|raw }}
+
+  <h3>5. {{ 'lbl.HowDoWeProcessYourData'|trans|ucfirst }}</h3>
+  {{ 'msg.HowDoWeProcessYourData'|trans|raw }}
+
+  <h3>6. {{ 'lbl.HowLongDoWeKeepYourData'|trans|ucfirst }}</h3>
+  {{ 'msg.HowLongDoWeKeepYourData'|trans|raw }}
+
+  <h3>7. {{ 'lbl.WhatAreYourRights'|trans|ucfirst }}</h3>
+  {{ 'msg.WhatAreYourRights'|trans|format(company.email)|raw }}
+</div>

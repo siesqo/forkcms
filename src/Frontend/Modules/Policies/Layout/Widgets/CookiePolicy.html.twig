@@ -1,0 +1,29 @@
+<div class="py-5">
+  <h3>1. {{ 'lbl.WhatIsTheCookiePolicy'|trans|ucfirst }}</h3>
+  {% if company.registeredOffice %}
+    <p>{{ 'msg.WhatIsTheCookiePolicy'|trans|format(company.registeredOffice, company.streetNameRegisteredOffice, company.streetNumberRegisteredOffice, company.postalCodeRegisteredOffice, company.cityRegisteredOffice, company.countryRegisteredOffice|language_name, company.enterpriseNumber)|ucfirst }}</p>
+  {% else %}
+    <p>{{ 'msg.WhatIsTheCookiePolicy'|trans|format(company.companyName, company.streetName, company.streetNumber, company.postalCode, company.city, company.country|language_name, company.enterpriseNumber)|ucfirst }}</p>
+  {% endif %}
+
+  <h3>2. {{ 'lbl.WhatIsThePurposeOfThisCookiePolicy'|trans|ucfirst }}</h3>
+  {{ 'msg.WhatIsThePurposeOfThisCookiePolicy'|trans|raw }}
+
+  <h3>3. {{ 'lbl.WhatAreCookies'|trans|ucfirst }}</h3>
+  {{ 'msg.WhatAreCookies'|trans|raw }}
+
+  <h3>4. {{ 'lbl.Changes'|trans|ucfirst }}</h3>
+  {{ 'msg.Changes'|trans|format(company.email)|raw }}
+
+  <h3>5. {{ 'lbl.WhichCookies'|trans|ucfirst }}</h3>
+  {{ 'msg.WhichCookies'|trans|raw }}
+
+  <h3>6. {{ 'lbl.HowLongDoCookiesStayOnMyDevice'|trans|ucfirst }}</h3>
+  {{ 'msg.HowLongDoCookiesStayOnMyDevice'|trans|raw }}
+
+  <h3>7. {{ 'lbl.IDoNotWantCookies'|trans|ucfirst }}</h3>
+  {{ 'msg.IDoNotWantCookies'|trans|raw }}
+
+  <h3>8. {{ 'lbl.IHaveQuestionsOrComments'|trans|ucfirst }}</h3>
+  {{ 'msg.IHaveQuestionsOrComments'|trans|format(company.email)|raw }}
+</div>
