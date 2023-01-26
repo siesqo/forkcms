@@ -4437,22 +4437,22 @@
         <translation language="pt"><![CDATA[a carregar]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoTitle">
-        <translation language="nl"><![CDATA[We hechten belang aan je privacy]]></translation>
+        <translation language="nl"><![CDATA[We hechten belang aan uw privacy]]></translation>
         <translation language="en"><![CDATA[We value your privacy]]></translation>
         <translation language="de"><![CDATA[Wir schätzen Ihre Privatsphäre]]></translation>
         <translation language="fr"><![CDATA[Nous apprécions votre privacy]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoBody">
-        <translation language="nl"><![CDATA[We gebruiken cookies om de functionaliteit van de website te optimaliseren en u de best mogelijk ervaring te bieden. Klik op “Cookies accepteren” om alle cookies te aanvaarden of stel zelf je voorkeuren in. Meer weten? Lees meer over ons <a href="/cookie-policy">cookiebeleid</a>.]]></translation>
+        <translation language="nl"><![CDATA[We gebruiken cookies om de functionaliteit van de website te optimaliseren en u de best mogelijke ervaring te bieden. Klik op “Cookies accepteren” om alle cookies te aanvaarden of stel zelf uw voorkeuren in. Meer weten? Lees meer over ons <a href="/cookie-policy">cookiebeleid</a>.]]></translation>
         <translation language="en"><![CDATA[We use cookies to optimize the functionality of the website and to provide you with the best possible experience. Click on “Accept cookies” to accept all cookies or set your own preferences. Read more about our <a href="/cookie-policy">cookie policy</a>.]]></translation>
         <translation language="de"><![CDATA[Wir verwenden Cookies um die Funktionalität der Website zu optimieren und Ihnen das bestmögliche Erlebnis zu bieten. Klicken Sie auf „Cookies akzeptieren“ um alle Cookies zu akzeptieren oder legen Sie Ihre eigenen Einstellungen fest. Mehr wissen? Lesen Sie mehr über unsere <a href="/cookie-policy">Cookie-Richtlinie</a>.]]></translation>
         <translation language="fr"><![CDATA[Nous utilisons des cookies pour optimiser la fonctionnalité du site Web et pour vous offrir la meilleure expérience possible. Cliquez sur « Accepter les cookies » pour accepter tous les cookies ou définir vos propres préférences. En savoir plus ? Lire notre <a href="/cookie-policy">politique en matière de cookies</a>.]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoSettings">
-        <translation language="nl"><![CDATA[Stel je voorkeuren in]]></translation>
-        <translation language="en"><![CDATA[Set your preferences]]></translation>
-        <translation language="de"><![CDATA[Legen Sie Ihre Einstellungen fest]]></translation>
-        <translation language="fr"><![CDATA[Définissez vos préférences]]></translation>
+        <translation language="nl"><![CDATA[Uw voorkeuren]]></translation>
+        <translation language="en"><![CDATA[Your preferences]]></translation>
+        <translation language="de"><![CDATA[Ihre Einstellungen]]></translation>
+        <translation language="fr"><![CDATA[Vos préférences]]></translation>
       </item>
       <item type="message" name="PrivacyConsentInfoSaveAll">
         <translation language="nl"><![CDATA[Cookies accepteren]]></translation>
@@ -4467,7 +4467,7 @@
         <translation language="fr"><![CDATA[Vos préférences de confidentialité]]></translation>
       </item>
       <item type="message" name="PrivacyConsentDialogBody">
-        <translation language="nl"><![CDATA[Je kan zelf kiezen welke cookies je toelaat. Hou er wel rekening mee dat dit je ervaring op de website kan verminderen.]]></translation>
+        <translation language="nl"><![CDATA[U kan zelf kiezen welke cookies u toelaat. Hou er wel rekening mee dat dit uw ervaring op de website kan verminderen.]]></translation>
         <translation language="en"><![CDATA[You can choose which cookies you allow. Keep in mind that this can reduce your experience on the website.]]></translation>
         <translation language="de"><![CDATA[Sie können auswählen welche Cookies Sie zulassen. Beachten Sie dass dies Ihre Erfahrung auf der Website beeinträchtigen kann.]]></translation>
         <translation language="fr"><![CDATA[Vous pouvez choisir les cookies que vous autorisez. Gardez à l'esprit que cela peut réduire votre expérience sur le site Web.]]></translation>
