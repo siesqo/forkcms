@@ -45,8 +45,8 @@
     "standard": "^17.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
-    "webpack": "^3.5.4",
-    "webpack-stream": "^4.0.0"
+    "webpack": "^5.88.1",
+    "webpack-stream": "^7.0.0"
   },
   "scripts": {
     "test": "standard"

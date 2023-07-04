@@ -15,12 +15,12 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$|jsx/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
+        options: {
           cacheDirectory: true,
           presets: ['@babel/preset-env']
         }
@@ -29,7 +29,7 @@ module.exports = {
         // separate loader for Bootstrap because it needs to be compiled
         test: /bootstrap\.js$/,
         loader: 'babel-loader',
-        query: {
+        options: {
           cacheDirectory: true,
           presets: ['@babel/preset-env']
         }
