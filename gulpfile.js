@@ -268,7 +268,6 @@ const del = require('del')
 const plumber = require('gulp-plumber')
 const webpackStream = require('webpack-stream')
 const webpack = require('webpack')
-const imagemin = require('gulp-imagemin')
 
 const theme = JSON.parse(fs.readFileSync('./package.json')).theme
 const paths = {
@@ -353,9 +352,8 @@ gulp.task('build:theme:assets:copy-templates', function () {
     .pipe(livereload())
 })
 
-gulp.task('build:theme:images:minify-images', function () {
+gulp.task('build:theme:images:copy-images', function () {
   return gulp.plumbedSrc(`${paths.src}/Layout/Images/**/*`)
-    .pipe(imagemin())
     .pipe(gulp.dest(`${paths.core}/Layout/Images`))
     .pipe(livereload())
 })
@@ -367,7 +365,7 @@ gulp.task('build:theme', gulp.series(
     'build:theme:sass:generate-production-css',
     'build:theme:webpack:generate-production-js',
     'build:theme:assets:copy-templates',
-    'build:theme:images:minify-images'
+    'build:theme:images:copy-images'
   )
 ))
 
@@ -376,7 +374,7 @@ gulp.task('serve:theme', function () {
   gulp.watch(`${paths.src}/Js/**/*.js`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:webpack:generate-development-js'))
   gulp.watch(`${paths.src}/Layout/Sass/**/*.scss`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:sass:generate-development-css'))
   gulp.watch(`${paths.src}/Layout/Templates/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:assets:copy-templates'))
-  gulp.watch(`${paths.src}/Layout/Images/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:images:minify-images'))
+  gulp.watch(`${paths.src}/Layout/Images/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:images:copy-images'))
 })
 
 // public tasks
