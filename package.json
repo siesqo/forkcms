@@ -56,7 +56,7 @@
     ]
   },
   "engines": {
-    "node": "lts/erbium"
+    "node": "lts/hydrogen"
   },
   "theme": "Siesqo",
   "standard": {
