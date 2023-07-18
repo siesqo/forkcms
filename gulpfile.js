@@ -2,8 +2,7 @@
 'use strict'
 
 const gulp = require('gulp')
-const sass = require('gulp-sass-no-nodesass')
-sass.compiler = require('sass')
+const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
@@ -107,7 +106,7 @@ gulp.task('build:backend:sass:generate-css', function () {
     'src/Backend/Core/Layout/Sass/debug.scss'
   ])
     .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe(sass.sync({
       includePaths: [
         'node_modules/'
       ],
@@ -169,7 +168,7 @@ gulp.task('build:frontend:sass:generate-css', function () {
     'src/Frontend/Core/Layout/Sass/screen.scss'
   ])
     .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe(sass.sync({
       includePaths: [
         'node_modules/'
       ],
@@ -189,7 +188,7 @@ gulp.task('build:frontend:sass:generate-module-css', function () {
   return gulp.src([
     'src/Frontend/Modules/**/Layout/Sass/*.scss'
   ])
-    .pipe(sass({
+    .pipe(sass.sync({
       includePaths: [
         'node_modules/'
       ],
@@ -233,7 +232,7 @@ gulp.task('build:theme-fork:sass:generate-css', function () {
     'src/Frontend/Themes/Fork/Core/Layout/Sass/screen.scss'
   ])
     .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe(sass.sync({
       includePaths: [
         'node_modules/'
       ],
@@ -298,7 +297,7 @@ gulp.task('build:theme:empty-destination-folders', function () {
 gulp.task('build:theme:sass:generate-development-css', function () {
   return gulp.plumbedSrc(`${paths.src}/Layout/Sass/*.scss`)
     .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe(sass.sync({
       includePaths: [
         './node_modules'
       ]
@@ -315,7 +314,7 @@ gulp.task('build:theme:sass:generate-development-css', function () {
 gulp.task('build:theme:sass:generate-production-css', function () {
   return gulp.src(`${paths.src}/Layout/Sass/*.scss`)
     .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe(sass.sync({
       outputStyle: 'compressed',
       includePaths: [
         './node_modules'
