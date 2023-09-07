@@ -8,6 +8,7 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y --no-install-recommends --allow-downgrades \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
+    libonig-dev \
     libz-dev \
     zlib1g-dev \
     libzip-dev \
@@ -19,8 +20,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-downgra
 # Install pdo_mysql
 RUN docker-php-ext-install pdo_mysql
 
-# Install zip
-RUN docker-php-ext-install zip
+# Install mbstring
+RUN docker-php-ext-install mbstring
+
+# Install zip & unzip
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip && \
+    docker-php-ext-install zip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install intl
 RUN apt-get update && apt-get install -y --no-install-recommends \

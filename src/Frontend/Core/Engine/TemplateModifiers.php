@@ -12,6 +12,7 @@ use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
 use Common\Core\Twig\Extensions\BaseTwigModifiers;
 use SpoonDate;
 use Symfony\Component\Intl\Intl;
+use Twig\Error\Error;
 
 /**
  * Contains all Frontend-related custom modifiers
@@ -393,7 +394,7 @@ class TemplateModifiers extends BaseTwigModifiers
 
             return (string) $content;
         } catch (RedirectException $redirectException) {
-            throw new \Twig_Error('redirect fix from template modifier', -1, null, $redirectException);
+            throw new Error('redirect fix from template modifier', -1, null, $redirectException);
         } catch (Exception $e) {
             // if we are debugging, we want to see the exception
             if (FrontendModel::getContainer()->getParameter('kernel.debug')) {

@@ -30,12 +30,12 @@ framework:
                 default_lifetime: 3600
 
 # Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ 'ForkCMSInstallerBundle' ]
-    filters:
-        cssrewrite: ~
+#assetic:
+#    debug:          "%kernel.debug%"
+#    use_controller: false
+#    bundles:        [ 'ForkCMSInstallerBundle' ]
+#    filters:
+#        cssrewrite: ~
 
 twig:
     debug:            "%kernel.debug%"
@@ -82,8 +82,6 @@ liip_imagine:
                 locator: filesystem_insecure
     cache: default
     data_loader: default
-    controller:
-        filter_action:  ForkCMS\ImagineController:filterAction
 
     # your filter sets are defined here
     filter_sets:
@@ -227,6 +225,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 
+    ForkCMS\Imagine\Service\FilterService:
+        alias: 'liip_imagine.service.filter'
+        public: true
+
     ForkCMS\Utility\Geolocation:
         public: true
         arguments:
@@ -279,7 +281,3 @@ services:
         arguments:
             - "@fork.settings"
             - "@fork.cookie"
-
-    ForkCMS\ImagineController:
-        public: true
-        autowire: true
