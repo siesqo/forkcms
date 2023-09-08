@@ -5,5 +5,7 @@ services:
         public: true
 
     Backend\Modules\Policies\Domain\Settings\Command\SaveSettingsHandler:
+        arguments:
+            - "@fork.settings"
         tags:
             - { name: command_handler, handles: Backend\Modules\Policies\Domain\Settings\Command\SaveSettings }
