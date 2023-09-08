@@ -45,8 +45,10 @@
         "symfony/swiftmailer-bundle": "^3.0",
         "symfony/symfony": "^4.0",
         "tijsverkoyen/css-to-inline-styles": "^2.0",
+        "bugsnag/bugsnag-symfony": "^1.6",
         "phpoffice/phpspreadsheet": "^1.12",
         "composer/package-versions-deprecated": "^1.11",
+        "jeroendesloovere/sitemap-bundle": "^2.0",
         "guzzlehttp/guzzle": "^6.5",
         "doctrine/annotations": "^1.14"
     },
