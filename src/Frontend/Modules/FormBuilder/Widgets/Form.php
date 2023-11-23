@@ -354,15 +354,21 @@ class Form extends FrontendBaseWidget
         $this->template->assign('successMessage', false);
 
         if ($this->hasRecaptchaField) {
-            $this->header->addJS('https://www.google.com/recaptcha/api.js?hl=' . Locale::frontendLanguage());
+            $siteKey = FrontendModel::get('fork.settings')->get('Core', 'google_recaptcha_site_key');
+            $recaptchaVersion = FrontendModel::get('fork.settings')->get('Core', 'google_recaptcha_version', 'v2invisible');
+            if ($recaptchaVersion == 'v3') {
+                $this->header->addJS('https://www.google.com/recaptcha/api.js?hl=' . Locale::frontendLanguage() . '&render=' . $siteKey);
+            } else {
+                $this->header->addJS('https://www.google.com/recaptcha/api.js?hl=' . Locale::frontendLanguage());
+            }
             $this->template->assign('hasRecaptchaField', true);
             $this->template->assign(
                 'googleRecaptchaVersion',
-                FrontendModel::get('fork.settings')->get('Core', 'google_recaptcha_version', 'v2invisible')
+                $recaptchaVersion
             );
             $this->template->assign(
                 'siteKey',
-                FrontendModel::get('fork.settings')->get('Core', 'google_recaptcha_site_key')
+                $siteKey
             );
         }
 
