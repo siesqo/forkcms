@@ -517,22 +517,6 @@ class TemplateModifiers extends BaseTwigModifiers
     }
 
     /**
-     * Get file last modified timestamp
-     *
-     * @param string $filepath
-     * @return string
-     */
-    public static function getFileMTime($filepath): string
-    {
-        $change_date = @filemtime($_SERVER['DOCUMENT_ROOT'].'/'.$filepath);
-        if (!$change_date) {
-            //Fallback if mtime could not be found:
-            $change_date = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
-        }
-        return $change_date;
-    }
-
-    /**
      * Convert the given country code into its full name based on the current locale
      *
      * @param string $countryCode

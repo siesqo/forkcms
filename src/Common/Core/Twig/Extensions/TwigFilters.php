@@ -52,7 +52,6 @@ class TwigFilters
         $twig->addFilter(new TwigFilter('formatnumber', $app . '::formatNumber'));
         $twig->addFilter(new TwigFilter('tolabel', $app . '::toLabel'));
         $twig->addFilter(new TwigFilter('cleanupplaintext', $app . '::cleanupPlainText'));
-        $twig->addFilter(new TwigFilter('getfilemtime', $app . '::getFileMTime'));
         $twig->addFilter(new TwigFilter('language_name', $app . '::languageName'));
 
         // exposed PHP functions

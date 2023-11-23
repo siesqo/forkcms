@@ -25,7 +25,7 @@
   {# Stylesheets #}
   {% block stylesheets %}
     {% for css in cssFiles %}
-      <link rel="stylesheet" href="{{ css.file }}?m={{ css.file|getfilemtime }}" />
+      <link rel="stylesheet" href="{{ css }}" />
     {% endfor %}
   {% endblock %}
 
@@ -140,7 +140,7 @@
   {% block footerScripts %}
   {# General Javascript #}
     {% for jsFile in jsFiles %}
-      <script src="{{ jsFile.file|raw }}?m={{ jsFile.file|getfilemtime }}"></script>
+      <script src="{{ jsFile }}"></script>
     {% endfor %}
   {% endblock %}
 

@@ -127,7 +127,7 @@ class Header extends KernelLoader
         $this->meta = new MetaCollection();
 
         // add some default CSS files
-        $this->addCSS('/src/Frontend/Core/Layout/Css/screen.css');
+        $this->addCSS('/src/Frontend/Core/Layout/Css/screen.css', true, true);
 
         // debug stylesheet
         if ($container->getParameter('kernel.debug')) {
