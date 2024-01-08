@@ -667,9 +667,8 @@
   <Frontend>
     <Core>
       <item type="error" name="RecaptchaInvalid">
-        <translation language="nl"><![CDATA[Captcha code is ongeldig.]]></translation>
-        <translation language="en"><![CDATA[Captcha code is invalid.]]></translation>
-        <translation language="pl"><![CDATA[Błędny kod Captcha.]]></translation>
+        <translation language="nl"><![CDATA[reCAPTCHA validatie is mislukt. Probeer het later opnieuw.]]></translation>
+        <translation language="en"><![CDATA[reCAPTCHA validation has failed. Please try again later.]]></translation>
       </item>
     </Core>
   </Frontend>

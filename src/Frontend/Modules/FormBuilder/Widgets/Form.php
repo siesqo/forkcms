@@ -454,6 +454,10 @@ class Form extends FrontendBaseWidget
                 $response = $recaptcha->verify($response);
 
                 if (!$response->isSuccess()) {
+                    // reCaptcha failed
+                    $this->form->addError(FL::err('RecaptchaInvalid'));
+                } elseif ($response->getScore() <= 0.5) {
+                    // block requests with a bad score (0.0 very likely being a bot 1.0 likely not)
                     $this->form->addError(FL::err('RecaptchaInvalid'));
                 }
             }
