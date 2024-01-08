@@ -30,28 +30,28 @@
 
                 {# Input field, textarea's and dropdowns #}
                 {% if field.simple %}
-                  <div class="form-group{% if field.error %} has-danger{% endif %}">
+                  <div class="form-group">
                     <label class="form-label" for="{{ field.name }}">
                       {{ field.label|raw }}{% if field.required %}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr>{% endif %}
                     </label>
                     {{ field.html|raw }}
-                    {% if field.error %}<span class="form-control-feedback">{{ field.error|raw }}</span>{% endif %}
+                    {% if field.error %}<span class="invalid-feedback">{{ field.error|raw }}</span>{% endif %}
                   </div>
                 {% endif %}
 
                 {# Mailmotor #}
                 {% if field.isMailmotor %}
-                  <div class="form-group{% if field.error %} has-danger{% endif %}">
+                  <div class="form-group">
                     <label class="form-label" for="{{ field.name }}">
                       {{ field.html|raw }} {{ field.label|raw }}
                     </label>
-                    {% if field.error %}<span class="form-control-feedback">{{ field.error|raw }}</span>{% endif %}
+                    {% if field.error %}<span class="invalid-feedback">{{ field.error|raw }}</span>{% endif %}
                   </div>
                 {% endif %}
 
                 {# Radiobuttons and checkboxes #}
                 {% if field.multiple %}
-                  <div class="form-group{% if field.error %} has-danger{% endif %}">
+                  <div class="form-group">
                     <p class="form-label">
                       {{ field.label|raw }}{% if field.required %}<abbr title="{{ 'lbl.RequiredField'|trans|ucfirst }}">*</abbr>{% endif %}
                     </p>
@@ -63,7 +63,7 @@
                         </label>
                       </div>
                     {% endfor %}
-                    {% if field.error %}<span class="form-control-feedback">{{ field.error|raw }}</span>{% endif %}
+                    {% if field.error %}<span class="invalid-feedback">{{ field.error|raw }}</span>{% endif %}
                   </div>
                 {% endif %}
               </div>

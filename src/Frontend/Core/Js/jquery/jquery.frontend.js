@@ -346,7 +346,7 @@
       }
 
       e.target.setCustomValidity(errorMessage)
-      $input.parents('.form-group').addClass('has-error')
+      $input.addClass('is-invalid')
 
       $input.on('input change', function (e) {
         e.target.setCustomValidity('')
@@ -354,7 +354,7 @@
     })
 
     $input.on('blur', function (e) {
-      $input.parents('.form-group').removeClass('has-error')
+      $input.removeClass('is-invalid')
       e.target.checkValidity()
     })
   }

@@ -211,7 +211,7 @@ class Form extends \SpoonForm
     {
         $name = (string) $name;
         $checked = (bool) $checked;
-        $class = (string) ($class ?? 'fork-form-checkbox');
+        $class = (string) ($class ?? 'form-check-input');
         $classError = (string) ($classError ?? 'error form-control-danger is-invalid');
 
         // create and return a checkbox

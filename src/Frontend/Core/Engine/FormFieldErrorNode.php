@@ -35,7 +35,7 @@ class FormFieldErrorNode extends Node
     {
         $writeErrorMessage = 'echo '
             . "\$context['form_{$this->form}']->getField('{$this->field}')->getErrors() "
-            . "? '<span class=\"formError\">' "
+            . "? '<span class=\"invalid-feedback\">' "
             . ". \$context['form_{$this->form}']->getField('{$this->field}')->getErrors() "
             . ". '</span>' : '';";
         $compiler
