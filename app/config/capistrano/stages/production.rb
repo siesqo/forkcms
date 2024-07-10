@@ -13,7 +13,7 @@ set :opcache_reset_strategy, "file"
 set :opcache_reset_base_url, "#{fetch :production_url}"
 
 ### DO NOT EDIT BELOW ###
-set :branch, "master"
+set :branch, "main"
 set :application, "#{fetch :project}"
 set :keep_releases, 3
 set :php_bin, "php"
