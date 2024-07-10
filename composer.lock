@@ -329,27 +329,27 @@
         },
         {
             "name": "bugsnag/bugsnag-symfony",
-            "version": "v1.13.0",
+            "version": "v1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-symfony.git",
-                "reference": "be4bb456f002e9662594eb281694e4ce06e2d6ca"
+                "reference": "f3da228472a8aadcb31059f98ef09f8152fffa15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-symfony/zipball/be4bb456f002e9662594eb281694e4ce06e2d6ca",
-                "reference": "be4bb456f002e9662594eb281694e4ce06e2d6ca",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-symfony/zipball/f3da228472a8aadcb31059f98ef09f8152fffa15",
+                "reference": "f3da228472a8aadcb31059f98ef09f8152fffa15",
                 "shasum": ""
             },
             "require": {
                 "bugsnag/bugsnag": "^3.29.0",
                 "php": ">=5.5",
-                "symfony/config": "^2.7|^3|^4|^5|^6",
-                "symfony/console": "^2.7|^3|^4|^5|^6",
-                "symfony/dependency-injection": "^2.7|^3|^4|^5|^6",
-                "symfony/http-foundation": "^2.7|^3|^4|^5|^6",
-                "symfony/http-kernel": "^2.7|^3|^4|^5|^6",
-                "symfony/security-core": "^2.7|^3|^4|^5|^6"
+                "symfony/config": "^2.7|^3|^4|^5|^6|^7",
+                "symfony/console": "^2.7|^3|^4|^5|^6|^7",
+                "symfony/dependency-injection": "^2.7|^3|^4|^5|^6|^7",
+                "symfony/http-foundation": "^2.7|^3|^4|^5|^6|^7",
+                "symfony/http-kernel": "^2.7|^3|^4|^5|^6|^7",
+                "symfony/security-core": "^2.7|^3|^4|^5|^6|^7"
             },
             "require-dev": {
                 "graham-campbell/testbench-core": "^1.1",
@@ -363,6 +363,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "create-configuration-class-alias.php"
+                ],
                 "psr-4": {
                     "Bugsnag\\BugsnagBundle\\": ""
                 }
@@ -389,9 +392,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bugsnag/bugsnag-symfony/issues",
-                "source": "https://github.com/bugsnag/bugsnag-symfony/tree/v1.13.0"
+                "source": "https://github.com/bugsnag/bugsnag-symfony/tree/v1.14.2"
             },
-            "time": "2022-10-24T10:25:35+00:00"
+            "time": "2024-06-06T08:48:55+00:00"
         },
         {
             "name": "campaignmonitor/createsend-php",

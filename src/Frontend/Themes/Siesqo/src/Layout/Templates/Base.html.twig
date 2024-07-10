@@ -89,7 +89,8 @@
 
   {# Bugsnag: error tracking the JS errors #}
   {% if not debug %}
-    <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js" data-apikey="<YOUR-API-KEY-HERE>" data-releasestage="{{SITE_URL}}"></script>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js"></script>
+    <script>Bugsnag.start('<YOUR-API-KEY-HERE>')</script>
   {% endif %}
 
   {# Site wide HTML in the head tag #}
