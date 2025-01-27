@@ -131,7 +131,7 @@ class ImageEdit extends CommandAbstract
             throw new InvalidUploadException('Invalid file provided');
         }
 
-        $dispatcher->dispatch(CKFinderEvent::EDIT_IMAGE, $editFileEvent);
+        $dispatcher->dispatch($editFileEvent, CKFinderEvent::EDIT_IMAGE);
 
         $saved = false;
 

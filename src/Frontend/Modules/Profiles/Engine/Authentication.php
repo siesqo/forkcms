@@ -249,8 +249,8 @@ class Authentication
 
         // trigger changed session ID
         FrontendModel::get('event_dispatcher')->dispatch(
-            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED,
-            new ForkSessionIdChangedEvent($oldSession, $session->getId())
+            new ForkSessionIdChangedEvent($oldSession, $session->getId()),
+            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED
         );
 
         // load the profile object
@@ -281,8 +281,8 @@ class Authentication
 
         // trigger changed session ID
         FrontendModel::get('event_dispatcher')->dispatch(
-            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED,
-            new ForkSessionIdChangedEvent($oldSession, $session->getId())
+            new ForkSessionIdChangedEvent($oldSession, $session->getId()),
+            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED
         );
     }
 

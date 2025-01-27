@@ -2,25 +2,32 @@
 
 namespace ForkCMS\Bundle\InstallerBundle\Console;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use PDOException;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * This command will prepare everything for a full reinstall
+ * This command will prepare everything for a full reinstall.
  */
-class PrepareForReinstallCommand extends ContainerAwareCommand
+class PrepareForReinstallCommand extends Command
 {
-    const RETURN_SUCCESS = 0;
-    const RETURN_DID_NOT_REINSTALL = 1;
-    const RETURN_DID_NOT_CLEAR_DATABASE = 2;
+    public const RETURN_SUCCESS = 0;
+    public const RETURN_DID_NOT_REINSTALL = 1;
+    public const RETURN_DID_NOT_CLEAR_DATABASE = 2;
+
+    public function __construct(
+        private readonly string $rootDir,
+    ) {
+        parent::__construct('forkcms:install:prepare-for-reinstall');
+    }
 
     protected function configure(): void
     {
-        $this->setName('forkcms:install:prepare-for-reinstall')
-            ->setDescription('Revert Fork CMS to an uninstalled state, prompting the install wizard.');
+        $this->setDescription('Revert Fork CMS to an uninstalled state, prompting the install wizard.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -33,7 +40,8 @@ class PrepareForReinstallCommand extends ContainerAwareCommand
 
         $returnCode = $this->clearDatabase($io);
         $this->removeConfiguration($io);
-        $this->clearCache($output, $io);
+        $this->clearCache($io);
+        $io->success('Ready for reinstall.');
 
         return $returnCode;
     }
@@ -44,14 +52,16 @@ class PrepareForReinstallCommand extends ContainerAwareCommand
             return self::RETURN_DID_NOT_CLEAR_DATABASE;
         }
 
-        $tables = $this->getContainer()->get('database')->getColumn(
-            'SHOW TABLES'
+        $command = $this->getApplication()->find('doctrine:schema:drop');
+        $command->run(
+            new ArrayInput(
+                [
+                    '--full-database' => true,
+                    '--force' => true,
+                ]
+            ),
+            new BufferedOutput(),
         );
-
-        if (!empty($tables)) {
-            $this->getContainer()->get('database')->execute('SET FOREIGN_KEY_CHECKS=0');
-            $this->getContainer()->get('database')->drop($tables);
-        }
 
         $io->success('Removed all tables');
 
@@ -60,25 +70,28 @@ class PrepareForReinstallCommand extends ContainerAwareCommand
 
     private function removeConfiguration(SymfonyStyle $io): void
     {
-        $fullPath = realpath(__DIR__ . '/../../../../..' . '/app/config/parameters.yml');
+        $fullPath = realpath($this->rootDir . '/.env.local');
         if (file_exists($fullPath)) {
             unlink($fullPath);
             $io->success('Removed configuration file');
         }
     }
 
-    private function clearCache(OutputInterface $output, SymfonyStyle $io): void
+    private function clearCache(SymfonyStyle $io): void
     {
-        $command = $this->getApplication()->find('forkcms:cache:clear');
-        $command->run(
-            new ArrayInput(
-                [
-                    'forkcms:cache:clear',
-                ]
-            ),
-            $output
-        );
+        $command = $this->getApplication()?->find('cache:clear');
+        try {
+            $environments = ['prod', 'dev', 'install', 'test', 'test_install'];
+            foreach ($environments as $environment) {
+                $command->run(
+                    new ArrayInput(['--no-warmup' => true, '--env' => $environment]),
+                    new BufferedOutput(),
+                );
+            }
+        } catch (PDOException) {
+            // if the database is not available, the cache:clear command will fail
+        }
 
-        $io->success('Ready for reinstall.');
+        $io->success('Cleared cache');
     }
 }

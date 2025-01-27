@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * The command resolver class.
- * 
+ *
  * The purpose of this class is to resolve which CKFinder command should be executed
  * for the current request. This process is based on a value passed in the
  * <code>$_GET['command']</code> request variable.
@@ -41,7 +41,7 @@ class CommandResolver implements ControllerResolverInterface
 
     /**
      * The commands class namespace.
-     * 
+     *
      * @var string $commandsNamespace
      */
     protected $commandsNamespace;
@@ -55,14 +55,14 @@ class CommandResolver implements ControllerResolverInterface
 
     /**
      * The app instance.
-     * 
+     *
      * @var CKFinder $app
      */
     protected $app;
 
     /**
      * Constructor.
-     * 
+     *
      * @param CKFinder   $app
      */
     public function __construct(CKFinder $app)
@@ -93,11 +93,11 @@ class CommandResolver implements ControllerResolverInterface
     /**
      * This method looks for a 'command' request attribute. An appropriate class
      * is then instantiated and used to build a callable.
-     * 
+     *
      * @param Request $request current Request instance
-     * 
+     *
      * @return callable Callable built to execute the command.
-     * 
+     *
      * @throws InvalidCommandException   if a valid command cannot be found.
      * @throws MethodNotAllowedException if a command was called using an invalid HTTP method.
      */
@@ -150,7 +150,7 @@ class CommandResolver implements ControllerResolverInterface
 
         $eventName = CKFinderEvent::BEFORE_COMMAND_PREFIX . lcfirst($commandName);
 
-        $dispatcher->dispatch($eventName, $beforeCommandEvent);
+        $dispatcher->dispatch($beforeCommandEvent, $eventName);
 
         $commandObject = $beforeCommandEvent->getCommandObject();
 
@@ -163,7 +163,7 @@ class CommandResolver implements ControllerResolverInterface
     /**
      * This method is used to inject objects to controllers.
      * It depends on arguments taken by the executed controller callable.
-     * 
+     *
      * Supported injected types:
      * Request             - current request object
      * CKFinder            - application object
@@ -173,10 +173,10 @@ class CommandResolver implements ControllerResolverInterface
      * BackendManager      - BackendManager object
      * ResourceTypeFactory - ResourceTypeFactory object
      * WorkingFolder       - WorkingFolder object
-     * 
+     *
      * @param Request  $request request object
      * @param callable $command
-     * 
+     *
      * @return array arguments used during the command callable execution
      */
     public function getArguments(Request $request, $command)

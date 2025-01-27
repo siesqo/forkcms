@@ -12,6 +12,7 @@
         </service>
 
         <service id="forkcms.console.installer.prepare_for_reinstall" class="ForkCMS\Bundle\InstallerBundle\Console\PrepareForReinstallCommand">
+            <argument>%kernel.project_dir%/</argument>
             <tag name="console.command" />
         </service>
 

@@ -3,7 +3,9 @@
 namespace Backend\Modules\MediaGalleries\Console;
 
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\Command\DeleteMediaGallery;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGalleryRepository;
+use SimpleBus\Message\Bus\MessageBus;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Example: "bin/console media_galleries:delete:galleries", will delete all galleries
  * Example: "bin/console media_galleries:delete:galleries --delete-media-items", will delete all galleries and all MediaItem entities
  */
-class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
+class MediaGalleryDeleteAllCommand extends Command
 {
     /**
      * The MediaGroupMediaItem connections are always deleted,
@@ -23,10 +25,22 @@ class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
      */
     protected $deleteMediaItems = false;
 
+    /** @var MediaGalleryRepository */
+    private $mediaGalleryRepository;
+
+    /** @var MessageBus */
+    private $commandBus;
+
+    public function __construct(MediaGalleryRepository $mediaGalleryRepository, MessageBus $commandBus)
+    {
+        $this->mediaGalleryRepository = $mediaGalleryRepository;
+        $this->commandBus = $commandBus;
+        parent::__construct('media_galleries:delete:galleries');
+    }
+
     protected function configure(): void
     {
         $this
-            ->setName('media_galleries:delete:galleries')
             ->setDescription('Delete media galleries.')
             ->addOption(
                 'delete-media-items',
@@ -36,7 +50,7 @@ class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('<info>-Started deleting media galleries.</info>');
 
@@ -44,6 +58,8 @@ class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
         $this->deleteMediaGalleries();
 
         $output->writeln('<info>-Finished deleting media galleries.</info>');
+
+        return Command::SUCCESS;
     }
 
     private function checkOptions(InputInterface $input): void
@@ -56,7 +72,7 @@ class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
     private function deleteMediaGalleries(): void
     {
         /** @var array $mediaGalleries */
-        $mediaGalleries = $this->getContainer()->get('media_galleries.repository.gallery')->findAll();
+        $mediaGalleries = $this->mediaGalleryRepository->findAll();
 
         if (empty($mediaGalleries)) {
             return;
@@ -64,9 +80,8 @@ class MediaGalleryDeleteAllCommand extends ContainerAwareCommand
 
         // Loop all media galleries
         foreach ($mediaGalleries as $mediaGallery) {
-            $this->getContainer()->get('command_bus')->handle(
+            $this->commandBus->handle(
                 new DeleteMediaGallery($mediaGallery),
-                $this->deleteMediaItems
             );
         }
     }

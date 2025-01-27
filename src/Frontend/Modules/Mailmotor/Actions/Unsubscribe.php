@@ -49,8 +49,8 @@ class Unsubscribe extends FrontendBaseBlock
         } catch (NotImplementedException $e) {
             // fallback for when no mail-engine is chosen in the Backend
             $this->get('event_dispatcher')->dispatch(
-                NotImplementedUnsubscribedEvent::EVENT_NAME,
-                new NotImplementedUnsubscribedEvent($unsubscription)
+                new NotImplementedUnsubscribedEvent($unsubscription),
+                NotImplementedUnsubscribedEvent::EVENT_NAME
             );
         } catch (Exception $exception) {
             $reason = json_decode($exception->getMessage());

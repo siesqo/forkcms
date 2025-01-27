@@ -5,7 +5,6 @@ namespace Backend\Modules\MediaLibrary\EventListener;
 use Backend\Modules\MediaLibrary\Manager\FileManager;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItem;
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
 use Doctrine\ORM\Events;

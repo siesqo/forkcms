@@ -41,8 +41,8 @@ final class Settings extends ActionIndex
         $this->get('command_bus')->handle($settings);
 
         $this->get('event_dispatcher')->dispatch(
-            SettingsSavedEvent::EVENT_NAME,
-            new SettingsSavedEvent($settings)
+            new SettingsSavedEvent($settings),
+            SettingsSavedEvent::EVENT_NAME
         );
 
         $redirectAction = $settings->mailEngine === 'not_implemented' ? 'Settings' : 'Ping';

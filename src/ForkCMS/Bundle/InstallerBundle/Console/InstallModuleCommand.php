@@ -50,7 +50,7 @@ class InstallModuleCommand extends Command
             ->addArgument('module', InputArgument::OPTIONAL, 'Name of the module to install');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->formatter = new SymfonyStyle($input, $output);
         $module = $this->getModuleToInstall($input, $output);
@@ -78,6 +78,8 @@ class InstallModuleCommand extends Command
 
             $output->writeln("<info>Module $module is installed succesfully 🎉!");
         }
+
+        return Command::SUCCESS;
     }
 
     /**

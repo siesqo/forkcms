@@ -301,7 +301,7 @@ class Authentication
             self::$user = new User($sessionData['user_id']);
 
             // the user is logged on
-            BackendModel::getContainer()->set('logged_in', true);
+            BackendModel::getContainer()->set('logged_in', null);
 
             return true;
         }
@@ -379,12 +379,12 @@ class Authentication
 
         // trigger changed session ID
         BackendModel::get('event_dispatcher')->dispatch(
-            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED,
-            new ForkSessionIdChangedEvent($oldSession, $session->getId())
+            new ForkSessionIdChangedEvent($oldSession, $session->getId()),
+            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED
         );
 
         // update/instantiate the value for the logged_in container.
-        BackendModel::getContainer()->set('logged_in', true);
+        BackendModel::getContainer()->set('logged_in', null);
         self::$user = new User($userId);
 
         return true;
@@ -419,8 +419,8 @@ class Authentication
 
         // trigger changed session ID
         BackendModel::get('event_dispatcher')->dispatch(
-            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED,
-            new ForkSessionIdChangedEvent($oldSession, $session->getId())
+            new ForkSessionIdChangedEvent($oldSession, $session->getId()),
+            ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED
         );
 
         self::$alreadyLoggedOut = true;

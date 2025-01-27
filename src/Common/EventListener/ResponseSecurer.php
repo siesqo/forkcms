@@ -2,7 +2,7 @@
 
 namespace Common\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class ResponseSecurer
 {
@@ -10,9 +10,9 @@ class ResponseSecurer
      * Add some headers to the response to make our application more secure
      * see https://www.owasp.org/index.php/List_of_useful_HTTP_headers
      *
-     * @param FilterResponseEvent $event
+     * @param ResponseEvent $event
      */
-    public function onKernelResponse(FilterResponseEvent $event): void
+    public function onKernelResponse(ResponseEvent $event): void
     {
         $cacheControl = [
             'max-age=0',

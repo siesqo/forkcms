@@ -578,8 +578,8 @@ class Form extends FrontendBaseWidget
                 }
 
                 $this->get('event_dispatcher')->dispatch(
-                    FormBuilderEvents::FORM_SUBMITTED,
-                    new FormBuilderSubmittedEvent($this->item, $fields, $dataId)
+                    new FormBuilderSubmittedEvent($this->item, $fields, $dataId),
+                    FormBuilderEvents::FORM_SUBMITTED
                 );
 
                 // store timestamp in session so we can block excessive usage

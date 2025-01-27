@@ -52,7 +52,6 @@ class Model
 
     public static function delete(int $groupId): void
     {
-        /** @var SpoonDatabase $database */
         $database = BackendModel::getContainer()->get('database');
 
         $database->delete('groups', 'id = ?', [$groupId]);

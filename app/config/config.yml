@@ -16,8 +16,6 @@ framework:
     validation:
         enable_annotations: true
     csrf_protection: ~
-    templating:
-        engines: ['twig']
     session:
         handler_id: ~
         cookie_secure: '%session.cookie_secure%'
@@ -130,9 +128,6 @@ liip_imagine:
                 thumbnail: { size : [1600, 500], mode : inbound }
 
 services:
-    templating.name_parser.public:
-        alias: templating.name_parser
-        public: true
     file_locator.public:
         alias: file_locator
         public: true
@@ -251,20 +246,19 @@ services:
         class: Frontend\Core\Engine\TwigTemplate
         public: true
         arguments:
-            - "@twig"
-            - "@templating.name_parser"
-            - "@templating.locator"
+            - "@twig.loader"
 
     translator:
         class: Common\Language
         public: true
-        arguments:
-            - "@translator.selector"
-
-    Common\Core\Twig\Extensions\IncludeOnceExtension:
-        public: false
         tags:
-            - { name: twig.extension }
+            - { name: 'translator' }
+
+    template:
+        class: Backend\Core\Engine\TwigTemplate
+        public: true
+        arguments:
+            - "@twig.loader"
 
     ForkCMS\Google\TagManager\DataLayer:
         public: true
@@ -281,3 +275,11 @@ services:
         arguments:
             - "@fork.settings"
             - "@fork.cookie"
+
+    ForkCMS\App\ForkController:
+        class: ForkCMS\App\ForkController
+        tags: [ 'controller.service_arguments' ]
+        # Call the setContainer method to get access to the services via
+        # $this->get() method.
+        calls:
+            - [ 'setContainer', [ '@service_container' ] ]

@@ -10,7 +10,7 @@ use Backend\Core\Engine\Model as BackendModel;
 use Backend\Form\Type\DeleteType;
 use Backend\Modules\Location\Engine\Model as BackendLocationModel;
 use ForkCMS\Utility\Geolocation;
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Countries;
 use Frontend\Modules\Location\Engine\Model as FrontendLocationModel;
 
 /**
@@ -108,7 +108,7 @@ class Edit extends BackendBaseActionEdit
         $this->form->addText('number', $this->record['number'])->makeRequired();
         $this->form->addText('zip', $this->record['zip'])->makeRequired();
         $this->form->addText('city', $this->record['city'])->makeRequired();
-        $this->form->addDropdown('country', Intl::getRegionBundle()->getCountryNames(BL::getInterfaceLanguage()), $this->record['country'])->makeRequired();
+        $this->form->addDropdown('country', Countries::getNames(BL::getInterfaceLanguage()), $this->record['country'])->makeRequired();
         $this->form->addHidden('redirect', 'overview');
     }
 

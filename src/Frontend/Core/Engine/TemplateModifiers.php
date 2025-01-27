@@ -11,7 +11,7 @@ use Frontend\Core\Language\Locale;
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
 use Common\Core\Twig\Extensions\BaseTwigModifiers;
 use SpoonDate;
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Countries;
 use Twig\Error\Error;
 
 /**
@@ -385,7 +385,7 @@ class TemplateModifiers extends BaseTwigModifiers
         );
 
         // set parseWidget because we will need it to skip setting headers in the display
-        FrontendModel::getContainer()->set('parseWidget', true);
+        FrontendModel::getContainer()->set('parseWidget', null);
 
         try {
             $extra->execute();
@@ -524,6 +524,6 @@ class TemplateModifiers extends BaseTwigModifiers
      */
     public static function languageName(?string $countryCode): ?string
     {
-        return $countryCode ?: Intl::getRegionBundle()->getCountryName($countryCode, Locale::frontendLanguage()->getLocale());
+        return $countryCode ?: Countries::getName($countryCode, Locale::frontendLanguage()->getLocale());
     }
 }

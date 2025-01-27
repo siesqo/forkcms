@@ -142,7 +142,7 @@ class ThumbnailRepository
             $thumbnail->create();
 
             $createThumbnailEvent = new ResizeImageEvent($this->app, $thumbnail);
-            $this->dispatcher->dispatch(CKFinderEvent::CREATE_THUMBNAIL, $createThumbnailEvent);
+            $this->dispatcher->dispatch($createThumbnailEvent, CKFinderEvent::CREATE_THUMBNAIL);
 
             if (!$createThumbnailEvent->isPropagationStopped()) {
                 $thumbnail = $createThumbnailEvent->getResizedImage();

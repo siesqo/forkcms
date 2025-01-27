@@ -15,7 +15,7 @@
 namespace CKSource\CKFinder\Event;
 
 use CKSource\CKFinder\CKFinder;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

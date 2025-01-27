@@ -6,14 +6,13 @@ use Common\Core\Form;
 use Common\Core\Model;
 use Common\ModulesSettings;
 use SpoonForm;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Twig\Environment;
 
 /**
  * This is a twig template wrapper
  * that glues spoon libraries and code standards with twig.
  */
-abstract class BaseTwigTemplate extends TwigEngine
+abstract class BaseTwigTemplate extends Environment
 {
     /**
      * @var string
@@ -229,6 +228,6 @@ abstract class BaseTwigTemplate extends TwigEngine
             }
         }
 
-        return $this->environment->render($template, array_merge($this->runtimeGlobals, $variables));
+        return parent::render($template, array_merge($this->runtimeGlobals, $variables));
     }
 }
