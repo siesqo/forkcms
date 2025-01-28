@@ -43,10 +43,11 @@ parameters:
     fork.is_installed: false
     fork.form.theme: "ForkCMSInstallerBundle:Installer:form_theme.html.twig"
 
-services:
-    templating:
-        alias: templating.engine.twig
+twig:
+    paths:
+        '%site.path_www%/src/ForkCMS/Bundle/InstallerBundle/Resources/views': ForkCMSInstallerBundle
 
+services:
     fork.settings:
         class: Common\ModulesSettings
         public: true
@@ -79,3 +80,11 @@ services:
         public: true
         arguments:
             - "%site.path_www%"
+
+    ForkCMS\Bundle\InstallerBundle\Controller\InstallerController:
+        class: ForkCMS\Bundle\InstallerBundle\Controller\InstallerController
+        tags: [ 'controller.service_arguments' ]
+        # Call the setContainer method to get access to the services via
+        # $this->get() method.
+        calls:
+            - [ 'setContainer', [ '@service_container' ] ]
