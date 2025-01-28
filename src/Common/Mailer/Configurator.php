@@ -7,6 +7,7 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Common\ModulesSettings;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 
 class Configurator
 {
@@ -47,16 +48,26 @@ class Configurator
                 $this->modulesSettings->get('Core', 'smtp_password'),
                 $this->modulesSettings->get('Core', 'smtp_secure_layer')
             );
-            $mailer = $this->container->get('mailer');
-            if ($mailer !== null) {
-                $this->container->get('mailer')->__construct($transport);
-            }
+
+            // @todo used in testing
             $this->container->set(
-                'swiftmailer.transport',
+                'mailer.transport',
                 $transport
             );
         } catch (PDOException $e) {
             // we'll just use the mail transport thats pre-configured
         }
+    }
+
+    public function getTransport(): TransportInterface
+    {
+        return TransportFactory::create(
+            (string) $this->modulesSettings->get('Core', 'mailer_type', 'sendmail'),
+            $this->modulesSettings->get('Core', 'smtp_server'),
+            (int) $this->modulesSettings->get('Core', 'smtp_port', 25),
+            $this->modulesSettings->get('Core', 'smtp_username'),
+            $this->modulesSettings->get('Core', 'smtp_password'),
+            $this->modulesSettings->get('Core', 'smtp_secure_layer')
+        );
     }
 }

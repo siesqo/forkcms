@@ -6,6 +6,10 @@ use Backend\Core\Engine\Base\AjaxAction as BackendBaseAJAXAction;
 use Backend\Core\Language\Language as BL;
 use Common\Mailer\TransportFactory;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 
 /**
  * This test-email-action will test the mail-connection
@@ -48,13 +52,13 @@ class TestEmailConnection extends BackendBaseAJAXAction
             return;
         }
 
-        $message = new \Swift_Message('Test');
-        $message
-            ->setFrom([$fromEmail => $fromName])
-            ->setTo([$toEmail => $toName])
-            ->setReplyTo([$replyToEmail => $replyToName])
-            ->setBody(BL::msg('TestMessage'), 'text/plain')
-        ;
+        // Create the email message
+        $message = (new Email())
+            ->from(new Address($fromEmail, $fromName))
+            ->to(new Address($toEmail, $toName))
+            ->replyTo(new Address($replyToEmail, $replyToName))
+            ->subject('Test')
+            ->text(BL::msg('TestMessage'));
 
         $mailerType = $this->getRequest()->request->get('mailer_type');
         if (!in_array($mailerType, ['smtp', 'sendmail'])) {
@@ -68,16 +72,15 @@ class TestEmailConnection extends BackendBaseAJAXAction
             $this->getRequest()->request->get('smtp_password', ''),
             $this->getRequest()->request->get('smtp_secure_layer', '')
         );
-        $mailer = new \Swift_Mailer($transport);
+        $mailer = new Mailer($transport);
 
         try {
-            if ($mailer->send($message)) {
-                $this->output(Response::HTTP_OK, null, '');
+            $mailer->send($message);
+            $this->output(Response::HTTP_OK, null, '');
 
-                return;
-            }
-
-            $this->output(Response::HTTP_INTERNAL_SERVER_ERROR, null, 'unknown');
+            return;
+        } catch (TransportExceptionInterface $e) {
+            $this->output(Response::HTTP_INTERNAL_SERVER_ERROR, null, $e->getMessage());
         } catch (\Exception $e) {
             $this->output(Response::HTTP_INTERNAL_SERVER_ERROR, null, $e->getMessage());
         }

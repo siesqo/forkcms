@@ -8,14 +8,14 @@ services:
   mailmotor.listener.subscribed:
     class: Frontend\Modules\Mailmotor\EventListener\NewNotImplementedMailingListSubscription
     arguments:
-      - "@mailer"
+      - "@mailer_configurator"
       - "@fork.settings"
     tags:
       - { name: kernel.event_listener, event: mailmotor.event.not_implemented.subscribed, method: onNotImplementedSubscribedEvent }
   mailmotor.listener.unsubscribed:
     class: Frontend\Modules\Mailmotor\EventListener\NewNotImplementedMailingListUnsubscription
     arguments:
-      - "@mailer"
+      - "@mailer_configurator"
       - "@fork.settings"
     tags:
       - { name: kernel.event_listener, event: mailmotor.event.not_implemented.unsubscribed, method: onNotImplementedUnsubscribedEvent }

@@ -2,9 +2,9 @@
 
 namespace Common\Mailer;
 
-use Swift_SendmailTransport;
-use Swift_SmtpTransport;
-use Swift_Transport;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Transport\SendmailTransport;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 
 /**
  * This class will create the right mailer transport based on some parameters
@@ -21,7 +21,7 @@ class TransportFactory
      * @param string $pass
      * @param string $encryption
      *
-     * @return Swift_Transport
+     * @return TransportInterface
      */
     public static function create(
         string $type = 'sendmail',
@@ -30,7 +30,7 @@ class TransportFactory
         string $user = null,
         string $pass = null,
         string $encryption = null
-    ): Swift_Transport {
+    ): TransportInterface {
         if ($type === 'smtp') {
             return self::getSmtpTransport($server, $port, $user, $pass, $encryption);
         }
@@ -44,21 +44,27 @@ class TransportFactory
         string $user = null,
         string $pass = null,
         string $encryption = null
-    ): Swift_SmtpTransport {
-        $transport = new Swift_SmtpTransport($server, $port);
-        $transport
-            ->setUsername($user)
-            ->setPassword($pass);
+    ): TransportInterface {
+        // Create the DSN string
+        $dsn = sprintf(
+            'smtp://%s:%s@%s:%d',
+            urlencode($user),
+            urlencode($pass),
+            $server,
+            $port
+        );
 
-        if (in_array($encryption, ['ssl', 'tls'], true)) {
-            $transport->setEncryption($encryption);
+        // Add encryption if specified
+        if ($encryption) {
+            $dsn = sprintf('%s?encryption=%s', $dsn, $encryption);
         }
 
-        return $transport;
+        // Create the transport from the DSN
+        return Transport::fromDsn($dsn);
     }
 
-    private static function getMailTransport(): Swift_SendmailTransport
+    private static function getMailTransport(): SendmailTransport
     {
-        return new Swift_SendmailTransport();
+        return new SendmailTransport();
     }
 }

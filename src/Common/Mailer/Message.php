@@ -5,20 +5,22 @@ namespace Common\Mailer;
 use Backend\Core\Engine\TwigTemplate as BackendTemplate;
 use Common\Uri;
 use Frontend\Core\Engine\Model;
+use Symfony\Component\Mime\Email;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 /**
  * This class will send mails
  */
-class Message extends \Swift_Message
+class Message extends Email
 {
     public function __construct(
         string $subject = null,
-        string $body = null,
-        string $contentType = null,
-        string $charset = null
+        string $body = null
     ) {
-        parent::__construct($subject, $body, $contentType, $charset);
+        parent::__construct();
+        $this->subject($subject);
+        $this->html($body);
+        $this->text($body);
     }
 
     /**
@@ -26,14 +28,12 @@ class Message extends \Swift_Message
      *
      * @param string $subject
      * @param string $body
-     * @param string $contentType
-     * @param string $charset
      *
      * @return Message
      */
-    public static function newInstance($subject = null, $body = null, $contentType = null, $charset = null)
+    public static function newInstance($subject = null, $body = null): Message
     {
-        return new self($subject, $body, $contentType, $charset);
+        return new self($subject, $body);
     }
 
     /**
@@ -55,7 +55,7 @@ class Message extends \Swift_Message
             $html = $this->addUTM($html, $this->getSubject());
         }
 
-        $this->setBody($html, 'text/html');
+        $this->html($html);
 
         return $this;
     }
@@ -74,7 +74,7 @@ class Message extends \Swift_Message
             foreach ($attachments as $attachment) {
                 // only add existing files
                 if (is_file($attachment)) {
-                    $this->attach(\Swift_Attachment::fromPath($attachment));
+                    $this->attachFromPath($attachment);
                 }
             }
         }
@@ -92,7 +92,7 @@ class Message extends \Swift_Message
     public function setPlainText(string $content): Message
     {
         if (!empty($content)) {
-            $this->addPart($content, 'text/plain');
+            $this->text($content);
         }
 
         return $this;

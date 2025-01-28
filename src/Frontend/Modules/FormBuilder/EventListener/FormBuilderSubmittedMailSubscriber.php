@@ -2,16 +2,18 @@
 
 namespace Frontend\Modules\FormBuilder\EventListener;
 
+use Common\Mailer\Configurator;
 use Common\Mailer\Message;
-use Swift_Mailer;
 use Common\ModulesSettings;
 use Frontend\Core\Language\Language;
 use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Modules\FormBuilder\Event\FormBuilderSubmittedEvent;
-use Swift_Mime_SimpleMessage;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\RawMessage;
 
 /**
- * A Formbuilder submitted event subscriber that will send an email if needed
+ * A FormBuilder submitted event subscriber that will send an email if needed
  */
 final class FormBuilderSubmittedMailSubscriber
 {
@@ -21,15 +23,15 @@ final class FormBuilderSubmittedMailSubscriber
     protected $modulesSettings;
 
     /**
-     * @var Swift_Mailer
+     * @var Configurator
      */
-    protected $mailer;
+    protected $mailer_configurator;
 
     public function __construct(
-        Swift_Mailer $mailer,
+        Configurator $mailer_configurator,
         ModulesSettings $modulesSettings
     ) {
-        $this->mailer = $mailer;
+        $this->mailer_configurator = $mailer_configurator;
         $this->modulesSettings = $modulesSettings;
     }
 
@@ -38,9 +40,11 @@ final class FormBuilderSubmittedMailSubscriber
         $form = $event->getForm();
         $fieldData = $this->getEmailFields($event->getData());
 
+        $mailer = new Mailer($this->mailer_configurator->getTransport());
+
         // need to send mail
         if ($form['method'] === 'database_email' || $form['method'] === 'email') {
-            $this->mailer->send($this->getMessage($form, $fieldData, $form['email_subject']));
+            $mailer->send($this->getMessage($form, $fieldData, $form['email_subject']));
         }
 
         // check if we need to send confirmation mails
@@ -52,16 +56,16 @@ final class FormBuilderSubmittedMailSubscriber
                 $from = FrontendModel::get('fork.settings')->get('Core', 'mailer_from');
                 $replyTo = FrontendModel::get('fork.settings')->get('Core', 'mailer_reply_to');
                 $message = Message::newInstance($field['settings']['confirmation_mail_subject'])
-                    ->setFrom([$from['email'] => $from['name']])
-                    ->setTo($to)
-                    ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+                    ->from(new Address($from['email'], $from['name']))
+                    ->to($to)
+                    ->replyTo(new Address($replyTo['email'], $replyTo['name']))
                     ->parseHtml(
                         '/Core/Layout/Templates/Mails/Notification.html.twig',
                         ['message' => $field['settings']['confirmation_mail_message']],
                         true
                     )
                 ;
-                $this->mailer->send($message);
+                $mailer->send($message);
             }
         }
     }
@@ -69,19 +73,19 @@ final class FormBuilderSubmittedMailSubscriber
     /**
      * @param array $form
      * @param array $fieldData
-     * @param string $subject
+     * @param string|null $subject
      * @param string|array|null $to
      * @param bool $isConfirmationMail
      *
-     * @return Swift_Mime_SimpleMessage
+     * @return RawMessage
      */
     private function getMessage(
-        array $form,
-        array $fieldData,
+        array  $form,
+        array  $fieldData,
         string $subject = null,
         $to = null,
-        bool $isConfirmationMail = false
-    ) : Swift_Mime_SimpleMessage {
+        bool   $isConfirmationMail = false
+    ): RawMessage {
         if ($subject === null) {
             $subject = Language::getMessage('FormBuilderSubject');
         }
@@ -96,7 +100,7 @@ final class FormBuilderSubmittedMailSubscriber
                     'sentOn' => time(),
                     'name' => $form['name'],
                     'fields' => array_map(
-                        function (array $field) : array {
+                        function (array $field): array {
                             $field['value'] = html_entity_decode($field['value']);
 
                             return $field;
@@ -107,9 +111,16 @@ final class FormBuilderSubmittedMailSubscriber
                 ],
                 true
             )
-            ->setTo(($to === null) ? $form['email'] : $to)
-            ->setFrom([$from['email'] => $from['name']])
+            ->from(new Address($from['email'], $from['name']))
         ;
+
+        if ($to === null) {
+            foreach ($form['email'] as $recipient) {
+                $message->addTo(new Address($recipient));
+            }
+        } else {
+            $message->to($to);
+        }
 
         // check if we have a replyTo email set
         foreach ($form['fields'] as $field) {
@@ -117,12 +128,12 @@ final class FormBuilderSubmittedMailSubscriber
                 $field['settings']['reply_to'] === true
             ) {
                 $email = $fieldData[$field['id']]['value'];
-                $message->setReplyTo([$email => $email]);
+                $message->replyTo($email);
             }
         }
         if (empty($message->getReplyTo())) {
             $replyTo = $this->modulesSettings->get('Core', 'mailer_reply_to');
-            $message->setReplyTo([$replyTo['email'] => $replyTo['name']]);
+            $message->replyTo(new Address($replyTo['email'], $replyTo['name']));
         }
 
         return $message;
@@ -138,13 +149,13 @@ final class FormBuilderSubmittedMailSubscriber
     protected function getEmailFields(array $data): array
     {
         return array_map(
-            function ($item) : array {
+            function ($item): array {
                 $value = unserialize($item['value'], ['allowed_classes' => false]);
 
                 return [
                     'label' => $item['label'],
                     'value' => (
-                        is_array($value)
+                    is_array($value)
                         ? implode(',', $value)
                         : nl2br($value)
                     ),

@@ -3,10 +3,12 @@
 namespace Frontend\Modules\Mailmotor\EventListener;
 
 use Common\Language;
+use Common\Mailer\Configurator;
 use Common\Mailer\Message;
 use Frontend\Modules\Mailmotor\Domain\Subscription\Event\NotImplementedSubscribedEvent;
-use Swift_Mailer;
 use Common\ModulesSettings;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * New mailing list subscription
@@ -23,13 +25,13 @@ final class NewNotImplementedMailingListSubscription
     private $modulesSettings;
 
     /**
-     * @var Swift_Mailer
+     * @var Configurator
      */
-    private $mailer;
+    private $mailer_configurator;
 
-    public function __construct(Swift_Mailer $mailer, ModulesSettings $modulesSettings)
+    public function __construct(Configurator $mailer_configurator, ModulesSettings $modulesSettings)
     {
-        $this->mailer = $mailer;
+        $this->mailer_configurator = $mailer_configurator;
         $this->modulesSettings = $modulesSettings;
     }
 
@@ -46,9 +48,9 @@ final class NewNotImplementedMailingListSubscription
         $replyTo = $this->modulesSettings->get('Core', 'mailer_reply_to');
 
         $message = Message::newInstance($title)
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$to['email'] => $to['name']])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to(new Address($to['email'], $to['name']))
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml(
                 FRONTEND_CORE_PATH . '/Layout/Templates/Mails/Notification.html.twig',
                 [
@@ -58,6 +60,7 @@ final class NewNotImplementedMailingListSubscription
             )
         ;
 
-        $this->mailer->send($message);
+        $mailer = new Mailer($this->mailer_configurator->getTransport());
+        $mailer->send($message);
     }
 }
