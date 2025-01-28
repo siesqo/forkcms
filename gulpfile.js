@@ -2,7 +2,7 @@
 'use strict'
 
 const gulp = require('gulp')
-const sass = require('gulp-sass')(require('sass'));
+const sass = require('gulp-sass')(require('sass'))
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
@@ -29,7 +29,7 @@ gulp.task('build:backend:assets:copy-fonts-vendors', function () {
 })
 
 gulp.task('build:backend:assets:copy-ckeditor', function () {
-  var pluginFiles = '/**/*.@(js|png|jpg|jpeg|gif|css|html|svg)'
+  const pluginFiles = '/**/*.@(js|png|jpg|jpeg|gif|css|html|svg)'
   return gulp.src(
     [
       'node_modules/ckeditor/adapters/*.js',
@@ -64,7 +64,7 @@ gulp.task('build:backend:assets:copy-ckeditor', function () {
       'node_modules/ckeditor/contents.css',
       'node_modules/ckeditor/styles.js',
       'node_modules/ckeditor/LICENSE.md'
-    ], {base: 'node_modules/ckeditor'}
+    ], { base: 'node_modules/ckeditor' }
   ).pipe(gulp.dest('src/Backend/Core/Js/ckeditor'))
 })
 
@@ -328,7 +328,7 @@ gulp.task('build:theme:sass:generate-production-css', function () {
     .pipe(gulp.dest(`${paths.core}/Layout/Css`))
 })
 
-var commonWebpackConfig = require('./webpack.config')
+const commonWebpackConfig = require('./webpack.config')
 
 gulp.task('build:theme:webpack:generate-development-js', function () {
   return gulp.plumbedSrc(`${paths.src}/Js/Index.js`)
@@ -370,10 +370,10 @@ gulp.task('build:theme', gulp.series(
 
 gulp.task('serve:theme', function () {
   livereload.listen()
-  gulp.watch(`${paths.src}/Js/**/*.js`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:webpack:generate-development-js'))
-  gulp.watch(`${paths.src}/Layout/Sass/**/*.scss`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:sass:generate-development-css'))
-  gulp.watch(`${paths.src}/Layout/Templates/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:assets:copy-templates'))
-  gulp.watch(`${paths.src}/Layout/Images/**/*`, {interval: 1000, usePolling: true}, gulp.parallel('build:theme:images:copy-images'))
+  gulp.watch(`${paths.src}/Js/**/*.js`, { interval: 1000, usePolling: true }, gulp.parallel('build:theme:webpack:generate-development-js'))
+  gulp.watch(`${paths.src}/Layout/Sass/**/*.scss`, { interval: 1000, usePolling: true }, gulp.parallel('build:theme:sass:generate-development-css'))
+  gulp.watch(`${paths.src}/Layout/Templates/**/*`, { interval: 1000, usePolling: true }, gulp.parallel('build:theme:assets:copy-templates'))
+  gulp.watch(`${paths.src}/Layout/Images/**/*`, { interval: 1000, usePolling: true }, gulp.parallel('build:theme:images:copy-images'))
 })
 
 // public tasks
