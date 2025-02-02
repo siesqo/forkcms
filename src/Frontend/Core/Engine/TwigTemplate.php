@@ -130,12 +130,16 @@ class TwigTemplate extends BaseTwigTemplate
 
     private function getFormTemplates(string $fileName): array
     {
-        return $this->filterOutNonExistingPaths(
+        $existingAbsolutePaths = $this->filterOutNonExistingPaths(
             [
                 FRONTEND_PATH . '/Core/Layout/Templates/' . $fileName,
                 $this->themePath . '/Core/Layout/Templates/' . $fileName,
             ]
         );
+        return array_map(function ($path) {
+            // remove the frontend path from these templates (since it prevents the twig renderer engine from finding them for some reason)
+            return str_replace(FRONTEND_PATH, '', $path);
+        }, $existingAbsolutePaths);
     }
 
     private function filterOutNonExistingPaths(array $files): array
