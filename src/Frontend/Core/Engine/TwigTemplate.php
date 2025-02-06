@@ -38,6 +38,7 @@ class TwigTemplate extends BaseTwigTemplate
         if ($this->debugMode) {
             $this->enableAutoReload();
             $this->setCache(false);
+            $this->enableDebug();
         }
         $this->disableStrictVariables();
         new FormExtension($this);
