@@ -39,6 +39,8 @@ class TwigTemplate extends BaseTwigTemplate
             $this->enableAutoReload();
             $this->setCache(false);
             $this->enableDebug();
+        } else {
+            $this->setCache(Model::getContainer()->getParameter('kernel.cache_dir') . '/twig');
         }
         $this->disableStrictVariables();
         new FormExtension($this);
