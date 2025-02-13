@@ -10,6 +10,8 @@ use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Core\Engine\Navigation as FrontendNavigation;
 use Frontend\Modules\Profiles\Engine\Authentication as FrontendProfilesAuthentication;
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 class Register extends FrontendBaseBlock
 {
@@ -128,18 +130,19 @@ class Register extends FrontendBaseBlock
 
     private function sendActivationEmail(array $profile, string $activationKey): void
     {
+        $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
         $activationUrl = SITE_URL . FrontendNavigation::getUrlForBlock($this->getModule(), 'Activate');
         $from = $this->get('fork.settings')->get('Core', 'mailer_from');
         $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
         $message = Message::newInstance(FL::getMessage('RegisterSubject'))
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$profile['email'] => $profile['display_name']])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to(new Address($profile['email'], $profile['display_name']))
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml(
                 'Profiles/Layout/Templates/Mails/Register.html.twig',
                 ['activationUrl' => $activationUrl . '/' . $activationKey],
                 true
             );
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 }

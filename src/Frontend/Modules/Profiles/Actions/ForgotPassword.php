@@ -9,6 +9,8 @@ use Frontend\Core\Language\Language as FL;
 use Frontend\Core\Engine\Navigation as FrontendNavigation;
 use Frontend\Modules\Profiles\Engine\Authentication as FrontendProfilesAuthentication;
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * Request a reset password email.
@@ -98,12 +100,13 @@ class ForgotPassword extends FrontendBaseBlock
 
     private function sendForgotPasswordEmail(int $profileId, string $resetUrl): void
     {
+        $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
         $from = $this->get('fork.settings')->get('Core', 'mailer_from');
         $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
         $message = Message::newInstance(FL::getMessage('ForgotPasswordSubject'))
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$this->form->getField('email')->getValue() => ''])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to($this->form->getField('email')->getValue())
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml(
                 '/Profiles/Layout/Templates/Mails/ForgotPassword.html.twig',
                 [
@@ -113,6 +116,6 @@ class ForgotPassword extends FrontendBaseBlock
                 ],
                 true
             );
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 }

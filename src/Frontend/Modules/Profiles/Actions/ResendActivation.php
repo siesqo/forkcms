@@ -11,6 +11,8 @@ use Frontend\Modules\Profiles\Engine\Authentication as FrontendProfilesAuthentic
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
 use Frontend\Modules\Profiles\Engine\Profile;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * This is the resend activation-action. It will resend your activation email.
@@ -102,19 +104,20 @@ class ResendActivation extends FrontendBaseBlock
 
     private function resendActivationEmail(): void
     {
+        $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
         $activationUrl = SITE_URL . FrontendNavigation::getUrlForBlock($this->getModule(), 'Activate')
                          . '/' . $this->profile->getSetting('activation_key');
         $from = $this->get('fork.settings')->get('Core', 'mailer_from');
         $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
         $message = Message::newInstance(FL::getMessage('RegisterSubject'))
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$this->profile->getEmail() => $this->profile->getDisplayName()])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to(new Address($this->profile->getEmail(), $this->profile->getDisplayName()))
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml(
                 'Profiles/Layout/Templates/Mails/Register.html.twig',
                 ['activationUrl' => $activationUrl],
                 true
             );
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 }

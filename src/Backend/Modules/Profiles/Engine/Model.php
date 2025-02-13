@@ -8,6 +8,8 @@ use Backend\Core\Engine\Authentication as BackendAuthentication;
 use Backend\Core\Language\Language as BL;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Core\Engine\Exception as BackendException;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * In this file we store all generic functions that we will be using in the profiles module.
@@ -824,19 +826,21 @@ class Model
             $templatePath = FRONTEND_CORE_PATH . '/Layout/Templates/Mails/Notification.html.twig';
         }
 
+        $mailer = new Mailer(BackendModel::get('mailer_configurator')->getTransport());
+
         // define variables
         $from = BackendModel::get('fork.settings')->get('Core', 'mailer_from');
         $replyTo = BackendModel::get('fork.settings')->get('Core', 'mailer_reply_to');
 
         // create a message object and set all the needed properties
         $message = Message::newInstance($subject)
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$toEmail => $toDisplayName])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to(new Address($toEmail, $toDisplayName))
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml($templatePath, $variables, true);
 
         // send it through the mailer service
-        BackendModel::get('mailer')->send($message);
+        $mailer->send($message);
     }
 
     /**

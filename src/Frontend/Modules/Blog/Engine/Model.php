@@ -11,6 +11,8 @@ use Frontend\Core\Engine\Url as FrontendUrl;
 use Frontend\Core\Language\Locale;
 use Frontend\Modules\Tags\Engine\Model as FrontendTagsModel;
 use Frontend\Modules\Tags\Engine\TagsInterface as FrontendTagsInterface;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * In this file we store all generic functions that we will be using in the blog module
@@ -828,6 +830,8 @@ class Model implements FrontendTagsInterface
             return;
         }
 
+        $mailer = new Mailer(FrontendModel::get('mailer_configurator')->getTransport());
+
         // get settings
         $notifyByMailOnComment = FrontendModel::get('fork.settings')->get(
             'Blog',
@@ -867,16 +871,16 @@ class Model implements FrontendTagsInterface
             $from = FrontendModel::get('fork.settings')->get('Core', 'mailer_from');
             $replyTo = FrontendModel::get('fork.settings')->get('Core', 'mailer_reply_to');
             $message = Message::newInstance(FL::msg('NotificationSubject'))
-                ->setFrom([$from['email'] => $from['name']])
-                ->setTo([$to['email'] => $to['name']])
-                ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+                ->from(new Address($from['email'], $from['name']))
+                ->to(new Address($to['email'], $to['name']))
+                ->replyTo(new Address($replyTo['email'], $replyTo['name']))
                 ->parseHtml(
                     '/Core/Layout/Templates/Mails/Notification.html.twig',
                     $variables,
                     true
                 )
             ;
-            FrontendModel::get('mailer')->send($message);
+            $mailer->send($message);
         } elseif ($notifyByMailOnCommentToModerate && $comment['status'] == 'moderation') {
             // only notify on new comments to moderate and if the comment is one to moderate
             // set variables
@@ -890,16 +894,16 @@ class Model implements FrontendTagsInterface
             $from = FrontendModel::get('fork.settings')->get('Core', 'mailer_from');
             $replyTo = FrontendModel::get('fork.settings')->get('Core', 'mailer_reply_to');
             $message = Message::newInstance(FL::msg('NotificationSubject'))
-                ->setFrom([$from['email'] => $from['name']])
-                ->setTo([$to['email'] => $to['name']])
-                ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+                ->from(new Address($from['email'], $from['name']))
+                ->to(new Address($to['email'], $to['name']))
+                ->replyTo(new Address($replyTo['email'], $replyTo['name']))
                 ->parseHtml(
                     '/Core/Layout/Templates/Mails/Notification.html.twig',
                     $variables,
                     true
                 )
             ;
-            FrontendModel::get('mailer')->send($message);
+            $mailer->send($message);
         }
     }
 

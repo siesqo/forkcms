@@ -8,6 +8,8 @@ use Frontend\Core\Engine\Form as FrontendForm;
 use Frontend\Core\Language\Language as FL;
 use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Core\Engine\Navigation as FrontendNavigation;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * This is a widget with the form to ask a question
@@ -122,18 +124,19 @@ class AskOwnQuestion extends FrontendBaseWidget
 
     private function sendNewQuestionNotification(array $question): void
     {
+        $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
         $from = $this->get('fork.settings')->get('Core', 'mailer_from');
         $to = $this->get('fork.settings')->get('Core', 'mailer_to');
         $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
         $message = Message::newInstance(sprintf(FL::getMessage('FaqOwnQuestionSubject'), $question['name']))
-            ->setFrom([$from['email'] => $from['name']])
-            ->setTo([$to['email'] => $to['name']])
-            ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+            ->from(new Address($from['email'], $from['name']))
+            ->to(new Address($to['email'], $to['name']))
+            ->replyTo(new Address($replyTo['email'], $replyTo['name']))
             ->parseHtml(
                 '/Faq/Layout/Templates/Mails/OwnQuestion.html.twig',
                 $question,
                 true
             );
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 }

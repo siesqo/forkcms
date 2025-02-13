@@ -12,6 +12,8 @@ use Backend\Modules\Users\Engine\Model as BackendUsersModel;
 use Common\Mailer\Message;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Address;
 
 /**
  * This is the index-action (default), it will display the login screen
@@ -212,14 +214,15 @@ class Index extends BackendBaseActionIndex
                 $user->setSetting('reset_password_timestamp', time());
 
                 // send e-mail to user
+                $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
                 $from = $this->get('fork.settings')->get('Core', 'mailer_from');
                 $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
                 $message = Message::newInstance(
                     \SpoonFilter::ucfirst(BL::msg('ResetYourPasswordMailSubject'))
                 )
-                    ->setFrom([$from['email'] => $from['name']])
-                    ->setTo([$email])
-                    ->setReplyTo([$replyTo['email'] => $replyTo['name']])
+                    ->from(new Address($from['email'], $from['name']))
+                    ->to($email)
+                    ->replyTo(new Address($replyTo['email'], $replyTo['name']))
                     ->parseHtml(
                         '/Authentication/Layout/Templates/Mails/ResetPassword.html.twig',
                         [
@@ -227,7 +230,7 @@ class Index extends BackendBaseActionIndex
                                            . '&email=' . $email . '&key=' . $key,
                         ]
                     );
-                $this->get('mailer')->send($message);
+                $mailer->send($message);
 
                 // clear post-values
                 $_POST['backend_email_forgot'] = '';
