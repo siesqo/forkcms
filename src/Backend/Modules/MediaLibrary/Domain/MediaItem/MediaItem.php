@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use JsonSerializable;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 use Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolder;
@@ -25,11 +27,12 @@ use Backend\Core\Engine\Model;
 class MediaItem implements JsonSerializable
 {
     /**
-     * @var string
+     * @var UuidInterface
      *
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="guid")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
+     * @ORM\Column(type="uuid", unique=true)
      */
     private $id;
 
