@@ -7,6 +7,7 @@ Changed:
 * Core: Switched to symfony 5.4 [c872c2d](https://github.com/siesqo/forkcms/commit/c872c2d937544a697138ead3699f486c8c18329e), [c1ece6b](https://github.com/siesqo/forkcms/commit/c1ece6bb1e4d0561c3648da2dbd50c6ca55962bd) (+ later fixes)
 * Core: Added PHP8 support and bumped minimum to 8.1 [c872c2d](https://github.com/siesqo/forkcms/commit/c872c2d937544a697138ead3699f486c8c18329e), [f4749a2](https://github.com/siesqo/forkcms/commit/f4749a2e5fda07fa97634b125af0de7c2ea5a690)
 * Core: Replaced abandoned swiftmailer to symfony mailer [c9c0e20](https://github.com/siesqo/forkcms/commit/c9c0e20ca6bbef3cb8e3a08824bc4b6c2cead34a), [fb47b4f](https://github.com/siesqo/forkcms/commit/fb47b4f3a27f4948c9ab18c817e800d8a23fe18a)
+* Core: Removed Google sitelinks search box integration (since it was removed in 2024)
 
 Security:
 * Core: Updated various outdated dependencies [f627e5d](https://github.com/siesqo/forkcms/commit/f627e5d8e95f9835f83f6fd9152bd24760a01c00), [2b6fbd3](https://github.com/siesqo/forkcms/commit/2b6fbd31b9a1971fe3750b0dc4bc521d662358af), [21f9853](https://github.com/siesqo/forkcms/commit/21f98537ace6041b5a948700df00fec3ff013211)

@@ -52,15 +52,6 @@ class Footer extends KernelLoader
             $siteHTMLEndOfBody .= $this->getFacebookHtml($facebookAppId);
         }
 
-        // add Google sitelinks search box code if wanted.
-        if ($this->get('fork.settings')->get('Search', 'use_sitelinks_search_box', true)) {
-            $searchUrl = FrontendNavigation::getUrlForBlock('Search');
-            $url404 = FrontendNavigation::getUrl(Model::ERROR_PAGE_ID);
-            if ($searchUrl !== $url404) {
-                $siteHTMLEndOfBody .= $this->getSiteLinksCode($searchUrl);
-            }
-        }
-
         // assign site wide html
         $this->template->assignGlobal('siteHTMLEndOfBody', $siteHTMLEndOfBody);
 
@@ -129,32 +120,5 @@ class Footer extends KernelLoader
 
         // check if it is a special case, otherwise return [language]_[language]
         return $specialCases[LANGUAGE] ?? mb_strtolower(LANGUAGE) . '_' . mb_strtoupper(LANGUAGE);
-    }
-
-    /**
-     * Returns the code needed to get a site links search box in Google.
-     * More information can be found on the offical Google documentation:
-     * https://developers.google.com/webmasters/richsnippets/sitelinkssearch
-     *
-     * @param string $searchUrl The url to the search page
-     *
-     * @return string The script needed for google
-     */
-    protected function getSiteLinksCode(string $searchUrl): string
-    {
-        $siteLinksCode = '<script type="application/ld+json">' . "\n";
-        $siteLinksCode .= '{' . "\n";
-        $siteLinksCode .= '    "@context": "https://schema.org",' . "\n";
-        $siteLinksCode .= '    "@type": "WebSite",' . "\n";
-        $siteLinksCode .= '    "url": "' . SITE_URL . '",' . "\n";
-        $siteLinksCode .= '    "potentialAction": {' . "\n";
-        $siteLinksCode .= '        "@type": "SearchAction",' . "\n";
-        $siteLinksCode .= '        "target": "' . SITE_URL . $searchUrl . '?form=search&q_widget={q_widget}",' . "\n";
-        $siteLinksCode .= '        "query-input": "name=q_widget"' . "\n";
-        $siteLinksCode .= '    }' . "\n";
-        $siteLinksCode .= '}' . "\n";
-        $siteLinksCode .= '</script>';
-
-        return $siteLinksCode;
     }
 }

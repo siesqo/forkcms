@@ -61,12 +61,6 @@ class Settings extends BackendBaseActionEdit
             $this->get('fork.settings')->get($this->getModule(), 'autosuggest_num_items', 20)
         );
 
-        // add checkbox for the sitelinks search box in Google
-        $this->form->addCheckbox(
-            'use_sitelinks_search_box',
-            $this->get('fork.settings')->get($this->getModule(), 'use_sitelinks_search_box', true)
-        );
-
         // modules that, no matter what, can not be searched
         $disallowedModules = ['Search'];
 
@@ -153,11 +147,6 @@ class Settings extends BackendBaseActionEdit
                     $this->getModule(),
                     'autosuggest_num_items',
                     $this->form->getField('autosuggest_num_items')->getValue()
-                );
-                $this->get('fork.settings')->set(
-                    $this->getModule(),
-                    'use_sitelinks_search_box',
-                    $this->form->getField('use_sitelinks_search_box')->isChecked()
                 );
 
                 // module search
