@@ -15,6 +15,9 @@ Security:
     * twig
     * ...
 
+Fixed:
+* Core: Fix missing self-referencing hreflang links.
+
 5.12.0  (2023-07-31)
 ------------------
 

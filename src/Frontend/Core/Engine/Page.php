@@ -414,10 +414,6 @@ class Page extends KernelLoader
 
     private function addAlternateLinkForLanguage(string $language): void
     {
-        if ($language === LANGUAGE) {
-            return;
-        }
-
         // Get page data
         $pageInfo = Model::getPage($this->pageId);
 
