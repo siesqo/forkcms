@@ -4,7 +4,6 @@ namespace Backend\Core\Engine;
 
 use Backend\Core\Language\Language as BL;
 use Common\Core\Twig\BaseTwigTemplate;
-use Common\Core\Twig\Extensions\IncludeOnceExtension;
 use Common\Core\Twig\Extensions\TwigFilters;
 use Frontend\Core\Engine\FormExtension;
 use ReflectionClass;
@@ -14,10 +13,9 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormRenderer;
+use Twig\Environment;
 use Twig\Extension\DebugExtension;
-use Twig\Loader\ChainLoader;
 use Twig\Loader\FilesystemLoader;
-use Twig\Loader\LoaderInterface;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 /**
@@ -31,16 +29,12 @@ class TwigTemplate extends BaseTwigTemplate
      *
      * @param bool $addToReference Should the instance be added into the reference.
      */
-    public function __construct(
-        LoaderInterface $loader,
-        bool $addToReference = true
-    ) {
+    public function __construct(bool $addToReference = true)
+    {
         $container = Model::getContainer();
         $this->debugMode = $container->getParameter('kernel.debug');
 
-        parent::__construct($loader);
-
-        $this->buildTwigEnvironmentForTheBackend();
+        parent::__construct($this->buildTwigEnvironmentForTheBackend());
 
         if ($addToReference) {
             $container->set('template', $this);
@@ -48,16 +42,15 @@ class TwigTemplate extends BaseTwigTemplate
 
         $this->forkSettings = $container->get('fork.settings');
         if ($this->debugMode) {
-            $this->enableAutoReload();
-            $this->setCache(false);
-            $this->addExtension(new DebugExtension());
+            $this->environment->enableAutoReload();
+            $this->environment->setCache(false);
+            $this->environment->addExtension(new DebugExtension());
         }
         $this->language = BL::getWorkingLanguage();
         $this->connectSymfonyForms();
         $this->connectSymfonyTranslator();
         $this->connectSpoonForm();
-        $this->connectIncludeOnceExtension();
-        TwigFilters::addFilters($this, 'Backend');
+        TwigFilters::addFilters($this->environment, 'Backend');
         $this->autoloadMissingTaggedExtensions($container);
     }
 
@@ -76,34 +69,33 @@ class TwigTemplate extends BaseTwigTemplate
         $this->parseDebug();
         $this->parseTranslations();
         $this->parseVars();
-        $this->startGlobals($this);
+        $this->startGlobals($this->environment);
 
         return $this->render(str_replace(BACKEND_MODULES_PATH, '', $template), $this->variables);
     }
 
-    private function buildTwigEnvironmentForTheBackend(): void
+    private function buildTwigEnvironmentForTheBackend(): Environment
     {
         // path to TwigBridge library so we can locate the form theme files.
         $appVariableReflection = new ReflectionClass(AppVariable::class);
         $vendorTwigBridgeDir = dirname($appVariableReflection->getFileName());
 
-        // add backend paths to the template loader
-        $this->setLoader(
-            new ChainLoader(
-                [$this->getLoader(), new FilesystemLoader(
-                    [
-                        BACKEND_MODULES_PATH,
-                        BACKEND_CORE_PATH,
-                        $vendorTwigBridgeDir . '/Resources/views/Form',
-                    ]
-                )]
-            )
+        // render the compiled File
+        $loader = new FilesystemLoader(
+            [
+                BACKEND_MODULES_PATH,
+                BACKEND_CORE_PATH,
+                $vendorTwigBridgeDir . '/Resources/views/Form',
+            ]
         );
 
-        $this->setCache(Model::getContainer()->getParameter('kernel.cache_dir') . '/twig');
-        if ($this->debugMode) {
-            $this->enableDebug();
-        }
+        return new Environment(
+            $loader,
+            [
+                'cache' => Model::getContainer()->getParameter('kernel.cache_dir') . '/twig',
+                'debug' => $this->debugMode,
+            ]
+        );
     }
 
     private function connectSymfonyForms(): void
@@ -113,10 +105,10 @@ class TwigTemplate extends BaseTwigTemplate
                 'Layout/Templates/FormLayout.html.twig',
                 'MediaLibrary/Resources/views/FormLayout.html.twig',
             ],
-            $this
+            $this->environment
         );
         $csrfTokenManager = Model::get('security.csrf.token_manager');
-        $this->addRuntimeLoader(
+        $this->environment->addRuntimeLoader(
             new FactoryRuntimeLoader(
                 [
                     FormRenderer::class => function () use ($rendererEngine, $csrfTokenManager): FormRenderer {
@@ -126,24 +118,19 @@ class TwigTemplate extends BaseTwigTemplate
             )
         );
 
-        if (!$this->hasExtension(SymfonyFormExtension::class)) {
-            $this->addExtension(new SymfonyFormExtension());
+        if (!$this->environment->hasExtension(SymfonyFormExtension::class)) {
+            $this->environment->addExtension(new SymfonyFormExtension());
         }
     }
 
     private function connectSymfonyTranslator(): void
     {
-        $this->addExtension(new TranslationExtension(Model::get('translator')));
+        $this->environment->addExtension(new TranslationExtension(Model::get('translator')));
     }
 
     private function connectSpoonForm(): void
     {
-        new FormExtension($this);
-    }
-
-    private function connectIncludeOnceExtension(): void
-    {
-        $this->addExtension(new IncludeOnceExtension());
+        new FormExtension($this->environment);
     }
 
     private function parseUserDefinedConstants(): void
@@ -259,8 +246,8 @@ class TwigTemplate extends BaseTwigTemplate
     {
         $this->assign('debug', Model::getContainer()->getParameter('kernel.debug'));
 
-        if ($this->debugMode === true && !$this->hasExtension(DebugExtension::class)) {
-            $this->addExtension(new DebugExtension());
+        if ($this->debugMode === true && !$this->environment->hasExtension(DebugExtension::class)) {
+            $this->environment->addExtension(new DebugExtension());
         }
     }
 
@@ -362,8 +349,8 @@ class TwigTemplate extends BaseTwigTemplate
     private function autoloadMissingTaggedExtensions(ContainerInterface $container): void
     {
         foreach ($container->get('twig')->getExtensions() as $id => $extension) {
-            if (!$this->hasExtension($id)) {
-                $this->addExtension($extension);
+            if (!$this->environment->hasExtension($id)) {
+                $this->environment->addExtension($extension);
             }
         }
     }

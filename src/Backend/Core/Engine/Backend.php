@@ -32,6 +32,7 @@ class Backend extends KernelLoader implements ApplicationInterface
     public function initialize(): void
     {
         new Url($this->getKernel());
+        new TwigTemplate();
         new Navigation($this->getKernel());
         new Header($this->getKernel());
 

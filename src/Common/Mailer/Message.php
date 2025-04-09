@@ -151,7 +151,7 @@ class Message extends Email
             );
         }
 
-        $tpl = new BackendTemplate(Model::get('twig.loader'), false);
+        $tpl = new BackendTemplate(false);
 
         // variables were set
         if (!empty($variables)) {

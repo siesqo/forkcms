@@ -150,7 +150,6 @@ services:
             - [ setDebug, [ "%kernel.debug%" ]]
     mailer_configurator:
         class: Common\Mailer\Configurator
-        public: true
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: console.command, method: onConsoleCommand }
@@ -236,7 +235,7 @@ services:
         class: Frontend\Core\Engine\TwigTemplate
         public: true
         arguments:
-            - "@twig.loader"
+            - "@twig"
 
     translator:
         class: Common\Language
@@ -244,11 +243,10 @@ services:
         tags:
             - { name: 'translator' }
 
-    template:
-        class: Backend\Core\Engine\TwigTemplate
-        public: true
-        arguments:
-            - "@twig.loader"
+    Common\Core\Twig\Extensions\IncludeOnceExtension:
+        public: false
+        tags:
+            - { name: twig.extension }
 
     ForkCMS\Google\TagManager\DataLayer:
         public: true

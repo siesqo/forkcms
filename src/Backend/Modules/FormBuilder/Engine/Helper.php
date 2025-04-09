@@ -28,7 +28,7 @@ class Helper
             $tpl = (
                 BackendModel::getContainer()->has('template') ?
                 BackendModel::getContainer()->get('template') :
-                new BackendTemplate(BackendModel::getContainer()->get('twig.loader'))
+                new BackendTemplate()
             );
             $fieldHTML = '';
             $fieldName = 'field' . $field['id'];

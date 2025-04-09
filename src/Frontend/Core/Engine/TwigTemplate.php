@@ -5,13 +5,13 @@ namespace Frontend\Core\Engine;
 use Frontend\Core\Language\Locale;
 use Common\Core\Twig\BaseTwigTemplate;
 use Common\Core\Twig\Extensions\TwigFilters;
+use Symfony\Bridge\Twig\Extension\FormExtension as SymfonyFormExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormRenderer;
+use Twig\Environment;
 use Twig\Loader\ChainLoader;
 use Twig\Loader\FilesystemLoader;
-use Twig\Loader\LoaderInterface;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 /**
@@ -20,32 +20,28 @@ use Twig\RuntimeLoader\FactoryRuntimeLoader;
  */
 class TwigTemplate extends BaseTwigTemplate
 {
-    /**
-     * @var string
-     */
-    private $themePath;
+    private string $themePath;
 
     public function __construct(
-        LoaderInterface $loader
+        Environment $environment
     ) {
         $container = Model::getContainer();
         $this->forkSettings = $container->get('fork.settings');
         $this->language = Locale::frontendLanguage();
 
-        parent::__construct($loader);
+        parent::__construct($environment);
 
         $this->debugMode = $container->getParameter('kernel.debug');
         if ($this->debugMode) {
-            $this->enableAutoReload();
-            $this->setCache(false);
-            $this->enableDebug();
+            $this->environment->enableAutoReload();
+            $this->environment->setCache(false);
         } else {
-            $this->setCache(Model::getContainer()->getParameter('kernel.cache_dir') . '/twig');
+            $this->environment->setCache(Model::getContainer()->getParameter('kernel.cache_dir') . '/twig');
         }
-        $this->disableStrictVariables();
-        new FormExtension($this);
-        TwigFilters::addFilters($this, 'Frontend');
-        $this->startGlobals($this);
+        $this->environment->disableStrictVariables();
+        new FormExtension($this->environment);
+        TwigFilters::addFilters($this->environment, 'Frontend');
+        $this->startGlobals($this->environment);
 
         if (!$container->getParameter('fork.is_installed')) {
             return;
@@ -53,24 +49,23 @@ class TwigTemplate extends BaseTwigTemplate
 
         $this->addFrontendPathsToTheTemplateLoader($this->forkSettings->get('Core', 'theme', 'Fork'));
         $this->connectSymfonyForms();
-        $this->autoloadMissingTaggedExtensions($container);
     }
 
     private function addFrontendPathsToTheTemplateLoader(string $theme): void
     {
         $this->themePath = FRONTEND_PATH . '/Themes/' . $theme;
-        $this->setLoader(
+        $this->environment->setLoader(
             new ChainLoader(
-                [$this->getLoader(), new FilesystemLoader($this->getLoadingFolders())]
+                [$this->environment->getLoader(), new FilesystemLoader($this->getLoadingFolders())]
             )
         );
     }
 
     private function connectSymfonyForms(): void
     {
-        $rendererEngine = new TwigRendererEngine($this->getFormTemplates('FormLayout.html.twig'), $this);
+        $rendererEngine = new TwigRendererEngine($this->getFormTemplates('FormLayout.html.twig'), $this->environment);
         $csrfTokenManager = Model::get('security.csrf.token_manager');
-        $this->addRuntimeLoader(
+        $this->environment->addRuntimeLoader(
             new FactoryRuntimeLoader(
                 [
                     FormRenderer::class => function () use ($rendererEngine, $csrfTokenManager): FormRenderer {
@@ -79,6 +74,10 @@ class TwigTemplate extends BaseTwigTemplate
                 ]
             )
         );
+
+        if (!$this->environment->hasExtension(SymfonyFormExtension::class)) {
+            $this->environment->addExtension(new SymfonyFormExtension());
+        }
     }
 
     /**
@@ -90,7 +89,7 @@ class TwigTemplate extends BaseTwigTemplate
      */
     public function getPath(string $template): string
     {
-        if (strpos($template, FRONTEND_MODULES_PATH) !== false) {
+        if (str_contains($template, FRONTEND_MODULES_PATH)) {
             return str_replace(FRONTEND_MODULES_PATH . '/', '', $template);
         }
 
@@ -133,16 +132,12 @@ class TwigTemplate extends BaseTwigTemplate
 
     private function getFormTemplates(string $fileName): array
     {
-        $existingAbsolutePaths = $this->filterOutNonExistingPaths(
+        return $this->filterOutNonExistingPaths(
             [
                 FRONTEND_PATH . '/Core/Layout/Templates/' . $fileName,
                 $this->themePath . '/Core/Layout/Templates/' . $fileName,
             ]
         );
-        return array_map(function ($path) {
-            // remove the frontend path from these templates (since it prevents the twig renderer engine from finding them for some reason)
-            return str_replace(FRONTEND_PATH, '', $path);
-        }, $existingAbsolutePaths);
     }
 
     private function filterOutNonExistingPaths(array $files): array
@@ -155,14 +150,5 @@ class TwigTemplate extends BaseTwigTemplate
                 return $filesystem->exists($folder);
             }
         );
-    }
-
-    private function autoloadMissingTaggedExtensions(ContainerInterface $container): void
-    {
-        foreach ($container->get('twig')->getExtensions() as $id => $extension) {
-            if (!$this->hasExtension($id)) {
-                $this->addExtension($extension);
-            }
-        }
     }
 }

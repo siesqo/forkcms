@@ -12,7 +12,7 @@ use Twig\Environment;
  * This is a twig template wrapper
  * that glues spoon libraries and code standards with twig.
  */
-abstract class BaseTwigTemplate extends Environment
+abstract class BaseTwigTemplate
 {
     /**
      * @var string
@@ -58,6 +58,16 @@ abstract class BaseTwigTemplate extends Environment
      * @var array
      */
     protected $runtimeGlobals = [];
+
+    /**
+     * @var Environment
+     */
+    protected $environment;
+
+    public function __construct(Environment $environment)
+    {
+        $this->environment = $environment;
+    }
 
     public function assign(string $key, $values): void
     {
@@ -228,6 +238,6 @@ abstract class BaseTwigTemplate extends Environment
             }
         }
 
-        return parent::render($template, array_merge($this->runtimeGlobals, $variables));
+        return $this->environment->render($template, array_merge($this->runtimeGlobals, $variables));
     }
 }
