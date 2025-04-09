@@ -56,6 +56,7 @@
         "symfony/translation": "^5.0",
         "symfony/mailer": "^5.0",
         "symfony/intl": "^5.0",
+        "symfony/dom-crawler": "^5.4",
         "tijsverkoyen/css-to-inline-styles": "^2.0",
         "bugsnag/bugsnag-symfony": "^1.6",
         "phpoffice/phpspreadsheet": "^3.7",
