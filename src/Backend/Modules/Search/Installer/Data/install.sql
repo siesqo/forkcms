@@ -1,16 +1,16 @@
 CREATE TABLE IF NOT EXISTS `search_index` (
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `other_id` int(11) NOT NULL,
-  `field` varchar(64) CHARACTER SET utf8 NOT NULL,
+  `field` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `language` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`module`,`other_id`,`field`,`language`),
   FULLTEXT KEY `value` (`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Search index';
 
 CREATE TABLE IF NOT EXISTS `search_modules` (
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `searchable` tinyint(1) NOT NULL DEFAULT '0',
   `weight` int(11) NOT NULL,
   PRIMARY KEY (`module`)

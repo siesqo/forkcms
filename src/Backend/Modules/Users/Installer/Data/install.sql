@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `users_sessions` (
 
 CREATE TABLE IF NOT EXISTS `users_settings` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'name of the setting',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'name of the setting',
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'serialized value',
   PRIMARY KEY (`user_id`,`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

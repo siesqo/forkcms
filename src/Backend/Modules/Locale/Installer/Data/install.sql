@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `locale` (
   `user_id` int(11) NOT NULL,
   `language` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `application` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'lbl',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci,

@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `meta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `modules` (
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'unique module name',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'unique module name',
   `installed_on` datetime NOT NULL,
   PRIMARY KEY (`name`),
   KEY `idx_name` (`name`)
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `modules` (
 
 CREATE TABLE IF NOT EXISTS `modules_extras` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for the extra.',
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'The name of the module this extra belongs to.',
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'The name of the module this extra belongs to.',
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The label for this extra. It will be used for displaying purposes.',
   `action` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `modules_extras` (
 
 
 CREATE TABLE IF NOT EXISTS `modules_settings` (
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'name of the module',
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'name of the module',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'name of the setting',
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'serialized value',
   PRIMARY KEY (`module`(25),`name`(100))
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `modules_settings` (
 
 
 CREATE TABLE IF NOT EXISTS `modules_tags` (
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tag_id` int(11) NOT NULL,
   `other_id` int(11) NOT NULL,
   PRIMARY KEY (`module`,`tag_id`,`other_id`)
@@ -68,7 +68,7 @@ INSERT INTO `groups` (`id`, `name`, `parameters`) VALUES
 CREATE TABLE IF NOT EXISTS `groups_rights_actions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'name of the module',
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'name of the module',
   `action` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'name of the action',
   `level` double NOT NULL DEFAULT '1' COMMENT 'unix type levels 1, 3, 5 and 7',
   PRIMARY KEY (`id`)
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `groups_rights_actions` (
 CREATE TABLE IF NOT EXISTS `groups_rights_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
-  `module` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'name of the module',
+  `module` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'name of the module',
   PRIMARY KEY (`id`),
   KEY `idx_group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
