@@ -8,10 +8,10 @@
       {% block widget_alerts %}
         <div class="widget-alerts">
           {% if successMessage %}
-            {{ alerts.alert('success', successMessage|raw, false, formName) }}
+            {{ alerts.alert('success', successMessage|raw, false, 'alert-' ~ formName) }}
           {% endif %}
           {% if formBuilderError %}
-            {{ alerts.alert('danger', formBuilderError, false, formName) }}
+            {{ alerts.alert('danger', formBuilderError, false, 'alert-' ~ formName) }}
           {% endif %}
         </div>
       {% endblock %}

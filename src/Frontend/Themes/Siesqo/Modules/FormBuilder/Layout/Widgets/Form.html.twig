@@ -3,10 +3,10 @@
 <section class="row widget-formbuilder-form" id="formbuilder{{ formName|ucfirst }}">
   <div class="col-sm-12">
     {% if successMessage %}
-      {{ alerts.alert('success', successMessage|raw, false, formName) }}
+      {{ alerts.alert('success', successMessage|raw, false, 'alert-' ~ formName) }}
     {% endif %}
     {% if formBuilderError %}
-      {{ alerts.alert('danger', formBuilderError, false, formName) }}
+      {{ alerts.alert('danger', formBuilderError, false, 'alert-' ~ formName) }}
     {% endif %}
 
     {% if fields %}

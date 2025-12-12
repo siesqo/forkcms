@@ -350,7 +350,7 @@ class Form extends FrontendBaseWidget
         // form name
         $formName = 'form' . $this->item['id'];
         $this->template->assign('formName', $formName);
-        $this->template->assign('formAction', $this->createAction() . '#' . $formName);
+        $this->template->assign('formAction', $this->createAction() . '#alert-' . $formName);
         $this->template->assign('successMessage', false);
 
         if ($this->hasRecaptchaField) {
@@ -589,7 +589,7 @@ class Form extends FrontendBaseWidget
                 $redirect = SITE_URL . $this->url->getQueryString();
                 $redirect .= (stripos($redirect, '?') === false) ? '?' : '&';
                 $redirect .= 'identifier=' . $this->item['identifier'];
-                $redirect .= '#' . $this->formName;
+                $redirect .= '#alert-' . $this->formName;
 
                 throw new RedirectException(
                     'Redirect',
