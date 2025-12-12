@@ -67,8 +67,8 @@ $colors: (
 );
 // scss-docs-end colors-map
 
-// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
-// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.2 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG/#contrast-minimum
 $min-contrast-ratio:   4.5;
 
 // Customize the light and dark text colors for use in our color contrast function.
@@ -373,7 +373,7 @@ $enable-shadows:              false;
 $enable-gradients:            false;
 $enable-transitions:          true;
 $enable-reduced-motion:       true;
-$enable-smooth-scroll:        false;
+$enable-smooth-scroll:        true;
 $enable-grid-classes:         true;
 $enable-container-classes:    true;
 $enable-cssgrid:              false;
@@ -705,6 +705,10 @@ $hr-border-color:             null; // Allows for inherited colors
 $hr-border-width:             var(--#{$prefix}border-width);
 $hr-opacity:                  .25;
 
+// scss-docs-start vr-variables
+$vr-border-width:             var(--#{$prefix}border-width);
+// scss-docs-end vr-variables
+
 $legend-margin-bottom:        .5rem;
 $legend-font-size:            1.5rem;
 $legend-font-weight:          null;
@@ -714,6 +718,7 @@ $dt-font-weight:              $font-weight-bold;
 $list-inline-padding:         .5rem;
 
 $mark-padding:                .1875em;
+$mark-color:                  $body-color;
 $mark-bg:                     $yellow-100;
 // scss-docs-end type-variables
 
@@ -730,7 +735,7 @@ $table-cell-padding-x-sm:     .25rem;
 
 $table-cell-vertical-align:   top;
 
-$table-color:                 var(--#{$prefix}body-color);
+$table-color:                 var(--#{$prefix}emphasis-color);
 $table-bg:                    var(--#{$prefix}body-bg);
 $table-accent-bg:             transparent;
 
@@ -738,17 +743,17 @@ $table-th-font-weight:        null;
 
 $table-striped-color:         $table-color;
 $table-striped-bg-factor:     .05;
-$table-striped-bg:            rgba($black, $table-striped-bg-factor);
+$table-striped-bg:            rgba(var(--#{$prefix}emphasis-color-rgb), $table-striped-bg-factor);
 
 $table-active-color:          $table-color;
 $table-active-bg-factor:      .1;
-$table-active-bg:             rgba($black, $table-active-bg-factor);
+$table-active-bg:             rgba(var(--#{$prefix}emphasis-color-rgb), $table-active-bg-factor);
 
 $table-hover-color:           $table-color;
 $table-hover-bg-factor:       .075;
-$table-hover-bg:              rgba($black, $table-hover-bg-factor);
+$table-hover-bg:              rgba(var(--#{$prefix}emphasis-color-rgb), $table-hover-bg-factor);
 
-$table-border-factor:         .1;
+$table-border-factor:         .2;
 $table-border-width:          var(--#{$prefix}border-width);
 $table-border-color:          var(--#{$prefix}border-color);
 
@@ -838,6 +843,7 @@ $btn-active-box-shadow:       inset 0 3px 5px rgba($black, .125);
 $btn-link-color:              var(--#{$prefix}link-color);
 $btn-link-hover-color:        var(--#{$prefix}link-hover-color);
 $btn-link-disabled-color:     $gray-600;
+$btn-link-focus-shadow-rgb:   to-rgb(mix(color-contrast($link-color), $link-color, 15%));
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius:           var(--#{$prefix}border-radius);
@@ -899,7 +905,7 @@ $input-disabled-border-color:           null;
 $input-color:                           var(--#{$prefix}body-color);
 $input-border-color:                    var(--#{$prefix}border-color);
 $input-border-width:                    $input-btn-border-width;
-$input-box-shadow:                      $box-shadow-inset;
+$input-box-shadow:                      var(--#{$prefix}box-shadow-inset);
 
 $input-border-radius:                   var(--#{$prefix}border-radius);
 $input-border-radius-sm:                var(--#{$prefix}border-radius-sm);
@@ -1015,7 +1021,7 @@ $form-select-feedback-icon-size:        $input-height-inner-half $input-height-i
 $form-select-border-width:        $input-border-width;
 $form-select-border-color:        $input-border-color;
 $form-select-border-radius:       $input-border-radius;
-$form-select-box-shadow:          $box-shadow-inset;
+$form-select-box-shadow:          var(--#{$prefix}box-shadow-inset);
 
 $form-select-focus-border-color:  $input-focus-border-color;
 $form-select-focus-width:         $input-focus-width;
@@ -1038,9 +1044,9 @@ $form-select-transition:          $input-transition;
 $form-range-track-width:          100%;
 $form-range-track-height:         .5rem;
 $form-range-track-cursor:         pointer;
-$form-range-track-bg:             var(--#{$prefix}tertiary-bg);
+$form-range-track-bg:             var(--#{$prefix}secondary-bg);
 $form-range-track-border-radius:  1rem;
-$form-range-track-box-shadow:     $box-shadow-inset;
+$form-range-track-box-shadow:     var(--#{$prefix}box-shadow-inset);
 
 $form-range-thumb-width:                   1rem;
 $form-range-thumb-height:                  $form-range-thumb-width;
@@ -1085,7 +1091,7 @@ $form-feedback-valid-color:         $success;
 $form-feedback-invalid-color:       $danger;
 
 $form-feedback-icon-valid-color:    $form-feedback-valid-color;
-$form-feedback-icon-valid:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>");
+$form-feedback-icon-valid:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/></svg>");
 $form-feedback-icon-invalid-color:  $form-feedback-invalid-color;
 $form-feedback-icon-invalid:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{$form-feedback-icon-invalid-color}'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='#{$form-feedback-icon-invalid-color}' stroke='none'/></svg>");
 // scss-docs-end form-feedback-variables
@@ -1216,7 +1222,8 @@ $navbar-dark-color:                 rgba($white, .55);
 $navbar-dark-hover-color:           rgba($white, .75);
 $navbar-dark-active-color:          $white;
 $navbar-dark-disabled-color:        rgba($white, .25);
-$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-dark-icon-color:            $navbar-dark-color;
+$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-icon-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 $navbar-dark-toggler-border-color:  rgba($white, .1);
 $navbar-dark-brand-color:           $navbar-dark-active-color;
 $navbar-dark-brand-hover-color:     $navbar-dark-active-color;
@@ -1241,7 +1248,7 @@ $dropdown-border-width:             var(--#{$prefix}border-width);
 $dropdown-inner-border-radius:      calc(#{$dropdown-border-radius} - #{$dropdown-border-width}); // stylelint-disable-line function-disallowed-list
 $dropdown-divider-bg:               $dropdown-border-color;
 $dropdown-divider-margin-y:         $spacer * .5;
-$dropdown-box-shadow:               $box-shadow;
+$dropdown-box-shadow:               var(--#{$prefix}box-shadow);
 
 $dropdown-link-color:               var(--#{$prefix}body-color);
 $dropdown-link-hover-color:         $dropdown-link-color;
@@ -1295,7 +1302,7 @@ $pagination-color:                  var(--#{$prefix}link-color);
 $pagination-bg:                     var(--#{$prefix}body-bg);
 $pagination-border-radius:          var(--#{$prefix}border-radius);
 $pagination-border-width:           var(--#{$prefix}border-width);
-$pagination-margin-start:           calc(#{$pagination-border-width} * -1); // stylelint-disable-line function-disallowed-list
+$pagination-margin-start:           calc(-1 * #{$pagination-border-width}); // stylelint-disable-line function-disallowed-list
 $pagination-border-color:           var(--#{$prefix}border-color);
 
 $pagination-focus-color:            var(--#{$prefix}link-hover-color);
@@ -1376,7 +1383,9 @@ $accordion-transition:                    $btn-transition, border-radius .15s ea
 $accordion-button-active-bg:              var(--#{$prefix}primary-bg-subtle);
 $accordion-button-active-color:           var(--#{$prefix}primary-text-emphasis);
 
-$accordion-button-focus-border-color:     $input-focus-border-color;
+// fusv-disable
+$accordion-button-focus-border-color:     $input-focus-border-color; // Deprecated in v5.3.3
+// fusv-enable
 $accordion-button-focus-box-shadow:       $btn-focus-box-shadow;
 
 $accordion-icon-width:                    1.25rem;
@@ -1385,8 +1394,8 @@ $accordion-icon-active-color:             $primary-text-emphasis;
 $accordion-icon-transition:               transform .2s ease-in-out;
 $accordion-icon-transform:                rotate(-180deg);
 
-$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
-$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-color}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>");
+$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-active-color}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>");
 // scss-docs-end accordion-variables
 
 // Tooltips
@@ -1430,7 +1439,7 @@ $popover-border-width:              var(--#{$prefix}border-width);
 $popover-border-color:              var(--#{$prefix}border-color-translucent);
 $popover-border-radius:             var(--#{$prefix}border-radius-lg);
 $popover-inner-border-radius:       calc(#{$popover-border-radius} - #{$popover-border-width}); // stylelint-disable-line function-disallowed-list
-$popover-box-shadow:                $box-shadow;
+$popover-box-shadow:                var(--#{$prefix}box-shadow);
 
 $popover-header-font-size:          $font-size-base;
 $popover-header-bg:                 var(--#{$prefix}secondary-bg);
@@ -1498,14 +1507,14 @@ $modal-dialog-margin-y-sm-up:       1.75rem;
 
 $modal-title-line-height:           $line-height-base;
 
-$modal-content-color:               null;
+$modal-content-color:               var(--#{$prefix}body-color);
 $modal-content-bg:                  var(--#{$prefix}body-bg);
 $modal-content-border-color:        var(--#{$prefix}border-color-translucent);
 $modal-content-border-width:        var(--#{$prefix}border-width);
 $modal-content-border-radius:       var(--#{$prefix}border-radius-lg);
 $modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width);
-$modal-content-box-shadow-xs:       $box-shadow-sm;
-$modal-content-box-shadow-sm-up:    $box-shadow;
+$modal-content-box-shadow-xs:       var(--#{$prefix}box-shadow-sm);
+$modal-content-box-shadow-sm-up:    var(--#{$prefix}box-shadow);
 
 $modal-backdrop-bg:                 $black;
 $modal-backdrop-opacity:            .5;
@@ -1543,9 +1552,6 @@ $alert-margin-bottom:           1rem;
 $alert-border-radius:           var(--#{$prefix}border-radius);
 $alert-link-font-weight:        $font-weight-bold;
 $alert-border-width:            var(--#{$prefix}border-width);
-$alert-bg-scale:                -80%;
-$alert-border-scale:            -70%;
-$alert-color-scale:             40%;
 $alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
 // scss-docs-end alert-variables
 
@@ -1646,6 +1652,7 @@ $carousel-control-width:             15%;
 $carousel-control-opacity:           .5;
 $carousel-control-hover-opacity:     .9;
 $carousel-control-transition:        opacity .15s ease;
+$carousel-control-icon-filter:       null;
 
 $carousel-indicator-width:           30px;
 $carousel-indicator-height:          3px;
@@ -1663,17 +1670,17 @@ $carousel-caption-spacer:            1.25rem;
 
 $carousel-control-icon-width:        2rem;
 
-$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
-$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/></svg>");
+$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>");
 
 $carousel-transition-duration:       .6s;
 $carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
 // scss-docs-end carousel-variables
 
 // scss-docs-start carousel-dark-variables
-$carousel-dark-indicator-active-bg:  $black;
-$carousel-dark-caption-color:        $black;
-$carousel-dark-control-icon-filter:  invert(1) grayscale(100);
+$carousel-dark-indicator-active-bg:  $black; // Deprecated in v5.3.4
+$carousel-dark-caption-color:        $black; // Deprecated in v5.3.4
+$carousel-dark-control-icon-filter:  invert(1) grayscale(100); // Deprecated in v5.3.4
 // scss-docs-end carousel-dark-variables
 
 
@@ -1700,13 +1707,14 @@ $btn-close-height:           $btn-close-width;
 $btn-close-padding-x:        .25em;
 $btn-close-padding-y:        $btn-close-padding-x;
 $btn-close-color:            $black;
-$btn-close-bg:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$btn-close-color}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>");
+$btn-close-bg:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$btn-close-color}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/></svg>");
 $btn-close-focus-shadow:     $focus-ring-box-shadow;
 $btn-close-opacity:          .5;
 $btn-close-hover-opacity:    .75;
 $btn-close-focus-opacity:    1;
 $btn-close-disabled-opacity: .25;
-$btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%);
+$btn-close-filter:           null;
+$btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%); // Deprecated in v5.3.4
 // scss-docs-end close-variables
 
 
@@ -1741,3 +1749,5 @@ $kbd-bg:                            var(--#{$prefix}body-color);
 $nested-kbd-font-weight:            null; // Deprecated in v5.2.0, removing in v6
 
 $pre-color:                         null;
+
+@import "bootstrap5/scss/variables-dark"; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3

@@ -94,6 +94,20 @@
 
         .accordion {
           .accordion-item {
+            &:first-of-type {
+              .accordion-button {
+                border-top-left-radius: var(--bs-accordion-inner-border-radius);
+                border-top-right-radius: 0;
+              }
+            }
+
+            &:last-of-type {
+              .accordion-button {
+                border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
+                border-bottom-right-radius: 0;
+              }
+            }
+
             .input-group {
               .accordion-header {
 

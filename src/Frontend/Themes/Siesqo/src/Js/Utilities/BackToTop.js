@@ -8,11 +8,12 @@ export class BackToTop {
       }
     })
 
-        // scroll body to 0px on click
+    // scroll body to 0px on click
     $('#backToTop').click(function () {
       $('body,html').animate({
         scrollTop: 0
       }, 800)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return false
     })
   }
