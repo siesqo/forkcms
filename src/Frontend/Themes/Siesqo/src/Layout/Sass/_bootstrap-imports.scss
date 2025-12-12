@@ -1,7 +1,6 @@
 @import "bootstrap5/scss/mixins/banner";
 @include bsBanner("");
 
-
 // scss-docs-start import-stack
 // Configuration
 //@import "bootstrap5/scss/functions";
@@ -13,16 +12,15 @@
 // Layout & components
 @import "bootstrap5/scss/root";
 @import "bootstrap5/scss/reboot";
-@import "bootstrap5/scss/type";
+// @import "bootstrap5/scss/type";
 @import "bootstrap5/scss/images";
 @import "bootstrap5/scss/containers";
 @import "bootstrap5/scss/grid";
 @import "bootstrap5/scss/tables";
-@import "bootstrap5/scss/forms";
 @import "bootstrap5/scss/buttons";
 @import "bootstrap5/scss/transitions";
 @import "bootstrap5/scss/dropdown";
-@import "bootstrap5/scss/button-group";
+// @import "bootstrap5/scss/button-group";
 @import "bootstrap5/scss/nav";
 @import "bootstrap5/scss/navbar";
 @import "bootstrap5/scss/card";
@@ -31,20 +29,42 @@
 @import "bootstrap5/scss/pagination";
 @import "bootstrap5/scss/badge";
 @import "bootstrap5/scss/alert";
-@import "bootstrap5/scss/progress";
+// @import "bootstrap5/scss/progress";
 @import "bootstrap5/scss/list-group";
 @import "bootstrap5/scss/close";
-@import "bootstrap5/scss/toasts";
+// @import "bootstrap5/scss/toasts";
 @import "bootstrap5/scss/modal";
 @import "bootstrap5/scss/tooltip";
-@import "bootstrap5/scss/popover";
+// @import "bootstrap5/scss/popover";
 @import "bootstrap5/scss/carousel";
-@import "bootstrap5/scss/spinners";
-@import "bootstrap5/scss/offcanvas";
-@import "bootstrap5/scss/placeholders";
+// @import "bootstrap5/scss/spinners";
+// @import "bootstrap5/scss/offcanvas";
+// @import "bootstrap5/scss/placeholders";
+
+// Forms
+@import "bootstrap5/scss/forms/labels";
+// @import "bootstrap5/scss/forms/form-text";
+@import "bootstrap5/scss/forms/form-control";
+@import "bootstrap5/scss/forms/form-select";
+@import "bootstrap5/scss/forms/form-check";
+// @import "bootstrap5/scss/forms/form-range";
+// @import "bootstrap5/scss/forms/floating-labels";
+@import "bootstrap5/scss/forms/input-group";
+@import "bootstrap5/scss/forms/validation";
 
 // Helpers
-@import "bootstrap5/scss/helpers";
+@import "bootstrap5/scss/helpers/clearfix";
+@import "bootstrap5/scss/helpers/color-bg";
+// @import "bootstrap5/scss/helpers/colored-links";
+// @import "bootstrap5/scss/helpers/focus-ring";
+// @import "bootstrap5/scss/helpers/icon-link";
+// @import "bootstrap5/scss/helpers/ratio";
+@import "bootstrap5/scss/helpers/position";
+//@import "bootstrap5/scss/helpers/stacks";
+@import "bootstrap5/scss/helpers/visually-hidden";
+// @import "bootstrap5/scss/helpers/stretched-link";
+// @import "bootstrap5/scss/helpers/text-truncation";
+@import "bootstrap5/scss/helpers/vr";
 
 // Utilities
 @import "bootstrap5/scss/utilities/api";

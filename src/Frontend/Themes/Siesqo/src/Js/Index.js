@@ -1,5 +1,5 @@
 /* External library imports */
-import * as bootstrap from 'bootstrap5/dist/js/bootstrap.js'
+import * as bootstrap from './Modules/Bootstrap'
 // import '@fancyapps/fancybox/dist/jquery.fancybox'
 
 /* Utilities imports */
