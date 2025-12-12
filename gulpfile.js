@@ -7,6 +7,8 @@ const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
 const livereload = require('gulp-livereload')
+const postcss = require('gulp-postcss')
+const cssnano = require('cssnano')
 
 // backend tasks
 gulp.task('build:backend:assets:copy-css-vendors', function () {
@@ -248,9 +250,9 @@ gulp.task('build:theme-fork:sass:generate-css', function () {
     .pipe(livereload())
 })
 
-const buildThemeFork = gulp.parallel(
+/* const buildThemeFork = gulp.parallel(
   'build:theme-fork:sass:generate-css'
-)
+) */
 
 gulp.task('serve:theme-fork', function () {
   livereload.listen()
@@ -261,7 +263,7 @@ gulp.task('serve:theme-fork', function () {
   )
 })
 
-// @remark: custom for SumoCoders
+// @remark: custom for Siesqo
 const fs = require('fs')
 const del = require('del')
 const plumber = require('gulp-plumber')
@@ -278,13 +280,6 @@ gulp.plumbedSrc = function () {
   return gulp.src.apply(gulp, arguments)
     .pipe(plumber())
 }
-
-gulp.task('build:assets:copy-images-vendors', function () {
-  return gulp.src([
-    './node_modules/fancybox/dist/img/*'
-  ])
-    .pipe(gulp.dest('./images/vendors/fancybox'))
-})
 
 gulp.task('build:theme:empty-destination-folders', function () {
   return del([
@@ -313,18 +308,21 @@ gulp.task('build:theme:sass:generate-development-css', function () {
 
 gulp.task('build:theme:sass:generate-production-css', function () {
   return gulp.src(`${paths.src}/Layout/Sass/*.scss`)
-    .pipe(sourcemaps.init())
     .pipe(sass.sync({
-      outputStyle: 'compressed',
+      outputStyle: 'expanded', // let cssnano do the heavy minify
       includePaths: [
         './node_modules'
       ]
     }).on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write('./', {
-      includeContent: false,
-      sourceRoot: `/src/Frontend/Themes/${theme}/src/Layout/Sass`
-    }))
+    .pipe(postcss([cssnano({
+      preset: ['default', {
+        discardComments: { removeAll: true },
+        normalizeWhitespace: true,
+        mergeLonghand: true,
+        mergeRules: true
+      }]
+    })]))
     .pipe(gulp.dest(`${paths.core}/Layout/Css`))
 })
 
@@ -360,7 +358,6 @@ gulp.task('build:theme:images:copy-images', function () {
 gulp.task('build:theme', gulp.series(
   'build:theme:empty-destination-folders',
   gulp.parallel(
-    'build:assets:copy-images-vendors',
     'build:theme:sass:generate-production-css',
     'build:theme:webpack:generate-production-js',
     'build:theme:assets:copy-templates',
