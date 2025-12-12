@@ -1,0 +1,5 @@
+security:
+    firewalls:
+        image_resolver:
+            pattern: ^/media/cache/resolve
+            security: false

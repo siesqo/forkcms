@@ -57,18 +57,17 @@ bugsnag:
     auto_notify: true
 
 liip_imagine:
-    resolvers:
-       default:
-          web_path:
-            web_root: "%kernel.project_dir%/"
-            cache_prefix: src/Frontend/Files/Cache
+    default_filter_set_settings:
+        format: webp
     loaders:
         default:
             filesystem:
                 data_root: "%kernel.project_dir%/"
                 locator: filesystem_insecure
-    cache: default
+    cache: format_extension
     data_loader: default
+    controller:
+        redirect_response_code: 302
 
     # your filter sets are defined here
     filter_sets:
@@ -129,6 +128,20 @@ services:
     liip_imagine.cache.manager.public:
         alias: liip_imagine.cache.manager
         public: true
+    liip_imagine.cache.resolver.web_path:
+        class: Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver
+        arguments:
+            - "@filesystem"
+            - "@router.request_context"
+            - "%kernel.project_dir%/"
+            - "src/Frontend/Files/Cache"
+    liip_imagine.cache.format_extension:
+        class: Liip\ImagineBundle\Imagine\Cache\Resolver\FormatExtensionResolver
+        arguments:
+            - "@liip_imagine.cache.resolver.web_path"
+            - "@liip_imagine.filter.configuration"
+        tags:
+            - { name: "liip_imagine.cache.resolver", resolver: "format_extension" }
     mailmotor.factory.public:
         alias: mailmotor.factory
         public: true
