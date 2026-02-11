@@ -67,9 +67,27 @@ class Model
 
             if (isset($field['settings']['values'])) {
                 if (is_array($field['settings']['values'])) {
-                    $field['settings']['values'] = array_map('html_entity_decode', $field['settings']['values']);
-                } else {
-                    $field['settings']['values'] = html_entity_decode($field['settings']['values']);
+                    $field['settings']['values'] = array_map(function ($item) {
+                        // Handle nested radio/checkbox structure
+                        if (is_array($item) && isset($item['label'])) {
+                            // This is a radio/checkbox option array
+                            if (is_string($item['label'])) {
+                                $item['label'] = html_entity_decode($item['label'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                            }
+                            if (isset($item['value']) && is_string($item['value'])) {
+                                $item['value'] = html_entity_decode($item['value'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                            }
+                            return $item;
+                        }
+                        // Handle simple string array
+                        elseif (is_string($item)) {
+                            return html_entity_decode($item, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                        }
+                        // Return anything else as-is
+                        return $item;
+                    }, $field['settings']['values']);
+                } elseif (is_string($field['settings']['values'])) {
+                    $field['settings']['values'] = html_entity_decode($field['settings']['values'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
                 }
             }
 
