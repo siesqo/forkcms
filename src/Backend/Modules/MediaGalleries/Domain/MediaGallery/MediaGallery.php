@@ -251,7 +251,7 @@ class MediaGallery
             $this->getModuleExtraId(),
             'data',
             [
-                'gallery_id' => $this->id,
+                'gallery_id' => (string) $this->id,
                 'extra_label' => $this->getExtraLabel(),
                 'edit_url' => Model::createUrlForAction(
                     'MediaGalleryEdit',
