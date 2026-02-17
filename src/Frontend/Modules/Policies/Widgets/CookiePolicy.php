@@ -16,5 +16,8 @@ class CookiePolicy extends FrontendBaseWidget
         parent::execute();
         $this->loadTemplate();
         $this->template->assign('company', $this->get('fork.settings')->getForModule($this->module));
+        if ($this->get('fork.settings')->get('Core', 'google_recaptcha_site_key')) {
+            $this->template->assign('usesReCaptcha', true);
+        }
     }
 }

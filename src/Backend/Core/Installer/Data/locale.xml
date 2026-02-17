@@ -4520,12 +4520,6 @@
         <translation language="de"><![CDATA[Speichern Sie meine Einstellungen]]></translation>
         <translation language="fr"><![CDATA[Enregistrer mes préférences]]></translation>
       </item>
-      <item type="message" name="ReCaptchaInfo">
-        <translation language="nl"><![CDATA[Deze site is beschermd door reCAPTCHA en het Google <a href="https://policies.google.com/privacy">Privacybeleid</a> en <a href="https://policies.google.com/terms">Servicevoorwaarden</a> zijn van toepassing.]]></translation>
-        <translation language="en"><![CDATA[This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.]]></translation>
-        <translation language="de"><![CDATA[Diese Website ist durch reCAPTCHA und Es gelten die <a href="https://policies.google.com/privacy">Datenschutzerklärung</a> und <a href="https://policies.google.com/terms">Nutzungsbedingungen</a> von Google.]]></translation>
-        <translation language="fr"><![CDATA[Ce site est protégé par reCAPTCHA. Les <a href="https://policies.google.com/privacy">règles de confidentialité</a> et les <a href="https://policies.google.com/terms">conditions d'utilisation</a> de Google s'appliquent.]]></translation>
-      </item>
     </Core>
   </Frontend>
   <Backend>

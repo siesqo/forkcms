@@ -73,9 +73,6 @@
             <div class="col-sm-12">
               <div class="form-actions">
                 {% if hasRecaptchaField %}
-                  <p class="recaptcha-info">
-                    {{ 'msg.ReCaptchaInfo'|trans|raw }}
-                  </p>
                   {% if googleRecaptchaVersion == 'v3' %}
                     <input type="hidden" name="g-recaptcha-response" value=""/>
                     <script>

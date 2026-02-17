@@ -17,6 +17,9 @@
 
   <h3>5. {{ 'lbl.WhichCookies'|trans|ucfirst }}</h3>
   {{ 'msg.WhichCookies'|trans|raw }}
+  {% if usesReCaptcha %}
+    {{ 'msg.ReCaptchaCookies'|trans|raw }}
+  {% endif %}
 
   <h3>6. {{ 'lbl.HowLongDoCookiesStayOnMyDevice'|trans|ucfirst }}</h3>
   {{ 'msg.HowLongDoCookiesStayOnMyDevice'|trans|raw }}

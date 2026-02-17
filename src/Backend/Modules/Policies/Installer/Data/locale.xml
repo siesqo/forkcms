@@ -4,62 +4,81 @@
     <Core>
       <item type="label" name="Policies">
         <translation language="nl"><![CDATA[Policies]]></translation>
+        <translation language="en"><![CDATA[Policies]]></translation>
       </item>
     </Core>
     <Policies>
       <item type="label" name="ContactDetails">
         <translation language="nl"><![CDATA[contactgegevens]]></translation>
+        <translation language="en"><![CDATA[contact details]]></translation>
       </item>
       <item type="label" name="CompanyName">
         <translation language="nl"><![CDATA[bedrijfsnaam]]></translation>
+        <translation language="en"><![CDATA[company name]]></translation>
       </item>
       <item type="label" name="PostalCode">
         <translation language="nl"><![CDATA[postcode]]></translation>
+        <translation language="en"><![CDATA[postal code]]></translation>
       </item>
       <item type="label" name="StreetName">
         <translation language="nl"><![CDATA[straat]]></translation>
+        <translation language="en"><![CDATA[street]]></translation>
       </item>
       <item type="label" name="StreetNumber">
         <translation language="nl"><![CDATA[nummer]]></translation>
+        <translation language="en"><![CDATA[number]]></translation>
       </item>
       <item type="label" name="Telephone">
         <translation language="nl"><![CDATA[telefoonnummer]]></translation>
+        <translation language="en"><![CDATA[telephone number]]></translation>
       </item>
       <item type="label" name="RegisteredOffice">
         <translation language="nl"><![CDATA[maatschappelijke zetel]]></translation>
+        <translation language="en"><![CDATA[registered office]]></translation>
       </item>
       <item type="message" name="RegisteredOfficeHelp">
         <translation language="nl">
           <![CDATA[Indien de maatschappelijke zetel afwijkt van de hierboven ingevoerde bedrijfsgegevens vul je dit hier in.<br>Bij het leeg laten van deze velden zullen de hierboven ingevoerde gegevens worden getoond als maatschappelijke zetel.]]></translation>
+        <translation language="en">
+          <![CDATA[If the registered office differs from the company details entered above, please fill this in here.<br>If these fields are left empty, the details entered above will be shown as the registered office.]]></translation>
       </item>
       <item type="label" name="Other">
         <translation language="nl"><![CDATA[overige]]></translation>
+        <translation language="en"><![CDATA[other]]></translation>
       </item>
       <item type="label" name="VATNumber">
         <translation language="nl"><![CDATA[BTW-nummer]]></translation>
+        <translation language="en"><![CDATA[VAT number]]></translation>
       </item>
       <item type="label" name="SupervisoryAuthority">
         <translation language="nl"><![CDATA[toezichthoudende autoriteit]]></translation>
+        <translation language="en"><![CDATA[supervisory authority]]></translation>
       </item>
       <item type="message" name="SupervisoryAuthorityHelp">
         <translation language="nl"><![CDATA[Vul dit veld in wanneer uw activiteit aan een vergunningsstelsel is onderworpen.]]></translation>
+        <translation language="en"><![CDATA[Fill in this field when your activity is subject to a licensing system.]]></translation>
       </item>
       <item type="label" name="District">
         <translation language="nl"><![CDATA[arondissement]]></translation>
+        <translation language="en"><![CDATA[district]]></translation>
       </item>
       <item type="message" name="DistrictHelp">
         <translation language="nl"><![CDATA[Rechtbanken van onderstaand arondissement zijn bevoegd.]]></translation>
+        <translation language="en"><![CDATA[Courts of the district below have jurisdiction.]]></translation>
       </item>
     </Policies>
     <Pages>
       <item type="label" name="Disclaimer">
         <translation language="nl"><![CDATA[disclaimer]]></translation>
+        <translation language="en"><![CDATA[disclaimer]]></translation>
       </item>
       <item type="label" name="PrivacyPolicy">
         <translation language="nl"><![CDATA[privacy policy]]></translation>
+        <translation language="en"><![CDATA[privacy policy]]></translation>
       </item>
       <item type="label" name="CookiePolicy">
         <translation language="nl"><![CDATA[cookie policy]]></translation>
+        <translation language="en"><![CDATA[cookie policy]]></translation>
       </item>
     </Pages>
   </Backend>
@@ -236,6 +255,48 @@
           <![CDATA[Lorsque vous utilisez le site web et/ou les services, nous traitons les données personnelles vous concernant. En principe, nous obtenons les données personnelles susmentionnées directement auprès de vous. Toutefois, si vous choisissez de vous inscrire via un compte de média social (par exemple, Facebook), ces données sont collectées via votre profil de média social. Nous vous recommandons de consulter la politique de confidentialité de votre fournisseur de services de médias sociaux pour savoir quelles données sont traitées par ce dernier lorsque vous utilisez la connexion aux médias sociaux. Nous ne transmettons aucune des données personnelles que vous fournissez par le biais du site web aux fournisseurs de médias sociaux, sauf si vous y consentez.]]></translation>
         <translation language="nl">
           <![CDATA[Wanneer je de Website en/of Diensten gebruikt, verwerken we persoonsgegevens die op jou betrekking hebben. In principe verkrijgen wij de hierboven genoemde persoonsgegevens rechtstreeks van jou. Als je er echter voor kiest om zich te registreren via een social media account (bijvoorbeeld Facebook), worden deze gegevens verzameld via je socialmedia-profiel. Wij raden je aan om de privacy policy van je socialmedia-serviceprovider te raadplegen om na te gaan welke gegevens door je socialmedia-serviceprovider worden verwerkt wanneer je gebruik maakt van het inloggen via social media. Wij sturen geen van de persoonlijke gegevens die je via de Website verstrekt door aan providers van social media, tenzij je hiermee instemt.]]></translation>
+      </item>
+      <item type="message" name="ReCaptchaDataProcessing">
+        <translation language="de"><![CDATA[<p>Zum Schutz unserer Website und Dienste vor Spam, Missbrauch und automatisierten Angriffen verwenden wir Google reCAPTCHA, einen Sicherheitsdienst der Google Ireland Limited. reCAPTCHA wird ausschließlich auf Seiten mit Formularen geladen und dient der Beurteilung, ob eine Interaktion von einem Menschen oder einem automatisierten System stammt.</p>
+          <p>In diesem Zusammenhang können folgende personenbezogene Daten verarbeitet werden:</p>
+          <ul>
+          <li>IP-Adresse</li>
+          <li>Browser- und Geräteinformationen</li>
+          <li>Betriebssystem</li>
+          <li>Datum und Uhrzeit des Besuchs</li>
+          <li>Interaktionsdaten, die für die Sicherheitsprüfung relevant sind</li>
+          </ul>
+          <p>Diese Verarbeitung ist erforderlich, um die Sicherheit und Integrität unserer Website und Dienste zu gewährleisten und Missbrauch zu verhindern. Die Rechtsgrundlage für diese Verarbeitung ist unser berechtigtes Interesse an der Sicherung unserer Website und Dienste gegen betrügerische und automatisierte Angriffe (Art. 6 Abs. 1 lit. f DSGVO). Google tritt dabei als Auftragsverarbeiter auf und verarbeitet die personenbezogenen Daten ausschließlich nach unserer Weisung.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>To protect our Website and Services against spam, abuse, and automated attacks, we use Google reCAPTCHA, a security service provided by Google Ireland Limited. reCAPTCHA is only loaded on pages containing forms and is used to assess whether an interaction originates from a human or an automated system.</p>
+          <p>In this context, the following personal data may be processed:</p>
+          <ul>
+          <li>IP address</li>
+          <li>Browser and device information</li>
+          <li>Operating system</li>
+          <li>Date and time of the visit</li>
+          <li>Interaction data relevant to the security check</li>
+          </ul>
+          <p>This processing is necessary to ensure the security and integrity of our Website and Services and to prevent abuse. The legal basis for this processing is our legitimate interest in securing our Website and Services against fraudulent and automated attacks (Article 6.1(f) GDPR). Google acts as a processor in this context and processes personal data solely on our instruction.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Pour protéger notre site Web et nos services contre le spam, les abus et les attaques automatisées, nous utilisons Google reCAPTCHA, un service de sécurité fourni par Google Ireland Limited. reCAPTCHA n'est chargé que sur les pages contenant des formulaires et est utilisé pour évaluer si une interaction provient d'un humain ou d'un système automatisé.</p>
+          <p>Dans ce cadre, les données personnelles suivantes peuvent être traitées :</p>
+          <ul>
+          <li>Adresse IP</li>
+          <li>Informations sur le navigateur et l'appareil</li>
+          <li>Système d'exploitation</li>
+          <li>Date et heure de la visite</li>
+          <li>Données d'interaction pertinentes pour le contrôle de sécurité</li>
+          </ul>
+          <p>Ce traitement est nécessaire pour garantir la sécurité et l'intégrité de notre site Web et de nos services et pour prévenir les abus. La base juridique de ce traitement est notre intérêt légitime à sécuriser notre site Web et nos services contre les attaques frauduleuses et automatisées (article 6.1.f du RGPD). Google agit en tant que sous-traitant dans ce contexte et traite les données personnelles uniquement sur instruction de notre part.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Ter bescherming van onze Website en Diensten tegen spam, misbruik en geautomatiseerde aanvallen maken wij gebruik van Google reCAPTCHA, een beveiligingsdienst aangeboden door Google Ireland Limited. reCAPTCHA wordt uitsluitend geladen op pagina’s waar formulieren aanwezig zijn en wordt gebruikt om te beoordelen of een interactie afkomstig is van een mens of een geautomatiseerd systeem.</p>
+          <p>In dat kader kunnen onder meer volgende persoonsgegevens worden verwerkt:</p>
+          <ul>
+          <li>IP-adres</li>
+          <li>Browser- en apparaatgegevens</li>
+          <li>Besturingssysteem</li>
+          <li>Datum en tijdstip van het bezoek</li>
+          <li>Interactiegegevens die relevant zijn voor de beveiligingscontrole</li>
+          </ul>
+          <p>Deze verwerking is noodzakelijk om de veiligheid en integriteit van onze Website en Diensten te waarborgen en misbruik te voorkomen. De rechtsgrond voor deze verwerking is ons gerechtvaardigd belang om onze Website en Diensten te beveiligen tegen frauduleuze en geautomatiseerde aanvallen (art. 6.1.f AVG). Google treedt hierbij op als verwerker en verwerkt de persoonsgegevens uitsluitend in onze opdracht.</p>]]></translation>
       </item>
       <item type="message" name="ExtraDataProcessing">
         <translation language="de"><![CDATA[<p>Zusätzlich zu den oben genannten Zwecken können wir Ihre personenbezogenen Daten auch verarbeiten:</p>
@@ -426,10 +487,16 @@
         <translation language="nl"><![CDATA[welke cookies]]></translation>
       </item>
       <item type="message" name="WhichCookies">
-        <translation language="de"><![CDATA[<p>Wenn Sie unsere Website besuchen und/oder nutzen, platzieren wir Cookies oder verwenden ähnliche Technologien, mit denen wir personenbezogene Daten über Sie erheben und verarbeiten. Wir verwenden Anwendungen wie Cookies, um den Inhalt unserer Website an Ihre Benutzerpräferenzen anzupassen, Funktionen für soziale Medien bereitzustellen und den Website-Verkehr zu optimieren. Dazu verwenden wir temporäre und permanente First-Party- und Third-Party-Cookies. Darüber hinaus verwenden wir auch Google AdWords, Google Tag Manager, Google Analytics und Facebook Pixel, um zu verfolgen, welche Dienste Sie interessieren, sowie für Remarketing-Zwecke: Die Cookies in Kombination mit dem Google-Netzwerk ermöglichen es uns, Ihnen Werbung auf anderen anzuzeigen Websites für Dienste, die Sie interessieren könnten.</p>]]></translation>
-        <translation language="en"><![CDATA[<p>When you visit and/or use our Website, we set cookies or use similar technologies through which we collect and process personal data about you. We use applications such as cookies to optimise the content of our Website according to your user preferences, to provide social media features and to optimise website traffic. For this purpose, we use temporary and permanent first-party and third-party cookies. Additionally, we also use Google AdWords, Google Tag Manager, Google Analytics and Facebook Pixel to track which services interest you, as well as for remarketing purposes: the cookies in combination with Google's network enable us to show you ads on other websites for services that may interest you.</p>]]></translation>
-        <translation language="fr"><![CDATA[<p>Lorsque vous visitez et/ou utilisez notre site web, nous installons des cookies ou utilisons des technologies similaires grâce auxquelles nous collectons et traitons des données personnelles vous concernant. Nous utilisons des applications telles que les cookies pour optimiser le contenu de notre site Web en fonction de vos préférences d'utilisateur, pour fournir des fonctionnalités de médias sociaux et pour optimiser le trafic du site Web. À cette fin, nous utilisons des cookies temporaires et permanents de première partie et de tierce partie. En outre, nous utilisons également Google AdWords, Google Tag Manager, Google Analytics et Facebook Pixel pour savoir quels services vous intéressent, ainsi qu'à des fins de remarketing : les cookies, combinés au réseau de Google, nous permettent de vous montrer des annonces sur d'autres sites web pour des services susceptibles de vous intéresser.</p>]]></translation>
-        <translation language="nl"><![CDATA[<p>Wanneer je onze Website bezoekt en/of gebruikt, plaatsen wij cookies of gebruiken we soortgelijke technologieën waarmee we persoonsgegevens over jou verzamelen en verwerken. Wij gebruiken toepassingen als cookies om de inhoud van onze website te optimaliseren aan jouw gebruiksvoorkeuren, om sociale media functies te bieden en het website verkeer te optimaliseren. Hiervoor gebruiken we tijdelijke en permanente first-party en third-party cookies. Aanvullend gebruiken wij ook Google AdWords, Google Tag Manager, Google Analytics en Facebook Pixel om bij te houden welke diensten je interesseren, alsook voor remarketing-doeleinden: de cookies in combinatie met het netwerk van Google stellen ons in staat jouw op andere websites advertenties te tonen voor diensten die je eventueel interesseren.</p>]]></translation>
+        <translation language="de"><![CDATA[<p>Wenn Sie unsere Website besuchen und/oder nutzen, platzieren wir Cookies oder verwenden ähnliche Technologien, mit denen wir personenbezogene Daten über Sie erheben und verarbeiten. Wir verwenden Anwendungen wie Cookies, um den Inhalt unserer Website an Ihre Benutzerpräferenzen anzupassen, Funktionen für soziale Medien bereitzustellen und den Website-Verkehr zu optimieren. Dazu verwenden wir temporäre und permanente First-Party- und Third-Party-Cookies. Darüber hinaus verwenden wir, mit Ihrer Einwilligung, auch Google AdWords, Google Tag Manager, Google Analytics und Facebook Pixel, um zu verfolgen, welche Dienste Sie interessieren, sowie für Remarketing-Zwecke: Die Cookies in Kombination mit dem Google-Netzwerk ermöglichen es uns, Ihnen Werbung auf anderen Websites für Dienste anzuzeigen, die Sie interessieren könnten.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>When you visit and/or use our Website, we set cookies or use similar technologies through which we collect and process personal data about you. We use applications such as cookies to optimise the content of our Website according to your user preferences, to provide social media features and to optimise website traffic. For this purpose, we use temporary and permanent first-party and third-party cookies. Additionally, with your consent, we also use Google AdWords, Google Tag Manager, Google Analytics and Facebook Pixel to track which services interest you, as well as for remarketing purposes: the cookies in combination with Google's network enable us to show you ads on other websites for services that may interest you.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Lorsque vous visitez et/ou utilisez notre site web, nous installons des cookies ou utilisons des technologies similaires grâce auxquelles nous collectons et traitons des données personnelles vous concernant. Nous utilisons des applications telles que les cookies pour optimiser le contenu de notre site Web en fonction de vos préférences d'utilisateur, pour fournir des fonctionnalités de médias sociaux et pour optimiser le trafic du site Web. À cette fin, nous utilisons des cookies temporaires et permanents de première partie et de tierce partie. En outre, avec votre consentement, nous utilisons également Google AdWords, Google Tag Manager, Google Analytics et Facebook Pixel pour savoir quels services vous intéressent, ainsi qu'à des fins de remarketing : les cookies, combinés au réseau de Google, nous permettent de vous montrer des annonces sur d'autres sites web pour des services susceptibles de vous intéresser.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wanneer je onze Website bezoekt en/of gebruikt, plaatsen wij cookies of gebruiken we soortgelijke technologieën waarmee we persoonsgegevens over jou verzamelen en verwerken. Wij gebruiken toepassingen als cookies om de inhoud van onze website te optimaliseren aan jouw gebruiksvoorkeuren, om sociale media functies te bieden en het website verkeer te optimaliseren. Hiervoor gebruiken we tijdelijke en permanente first-party en third-party cookies. Aanvullend gebruiken wij, bij toestemming, ook Google AdWords, Google Tag Manager, Google Analytics en Facebook Pixel om bij te houden welke diensten je interesseren, alsook voor remarketing-doeleinden: de cookies in combinatie met het netwerk van Google stellen ons in staat jouw op andere websites advertenties te tonen voor diensten die je eventueel interesseren.</p>]]></translation>
+      </item>
+      <item type="message" name="ReCaptchaCookies">
+        <translation language="de"><![CDATA[<p>Wir verwenden Google reCAPTCHA, um unsere Website vor Spam und Missbrauch zu schützen. Dieser Dienst kann technische Cookies und ähnliche Technologien einsetzen, die für die Sicherheit der Website erforderlich sind. Diese Cookies werden auf Grundlage unseres berechtigten Interesses gesetzt, unsere Website vor Missbrauch und betrügerischen Aktivitäten zu schützen.</p>]]></translation>
+        <translation language="en"><![CDATA[<p>We use Google reCAPTCHA to protect our Website against spam and misuse. This service may place technical cookies and use similar technologies that are necessary for the security of the Website. These cookies are placed on the basis of our legitimate interest in protecting our Website against misuse and fraudulent activities.</p>]]></translation>
+        <translation language="fr"><![CDATA[<p>Nous utilisons Google reCAPTCHA afin de protéger notre Site contre le spam et les utilisations abusives. Ce service peut placer des cookies techniques et utiliser des technologies similaires nécessaires à la sécurité du Site. Ces cookies sont placés sur la base de notre intérêt légitime à protéger notre Site contre les abus et les activités frauduleuses.</p>]]></translation>
+        <translation language="nl"><![CDATA[<p>Wij maken gebruik van Google reCAPTCHA om onze Website te beschermen tegen spam en misbruik. Deze dienst kan technische cookies en gelijkaardige technologieën plaatsen die noodzakelijk zijn voor de beveiliging van de Website. Deze cookies worden geplaatst op basis van ons gerechtvaardigd belang om onze Website te beveiligen tegen misbruik en frauduleuze activiteiten.</p>]]></translation>
       </item>
       <item type="label" name="HowLongDoCookiesStayOnMyDevice">
         <translation language="de"><![CDATA[Wie lange bleiben Cookies auf meinem Gerät?]]></translation>

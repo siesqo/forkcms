@@ -10,6 +10,9 @@
 
   <h3>2. {{ 'lbl.WhyDataProcessing'|trans|ucfirst }}</h3>
   <p>{{ 'msg.WhyDataProcessing'|trans }}</p>
+  {% if usesReCaptcha %}
+    {{ 'msg.ReCaptchaDataProcessing'|trans|raw }}
+  {% endif %}
   {{ 'msg.ExtraDataProcessing'|trans|raw }}
 
   <h3>3. {{ 'lbl.DataSharing'|trans|ucfirst }}</h3>
