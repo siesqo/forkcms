@@ -5,7 +5,6 @@ namespace Backend\Modules\Extensions\Actions;
 use Backend\Core\Engine\Base\ActionIndex as BackendBaseActionIndex;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\Extensions\Engine\Model as BackendExtensionsModel;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * This is the module install-action.
@@ -37,10 +36,6 @@ class InstallModule extends BackendBaseActionIndex
 
             // do the actual install
             BackendExtensionsModel::installModule($this->currentModule);
-
-            // remove our container cache after this request
-            $filesystem = new Filesystem();
-            $filesystem->remove($this->getContainer()->getParameter('kernel.cache_dir'));
 
             // redirect to index with a success message
             $this->redirect(BackendModel::createUrlForAction('Modules') . '&report=module-installed&var=' . $this->currentModule . '&highlight=row-module_' . $this->currentModule);

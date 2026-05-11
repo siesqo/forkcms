@@ -5,98 +5,45 @@ namespace Common\Tests\Mailer;
 use Common\Mailer\Configurator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Mailer\Transport\SendmailTransport;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 
-/**
- * Tests for our module settings
- */
 class ConfiguratorTest extends TestCase
 {
-    public function testConfiguratorSetsMailTransportByDefault(): void
+    public function testGetTransportReturnsSendmailByDefault(): void
     {
         $modulesSettingsMock = $this->getModulesSettingsMock();
-        $containerMock =
-            $this->getContainerMock();
-
-        $configurator = new Configurator(
-            $modulesSettingsMock,
-            $containerMock
-        );
-
-        // always return null: we have no modules settings set
         $modulesSettingsMock
-            ->expects($this->exactly(6))
             ->method('get')
-            ->will($this->returnValue(null))
-        ;
+            ->will($this->returnValue(null));
 
-        // we want our set method to be called with a Mail transport
-        $containerMock
-            ->expects($this->once())
-            ->method('set')
-            ->with(
-                $this->equalTo('mailer.transport'),
-                $this->isInstanceOf('Symfony\Component\Mailer\Transport\TransportInterface')
-            )
-        ;
+        $configurator = new Configurator($modulesSettingsMock);
 
-        $configurator->onKernelRequest($this->getGetResponseEventMock());
+        $this->assertInstanceOf(TransportInterface::class, $configurator->getTransport());
+        $this->assertInstanceOf(SendmailTransport::class, $configurator->getTransport());
     }
 
-    public function testConfiguratorSetsSmtpTransport(): void
+    public function testGetTransportReturnsSmtpTransport(): void
     {
         $modulesSettingsMock = $this->getModulesSettingsMock();
-        $containerMock =
-            $this->getContainerMock();
-
-        $configurator = new Configurator(
-            $modulesSettingsMock,
-            $containerMock
-        );
-
-        // always return null: we have modules settings set for smtp
         $modulesSettingsMock
-            ->expects($this->exactly(6))
             ->method('get')
             ->will($this->onConsecutiveCalls(
                 'smtp',
                 'test.server.com',
                 25,
                 'test@server.com',
-                'testpass'
-            ))
-        ;
+                'testpass',
+                null
+            ));
 
-        // we want our set method to be called with a Smtp transport
-        $containerMock
-            ->expects($this->once())
-            ->method('set')
-            ->with(
-                $this->equalTo('mailer.transport'),
-                $this->isInstanceOf('Symfony\Component\Mailer\Transport\TransportInterface')
-            )
-        ;
+        $configurator = new Configurator($modulesSettingsMock);
 
-        $configurator->onKernelRequest($this->getGetResponseEventMock());
+        $this->assertInstanceOf(TransportInterface::class, $configurator->getTransport());
     }
 
     private function getModulesSettingsMock(): MockObject
     {
         return $this->createMock('Common\ModulesSettings');
-    }
-
-    private function getContainerMock(): MockObject
-    {
-        return $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-    }
-
-    private function getGetResponseEventMock(): MockObject
-    {
-        return $this->getMockBuilder('Symfony\Component\HttpKernel\Event\GetResponseEvent')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
     }
 }

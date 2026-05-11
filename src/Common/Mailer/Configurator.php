@@ -2,10 +2,6 @@
 
 namespace Common\Mailer;
 
-use PDOException;
-use Symfony\Component\Console\Event\ConsoleCommandEvent;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Common\ModulesSettings;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 
@@ -16,47 +12,9 @@ class Configurator
      */
     private $modulesSettings;
 
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function __construct(ModulesSettings $modulesSettings, ContainerInterface $container)
+    public function __construct(ModulesSettings $modulesSettings)
     {
         $this->modulesSettings = $modulesSettings;
-        $this->container = $container;
-    }
-
-    public function onKernelRequest(RequestEvent $event): void
-    {
-        $this->configureMail();
-    }
-
-    public function onConsoleCommand(ConsoleCommandEvent $event): void
-    {
-        $this->configureMail();
-    }
-
-    private function configureMail(): void
-    {
-        try {
-            $transport = TransportFactory::create(
-                (string) $this->modulesSettings->get('Core', 'mailer_type', 'sendmail'),
-                $this->modulesSettings->get('Core', 'smtp_server'),
-                (int) $this->modulesSettings->get('Core', 'smtp_port', 25),
-                $this->modulesSettings->get('Core', 'smtp_username'),
-                $this->modulesSettings->get('Core', 'smtp_password'),
-                $this->modulesSettings->get('Core', 'smtp_secure_layer')
-            );
-
-            // @todo used in testing
-            $this->container->set(
-                'mailer.transport',
-                $transport
-            );
-        } catch (PDOException $e) {
-            // we'll just use the mail transport thats pre-configured
-        }
     }
 
     public function getTransport(): TransportInterface
