@@ -1,3 +1,11 @@
+5.13.1  (2026-05-12)
+------------------
+
+Changed:
+* Core: Removed cookiebar in favour of always using the privacy consent dialog
+* Core: Upgraded privacy consent dialog to Google Consent Mode v2
+* Core: Removed deprecated visitor tracking cookie (`getVisitorId`)
+
 5.13.0  (2025-02-13)
 ------------------
 

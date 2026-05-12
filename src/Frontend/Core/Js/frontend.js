@@ -15,8 +15,6 @@ var jsFrontend = {
 
     jsFrontend.addModalEvents()
 
-    jsFrontend.cookieBar.init()
-
     // init consent dialog
     jsFrontend.consentDialog.init()
 
@@ -95,37 +93,6 @@ jsFrontend.controls = {
 }
 
 /**
- * Handles the cookieBar
- */
-jsFrontend.cookieBar = {
-  init: function () {
-    // if there is no cookiebar we shouldn't do anything
-    if ($('#cookie-bar').length === 0) return
-
-    var $cookieBar = $('#cookie-bar')
-
-    // @remark: as you can see we use PHP-serialized values so we can use them in PHP too.
-    // hide the cookieBar if needed
-    if (utils.cookies.readCookie('cookie_bar_hide') === 'b%3A1%3B') {
-      $cookieBar.hide()
-    }
-
-    $cookieBar.on('click', '[data-role="cookie-bar-button"]', function (e) {
-      e.preventDefault()
-
-      if ($(e.currentTarget).data('action') === 'agree') {
-        utils.cookies.setCookie('cookie_bar_agree', 'Y')
-        utils.cookies.setCookie('cookie_bar_hide', 'Y')
-      } else {
-        utils.cookies.setCookie('cookie_bar_agree', 'N')
-        utils.cookies.setCookie('cookie_bar_hide', 'Y')
-      }
-      $cookieBar.hide()
-    })
-  }
-}
-
-/**
  * Handles the privacy consent dialog
  */
 jsFrontend.consentDialog = {
@@ -189,52 +156,30 @@ jsFrontend.consentDialog = {
 
       for (var level of $levels) {
         var name = $(level).data('value')
-        // set only functional to true
-        var isChecked = name === 'functional'
-
-        handlePrivacyConsentLevel(name, isChecked)
+        handlePrivacyConsentLevel(name, name === 'functionality_storage')
       }
 
       privacyConsentChanged()
     })
 
     function handlePrivacyConsentLevel (name, isChecked) {
-      // store in jsData
       jsData.privacyConsent.visitorChoices[name] = isChecked
-
-      // store for Google Tag Manager
-      var niceName = getNiceName(name)
-      if (typeof dataLayer !== 'undefined') {
-        if (isChecked) {
-          var gtmData = {}
-          gtmData['privacyConsentLevel' + niceName + 'Agreed'] = isChecked
-          dataLayer.push(gtmData)
-          dataLayer.push({'event': 'privacyConsentLevel' + niceName + 'Agreed'})
-        }
-      }
-
-      // store data in functional cookies for later usage
-      utils.cookies.setCookie('privacy_consent_level_' + name + '_agreed', isChecked ? 1 : 0, 6 * 30)
+      utils.cookies.setCookie('privacy_consent_level_' + name + '_granted', isChecked ? 1 : 0, 6 * 30)
       utils.cookies.setCookie('privacy_consent_hash', jsData.privacyConsent.levelsHash, 6 * 30)
-
-      // trigger events
-      var eventName = 'privacyConsentLevel' + niceName
-      if (isChecked) {
-        eventName += 'Agreed'
-      } else {
-        eventName += 'Disagreed'
-      }
-      $(document).trigger(eventName)
-    }
-
-    function getNiceName (name) {
-      return name.charAt(0).toUpperCase() + name.slice(1)
     }
 
     function privacyConsentChanged () {
+      if (typeof gtag !== 'undefined') {
+        var consentUpdate = {}
+        for (var level in jsData.privacyConsent.visitorChoices) {
+          if (level === 'functionality_storage') continue
+          consentUpdate[level] = jsData.privacyConsent.visitorChoices[level] ? 'granted' : 'denied'
+        }
+        gtag('consent', 'update', consentUpdate)
+      }
+
       $(document).trigger('privacyConsentChanged')
 
-      // hide all dialogs
       privacyConsentDialogModal.hide()
       $consentInfo.hide()
     }

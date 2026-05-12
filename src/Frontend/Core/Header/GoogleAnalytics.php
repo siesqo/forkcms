@@ -2,7 +2,6 @@
 
 namespace Frontend\Core\Header;
 
-use Common\Core\Cookie;
 use Common\ModulesSettings;
 use ForkCMS\Privacy\ConsentDialog;
 
@@ -11,17 +10,13 @@ final class GoogleAnalytics
     /** @var ModulesSettings */
     private $modulesSettings;
 
-    /** @var Cookie */
-    private $cookie;
-
     /** @var ConsentDialog */
     private $consentDialog;
 
-    public function __construct(ModulesSettings $modulesSettings, ConsentDialog $consentDialog, Cookie $cookie)
+    public function __construct(ModulesSettings $modulesSettings, ConsentDialog $consentDialog)
     {
         $this->modulesSettings = $modulesSettings;
         $this->consentDialog = $consentDialog;
-        $this->cookie = $cookie;
     }
 
     private function shouldAddGoogleAnalyticsHtml(): bool
@@ -37,18 +32,13 @@ final class GoogleAnalytics
 
     private function shouldAnonymize(): bool
     {
-        // @deprecated remove this in Fork 6, the privacy consent dialog should be used
-        if ($this->modulesSettings->get('Core', 'show_cookie_bar', false) && !$this->cookie->hasAllowedCookies()) {
-            return true;
-        }
-
         // if the consent dialog is disabled we will anonymize by default
         if (!$this->modulesSettings->get('Core', 'show_consent_dialog', false)) {
             return true;
         }
 
         // the visitor has agreed to be tracked
-        if ($this->consentDialog->hasAgreedTo('statistics')) {
+        if ($this->consentDialog->hasAgreedTo(ConsentDialog::LEVEL_ANALYTICS_STORAGE)) {
             return false;
         }
 

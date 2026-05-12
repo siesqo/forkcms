@@ -7,6 +7,14 @@ use Common\ModulesSettings;
 
 class ConsentDialog
 {
+    const LEVEL_AD_STORAGE = 'ad_storage';
+    const LEVEL_AD_USER_DATA = 'ad_user_data';
+    const LEVEL_AD_PERSONALIZATION = 'ad_personalization';
+    const LEVEL_ANALYTICS_STORAGE = 'analytics_storage';
+    const LEVEL_FUNCTIONALITY_STORAGE = 'functionality_storage';
+    const LEVEL_PERSONALIZATION_STORAGE = 'personalization_storage';
+    const LEVEL_SECURITY_STORAGE = 'security_storage';
+
     /**
      * @var ModulesSettings
      */
@@ -23,6 +31,19 @@ class ConsentDialog
         $this->cookie = $cookie;
     }
 
+    public static function getConsentLevels(): array
+    {
+        return [
+            self::LEVEL_AD_STORAGE,
+            self::LEVEL_AD_USER_DATA,
+            self::LEVEL_AD_PERSONALIZATION,
+            self::LEVEL_ANALYTICS_STORAGE,
+            self::LEVEL_FUNCTIONALITY_STORAGE,
+            self::LEVEL_PERSONALIZATION_STORAGE,
+            self::LEVEL_SECURITY_STORAGE,
+        ];
+    }
+
     public function isDialogEnabled(): bool
     {
         return $this->settings->get('Core', 'show_consent_dialog', false);
@@ -30,18 +51,14 @@ class ConsentDialog
 
     public function shouldDialogBeShown(): bool
     {
-        // the cookiebar is hidden within the settings, so don't show it
         if (!$this->settings->get('Core', 'show_consent_dialog', false)) {
             return false;
         }
 
-        // no levels mean there should not be any consent
         if (empty($this->getLevels())) {
             return false;
         }
 
-        // if the hash in the cookie is the same as the current has it means the user
-        // has already stored their preferences
         if ($this->cookie->get('privacy_consent_hash', '') === $this->getLevelsHash()) {
             return false;
         }
@@ -49,19 +66,21 @@ class ConsentDialog
         return true;
     }
 
-    public function getLevels(bool $includeFunctional = false): array
+    public function getLevels(bool $includeFunctionality = false): array
     {
-        $levels = [];
-        if ($includeFunctional) {
-            $levels = ['functional'];
+        $configured = array_filter(
+            $this->settings->get('Core', 'privacy_consent_levels', []),
+            function (string $level): bool {
+                return in_array($level, self::getConsentLevels(), true)
+                    && $level !== self::LEVEL_FUNCTIONALITY_STORAGE;
+            }
+        );
+
+        if ($includeFunctionality) {
+            return array_values(array_merge([self::LEVEL_FUNCTIONALITY_STORAGE], $configured));
         }
 
-        $levels = array_filter(array_merge(
-            $levels,
-            $this->settings->get('Core', 'privacy_consent_levels', [])
-        ));
-
-        return $levels;
+        return array_values($configured);
     }
 
     public function getLevelsHash(): string
@@ -75,11 +94,11 @@ class ConsentDialog
     public function getVisitorChoices(): array
     {
         $choices = [
-            'functional' => true,
+            self::LEVEL_FUNCTIONALITY_STORAGE => true,
         ];
-        $levels = $this->getLevels(false);
-        foreach ($levels as $level) {
-            $choices[$level] = $this->cookie->get('privacy_consent_level_' . $level . '_agreed', '0') === '1';
+
+        foreach ($this->getLevels(false) as $level) {
+            $choices[$level] = $this->cookie->get('privacy_consent_level_' . $level . '_granted', '0') === '1';
         }
 
         return $choices;

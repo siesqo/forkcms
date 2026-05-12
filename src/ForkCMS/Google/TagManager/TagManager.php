@@ -27,36 +27,6 @@ class TagManager
         $this->modulesSettings = $modulesSettings;
         $this->dataLayer = $dataLayer;
         $this->consentDialog = $consentDialog;
-
-        $this->addDefaultDataLayerVariables();
-    }
-
-    private function addDefaultDataLayerVariables(): void
-    {
-        $this->dataLayer->set('anonymizeIp', $this->shouldAnonymizeIp());
-
-        // only if the consent dialog is enabled we should extra variables
-        if ($this->modulesSettings->get('Core', 'show_consent_dialog', false)) {
-            foreach ($this->consentDialog->getVisitorChoices() as $level => $choice) {
-                $this->dataLayer->set('privacyConsentLevel' . ucfirst($level) . 'Agreed', $choice);
-            }
-        }
-    }
-
-    private function shouldAnonymizeIp(): bool
-    {
-        // if the consent dialog is disabled we will anonymize by default
-        if (!$this->modulesSettings->get('Core', 'show_consent_dialog', false)) {
-            return true;
-        }
-
-        // the visitor has agreed to be tracked
-        if ($this->consentDialog->hasAgreedTo('statistics')) {
-            return false;
-        }
-
-        // fallback
-        return true;
     }
 
     private function shouldAddCode(): bool
@@ -68,6 +38,41 @@ class TagManager
         );
 
         return ($googleAnalyticsTrackingId !== '');
+    }
+
+    private function generateConsentInitCode(): string
+    {
+        $defaultState = [];
+        foreach (ConsentDialog::getConsentLevels() as $level) {
+            $defaultState[$level] = 'denied';
+        }
+        $defaultState[ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE] = 'granted';
+
+        $lines = [
+            '<script>',
+            '  window.dataLayer = window.dataLayer || [];',
+            '  function gtag(){dataLayer.push(arguments);}',
+            '  gtag(\'consent\', \'default\', ' . json_encode($defaultState) . ');',
+        ];
+
+        // Apply stored visitor choices before GTM fires so tags respect existing consent
+        if (!$this->consentDialog->shouldDialogBeShown()) {
+            $updateState = [];
+            foreach ($this->consentDialog->getVisitorChoices() as $level => $granted) {
+                if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
+                    continue;
+                }
+                $updateState[$level] = $granted ? 'granted' : 'denied';
+            }
+
+            if (!empty($updateState)) {
+                $lines[] = '  gtag(\'consent\', \'update\', ' . json_encode($updateState) . ');';
+            }
+        }
+
+        $lines[] = '</script>';
+
+        return implode("\n", $lines);
     }
 
     public function generateHeadCode(): string
@@ -93,6 +98,10 @@ class TagManager
 
         if (!empty($this->dataLayer->all())) {
             $code = $this->dataLayer->generateHeadCode() . "\n" . $code;
+        }
+
+        if ($this->modulesSettings->get('Core', 'show_consent_dialog', false)) {
+            $code = $this->generateConsentInitCode() . "\n" . $code;
         }
 
         return $code;

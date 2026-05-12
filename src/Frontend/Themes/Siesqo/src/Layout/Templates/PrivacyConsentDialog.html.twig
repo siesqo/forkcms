@@ -1,5 +1,5 @@
 {% if privacyConsentEnabled %}
-  {% if not privacyConsentDialogHide %}
+  {% if privacyConsentDialogShow %}
     <div
       id="privacyConsentInfo" class="card"
       aria-labelledby="privacyConsentInfoTitle"
@@ -39,46 +39,46 @@
               <div class="accordion" id="accordionCookies">
                 <div class="accordion-item">
                   <div class="input-group">
-                    <h2 class="accordion-header flex-grow-1" id="headingFunctional">
-                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFunctional" aria-expanded="false" aria-controls="collapseFunctional">
-                        {{ 'msg.PrivacyConsentLevelFunctionalTitle'|trans|raw }}
+                    <h2 class="accordion-header flex-grow-1" id="headingFunctionalityStorage">
+                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFunctionalityStorage" aria-expanded="false" aria-controls="collapseFunctionalityStorage">
+                        {{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}
                       </button>
                     </h2>
                     <div class="form-check form-switch">
                       <input class="form-check-input" role="switch" type="checkbox" checked disabled
-                             name="privacyConsentLevelFunctionalCheckbox" id="privacyConsentLevelFunctionalCheckbox"
-                             aria-describedby="privacyConsentLevelFunctionalHelpBlock" aria-label="{{ 'msg.PrivacyConsentLevelFunctionalTitle'|trans|raw }}"
+                             name="privacyConsentLevelFunctionalityStorageCheckbox" id="privacyConsentLevelFunctionalityStorageCheckbox"
+                             aria-describedby="privacyConsentLevelFunctionalityStorageHelpBlock" aria-label="{{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}"
                              data-role="privacy-level"
-                             data-value="functional"
+                             data-value="functionality_storage"
                       >
                     </div>
                   </div>
-                  <div id="collapseFunctional" class="accordion-collapse collapse" aria-labelledby="headingFunctional" data-bs-parent="#accordionCookies">
+                  <div id="collapseFunctionalityStorage" class="accordion-collapse collapse" aria-labelledby="headingFunctionalityStorage" data-bs-parent="#accordionCookies">
                     <div class="accordion-body">
-                      {{ 'msg.PrivacyConsentLevelFunctionalText'|trans|raw }}
+                      {{ 'msg.PrivacyConsentLevelFunctionalityStorageText'|trans|raw }}
                     </div>
                   </div>
                 </div>
                 {% for level in privacyConsentDialogLevels %}
                   <div class="accordion-item">
                     <div class="input-group">
-                      <h2 class="accordion-header flex-grow-1" id="heading{{ level|ucfirst }}">
-                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{ level|ucfirst }}" aria-expanded="false" aria-controls="collapse{{ level|ucfirst }}">
-                          {{ ('msg.PrivacyConsentLevel' ~ level|ucfirst ~ 'Title')|trans|raw }}
+                      <h2 class="accordion-header flex-grow-1" id="heading{{ level.localeKey }}">
+                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{ level.localeKey }}" aria-expanded="false" aria-controls="collapse{{ level.localeKey }}">
+                          {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}
                         </button>
                       </h2>
                       <div class="form-check form-switch">
                         <input class="form-check-input" role="switch" type="checkbox"
-                               name="privacyConsentLevel{{ level|ucfirst }}Checkbox" id="privacyConsentLevel{{ level|ucfirst }}Checkbox"
-                               aria-describedby="privacyConsentLevel{{ level|ucfirst }}HelpBlock" aria-label="{{ ('msg.PrivacyConsentLevel' ~ level|ucfirst ~ 'Title')|trans|raw }}"
+                               name="privacyConsentLevel{{ level.localeKey }}Checkbox" id="privacyConsentLevel{{ level.localeKey }}Checkbox"
+                               aria-describedby="privacyConsentLevel{{ level.localeKey }}HelpBlock" aria-label="{{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}"
                                data-role="privacy-level"
-                               data-value="{{ level }}"
+                               data-value="{{ level.name }}"
                         >
                       </div>
                     </div>
-                    <div id="collapse{{ level|ucfirst }}" class="accordion-collapse collapse" aria-labelledby="heading{{ level|ucfirst }}" data-bs-parent="#accordionCookies">
+                    <div id="collapse{{ level.localeKey }}" class="accordion-collapse collapse" aria-labelledby="heading{{ level.localeKey }}" data-bs-parent="#accordionCookies">
                       <div class="accordion-body">
-                        {{ ('msg.PrivacyConsentLevel' ~ level|ucfirst ~ 'Text')|trans|raw }}
+                        {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Text')|trans|raw }}
                       </div>
                     </div>
                   </div>

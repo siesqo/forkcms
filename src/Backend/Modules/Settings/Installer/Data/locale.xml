@@ -214,10 +214,6 @@
         <translation language="zh"><![CDATA[配置上载的图像的最大宽度（以像素为单位）。如果上传的图片比较大，它就会被缩小比例。设置为0以禁用此功能。]]></translation>
         <translation language="pl"><![CDATA[Skonfiguruj maksymalną szerokość (w pikselach) przesłanych obrazów. Jeśli przesłany obraz jest większy, zostanie proporcjonalnie zmniejszony. Ustaw na 0, aby wyłączyć tę funkcję.]]></translation>
       </item>
-      <item type="message" name="HelpCookies">
-        <translation language="nl"><![CDATA[Gebruik toch de verouderde cookiebar, je kan beter het privacy voorkeuren scherm gebruiken.]]></translation>
-        <translation language="en"><![CDATA[Show the deprecated cookiebar, consider upgrading to the consent dialog.]]></translation>
-      </item>
       <item type="message" name="HelpDateFormatLong">
         <translation language="nl"><![CDATA[Formaat dat bij de overzichtspagina's en detailweergaves wordt gebruikt.]]></translation>
         <translation language="en"><![CDATA[Format that's used on overview and detail pages.]]></translation>
@@ -538,14 +534,6 @@
         <translation language="el"><![CDATA[Προσθέσατε <code>rel="nofollow"</code> σε συνδέσμους που βρίσκονται μέσα σε σχόλιο.]]></translation>
         <translation language="pl"><![CDATA[dodaj <code>rel="nofollow"</code> do linków wewnątrz komentarza]]></translation>
       </item>
-      <item type="message" name="ShowCookieBar">
-        <translation language="nl"><![CDATA[toon de cookie balk]]></translation>
-        <translation language="en"><![CDATA[show the cookie bar]]></translation>
-        <translation language="fr"><![CDATA[montrer la barre de cookie]]></translation>
-        <translation language="de"><![CDATA[zeigen Sie die Cookie-Bar]]></translation>
-        <translation language="es"><![CDATA[monstrar la barra de cookie]]></translation>
-        <translation language="pl"><![CDATA[pokaż pasek cookie]]></translation>
-      </item>
       <item type="message" name="TestMessage">
         <translation language="nl"><![CDATA[dit is een test]]></translation>
         <translation language="en"><![CDATA[this is just a test]]></translation>
@@ -630,25 +618,37 @@
         <translation language="nl"><![CDATA[Privacy toestemmingen]]></translation>
         <translation language="en"><![CDATA[Privacy consents]]></translation>
       </item>
-      <item type="label" name="TechnicalName">
-        <translation language="nl"><![CDATA[Technische naam]]></translation>
-        <translation language="en"><![CDATA[Technical name]]></translation>
-      </item>
       <item type="message" name="HelpPrivacyConsents">
-        <translation language="nl"><![CDATA[De GDPR regelt hoe je als website eigenaar moet omgaan met cookies. Hieronder kan je verschillende niveaus instellen, waarmee je de bezoeker verschillende opties kan bieden.]]></translation>
-        <translation language="en"><![CDATA[GDPR defines how you as a website owner may use cookies. Below you are able to define several levels, so the user can choose from them.]]></translation>
+        <translation language="nl"><![CDATA[De GDPR regelt hoe je als website eigenaar moet omgaan met cookies. Hieronder kan je de toestemmingsniveaus instellen die aan bezoekers worden aangeboden.]]></translation>
+        <translation language="en"><![CDATA[GDPR defines how you as a website owner may use cookies. Below you can configure which consent levels are presented to visitors.]]></translation>
       </item>
-      <item type="message" name="NoPrivacyConsentLevels">
-        <translation language="nl"><![CDATA[Je hebt nog geen niveaus ingegeven.]]></translation>
-        <translation language="en"><![CDATA[No levels yet.]]></translation>
+      <item type="message" name="PrivacyConsentLevelFunctionalityStorageTitle">
+        <translation language="nl"><![CDATA[Functionele cookies (altijd actief)]]></translation>
+        <translation language="en"><![CDATA[Functional cookies (always active)]]></translation>
       </item>
-      <item type="message" name="HelpPrivacyConsentLevels">
-        <translation language="nl"><![CDATA[Dit zijn de namen van de variabelen die beschikbaar zullen zijn in JavaScript en Google Data Layer. Je kan dus geen spaties gebruiken.]]></translation>
-        <translation language="en"><![CDATA[These are the names of the variable that will be available in JavaScript and Google Data Layer. You can't use spaces or other illegal characters.]]></translation>
+      <item type="message" name="PrivacyConsentLevelAdStorageTitle">
+        <translation language="nl"><![CDATA[Advertentie cookies]]></translation>
+        <translation language="en"><![CDATA[Advertising cookies]]></translation>
       </item>
-      <item type="error" name="InvalidVariableName">
-        <translation language="nl"><![CDATA[<code>%1$s</code> is een ongeldige variabele naam.]]></translation>
-        <translation language="en"><![CDATA[<code>%1$s</code> is an invalid variable name.]]></translation>
+      <item type="message" name="PrivacyConsentLevelAdUserDataTitle">
+        <translation language="nl"><![CDATA[Advertentie gebruikersdata]]></translation>
+        <translation language="en"><![CDATA[Ad user data]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelAdPersonalizationTitle">
+        <translation language="nl"><![CDATA[Gepersonaliseerde advertenties]]></translation>
+        <translation language="en"><![CDATA[Ad personalization]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelAnalyticsStorageTitle">
+        <translation language="nl"><![CDATA[Analytische cookies]]></translation>
+        <translation language="en"><![CDATA[Analytics cookies]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelPersonalizationStorageTitle">
+        <translation language="nl"><![CDATA[Personalisatie cookies]]></translation>
+        <translation language="en"><![CDATA[Personalization cookies]]></translation>
+      </item>
+      <item type="message" name="PrivacyConsentLevelSecurityStorageTitle">
+        <translation language="nl"><![CDATA[Beveiligingscookies]]></translation>
+        <translation language="en"><![CDATA[Security cookies]]></translation>
       </item>
       <item type="label" name="GoogleRecaptcha">
         <translation language="nl"><![CDATA[Google reCAPTCHA]]></translation>

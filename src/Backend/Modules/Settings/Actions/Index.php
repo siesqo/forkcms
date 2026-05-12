@@ -2,6 +2,7 @@
 
 namespace Backend\Modules\Settings\Actions;
 
+use ForkCMS\Privacy\ConsentDialog;
 use ForkCMS\Utility\Akismet;
 use SpoonFilter;
 use Backend\Core\Engine\Base\ActionIndex as BackendBaseActionIndex;
@@ -316,26 +317,21 @@ class Index extends BackendBaseActionIndex
             );
         }
 
-        // cookies
-        // @deprecated remove this in Fork 6, the privacy consent dialog should be used
-        $this->form->addCheckbox('show_cookie_bar', $this->get('fork.settings')->get('Core', 'show_cookie_bar', false));
-
         // privacy
         $this->form->addCheckbox(
             'show_consent_dialog',
             $this->get('fork.settings')->get('Core', 'show_consent_dialog', false)
         );
-        $this->form->addText(
-            'privacy_consent_levels',
-            implode(
-                ',',
-                $this->get('fork.settings')->get(
-                    'Core',
-                    'privacy_consent_levels',
-                    []
-                )
-            )
-        );
+        $enabledLevels = $this->get('fork.settings')->get('Core', 'privacy_consent_levels', []);
+        foreach (ConsentDialog::getConsentLevels() as $level) {
+            $field = $this->form->addCheckbox(
+                'privacy_consent_level_' . $level,
+                $level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE || in_array($level, $enabledLevels, true)
+            );
+            if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
+                $field->setAttribute('disabled', 'disabled');
+            }
+        }
     }
 
     protected function parse(): void
@@ -444,18 +440,6 @@ class Index extends BackendBaseActionIndex
                     'ckfinder_image_max_height'
                 )->isInteger(BL::err('InvalidInteger'));
             }
-
-            $privacyConsentLevelsField = $this->form->getField('privacy_consent_levels');
-            if ($privacyConsentLevelsField->isFilled()) {
-                $levels = explode(',', $privacyConsentLevelsField->getValue());
-                foreach ($levels as $level) {
-                    if (!preg_match('/^[a-z_\x7f-\xff][a-z0-9_\x7f-\xff]*$/i', $level)) {
-                        $privacyConsentLevelsField->setError(sprintf(BL::err('InvalidVariableName'), $level));
-                        break;
-                    }
-                }
-            }
-
 
             // no errors ?
             if ($this->form->isCorrect()) {
@@ -673,14 +657,6 @@ class Index extends BackendBaseActionIndex
                 // save domains
                 $this->get('fork.settings')->set('Core', 'site_domains', $siteDomains);
 
-                // cookies
-                // @deprecated remove this in Fork 6, the privacy consent dialog should be used
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'show_cookie_bar',
-                    $this->form->getField('show_cookie_bar')->getChecked()
-                );
-
                 // privacy
                 $this->get('fork.settings')->set(
                     'Core',
@@ -688,8 +664,13 @@ class Index extends BackendBaseActionIndex
                     $this->form->getField('show_consent_dialog')->getChecked()
                 );
                 $privacyConsentLevels = [];
-                if ($privacyConsentLevelsField->isFilled()) {
-                    $privacyConsentLevels = explode(',', $privacyConsentLevelsField->getValue());
+                foreach (ConsentDialog::getConsentLevels() as $level) {
+                    if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
+                        continue;
+                    }
+                    if ($this->form->getField('privacy_consent_level_' . $level)->getChecked()) {
+                        $privacyConsentLevels[] = $level;
+                    }
                 }
                 $this->get('fork.settings')->set(
                     'Core',

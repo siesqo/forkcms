@@ -11,25 +11,3 @@
 <![endif]-->
 
 <a href="#main" class="skip-content">{{ 'lbl.SkipToContent'|trans|ucfirst }}</a>
-
-{% if not cookieBarHide %}
-  <div id="cookie-bar" class="cookie-background flex-row flex-wrap justify-content-center align-items-center">
-    <div class="col-10 col-lg-6 col-xl-4 col-xxl-3 cookie-content alert alert-default p-4 p-md-5">
-      <div class="container">
-        <h3 class="mb-3">{{ 'lbl.WeRespectPrivacy'|trans|upper }}</h3>
-        <p class="mb-4">{{ 'msg.CookiesWarning'|trans|raw }}</p>
-        <div class="cookie-action">
-          <button id="cookieBarAgree" data-role="cookie-bar-button" data-action="agree" class="btn">{{ 'lbl.ContinueBrowsing'|trans|upper }}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    var body = document.body
-    body.style.overflow = 'hidden'
-    document.getElementById('cookieBarAgree').onclick = function (event) {
-      body.style.overflow = 'auto'
-    }
-  </script>
-{% endif %}
-

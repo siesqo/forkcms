@@ -6,7 +6,7 @@
     aria-labelledby="privacyConsentDialogTitle"
     data-role="privacy_consent_dialog"
     data-backdrop="false"
-    {% if privacyConsentDialogHide %}
+    {% if not privacyConsentDialogShow %}
       style="display: none"
     {% endif %}
   >
@@ -25,31 +25,31 @@
             </div>
 
             <div class="checkbox">
-              <label id="privacyConsentLevelFunctionalCheckbox">
-                <input name="privacyConsentLevelFunctionalCheckbox" id="privacyConsentLevelFunctionalCheckbox"
-                       type="checkbox" checked disabled aria-describedby="privacyConsentLevelFunctionalHelpBlock"
+              <label id="privacyConsentLevelFunctionalityStorageCheckbox">
+                <input name="privacyConsentLevelFunctionalityStorageCheckbox" id="privacyConsentLevelFunctionalityStorageCheckbox"
+                       type="checkbox" checked disabled aria-describedby="privacyConsentLevelFunctionalityStorageHelpBlock"
                        data-role="privacy-level"
-                       data-value="functional"
+                       data-value="functionality_storage"
                 >
-                {{ 'msg.PrivacyConsentLevelFunctionalTitle'|trans|raw }}
+                {{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}
               </label>
-              <small id="privacyConsentLevelFunctionalHelpBlock" class="help-block">
-                {{ 'msg.PrivacyConsentLevelFunctionalText'|trans|raw }}
+              <small id="privacyConsentLevelFunctionalityStorageHelpBlock" class="help-block">
+                {{ 'msg.PrivacyConsentLevelFunctionalityStorageText'|trans|raw }}
               </small>
             </div>
             {% for level in privacyConsentDialogLevels %}
               <div class="checkbox">
-                <label id="privacyConsentLevel{{ level|ucfirst }}Checkbox">
-                  <input name="privacyConsentLevel{{ level|ucfirst }}Checkbox"
-                         id="privacyConsentLevel{{ level|ucfirst }}Checkbox" type="checkbox"
-                         aria-describedby="privacyConsentLevel{{ level|ucfirst }}HelpBlock"
+                <label id="privacyConsentLevel{{ level.localeKey }}Checkbox">
+                  <input name="privacyConsentLevel{{ level.localeKey }}Checkbox"
+                         id="privacyConsentLevel{{ level.localeKey }}Checkbox" type="checkbox"
+                         aria-describedby="privacyConsentLevel{{ level.localeKey }}HelpBlock"
                          data-role="privacy-level"
-                         data-value="{{ level }}"
+                         data-value="{{ level.name }}"
                   >
-                  {{ ('msg.PrivacyConsentLevel' ~ level|ucfirst ~ 'Title')|trans|raw }}
+                  {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}
                 </label>
-                <small id="privacyConsentLevel{{ level|ucfirst }}HelpBlock" class="help-block">
-                  {{ ('msg.PrivacyConsentLevel' ~ level|ucfirst ~ 'Text')|trans|raw }}
+                <small id="privacyConsentLevel{{ level.localeKey }}HelpBlock" class="help-block">
+                  {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Text')|trans|raw }}
                 </small>
               </div>
             {% endfor %}
