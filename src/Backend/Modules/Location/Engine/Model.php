@@ -88,35 +88,6 @@ class Model
     }
 
     /**
-     * Get coordinates latitude/longitude
-     *
-     * @deprecated
-     *
-     * @param string $street
-     * @param string $streetNumber
-     * @param string $city
-     * @param string $zip
-     * @param string $country
-     *
-     * @return array  Contains 'latitude' and 'longitude' as variables
-     */
-    public static function getCoordinates(
-        string $street = null,
-        string $streetNumber = null,
-        string $city = null,
-        string $zip = null,
-        string $country = null
-    ): array {
-        return BackendModel::get(Geolocation::class)->getCoordinates(
-            $street,
-            $streetNumber,
-            $city,
-            $zip,
-            $country
-        );
-    }
-
-    /**
      * Retrieve a map setting
      *
      * @param int $mapId

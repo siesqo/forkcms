@@ -384,16 +384,11 @@ class Header extends KernelLoader
             ) . "\n";
         }
 
-        // @deprecated fallback to site_html_header as this was used in the past
-        $siteHTMLHead .= (string) $this->get('fork.settings')->get('Core', 'site_html_head', $this->get('fork.settings')->get('Core', 'site_html_header', '')) . "\n";
+        $siteHTMLHead .= (string) $this->get('fork.settings')->get('Core', 'site_html_head') . "\n";
         $siteHTMLHead .= "\n" . $this->jsData;
         $this->template->assignGlobal('siteHTMLHead', trim($siteHTMLHead));
 
-        // @deprecated remove this in Fork 6, use siteHTMLHead
-        $this->template->assignGlobal('siteHTMLHeader', trim($siteHTMLHead));
-
-        // @deprecated fallback to site_start_of_body_scripts as this was used in the pased
-        $siteHTMLStartOfBody .= $this->get('fork.settings')->get('Core', 'site_html_start_of_body', $this->get('fork.settings')->get('Core', 'site_start_of_body_scripts', ''));
+        $siteHTMLStartOfBody .= $this->get('fork.settings')->get('Core', 'site_html_start_of_body', '');
         $this->template->assignGlobal('siteHTMLStartOfBody', trim($siteHTMLStartOfBody));
 
         $this->template->assignGlobal('pageTitle', $this->getPageTitle());

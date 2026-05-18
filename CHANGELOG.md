@@ -5,6 +5,14 @@ Changed:
 * Core: Removed cookiebar in favour of always using the privacy consent dialog
 * Core: Upgraded privacy consent dialog to Google Consent Mode v2
 * Core: Removed deprecated visitor tracking cookie (`getVisitorId`)
+* Settings: Removed deprecated Facebook integration (settings fields, frontend injection, Twig globals, locale strings)
+* Settings: Removed deprecated Twitter integration (settings fields, Twig global, locale strings)
+* Core: Removed deprecated `site_start_of_body_scripts` and `site_html_footer` setting fallbacks and duplicate writes
+* Core: Removed deprecated `siteHTMLHeader` and `siteHTMLFooter` Twig globals in favor of `siteHTMLHead` and `siteHTMLEndOfBody`
+* Core: Fixed various other deprecations
+* Pages: Fixed block initialization when copying a page (blocks are not re-initialized with defaults when the page is a copy)
+* Profiles: Removed deprecated `importCsv()` method in favour of `importFromArray()`
+* Core: Removed deprecated `Backend\Core\Engine\Csv` class
 
 5.13.0  (2025-02-13)
 ------------------

@@ -102,11 +102,9 @@ class Index extends BackendBaseActionIndex
             $googleTrackingTagManagerContainerIdField->setAttribute('disabled', 'disabled');
         }
 
-        // @deprecated fallback to site_html_header as this was used in the past.
         $siteHtmlHeadValue = $this->get('fork.settings')->get(
             'Core',
             'site_html_head',
-            $this->get('fork.settings')->get('Core', 'site_html_header', null)
         );
         $this->form->addTextarea(
             'site_html_head',
@@ -118,7 +116,7 @@ class Index extends BackendBaseActionIndex
         $siteHtmlStartOfBodyValue = $this->get('fork.settings')->get(
             'Core',
             'site_html_start_of_body',
-            $this->get('fork.settings')->get('Core', 'site_start_of_body_scripts', null)
+            null
         );
         $this->form->addTextarea(
             'site_html_start_of_body',
@@ -130,7 +128,7 @@ class Index extends BackendBaseActionIndex
         $siteHtmlEndOfBodyValue = $this->get('fork.settings')->get(
             'Core',
             'site_html_end_of_body',
-            $this->get('fork.settings')->get('Core', 'site_html_footer', null)
+            null
         );
         $this->form->addTextarea(
             'site_html_end_of_body',
@@ -482,21 +480,9 @@ class Index extends BackendBaseActionIndex
                     'site_html_start_of_body',
                     $this->form->getField('site_html_start_of_body')->getValue()
                 );
-                // @deprecated remove this in Fork 6, use site_html_start_of_body
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'site_start_of_body_scripts',
-                    $this->form->getField('site_html_start_of_body')->getValue()
-                );
                 $this->get('fork.settings')->set(
                     'Core',
                     'site_html_end_of_body',
-                    $this->form->getField('site_html_end_of_body')->getValue()
-                );
-                // @deprecated remove this in Fork 6, use site_html_end_of_body
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'site_html_footer',
                     $this->form->getField('site_html_end_of_body')->getValue()
                 );
 
