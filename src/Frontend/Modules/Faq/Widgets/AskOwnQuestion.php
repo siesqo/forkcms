@@ -7,7 +7,6 @@ use Frontend\Core\Engine\Base\Widget as FrontendBaseWidget;
 use Frontend\Core\Engine\Form as FrontendForm;
 use Frontend\Core\Language\Language as FL;
 use Frontend\Core\Engine\Model as FrontendModel;
-use Frontend\Core\Engine\Navigation as FrontendNavigation;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Address;
 
@@ -79,11 +78,6 @@ class AskOwnQuestion extends FrontendBaseWidget
         return $this->form->isCorrect();
     }
 
-    private function isSpamFilterEnabled(): bool
-    {
-        return $this->get('fork.settings')->get($this->getModule(), 'spamfilter', false);
-    }
-
     private function getSubmittedQuestion(): array
     {
         return [
@@ -94,16 +88,6 @@ class AskOwnQuestion extends FrontendBaseWidget
         ];
     }
 
-    private function isQuestionSpam(array $question): bool
-    {
-        return FrontendModel::isSpam(
-            $question['message'],
-            SITE_URL . FrontendNavigation::getUrlForBlock($this->getModule()),
-            $question['name'],
-            $question['email']
-        );
-    }
-
     private function handleForm(): void
     {
         if (!$this->form->isSubmitted() || !$this->validateForm()) {
@@ -111,12 +95,6 @@ class AskOwnQuestion extends FrontendBaseWidget
         }
 
         $question = $this->getSubmittedQuestion();
-
-        if ($this->isSpamFilterEnabled() && $this->isQuestionSpam($question)) {
-            $this->status = 'errorSpam';
-
-            return;
-        }
 
         $this->sendNewQuestionNotification($question);
         $this->status = 'success';

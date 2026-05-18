@@ -230,11 +230,6 @@ class Detail extends FrontendBaseBlock
         $this->redirect($this->question['full_url'] . '/' . FL::getAction('Success'));
     }
 
-    private function isSpamFilterEnabled(): bool
-    {
-        return $this->getSetting('spamfilter', false);
-    }
-
     private function isNotificationMailForNewFeedbackEnabled(): bool
     {
         return $this->getSetting('send_email_on_new_feedback', false);
@@ -247,11 +242,6 @@ class Detail extends FrontendBaseBlock
             'sentOn' => time(),
             'text' => $this->feedbackForm->getField('message')->getValue(),
         ];
-
-        if ($this->isSpamFilterEnabled() && FrontendModel::isSpam($feedback['text'], $feedback['question_link'])) {
-            // set the status to spam
-            $this->redirect($this->question['full_url'] . '/' . FL::getAction('Spam'));
-        }
 
         // save the feedback
         FrontendFaqModel::saveFeedback($feedback);

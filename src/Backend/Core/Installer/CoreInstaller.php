@@ -61,7 +61,6 @@ class CoreInstaller extends ModuleInstaller
 
         // other settings
         $this->setSetting('Core', 'theme');
-        $this->setSetting('Core', 'akismet_key', '');
         $this->setSetting('Core', 'google_maps_key', '');
         $this->setSetting('Core', 'max_num_revisions', 20);
         $this->setSetting('Core', 'site_html_head', '');
