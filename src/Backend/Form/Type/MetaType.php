@@ -6,7 +6,6 @@ use Common\Doctrine\Entity\Meta;
 use Common\Doctrine\Repository\MetaRepository;
 use Common\Doctrine\ValueObject\SEOFollow;
 use Common\Doctrine\ValueObject\SEOIndex;
-use SpoonFilter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
@@ -198,7 +197,7 @@ class MetaType extends AbstractType
             );
 
             $generatedUrl = $this->metaRepository->generateUrl(
-                SpoonFilter::htmlspecialcharsDecode($metaData['url']),
+                htmlspecialchars_decode((string) $metaData['url']),
                 $metaForm->getConfig()->getOption('generate_url_callback_class'),
                 $metaForm->getConfig()->getOption('generate_url_callback_method'),
                 $metaForm->getConfig()->getOption('generate_url_callback_parameters')
@@ -351,7 +350,7 @@ class MetaType extends AbstractType
     {
         $chunks = explode('-', $string);
 
-        if (!SpoonFilter::isNumeric(end($chunks))) {
+        if (!ctype_digit(end($chunks))) {
             return $string;
         }
 

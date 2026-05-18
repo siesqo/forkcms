@@ -6,6 +6,7 @@ use Backend\Core\Engine\Model;
 use Backend\Modules\Locale\Engine\Model as BackendLocaleModel;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use function Symfony\Component\String\s;
 
 /**
  * This class will store the language-dependant content for the Backend, it will also store the
@@ -114,7 +115,7 @@ class Language
     {
         $module = $module ?? self::getCurrentModule();
 
-        $key = \SpoonFilter::toCamelCase($key);
+        $key = s($key)->replace('_', ' ')->camel()->title()->toString();
 
         // check if the error exists
         if (isset(self::$err[$module][$key])) {
@@ -127,7 +128,7 @@ class Language
         }
 
         // otherwise return the key in label-format
-        return '{$err' . \SpoonFilter::toCamelCase($module) . $key . '}';
+        return '{$err' . s($module)->camel()->title() . $key . '}';
     }
 
     public static function getErrors(): array
@@ -165,7 +166,7 @@ class Language
     {
         $module = $module ?? self::getCurrentModule();
 
-        $key = \SpoonFilter::toCamelCase($key);
+        $key = s($key)->replace('_', ' ')->camel()->title()->toString();
 
         // check if the label exists
         if (isset(self::$lbl[$module][$key])) {
@@ -178,7 +179,7 @@ class Language
         }
 
         // otherwise return the key in label-format
-        return '{$lbl' . \SpoonFilter::toCamelCase($module) . $key . '}';
+        return '{$lbl' . s($module)->camel()->title() . $key . '}';
     }
 
     public static function getLabels(): array
@@ -188,8 +189,8 @@ class Language
 
     public static function getMessage(string $key, string $module = null): string
     {
-        $key = \SpoonFilter::toCamelCase((string) $key);
         $module = $module ?? self::getCurrentModule();
+        $key = s($key)->replace('_', ' ')->camel()->title()->toString();
 
         // check if the message exists
         if (isset(self::$msg[$module][$key])) {
@@ -202,7 +203,7 @@ class Language
         }
 
         // otherwise return the key in label-format
-        return '{$msg' . \SpoonFilter::toCamelCase($module) . $key . '}';
+        return '{$msg' . s($module)->camel()->title() . $key . '}';
     }
 
     public static function getMessages(): array

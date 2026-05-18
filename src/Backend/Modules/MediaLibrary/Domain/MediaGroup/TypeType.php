@@ -6,6 +6,7 @@ use Backend\Core\Language\Language;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use function Symfony\Component\String\s;
 
 class TypeType extends AbstractType
 {
@@ -19,7 +20,7 @@ class TypeType extends AbstractType
                     'label' => 'msg.ChooseTypeForNewGroup',
                     'choices' => $this->getTypeChoices(),
                     'choice_label' => function (Type $type) {
-                        return Language::lbl('MediaLibraryGroupType' . \SpoonFilter::toCamelCase($type, '-'), 'Core');
+                        return Language::lbl('MediaLibraryGroupType' . s($type)->replace('-', ' ')->camel()->title()->toString(), 'Core');
                     },
                     'choice_translation_domain' => false,
                     'choice_value' => function (Type $type = null) {

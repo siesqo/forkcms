@@ -8,6 +8,7 @@ use Backend\Core\Engine\Authentication as BackendAuthentication;
 use Backend\Core\Language\Language as BL;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Core\Engine\Exception as BackendException;
+use function Symfony\Component\String\s;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Address;
 
@@ -427,7 +428,7 @@ class Model
 
         // loop and build labels
         foreach ($labels as &$row) {
-            $row = \SpoonFilter::ucfirst(BL::getLabel(\SpoonFilter::ucfirst($row)));
+            $row = s(BL::getLabel(s($row)->title()->toString()))->title()->toString();
         }
 
         // build array
@@ -445,7 +446,7 @@ class Model
     public static function getUrl(string $displayName, int $excludedProfileId = null): string
     {
         // decode specialchars
-        $displayName = \SpoonFilter::htmlspecialcharsDecode((string) $displayName);
+        $displayName = htmlspecialchars_decode($displayName);
 
         // urlise
         $url = CommonUri::getUrl($displayName);

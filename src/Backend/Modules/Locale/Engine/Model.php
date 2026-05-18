@@ -6,7 +6,7 @@ use Common\Uri as CommonUri;
 use Backend\Core\Engine\Authentication as BackendAuthentication;
 use Backend\Core\Language\Language as BL;
 use Backend\Core\Engine\Model as BackendModel;
-use SpoonFilter;
+use function Symfony\Component\String\s;
 
 /**
  * In this file we store all generic functions that we will be using in the locale module
@@ -379,7 +379,7 @@ class Model
 
         // loop and build labels
         foreach ($labels as &$row) {
-            $row = SpoonFilter::ucfirst(BL::msg(mb_strtoupper($row), 'Core'));
+            $row = s(BL::msg(mb_strtoupper((string) $row), 'Core'))->title()->toString();
         }
 
         // build array
@@ -392,7 +392,7 @@ class Model
 
         // loop and build labels
         foreach ($labels as &$row) {
-            $row = SpoonFilter::ucfirst(BL::msg(mb_strtoupper($row), 'Core'));
+            $row = s(BL::msg(mb_strtoupper((string) $row), 'Core'))->title()->toString();
         }
 
         // build array
@@ -484,8 +484,8 @@ class Model
                 foreach ($items as $item) {
                     // attributes
                     $attributes = $item->attributes();
-                    $type = SpoonFilter::getValue($attributes['type'], $possibleTypes, '');
-                    $name = SpoonFilter::ucfirst(SpoonFilter::getValue($attributes['name'], null, ''));
+                    $type = in_array($attributes['type'], $possibleTypes, true) ? $attributes['type'] : '';
+                    $name = s($attributes['name'] ?? '')->title()->toString();
 
                     // missing attributes
                     if ($type == '' || $name == '') {
@@ -502,11 +502,7 @@ class Model
 
                         // attributes
                         $attributes = $translation->attributes();
-                        $language = SpoonFilter::getValue(
-                            $attributes['language'],
-                            $possibleLanguages[$application],
-                            ''
-                        );
+                        $language = in_array($attributes['language'], $possibleLanguages[$application], true) ? $attributes['language'] : '';
 
                         // language does not exist
                         if ($language == '') {

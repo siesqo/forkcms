@@ -14,6 +14,7 @@ Changed:
 * Profiles: Removed deprecated `importCsv()` method in favour of `importFromArray()`
 * Core: Removed deprecated `Backend\Core\Engine\Csv` class
 * Analytics: Removed the Analytics module entirely (unused; also removes `google/apiclient` dependency)
+* Core: Replaced all `SpoonFilter` calls with native PHP/Symfony equivalents (`htmlspecialchars`, `htmlspecialchars_decode`, `htmlentities`, `in_array`, `Symfony\Component\String\s()`); removes the last runtime dependency on SpoonFilter
 
 5.13.0  (2025-02-13)
 ------------------

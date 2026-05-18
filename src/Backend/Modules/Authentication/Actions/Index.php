@@ -12,6 +12,7 @@ use Backend\Modules\Users\Engine\Model as BackendUsersModel;
 use Common\Mailer\Message;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+use function Symfony\Component\String\s;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Address;
 
@@ -53,21 +54,18 @@ class Index extends BackendBaseActionIndex
         $this->form = new BackendForm(null, null, 'post', true, false);
         $this->form
             ->addText('backend_email')
-            ->setAttribute('placeholder', \SpoonFilter::ucfirst(BL::lbl('Email')))
+            ->setAttribute('placeholder', s(BL::lbl('Email'))->title()->toString())
             ->setAttribute('type', 'email')
-            ->setAttribute('autocomplete', 'email')
-        ;
+            ->setAttribute('autocomplete', 'email');
         $this->form
             ->addPassword('backend_password')
-            ->setAttribute('placeholder', \SpoonFilter::ucfirst(BL::lbl('Password')))
-            ->setAttribute('autocomplete', 'current-password')
-        ;
+            ->setAttribute('placeholder', s(BL::lbl('Password'))->title()->toString())
+            ->setAttribute('autocomplete', 'current-password');
 
         $this->formForgotPassword = new BackendForm('forgotPassword');
         $this->formForgotPassword
             ->addText('backend_email_forgot')
-            ->setAttribute('autocomplete', 'email')
-        ;
+            ->setAttribute('autocomplete', 'email');
     }
 
     public function parse(): void
@@ -217,9 +215,7 @@ class Index extends BackendBaseActionIndex
                 $mailer = new Mailer($this->get('mailer_configurator')->getTransport());
                 $from = $this->get('fork.settings')->get('Core', 'mailer_from');
                 $replyTo = $this->get('fork.settings')->get('Core', 'mailer_reply_to');
-                $message = Message::newInstance(
-                    \SpoonFilter::ucfirst(BL::msg('ResetYourPasswordMailSubject'))
-                )
+                $message = Message::newInstance(s(BL::msg('ResetYourPasswordMailSubject'))->title()->toString())
                     ->from(new Address($from['email'], $from['name']))
                     ->to($email)
                     ->replyTo(new Address($replyTo['email'], $replyTo['name']))

@@ -372,7 +372,7 @@ class Meta
         $this->form->addHidden('custom', $this->custom);
         $this->form->addHidden('class_name', $this->callback['class']);
         $this->form->addHidden('method_name', $this->callback['method']);
-        $this->form->addHidden('parameters', \SpoonFilter::htmlspecialchars(serialize($this->callback['parameters'])));
+        $this->form->addHidden('parameters', htmlspecialchars(serialize($this->callback['parameters'])));
     }
 
     /**
@@ -485,7 +485,7 @@ class Meta
         // URL overwrite is checked
         if ($this->form->getField('url_overwrite')->isChecked()) {
             $this->form->getField('url')->isFilled(BackendLanguage::err('FieldIsRequired'));
-            $url = \SpoonFilter::htmlspecialcharsDecode($this->form->getField('url')->getValue());
+            $url = htmlspecialchars_decode((string) $this->form->getField('url')->getValue());
             $generatedUrl = $this->generateUrl($url);
 
             // check if urls are different
@@ -523,15 +523,15 @@ class Meta
         $this->data['title_overwrite'] = $this->form->getField('page_title_overwrite')->isChecked();
         $this->data['url'] = $this->generateUrl(
             $this->form->getField('url_overwrite')->getActualValue(
-                \SpoonFilter::htmlspecialcharsDecode($this->form->getField('url')->getValue()),
-                \SpoonFilter::htmlspecialcharsDecode($this->form->getField($this->baseFieldName)->getValue())
+                htmlspecialchars_decode((string) $this->form->getField('url')->getValue()),
+                htmlspecialchars_decode((string) $this->form->getField($this->baseFieldName)->getValue())
             )
         );
         $this->data['url_overwrite'] = $this->form->getField('url_overwrite')->isChecked();
 
         if ($this->form->getField('canonical_url_overwrite')->isChecked()) {
             $this->data['data']['canonical_url'] = $this->form->getField('canonical_url_overwrite')->getActualValue(
-                \SpoonFilter::htmlspecialcharsDecode($this->form->getField('canonical_url')->getValue()),
+                htmlspecialchars_decode((string) $this->form->getField('canonical_url')->getValue()),
                 null
             );
             $this->data['data']['canonical_url_overwrite'] = true;
