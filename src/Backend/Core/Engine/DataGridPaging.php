@@ -100,7 +100,7 @@ final class DataGridPaging implements iSpoonDatagridPaging
      *
      * @return string
      */
-    public function getHtml($debug = true, string $compileDirectory = null)
+    public function getHtml($debug = true, ?string $compileDirectory = null)
     {
         // if there is just one page we don't need paging
         if ($this->totalNumberOfResults < $this->resultsPerPage) {

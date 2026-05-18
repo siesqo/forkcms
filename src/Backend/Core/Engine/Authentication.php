@@ -101,7 +101,7 @@ class Authentication
      *
      * @return string
      */
-    public static function getEncryptedString(string $string, string $salt = null): string
+    public static function getEncryptedString(string $string, ?string $salt = null): string
     {
         return (string) sha1(md5($salt) . md5($string));
     }
@@ -161,7 +161,7 @@ class Authentication
      *
      * @return bool
      */
-    public static function isAllowedAction(string $action = null, string $module = null): bool
+    public static function isAllowedAction(?string $action = null, ?string $module = null): bool
     {
         $alwaysAllowed = self::getAlwaysAllowed();
 

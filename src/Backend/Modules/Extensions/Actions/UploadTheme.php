@@ -17,7 +17,7 @@ use ZipArchive;
  */
 class UploadTheme extends BackendBaseActionAdd
 {
-    const INFO_FILE = 'info.xml';
+    const string INFO_FILE = 'info.xml';
 
     private $ignoreList = ['__MACOSX'];
 
@@ -135,7 +135,7 @@ class UploadTheme extends BackendBaseActionAdd
 
                         // Define the theme name, based on the info.xml file.
                         $this->themeName = $this->info['name'];
-                    } catch (Exception $e) {
+                    } catch (Exception) {
                         // Warning that the information file is corrupt
                         $fileFile->addError(BL::getMessage('InformationFileCouldNotBeLoaded'));
 

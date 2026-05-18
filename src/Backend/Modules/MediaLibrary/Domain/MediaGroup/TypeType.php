@@ -23,7 +23,7 @@ class TypeType extends AbstractType
                         return Language::lbl('MediaLibraryGroupType' . s($type)->replace('-', ' ')->camel()->title()->toString(), 'Core');
                     },
                     'choice_translation_domain' => false,
-                    'choice_value' => function (Type $type = null) {
+                    'choice_value' => function (?Type $type = null) {
                         return (string) $type;
                     },
                     'data' => Type::fromString('image'),

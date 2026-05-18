@@ -24,7 +24,7 @@ class MediaItemIndex extends BackendBaseActionIndex
         $this->display();
     }
 
-    private function getDataGrids(MediaFolder $mediaFolder = null, string $searchQuery = null): array
+    private function getDataGrids(?MediaFolder $mediaFolder = null, ?string $searchQuery = null): array
     {
         return array_map(
             function ($type) use ($mediaFolder, $searchQuery) {
@@ -55,12 +55,12 @@ class MediaItemIndex extends BackendBaseActionIndex
         try {
             /** @var MediaFolder mediaFolder */
             return $this->get('media_library.repository.folder')->findOneById($id);
-        } catch (MediaFolderNotFound $mediaFolderNotFound) {
+        } catch (MediaFolderNotFound) {
             return null;
         }
     }
 
-    private function getMediaFolders(MediaFolder $mediaFolder = null): array
+    private function getMediaFolders(?MediaFolder $mediaFolder = null): array
     {
         /** @var array $mediaFolders */
         $mediaFolders = $this->getMediaFoldersForDropdown($this->get('media_library.cache.media_folder')->get());
@@ -157,7 +157,7 @@ class MediaItemIndex extends BackendBaseActionIndex
         $this->parseMediaFolders($mediaFolder);
     }
 
-    private function parseDataGrids(MediaFolder $mediaFolder = null, string $searchQuery = null): void
+    private function parseDataGrids(?MediaFolder $mediaFolder = null, ?string $searchQuery = null): void
     {
         /** @var array $dataGrids */
         $dataGrids = $this->getDataGrids($mediaFolder, $searchQuery);
@@ -174,7 +174,7 @@ class MediaItemIndex extends BackendBaseActionIndex
         $this->header->addJS('MediaLibraryFolders.js', 'MediaLibrary', true);
     }
 
-    private function parseMediaFolders(MediaFolder $mediaFolder = null): void
+    private function parseMediaFolders(?MediaFolder $mediaFolder = null): void
     {
         $this->template->assign('mediaFolder', $mediaFolder);
         $this->template->assign('mediaFolders', $this->getMediaFolders($mediaFolder));

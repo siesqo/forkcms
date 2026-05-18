@@ -13,7 +13,7 @@ final class Generate extends ActionIndex
 
         try {
             $this->get('sitemap.generator')->generate();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->redirect(Model::createUrlForAction('Index') . '&error=error-while-generating-sitemaps');
         }
 

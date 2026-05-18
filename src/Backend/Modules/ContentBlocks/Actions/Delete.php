@@ -57,7 +57,7 @@ class Delete extends BackendBaseActionDelete
                 $id,
                 Locale::workingLocale()
             );
-        } catch (ContentBlockNotFound $e) {
+        } catch (ContentBlockNotFound) {
             $this->redirect($this->getBackLink(['error' => 'non-existing']));
         }
     }

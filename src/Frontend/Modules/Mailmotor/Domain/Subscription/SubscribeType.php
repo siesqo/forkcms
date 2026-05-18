@@ -124,7 +124,7 @@ class SubscribeType extends AbstractType
             }
             $this->modulesSettings->set('Mailmotor', 'interests', $interests);
             $this->modulesSettings->set('Mailmotor', 'interests_last_checked', new DateTime());
-        } catch (NotImplementedException $e) {
+        } catch (NotImplementedException) {
             // Fallback for when no mail-engine is chosen in the Backend
             $this->modulesSettings->set('Mailmotor', 'check_interests', false);
 

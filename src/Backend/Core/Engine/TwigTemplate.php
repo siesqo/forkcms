@@ -35,7 +35,7 @@ class TwigTemplate extends BaseTwigTemplate
         $container = Model::getContainer();
         $this->debugMode = $container->getParameter('kernel.debug');
 
-        parent::__construct($this->buildTwigEnvironmentForTheBackend());
+        $this->environment = $this->buildTwigEnvironmentForTheBackend();
 
         if ($addToReference) {
             $container->set('template', $this);
@@ -112,9 +112,7 @@ class TwigTemplate extends BaseTwigTemplate
         $this->environment->addRuntimeLoader(
             new FactoryRuntimeLoader(
                 [
-                    FormRenderer::class => function () use ($rendererEngine, $csrfTokenManager): FormRenderer {
-                        return new FormRenderer($rendererEngine, $csrfTokenManager);
-                    },
+                    FormRenderer::class => fn(): FormRenderer => new FormRenderer($rendererEngine, $csrfTokenManager),
                 ]
             )
         );
@@ -258,7 +256,7 @@ class TwigTemplate extends BaseTwigTemplate
         }
 
         if ($this->addSlashes) {
-            $realLabels = array_map('addslashes', $realLabels);
+            $realLabels = array_map(addslashes(...), $realLabels);
         }
 
         // just so the dump is nicely sorted
@@ -271,9 +269,7 @@ class TwigTemplate extends BaseTwigTemplate
     {
         return array_combine(
             array_map(
-                function ($key) use ($prefix) {
-                    return $prefix . s($key)->title()->toString();
-                },
+                fn($key) => $prefix . s($key)->title()->toString(),
                 array_keys($array)
             ),
             $array

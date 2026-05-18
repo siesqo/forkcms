@@ -42,8 +42,8 @@ class FrontendHelperExtensions extends AbstractExtension
     public function parseWidget(
         string $mediaWidgetAction,
         string $mediaGroupId,
-        string $title = null,
-        string $module = null
+        ?string $title = null,
+        ?string $module = null
     ): string {
         return $this->frontendHelper->parseWidget(
             $mediaWidgetAction,

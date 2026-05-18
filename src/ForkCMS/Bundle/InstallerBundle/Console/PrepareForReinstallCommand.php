@@ -15,9 +15,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class PrepareForReinstallCommand extends Command
 {
-    public const RETURN_SUCCESS = 0;
-    public const RETURN_DID_NOT_REINSTALL = 1;
-    public const RETURN_DID_NOT_CLEAR_DATABASE = 2;
+    public const int RETURN_SUCCESS = 0;
+    public const int RETURN_DID_NOT_REINSTALL = 1;
+    public const int RETURN_DID_NOT_CLEAR_DATABASE = 2;
 
     public function __construct(
         private readonly string $rootDir,

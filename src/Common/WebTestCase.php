@@ -340,7 +340,7 @@ abstract class WebTestCase extends BaseWebTestCase
         string $expectedUrl,
         string $requestMethod = 'GET',
         array $requestParameters = [],
-        int $maxRedirects = null,
+        ?int $maxRedirects = null,
         int $expectedHttpResponseCode = Response::HTTP_OK
     ): void {
         $maxRedirects !== null ? $client->setMaxRedirects($maxRedirects) : $client->followRedirects();
@@ -472,7 +472,7 @@ abstract class WebTestCase extends BaseWebTestCase
         );
     }
 
-    protected function getFormForSubmitButton(Client $client, string $buttonText, string $filterSelector = null): Form
+    protected function getFormForSubmitButton(Client $client, string $buttonText, ?string $filterSelector = null): Form
     {
         $crawler = $client->getCrawler();
 

@@ -14,8 +14,8 @@ use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 class Message extends Email
 {
     public function __construct(
-        string $subject = null,
-        string $body = null
+        ?string $subject = null,
+        ?string $body = null
     ) {
         parent::__construct();
         $this->subject($subject);
@@ -140,7 +140,7 @@ class Message extends Email
      *
      * @return string
      */
-    private function getTemplateContent(string $template, array $variables = null): string
+    private function getTemplateContent(string $template, ?array $variables = null): string
     {
         // with the strpos we check if it is a frontend template, in that case we use the frontend template to prevent
         // errors that the template could not be found. This way we don't have a backwards compatibility break.

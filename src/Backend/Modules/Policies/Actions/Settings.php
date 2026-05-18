@@ -19,7 +19,7 @@ final class Settings extends ActionIndex
     /** @var ModulesSettings */
     private $settings;
 
-    public function setKernel(KernelInterface $kernel = null): void
+    public function setKernel(?KernelInterface $kernel = null): void
     {
         parent::setKernel($kernel);
 

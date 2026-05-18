@@ -17,6 +17,7 @@ Changed:
 * Core: Replaced all `SpoonFilter` calls with native PHP/Symfony equivalents (`htmlspecialchars`, `htmlspecialchars_decode`, `htmlentities`, `in_array`, `Symfony\Component\String\s()`); removes the last runtime dependency on SpoonFilter
 * Core: Removed Akismet spam filtering integration (was never active without an API key)
 * Core: Replaced `behat/transliterator` with Symfony's `AsciiSlugger` in `Common\Uri`; removes the `behat/transliterator` dependency
+* Core: Upgraded to PHP 8.5; updated dependencies and codebase for full compatibility
 
 5.13.0  (2025-02-13)
 ------------------

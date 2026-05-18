@@ -44,7 +44,7 @@ class MediaGalleryDataTransferObject
      */
     public $mediaGroup;
 
-    public function __construct(MediaGallery $mediaGallery = null)
+    public function __construct(?MediaGallery $mediaGallery = null)
     {
         $this->mediaGalleryEntity = $mediaGallery;
 

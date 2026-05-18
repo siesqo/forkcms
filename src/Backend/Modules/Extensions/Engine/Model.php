@@ -23,7 +23,7 @@ class Model
      *
      * @var string
      */
-    const QUERY_BROWSE_TEMPLATES = 'SELECT i.id, i.label AS title
+    const string QUERY_BROWSE_TEMPLATES = 'SELECT i.id, i.label AS title
                                   FROM themes_templates AS i
                                   WHERE i.theme = ?
                                   ORDER BY i.label ASC';
@@ -391,7 +391,7 @@ class Model
                         'message' => BL::getMessage('InformationFileIsEmpty'),
                     ];
                 }
-            } catch (Exception $e) {
+            } catch (Exception) {
                 $information['warnings'][] = [
                     'message' => BL::getMessage('InformationFileCouldNotBeLoaded'),
                 ];
@@ -453,7 +453,7 @@ class Model
                 if (isset($info['version'])) {
                     $module['version'] = $info['version'];
                 }
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // don't act upon error, we simply won't possess some info
             }
 
@@ -515,7 +515,7 @@ class Model
         );
     }
 
-    public static function getTemplates(string $theme = null): array
+    public static function getTemplates(?string $theme = null): array
     {
         $database = BackendModel::getContainer()->get('database');
         if ($theme === null || $theme === '') {
@@ -588,7 +588,7 @@ class Model
                 if (empty($information)) {
                     throw new Exception('Invalid info.xml');
                 }
-            } catch (Exception $e) {
+            } catch (Exception) {
                 $information['thumbnail'] = 'thumbnail.png';
             }
 

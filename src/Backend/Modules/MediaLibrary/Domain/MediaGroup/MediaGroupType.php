@@ -180,7 +180,7 @@ class MediaGroupType extends AbstractType
         try {
             /** @var MediaGroup $mediaGroup */
             $mediaGroup = $this->mediaGroupRepository->findOneById($mediaGroupId);
-        } catch (MediaGroupNotFound $mediaGroupNotFound) {
+        } catch (MediaGroupNotFound) {
             $mediaGroup = MediaGroup::createFromId(
                 Uuid::fromString($mediaGroupId),
                 MediaGroupPossibleType::fromString($mediaGroupData['type'])

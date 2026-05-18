@@ -7,7 +7,7 @@ use Common\ModulesSettings;
 
 final class SaveSettingsHandler
 {
-    private const MODULE_NAME = 'Mailmotor';
+    private const string MODULE_NAME = 'Mailmotor';
 
     /**
      * @var ModulesSettings

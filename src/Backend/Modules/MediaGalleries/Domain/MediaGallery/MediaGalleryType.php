@@ -66,7 +66,7 @@ class MediaGalleryType extends AbstractType
                         return TemplateModifiers::toLabel($type);
                     },
                     'choice_translation_domain' => false,
-                    'choice_value' => function (Status $status = null) {
+                    'choice_value' => function (?Status $status = null) {
                         return (string) $status;
                     },
                     'expanded' => true,

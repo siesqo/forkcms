@@ -6,10 +6,10 @@ use SpoonDatabase;
 
 class LoadBlogPosts
 {
-    public const BLOG_POST_TITLE = 'Blogpost for functional tests';
-    public const BLOG_POST_SLUG = 'blogpost-for-functional-tests';
-    public const BLOG_POST_ID = 1;
-    public const BLOG_POST_DATA = [
+    public const string BLOG_POST_TITLE = 'Blogpost for functional tests';
+    public const string BLOG_POST_SLUG = 'blogpost-for-functional-tests';
+    public const int BLOG_POST_ID = 1;
+    public const array BLOG_POST_DATA = [
         'user_id' => 1,
         'language' => 'en',
         'title' => self::BLOG_POST_TITLE,

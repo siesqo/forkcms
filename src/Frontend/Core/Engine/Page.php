@@ -113,9 +113,9 @@ class Page extends KernelLoader
 
         try {
             $this->handlePage(Navigation::getPageId(implode('/', $this->url->getPages())));
-        } catch (NotFoundHttpException $notFoundHttpException) {
+        } catch (NotFoundHttpException) {
             $this->handlePage(Response::HTTP_NOT_FOUND);
-        } catch (InsufficientAuthenticationException $insufficientAuthenticationException) {
+        } catch (InsufficientAuthenticationException) {
             $this->redirectToLogin();
         }
     }
@@ -209,11 +209,11 @@ class Page extends KernelLoader
                 $this->template->getContent($this->templatePath),
                 $this->statusCode
             );
-        } catch (NotFoundHttpException $notFoundHttpException) {
+        } catch (NotFoundHttpException) {
             $this->handlePage(Response::HTTP_NOT_FOUND);
 
             return $this->display();
-        } catch (InsufficientAuthenticationException $insufficientAuthenticationException) {
+        } catch (InsufficientAuthenticationException) {
             $this->redirectToLogin();
         }
     }

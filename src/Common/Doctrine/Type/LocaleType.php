@@ -10,7 +10,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class LocaleType extends TextType
 {
-    const LOCALE = 'locale';
+    const string LOCALE = 'locale';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {

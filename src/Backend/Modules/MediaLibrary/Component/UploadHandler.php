@@ -53,7 +53,7 @@ class UploadHandler
         return $this->uploadName;
     }
 
-    public function combineChunks(string $uploadDirectory, string $name = null): array
+    public function combineChunks(string $uploadDirectory, ?string $name = null): array
     {
         $uuid = $this->request->request->get('qquuid');
         if ($name === null) {
@@ -95,7 +95,7 @@ class UploadHandler
         return ['success' => true, 'uuid' => $uuid];
     }
 
-    public function handleUpload(string $uploadDirectory, string $name = null): array
+    public function handleUpload(string $uploadDirectory, ?string $name = null): array
     {
         $this->cleanupChunksIfNecessary();
 
@@ -285,7 +285,7 @@ class UploadHandler
         return $file;
     }
 
-    private function getRedefinedName(string $name = null): string
+    private function getRedefinedName(?string $name = null): string
     {
         if ($name === null) {
             $name = $this->getName();

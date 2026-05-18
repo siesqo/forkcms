@@ -6,8 +6,8 @@ use SpoonDatabase;
 
 class LoadBlogPostComments
 {
-    public const BLOG_POST_COMMENT_ID = 1;
-    public const BLOG_POST_COMMENT_DATA = [
+    public const int BLOG_POST_COMMENT_ID = 1;
+    public const array BLOG_POST_COMMENT_DATA = [
         'post_id' => LoadBlogPosts::BLOG_POST_ID,
         'language' => 'en',
         'created_on' => '2017-01-01 13:37:00',

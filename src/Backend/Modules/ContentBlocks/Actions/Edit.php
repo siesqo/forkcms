@@ -90,7 +90,7 @@ class Edit extends BackendBaseActionEdit
 
             try {
                 return $contentBlockRepository->findOneByRevisionIdAndLocale($revisionId, Locale::workingLocale());
-            } catch (ContentBlockNotFound $e) {
+            } catch (ContentBlockNotFound) {
                 $this->redirect($this->getBackLink(['error' => 'non-existing']));
             }
         }
@@ -100,7 +100,7 @@ class Edit extends BackendBaseActionEdit
                 $this->getRequest()->query->getInt('id'),
                 Locale::workingLocale()
             );
-        } catch (ContentBlockNotFound $e) {
+        } catch (ContentBlockNotFound) {
             $this->redirect($this->getBackLink(['error' => 'non-existing']));
         }
     }

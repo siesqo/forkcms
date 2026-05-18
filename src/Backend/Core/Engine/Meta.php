@@ -73,7 +73,7 @@ class Meta
      */
     public function __construct(
         Form $form,
-        int $metaId = null,
+        ?int $metaId = null,
         string $baseFieldName = 'title',
         bool $showCustomMeta = false
     ) {

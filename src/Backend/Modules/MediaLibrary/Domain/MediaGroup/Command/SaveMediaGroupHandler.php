@@ -41,7 +41,7 @@ final class SaveMediaGroupHandler
                     $this->mediaItemRepository->findOneById(Uuid::fromString($mediaItemId)),
                     $sequence
                 ));
-            } catch (MediaItemNotFound $e) {
+            } catch (MediaItemNotFound) {
                 // Do nothing
             }
         }

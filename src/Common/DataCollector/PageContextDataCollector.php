@@ -53,22 +53,19 @@ class PageContextDataCollector extends DataCollector
                 'block' => $this->collectBlock($this->page->getExtras()),
                 'theme' => $this->theme,
             ];
-        } catch (Throwable $throwable) {
+        } catch (Throwable) {
             // do nothing
         }
     }
 
     private function collectWidgets(array $pageExtras): ?array
     {
-        $pageContextDataCollector = $this;
         $widgets = array_map(
-            function (Widget $widget) use ($pageContextDataCollector) {
-                return [
-                    'action' => $widget->getAction(),
-                    'module' => $widget->getModule(),
-                    'template' => $pageContextDataCollector->getFullTemplatePath($widget->getTemplatePath()),
-                ];
-            },
+            fn(Widget $widget) => [
+                'action' => $widget->getAction(),
+                'module' => $widget->getModule(),
+                'template' => $this->getFullTemplatePath($widget->getTemplatePath()),
+            ],
             $this->getClassInstances(Widget::class, $pageExtras)
         );
 
@@ -95,9 +92,7 @@ class PageContextDataCollector extends DataCollector
     {
         return array_filter(
             $classes,
-            function (ModuleExtraInterface $class) use ($className) {
-                return get_class($class) === $className;
-            }
+            fn(ModuleExtraInterface $class) => $class::class === $className
         );
     }
 

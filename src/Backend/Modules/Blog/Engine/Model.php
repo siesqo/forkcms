@@ -14,24 +14,24 @@ use ForkCMS\Utility\Thumbnails;
  */
 class Model
 {
-    const QUERY_DATAGRID_BROWSE =
+    const string QUERY_DATAGRID_BROWSE =
         'SELECT i.hidden, i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.publish_on) AS publish_on, i.user_id, i.num_comments AS comments
          FROM blog_posts AS i
          WHERE i.status = ? AND i.language = ?';
 
-    const QUERY_DATAGRID_BROWSE_FOR_CATEGORY =
+    const string QUERY_DATAGRID_BROWSE_FOR_CATEGORY =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.publish_on) AS publish_on, i.user_id, i.num_comments AS comments
          FROM blog_posts AS i
          WHERE i.category_id = ? AND i.status = ? AND i.language = ?';
 
-    const QUERY_DATAGRID_BROWSE_CATEGORIES =
+    const string QUERY_DATAGRID_BROWSE_CATEGORIES =
         'SELECT i.id, i.title, COUNT(p.id) AS num_items
          FROM blog_categories AS i
          LEFT OUTER JOIN blog_posts AS p ON i.id = p.category_id AND p.status = ? AND p.language = i.language
          WHERE i.language = ?
          GROUP BY i.id';
 
-    const QUERY_DATAGRID_BROWSE_COMMENTS =
+    const string QUERY_DATAGRID_BROWSE_COMMENTS =
         'SELECT
              i.id, UNIX_TIMESTAMP(i.created_on) AS created_on, i.author, i.text,
              p.id AS post_id, p.title AS post_title, m.url AS post_url
@@ -41,7 +41,7 @@ class Model
          WHERE i.status = ? AND i.language = ? AND p.status = ?
          GROUP BY i.id';
 
-    const QUERY_DATAGRID_BROWSE_DRAFTS =
+    const string QUERY_DATAGRID_BROWSE_DRAFTS =
         'SELECT i.id, i.user_id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.num_comments AS comments
          FROM blog_posts AS i
          INNER JOIN
@@ -53,7 +53,7 @@ class Model
          ) AS p
          WHERE i.revision_id = p.revision_id';
 
-    const QUERY_DATAGRID_BROWSE_DRAFTS_FOR_CATEGORY =
+    const string QUERY_DATAGRID_BROWSE_DRAFTS_FOR_CATEGORY =
         'SELECT i.id, i.user_id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.num_comments AS comments
          FROM blog_posts AS i
          INNER JOIN
@@ -65,27 +65,27 @@ class Model
          ) AS p
          WHERE i.revision_id = p.revision_id';
 
-    const QUERY_DATAGRID_BROWSE_RECENT =
+    const string QUERY_DATAGRID_BROWSE_RECENT =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id, i.num_comments AS comments
          FROM blog_posts AS i
          WHERE i.status = ? AND i.language = ?
          ORDER BY i.edited_on DESC
          LIMIT ?';
 
-    const QUERY_DATAGRID_BROWSE_RECENT_FOR_CATEGORY =
+    const string QUERY_DATAGRID_BROWSE_RECENT_FOR_CATEGORY =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id, i.num_comments AS comments
          FROM blog_posts AS i
          WHERE i.category_id = ? AND i.status = ? AND i.language = ?
          ORDER BY i.edited_on DESC
          LIMIT ?';
 
-    const QUERY_DATAGRID_BROWSE_REVISIONS =
+    const string QUERY_DATAGRID_BROWSE_REVISIONS =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM blog_posts AS i
          WHERE i.status = ? AND i.id = ? AND i.language = ?
          ORDER BY i.edited_on DESC';
 
-    const QUERY_DATAGRID_BROWSE_SPECIFIC_DRAFTS =
+    const string QUERY_DATAGRID_BROWSE_SPECIFIC_DRAFTS =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM blog_posts AS i
          WHERE i.status = ? AND i.id = ? AND i.language = ?
@@ -454,7 +454,7 @@ class Model
      *
      * @return int
      */
-    public static function getCategoryId(string $title, string $language = null): int
+    public static function getCategoryId(string $title, ?string $language = null): int
     {
         $title = (string) $title;
         $language = ($language !== null) ? (string) $language : BL::getWorkingLanguage();
@@ -591,7 +591,7 @@ class Model
      *
      * @return string
      */
-    public static function getUrl(string $url, int $id = null): string
+    public static function getUrl(string $url, ?int $id = null): string
     {
         $url = (string) $url;
 
@@ -642,7 +642,7 @@ class Model
      *
      * @return string
      */
-    public static function getUrlForCategory($url, int $id = null): string
+    public static function getUrlForCategory($url, ?int $id = null): string
     {
         // redefine URL
         $url = (string) $url;
@@ -856,7 +856,7 @@ class Model
      *
      * @return int
      */
-    public static function insertCategory(array $item, array $meta = null): int
+    public static function insertCategory(array $item, ?array $meta = null): int
     {
         // get database
         $database = BackendModel::getContainer()->get('database');
@@ -1073,7 +1073,7 @@ class Model
      *
      * @return int
      */
-    public static function updateCategory(array $item, array $meta = null): int
+    public static function updateCategory(array $item, ?array $meta = null): int
     {
         // get database
         $database = BackendModel::getContainer()->get('database');

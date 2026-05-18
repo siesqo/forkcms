@@ -69,8 +69,8 @@ class Navigation extends KernelLoader
     public static function getBackendUrlForBlock(
         string $action,
         string $module,
-        string $language = null,
-        array $parameters = null,
+        ?string $language = null,
+        ?array $parameters = null,
         bool $urlencode = true
     ): string {
         $language = $language ?? LANGUAGE;
@@ -174,7 +174,7 @@ class Navigation extends KernelLoader
      *
      * @return array
      */
-    public static function getKeys(string $language = null): array
+    public static function getKeys(?string $language = null): array
     {
         return BackendPagesModel::getCacheBuilder()->getKeys($language ?? LANGUAGE);
     }
@@ -187,7 +187,7 @@ class Navigation extends KernelLoader
      *
      * @return array
      */
-    public static function getNavigation(string $language = null): array
+    public static function getNavigation(?string $language = null): array
     {
         return BackendPagesModel::getCacheBuilder()->getNavigation($language ?? LANGUAGE);
     }
@@ -221,7 +221,7 @@ class Navigation extends KernelLoader
     public static function getNavigationHTML(
         string $type = 'page',
         int $parentId = 0,
-        int $depth = null,
+        ?int $depth = null,
         array $excludeIds = [],
         string $template = 'Core/Layout/Templates/Navigation.html.twig',
         int $depthCounter = 1
@@ -391,7 +391,7 @@ class Navigation extends KernelLoader
      *
      * @return int
      */
-    public static function getPageId(string $url, string $language = null): int
+    public static function getPageId(string $url, ?string $language = null): int
     {
         // redefine
         $url = trim($url, '/');
@@ -456,7 +456,7 @@ class Navigation extends KernelLoader
      *
      * @return string
      */
-    public static function getUrl(int $pageId, string $language = null): string
+    public static function getUrl(int $pageId, ?string $language = null): string
     {
         $language = $language ?? LANGUAGE;
 
@@ -493,9 +493,9 @@ class Navigation extends KernelLoader
      */
     public static function getUrlForBlock(
         string $module,
-        string $action = null,
-        string $language = null,
-        array $data = null
+        ?string $action = null,
+        ?string $language = null,
+        ?array $data = null
     ): string {
         $language = $language ?? LANGUAGE;
         // init var
@@ -582,7 +582,7 @@ class Navigation extends KernelLoader
      *
      * @return string
      */
-    public static function getUrlForExtraId(int $id, string $language = null): string
+    public static function getUrlForExtraId(int $id, ?string $language = null): string
     {
         $language = $language ?? LANGUAGE;
         // get the menuItems

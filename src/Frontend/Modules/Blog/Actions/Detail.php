@@ -346,7 +346,7 @@ class Detail extends FrontendBaseBlock
             $cookie->set('comment_author', $comment['author']);
             $cookie->set('comment_email', $comment['email']);
             $cookie->set('comment_website', $comment['website']);
-        } catch (\RuntimeException $e) {
+        } catch (\RuntimeException) {
             // settings cookies isn't allowed, but because this isn't a real problem we ignore the exception
         }
     }

@@ -20,7 +20,7 @@ class Model
     /**
      * @var array The possible status
      */
-    public const POSSIBLE_STATUS = [
+    public const array POSSIBLE_STATUS = [
         'active',
         'inactive',
         'deleted',
@@ -40,7 +40,7 @@ class Model
      *
      * @var string
      */
-    const QUERY_DATAGRID_BROWSE_PROFILE_GROUPS =
+    const string QUERY_DATAGRID_BROWSE_PROFILE_GROUPS =
         'SELECT gr.id, g.name AS group_name, IFNULL(UNIX_TIMESTAMP(gr.expires_on),0) AS expires_on,
           IF(gr.expires_on IS NOT NULL AND gr.expires_on <= NOW(), 1, 0) AS hidden
          FROM profiles_groups AS g
@@ -181,7 +181,7 @@ class Model
      *
      * @return string $avatar            The absolute path to the avatar.
      */
-    public static function getAvatar(int $profileId, string $email = null): string
+    public static function getAvatar(int $profileId, ?string $email = null): string
     {
         // return avatar from cache
         if (isset(self::$avatars[$profileId])) {
@@ -293,7 +293,7 @@ class Model
      *
      * @return array
      */
-    public static function getGroupsForDropDown(int $profileId, int $includeId = null): array
+    public static function getGroupsForDropDown(int $profileId, ?int $includeId = null): array
     {
         // init database
         $database = BackendModel::getContainer()->get('database');
@@ -443,7 +443,7 @@ class Model
      *
      * @return string
      */
-    public static function getUrl(string $displayName, int $excludedProfileId = null): string
+    public static function getUrl(string $displayName, ?int $excludedProfileId = null): string
     {
         // decode specialchars
         $displayName = htmlspecialchars_decode($displayName);
@@ -553,7 +553,7 @@ class Model
      *
      * @return array array('count' => array('exists' => 0, 'inserted' => 0));
      */
-    public static function importFromArray(array $data, int $groupId = null, bool $overwriteExisting = false): array
+    public static function importFromArray(array $data, ?int $groupId = null, bool $overwriteExisting = false): array
     {
         $statistics = ['count' => ['exists' => 0, 'inserted' => 0]];
 
@@ -637,7 +637,7 @@ class Model
      * @param array $values
      * @param string $templatePath
      */
-    public static function notifyAdmin(array $values, string $templatePath = null): void
+    public static function notifyAdmin(array $values, ?string $templatePath = null): void
     {
         // to email
         $toEmail = BackendModel::get('fork.settings')->get('Profiles', 'profile_notification_email', null);
@@ -688,7 +688,7 @@ class Model
     public static function notifyProfile(
         array $values,
         bool $forUpdate = false,
-        string $templatePath = null
+        ?string $templatePath = null
     ): void {
         // set variables
         $variables = [
@@ -729,7 +729,7 @@ class Model
         ?string $templatePath,
         array $variables,
         string $toEmail,
-        string $toDisplayName = null
+        ?string $toDisplayName = null
     ): void {
         if (empty($templatePath)) {
             $templatePath = FRONTEND_CORE_PATH . '/Layout/Templates/Mails/Notification.html.twig';

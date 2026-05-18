@@ -15,9 +15,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class CheckRequirementsCommand extends Command
 {
-    public const RETURN_SERVER_DOES_NOT_MEET_REQUIREMENTS = 2;
-    public const RETURN_SERVER_MEETS_REQUIREMENTS = 0;
-    public const RETURN_SERVER_MEETS_REQUIREMENTS_BUT_HAS_WARNINGS = 1;
+    public const int RETURN_SERVER_DOES_NOT_MEET_REQUIREMENTS = 2;
+    public const int RETURN_SERVER_MEETS_REQUIREMENTS = 0;
+    public const int RETURN_SERVER_MEETS_REQUIREMENTS_BUT_HAS_WARNINGS = 1;
 
     /** @var SymfonyStyle */
     private $formatter;

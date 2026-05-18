@@ -14,12 +14,12 @@ use function Symfony\Component\String\s;
  */
 class Model
 {
-    const QUERY_DATAGRID_BROWSE =
+    const string QUERY_DATAGRID_BROWSE =
         'SELECT i.id, i.category_id, i.question, i.hidden, i.sequence
          FROM faq_questions AS i
          WHERE i.language = ? AND i.category_id = ?';
 
-    const QUERY_DATAGRID_BROWSE_CATEGORIES =
+    const string QUERY_DATAGRID_BROWSE_CATEGORIES =
         'SELECT i.id, i.title, COUNT(p.id) AS num_items, i.sequence
          FROM faq_categories AS i
          LEFT OUTER JOIN faq_questions AS p ON i.id = p.category_id AND p.language = i.language
@@ -270,7 +270,7 @@ class Model
      *
      * @return string
      */
-    public static function getUrl(string $url, int $id = null): string
+    public static function getUrl(string $url, ?int $id = null): string
     {
         $url = CommonUri::getUrl((string) $url);
         $database = BackendModel::get('database');
@@ -318,7 +318,7 @@ class Model
      *
      * @return string
      */
-    public static function getUrlForCategory(string $url, int $id = null): string
+    public static function getUrlForCategory(string $url, ?int $id = null): string
     {
         $url = CommonUri::getUrl($url);
         $database = BackendModel::get('database');
@@ -374,7 +374,7 @@ class Model
         return $insertId;
     }
 
-    public static function insertCategory(array $item, array $meta = null): int
+    public static function insertCategory(array $item, ?array $meta = null): int
     {
         $database = BackendModel::get('database');
 

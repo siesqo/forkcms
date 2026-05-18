@@ -125,11 +125,11 @@ class Meta
         bool $urlOverwrite,
         ?string $canonicalUrl,
         bool $canonicalUrlOverwrite,
-        string $custom = null,
-        SEOFollow $seoFollow = null,
-        SEOIndex $seoIndex = null,
+        ?string $custom = null,
+        ?SEOFollow $seoFollow = null,
+        ?SEOIndex $seoIndex = null,
         array $unserialisedData = [],
-        int $id = null
+        ?int $id = null
     ) {
         $this->keywords = $keywords;
         $this->keywordsOverwrite = $keywordsOverwrite;
@@ -165,9 +165,9 @@ class Meta
         bool $urlOverwrite,
         ?string $canonicalUrl = null,
         bool $canonicalUrlOverwrite = false,
-        string $custom = null,
-        SEOFollow $seoFollow = null,
-        SEOIndex $seoIndex = null,
+        ?string $custom = null,
+        ?SEOFollow $seoFollow = null,
+        ?SEOIndex $seoIndex = null,
         array $unserialisedData = []
     ) {
         $this->keywords = $keywords;

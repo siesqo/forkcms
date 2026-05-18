@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  */
 class Model extends BaseModel
 {
-    const HOME_PAGE_ID = 1;
-    const ERROR_PAGE_ID = 404;
+    const int HOME_PAGE_ID = 1;
+    const int ERROR_PAGE_ID = 404;
 
     /**
      * Cached modules
@@ -148,7 +148,7 @@ class Model extends BaseModel
      *
      * @return string
      */
-    public static function getUTCDate(string $format = null, int $timestamp = null): string
+    public static function getUTCDate(?string $format = null, ?int $timestamp = null): string
     {
         $format = ($format !== null) ? (string) $format : 'Y-m-d H:i:s';
         if ($timestamp === null) {
@@ -168,7 +168,7 @@ class Model extends BaseModel
      *
      * @return int
      */
-    public static function getUTCTimestamp(\SpoonFormDate $date, \SpoonFormTime $time = null): int
+    public static function getUTCTimestamp(\SpoonFormDate $date, ?\SpoonFormTime $time = null): int
     {
         // validate date/time object
         if (!$date->isValid() || ($time !== null && !$time->isValid())

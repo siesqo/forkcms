@@ -45,7 +45,7 @@ final class SubscriptionHandler
                     $interests[$checkedInterestId] = true;
                 }
             }
-        } catch (NotImplementedException $e) {
+        } catch (NotImplementedException) {
             // Fallback for when no mail-engine is chosen in the Backend
         }
 

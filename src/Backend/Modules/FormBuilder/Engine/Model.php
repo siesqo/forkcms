@@ -14,7 +14,7 @@ use function Symfony\Component\String\s;
  */
 class Model
 {
-    const QUERY_BROWSE =
+    const string QUERY_BROWSE =
         'SELECT i.id, i.name, i.email, i.method,
          (SELECT COUNT(fd.form_id) FROM forms_data AS fd WHERE fd.form_id = i.id) AS sent_forms
          FROM forms AS i
@@ -227,7 +227,7 @@ class Model
      *
      * @return bool
      */
-    public static function existsField(int $id, int $formId = null): bool
+    public static function existsField(int $id, ?int $formId = null): bool
     {
         // exists
         if ($formId === null) {
@@ -258,7 +258,7 @@ class Model
      *
      * @return bool
      */
-    public static function existsIdentifier(string $identifier, int $ignoreId = null): bool
+    public static function existsIdentifier(string $identifier, ?int $ignoreId = null): bool
     {
         // exists
         if ($ignoreId === null) {
@@ -368,7 +368,7 @@ class Model
      *
      * @return mixed
      */
-    public static function getErrors(string $type = null)
+    public static function getErrors(?string $type = null)
     {
         $errors = [];
         $errors['required'] = FL::getError('FieldIsRequired');

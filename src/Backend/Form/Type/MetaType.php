@@ -120,7 +120,7 @@ class MetaType extends AbstractType
                 },
                 SEOIndex::POSSIBLE_VALUES
             ),
-            'choice_value' => function (SEOIndex $SEOIndex = null) {
+            'choice_value' => function (?SEOIndex $SEOIndex = null) {
                 return (string) $SEOIndex;
             },
             'choice_label' => function ($SEOIndex) {
@@ -148,7 +148,7 @@ class MetaType extends AbstractType
                 },
                 SEOFollow::POSSIBLE_VALUES
             ),
-            'choice_value' => function (SEOFollow $SEOFollow = null) {
+            'choice_value' => function (?SEOFollow $SEOFollow = null) {
                 return (string) $SEOFollow;
             },
             'choice_label' => function ($SEOFollow) {

@@ -7,7 +7,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class StatusDBALType extends StringType
 {
-    const CONTENT_BLOCKS_STATUS = 'content_blocks_status';
+    const string CONTENT_BLOCKS_STATUS = 'content_blocks_status';
 
     public function convertToPHPValue($status, AbstractPlatform $platform): Status
     {

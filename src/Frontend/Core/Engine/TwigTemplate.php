@@ -29,14 +29,12 @@ class TwigTemplate extends BaseTwigTemplate
         $this->forkSettings = $container->get('fork.settings');
         $this->language = Locale::frontendLanguage();
 
-        parent::__construct($environment);
+        $this->environment = $environment;
 
         $this->debugMode = $container->getParameter('kernel.debug');
         if ($this->debugMode) {
             $this->environment->enableAutoReload();
             $this->environment->setCache(false);
-        } else {
-            $this->environment->setCache(Model::getContainer()->getParameter('kernel.cache_dir') . '/twig');
         }
         $this->environment->disableStrictVariables();
         new FormExtension($this->environment);

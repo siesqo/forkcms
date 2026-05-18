@@ -7,13 +7,13 @@ use Common\ModulesSettings;
 
 class ConsentDialog
 {
-    const LEVEL_AD_STORAGE = 'ad_storage';
-    const LEVEL_AD_USER_DATA = 'ad_user_data';
-    const LEVEL_AD_PERSONALIZATION = 'ad_personalization';
-    const LEVEL_ANALYTICS_STORAGE = 'analytics_storage';
-    const LEVEL_FUNCTIONALITY_STORAGE = 'functionality_storage';
-    const LEVEL_PERSONALIZATION_STORAGE = 'personalization_storage';
-    const LEVEL_SECURITY_STORAGE = 'security_storage';
+    const string LEVEL_AD_STORAGE = 'ad_storage';
+    const string LEVEL_AD_USER_DATA = 'ad_user_data';
+    const string LEVEL_AD_PERSONALIZATION = 'ad_personalization';
+    const string LEVEL_ANALYTICS_STORAGE = 'analytics_storage';
+    const string LEVEL_FUNCTIONALITY_STORAGE = 'functionality_storage';
+    const string LEVEL_PERSONALIZATION_STORAGE = 'personalization_storage';
+    const string LEVEL_SECURITY_STORAGE = 'security_storage';
 
     /**
      * @var ModulesSettings

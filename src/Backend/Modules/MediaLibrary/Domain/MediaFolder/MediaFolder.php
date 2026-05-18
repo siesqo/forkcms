@@ -122,7 +122,7 @@ class MediaFolder implements JsonSerializable
         );
     }
 
-    public function update(string $name, MediaFolder $parent = null)
+    public function update(string $name, ?MediaFolder $parent = null)
     {
         $this->name = $name;
 

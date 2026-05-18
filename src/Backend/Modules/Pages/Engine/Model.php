@@ -26,25 +26,25 @@ use function Symfony\Component\String\s;
  */
 class Model
 {
-    const NO_PARENT_PAGE_ID = 0;
+    const int NO_PARENT_PAGE_ID = 0;
 
-    const TYPE_OF_DROP_BEFORE = 'before';
-    const TYPE_OF_DROP_AFTER = 'after';
-    const TYPE_OF_DROP_INSIDE = 'inside';
-    const POSSIBLE_TYPES_OF_DROP = [
+    const string TYPE_OF_DROP_BEFORE = 'before';
+    const string TYPE_OF_DROP_AFTER = 'after';
+    const string TYPE_OF_DROP_INSIDE = 'inside';
+    const array POSSIBLE_TYPES_OF_DROP = [
         self::TYPE_OF_DROP_BEFORE,
         self::TYPE_OF_DROP_AFTER,
         self::TYPE_OF_DROP_INSIDE,
     ];
 
-    const QUERY_BROWSE_RECENT =
+    const string QUERY_BROWSE_RECENT =
         'SELECT i.id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM pages AS i
          WHERE i.status = ? AND i.language = ?
          ORDER BY i.edited_on DESC
          LIMIT ?';
 
-    const QUERY_DATAGRID_BROWSE_DRAFTS =
+    const string QUERY_DATAGRID_BROWSE_DRAFTS =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM pages AS i
          INNER JOIN
@@ -56,19 +56,19 @@ class Model
          ) AS p
          WHERE i.revision_id = p.revision_id';
 
-    const QUERY_BROWSE_REVISIONS =
+    const string QUERY_BROWSE_REVISIONS =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM pages AS i
          WHERE i.id = ? AND i.status = ? AND i.language = ?
          ORDER BY i.edited_on DESC';
 
-    const QUERY_DATAGRID_BROWSE_SPECIFIC_DRAFTS =
+    const string QUERY_DATAGRID_BROWSE_SPECIFIC_DRAFTS =
         'SELECT i.id, i.revision_id, i.title, UNIX_TIMESTAMP(i.edited_on) AS edited_on, i.user_id
          FROM pages AS i
          WHERE i.id = ? AND i.status = ? AND i.language = ?
          ORDER BY i.edited_on DESC';
 
-    const QUERY_BROWSE_TEMPLATES =
+    const string QUERY_BROWSE_TEMPLATES =
         'SELECT i.id, i.label AS title
          FROM pages_templates AS i
          WHERE i.theme = ?
@@ -84,7 +84,7 @@ class Model
         return $cacheBuilder;
     }
 
-    public static function buildCache(string $language = null): void
+    public static function buildCache(?string $language = null): void
     {
         $cacheBuilder = static::getCacheBuilder();
         $cacheBuilder->buildCache($language ?? BL::getWorkingLanguage());
@@ -371,7 +371,7 @@ class Model
      *
      * @return bool
      */
-    public static function delete(int $id, string $language = null, int $revisionId = null): bool
+    public static function delete(int $id, ?string $language = null, ?int $revisionId = null): bool
     {
         $language = $language ?? BL::getWorkingLanguage();
 
@@ -447,7 +447,7 @@ class Model
      *
      * @return mixed False if the record can't be found, otherwise an array with all data.
      */
-    public static function get(int $pageId, int $revisionId = null, string $language = null)
+    public static function get(int $pageId, ?int $revisionId = null, ?string $language = null)
     {
         // fetch revision if not specified
         if ($revisionId === null) {
@@ -520,7 +520,7 @@ class Model
         return $pageId === BackendModel::ERROR_PAGE_ID;
     }
 
-    public static function getBlocks(int $pageId, int $revisionId = null, string $language = null): array
+    public static function getBlocks(int $pageId, ?int $revisionId = null, ?string $language = null): array
     {
         // fetch revision if not specified
         if ($revisionId === null) {
@@ -631,7 +631,7 @@ class Model
         return urldecode($url);
     }
 
-    public static function getLatestRevision(int $id, string $language = null): int
+    public static function getLatestRevision(int $id, ?string $language = null): int
     {
         $language = $language ?? BL::getWorkingLanguage();
 
@@ -670,7 +670,7 @@ class Model
         return $maximumMenuId;
     }
 
-    public static function getMaximumSequence(int $parentId, string $language = null): int
+    public static function getMaximumSequence(int $parentId, ?string $language = null): int
     {
         $language = $language ?? BL::getWorkingLanguage();
 
@@ -683,7 +683,7 @@ class Model
         );
     }
 
-    public static function getPagesForDropdown(string $language = null): array
+    public static function getPagesForDropdown(?string $language = null): array
     {
         $language = $language ?? BL::getWorkingLanguage();
         $titles = [];
@@ -748,7 +748,7 @@ class Model
         return $tree;
     }
 
-    private static function mergeTreeForDropdownArrays(array $tree, array $subTree, string $treeLabel = null): array
+    private static function mergeTreeForDropdownArrays(array $tree, array $subTree, ?string $treeLabel = null): array
     {
         if (empty($subTree)) {
             return $tree;
@@ -815,7 +815,7 @@ class Model
         );
     }
 
-    public static function getMoveTreeForDropdown(int $currentPageId, string $language = null): array
+    public static function getMoveTreeForDropdown(int $currentPageId, ?string $language = null): array
     {
         $navigation = static::getCacheBuilder()->getNavigation($language = $language ?? BL::getWorkingLanguage());
 
@@ -900,7 +900,7 @@ class Model
      *
      * @return array
      */
-    public static function getTree(array $ids, array $data = null, int $level = 1, string $language = null): array
+    public static function getTree(array $ids, ?array $data = null, int $level = 1, ?string $language = null): array
     {
         $language = $language ?? BL::getWorkingLanguage();
 
@@ -1143,7 +1143,7 @@ class Model
         ];
     }
 
-    public static function getUrl(string $url, int $id = null, int $parentId = null, bool $isAction = false): string
+    public static function getUrl(string $url, ?int $id = null, ?int $parentId = null, bool $isAction = false): string
     {
         $parentIds = [$parentId ?? self::NO_PARENT_PAGE_ID];
 
@@ -1322,7 +1322,7 @@ class Model
         int $droppedOnPageId,
         string $typeOfDrop,
         string $tree,
-        string $language = null
+        ?string $language = null
     ): bool {
         $typeOfDrop = in_array($typeOfDrop, self::POSSIBLE_TYPES_OF_DROP, true) ? $typeOfDrop : self::TYPE_OF_DROP_INSIDE;
         $tree = in_array($tree, ['main', 'meta', 'footer', 'root'], true) ? $tree : 'root';
@@ -1352,7 +1352,7 @@ class Model
 
         try {
             $newParent = self::getNewParent($droppedOnPageId, $typeOfDrop, $droppedOnPage);
-        } catch (InvalidArgumentException $invalidArgumentException) {
+        } catch (InvalidArgumentException) {
             // parent doesn't allow children
             return false;
         }

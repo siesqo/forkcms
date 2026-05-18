@@ -22,7 +22,7 @@ final class Unsubscription
      */
     public $locale;
 
-    public function __construct(Locale $locale, string $email = null)
+    public function __construct(Locale $locale, ?string $email = null)
     {
         $this->locale = $locale;
         $this->email = $email;

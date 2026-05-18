@@ -4,9 +4,9 @@ namespace Backend\Modules\Faq\DataFixtures;
 
 class LoadFaqQuestions
 {
-    public const FAQ_QUESTION_TITLE = 'Is this a working test?';
-    public const FAQ_QUESTION_SLUG = 'is-this-a-working-test';
-    public const FAQ_QUESTION_ID = 1;
+    public const string FAQ_QUESTION_TITLE = 'Is this a working test?';
+    public const string FAQ_QUESTION_SLUG = 'is-this-a-working-test';
+    public const int FAQ_QUESTION_ID = 1;
 
     public function load(\SpoonDatabase $database): void
     {

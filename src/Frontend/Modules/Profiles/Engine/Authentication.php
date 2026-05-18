@@ -19,35 +19,35 @@ class Authentication
      *
      * @var string
      */
-    const LOGIN_ACTIVE = 'active';
+    const string LOGIN_ACTIVE = 'active';
 
     /**
      * The login credentials are correct, but the profile is inactive.
      *
      * @var string
      */
-    const LOGIN_INACTIVE = 'inactive';
+    const string LOGIN_INACTIVE = 'inactive';
 
     /**
      * The login credentials are correct, but the profile has been deleted.
      *
      * @var string
      */
-    const LOGIN_DELETED = 'deleted';
+    const string LOGIN_DELETED = 'deleted';
 
     /**
      * The login credentials are correct, but the profile has been blocked.
      *
      * @var string
      */
-    const LOGIN_BLOCKED = 'blocked';
+    const string LOGIN_BLOCKED = 'blocked';
 
     /**
      * The login credentials are incorrect or the profile does not exist.
      *
      * @var string
      */
-    const LOGIN_INVALID = 'invalid';
+    const string LOGIN_INVALID = 'invalid';
 
     /**
      * The current logged in profile.

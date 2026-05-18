@@ -25,7 +25,7 @@ class MediaGroupDataTransferObject
     /** @var bool */
     public $removeAllPreviousConnectedMediaItems = true;
 
-    public function __construct(MediaGroup $mediaGroup = null)
+    public function __construct(?MediaGroup $mediaGroup = null)
     {
         $this->mediaGroupEntity = $mediaGroup;
 

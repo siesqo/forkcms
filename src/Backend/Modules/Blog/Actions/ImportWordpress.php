@@ -234,7 +234,7 @@ class ImportWordpress extends BackendBaseActionEdit
             $comments[] = [
                 'author' => (string) $comment->children('wp', true)->comment_author,
                 'email' => (string) $comment->children('wp', true)->comment_author_email,
-                'text' => filter_var((string) $comment->children('wp', true)->comment_content, FILTER_SANITIZE_STRING),
+                'text' => strip_tags((string) $comment->children('wp', true)->comment_content),
                 'created_on' => (string) $comment->children('wp', true)->comment_date,
                 'status' => ((string) $comment->children('wp', true)->comment_approved == '1') ? 'published' : 'moderation',
             ];
@@ -275,7 +275,7 @@ class ImportWordpress extends BackendBaseActionEdit
                 $imagesPath . '/' . $destinationFile,
                 file_get_contents($file)
             );
-        } catch (Exception $e) {
+        } catch (Exception) {
             // Ignore
         }
 

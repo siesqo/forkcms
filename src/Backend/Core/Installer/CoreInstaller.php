@@ -190,7 +190,7 @@ class CoreInstaller extends ModuleInstaller
             $this->setSetting(
                 'Core',
                 'site_title_' . $language,
-                (isset($siteTitles[$language])) ? $siteTitles[$language] : $this->getVariable('site_title')
+                $siteTitles[$language] ?? $this->getVariable('site_title')
             );
         }
 
@@ -202,7 +202,7 @@ class CoreInstaller extends ModuleInstaller
         $this->setSetting(
             'Core',
             'show_consent_dialog',
-            date_default_timezone_get() && strpos(mb_strtolower(date_default_timezone_get()), 'europe') === 0
+            date_default_timezone_get() && str_starts_with(mb_strtolower(date_default_timezone_get()), 'europe')
         );
     }
 }

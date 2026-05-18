@@ -60,7 +60,7 @@ class EnableLocaleCommand extends Command
         ModulesSettings $settings,
         array $installedModules,
         bool $multiLanguageIsEnabled,
-        string $name = null
+        ?string $name = null
     ) {
         parent::__construct($name);
 

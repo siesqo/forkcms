@@ -117,7 +117,7 @@ class DatabaseType extends AbstractType
 
                                     // drop table
                                     $database->drop($table);
-                                } catch (\Exception $e) {
+                                } catch (\Exception) {
                                     $context->addViolation('Problem with database credentials');
                                 }
                             },

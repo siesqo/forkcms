@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ContentBlock
 {
-    const DEFAULT_TEMPLATE = 'Default.html.twig';
+    const string DEFAULT_TEMPLATE = 'Default.html.twig';
 
     /**
      * @var int

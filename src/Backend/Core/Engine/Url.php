@@ -109,7 +109,7 @@ class Url extends KernelLoader
         return $this->getDefaultActionForModule($module, $language);
     }
 
-    final public function getDefaultActionForCurrentModule(string $language = null): string
+    final public function getDefaultActionForCurrentModule(?string $language = null): string
     {
         return $this->getDefaultActionForModule($this->module, $language ?? $this->getLanguageFromUrl());
     }
@@ -346,7 +346,7 @@ class Url extends KernelLoader
         return $this->module;
     }
 
-    private function setAction(string $action, string $module = null): void
+    private function setAction(string $action, ?string $module = null): void
     {
         // set module
         if ($module !== null) {

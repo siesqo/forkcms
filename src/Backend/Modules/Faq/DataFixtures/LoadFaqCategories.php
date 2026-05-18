@@ -4,15 +4,15 @@ namespace Backend\Modules\Faq\DataFixtures;
 
 class LoadFaqCategories
 {
-    public const FAQ_CATEGORY_TITLE = 'Blog Category for tests';
-    public const FAQ_CATEGORY_SLUG = 'blog-category-for-tests';
+    public const string FAQ_CATEGORY_TITLE = 'Blog Category for tests';
+    public const string FAQ_CATEGORY_SLUG = 'blog-category-for-tests';
 
-    public const FAQ_CATEGORY_DATA = [
+    public const array FAQ_CATEGORY_DATA = [
         'language' => 'en',
         'title' => self::FAQ_CATEGORY_TITLE,
         'sequence' => 1,
     ];
-    public const FAQ_CATEGORY_META_DATA = [
+    public const array FAQ_CATEGORY_META_DATA = [
         'keywords' => self::FAQ_CATEGORY_TITLE,
         'description' => self::FAQ_CATEGORY_TITLE,
         'title' => self::FAQ_CATEGORY_TITLE,

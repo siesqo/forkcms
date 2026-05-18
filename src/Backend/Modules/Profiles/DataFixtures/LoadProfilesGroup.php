@@ -6,8 +6,8 @@ use SpoonDatabase;
 
 class LoadProfilesGroup
 {
-    public const PROFILES_GROUP_NAME = 'My Fork CMS group';
-    public const PROFILES_GROUP_DATA = [
+    public const string PROFILES_GROUP_NAME = 'My Fork CMS group';
+    public const array PROFILES_GROUP_DATA = [
         'name' => self::PROFILES_GROUP_NAME,
     ];
 

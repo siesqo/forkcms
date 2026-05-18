@@ -69,7 +69,7 @@ final class Navigation extends KernelLoader
             return [];
         }
 
-        [$module, $action] = explode('/', $navigationItem['url']);
+        [$module, $action] = explode('/', (string) $navigationItem['url']);
         $module = s($module)->camel()->title()->toString();
         $action = s($action)->camel()->title()->toString();
 

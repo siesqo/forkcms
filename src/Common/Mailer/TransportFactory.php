@@ -25,11 +25,11 @@ class TransportFactory
      */
     public static function create(
         string $type = 'sendmail',
-        string $server = null,
+        ?string $server = null,
         int $port = 25,
-        string $user = null,
-        string $pass = null,
-        string $encryption = null
+        ?string $user = null,
+        ?string $pass = null,
+        ?string $encryption = null
     ): TransportInterface {
         if ($type === 'smtp') {
             return self::getSmtpTransport($server, $port, $user, $pass, $encryption);
@@ -39,11 +39,11 @@ class TransportFactory
     }
 
     private static function getSmtpTransport(
-        string $server = null,
-        string $port = null,
-        string $user = null,
-        string $pass = null,
-        string $encryption = null
+        ?string $server = null,
+        ?string $port = null,
+        ?string $user = null,
+        ?string $pass = null,
+        ?string $encryption = null
     ): TransportInterface {
         // Create the DSN string
         $dsn = sprintf(

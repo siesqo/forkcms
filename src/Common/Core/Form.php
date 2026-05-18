@@ -44,9 +44,9 @@ class Form extends \SpoonForm
      */
     public function __construct(
         string $name,
-        string $action = null,
+        ?string $action = null,
         ?string $method = 'post',
-        string $hash = null,
+        ?string $hash = null,
         bool $useToken = true
     ) {
         $this->url = Model::getContainer()->get('url');
@@ -234,7 +234,7 @@ class Form extends \SpoonForm
      */
     public function addDropdown(
         $name,
-        array $values = null,
+        ?array $values = null,
         $selected = null,
         $multipleSelection = false,
         $class = null,

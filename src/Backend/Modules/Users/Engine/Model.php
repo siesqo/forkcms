@@ -11,7 +11,7 @@ use Backend\Core\Engine\User as BackendUser;
  */
 class Model
 {
-    const QUERY_BROWSE =
+    const string QUERY_BROWSE =
         'SELECT i.id
          FROM users AS i
          WHERE i.deleted = ?';
@@ -107,7 +107,7 @@ class Model
      *
      * @return bool
      */
-    public static function existsEmail(string $email, int $id = null): bool
+    public static function existsEmail(string $email, ?int $id = null): bool
     {
         // get database
         $database = BackendModel::getContainer()->get('database');

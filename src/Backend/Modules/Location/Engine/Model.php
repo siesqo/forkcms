@@ -13,7 +13,7 @@ use function Symfony\Component\String\s;
  */
 class Model
 {
-    const QUERY_DATAGRID_BROWSE =
+    const string QUERY_DATAGRID_BROWSE =
         'SELECT id, title, CONCAT(street, " ", number, ", ", zip, " ", city, ", ", country) AS address
          FROM location
          WHERE language = ?';
