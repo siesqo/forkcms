@@ -6,8 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Backend\Core\Engine\Model;
 use Backend\Modules\MediaLibrary\Domain\MediaGroup\MediaGroup;
 use Common\ModuleExtraType;
-use Ramsey\Uuid\Doctrine\UuidGenerator;
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGalleryRepository")
@@ -16,11 +15,9 @@ use Ramsey\Uuid\UuidInterface;
 class MediaGallery
 {
     /**
-     * @var UuidInterface
+     * @var Uuid
      *
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      * @ORM\Column(type="uuid", unique=true)
      */
     private $id;
@@ -108,6 +105,7 @@ class MediaGallery
         Status $status,
         ?string $text = null
     ) {
+        $this->id = Uuid::v4();
         $this->userId = $userId;
         $this->action = $action;
         $this->title = $title;

@@ -8,7 +8,7 @@ use Backend\Modules\MediaLibrary\Domain\MediaItem\AspectRatio;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\StorageType;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\Type as MediaItemPossibleType;
 use Backend\Modules\MediaLibrary\Domain\MediaGroup\Type as MediaGroupPossibleType;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Uid\Uuid;
 use SimpleBus\Message\Bus\Middleware\MessageBusSupportingMiddleware;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
