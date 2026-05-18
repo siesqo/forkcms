@@ -18,6 +18,9 @@ Changed:
 * Core: Removed Akismet spam filtering integration (was never active without an API key)
 * Core: Replaced `behat/transliterator` with Symfony's `AsciiSlugger` in `Common\Uri`; removes the `behat/transliterator` dependency
 * Core: Upgraded to PHP 8.5; updated dependencies and codebase for full compatibility
+* FormBuilder: Reset all field checkboxes when switching between fields in the backend editor
+* Pages: Skip removal request for user template images when no previous image exists
+* Core: Replaced `ramsey/uuid` with Symfony's built-in `symfony/uid` component for UUID generation
 
 5.13.0  (2025-02-13)
 ------------------
