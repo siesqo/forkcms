@@ -103,9 +103,6 @@ class Add extends BackendBaseActionAdd
             $defaultTemplateId = $this->templates[$keys[0]]['id'];
         }
 
-        // set the default template as checked
-        $this->templates[$defaultTemplateId]['checked'] = true;
-
         // get the extras
         $this->extras = BackendExtensionsModel::getExtras();
 
@@ -124,6 +121,12 @@ class Add extends BackendBaseActionAdd
         $this->form = new BackendForm('add');
 
         $originalPage = $this->getOriginalPage();
+
+        $selectedTemplateId = $defaultTemplateId;
+        if (isset($originalPage['template_id'])) {
+            $selectedTemplateId = $originalPage['template_id'];
+        }
+        $this->templates[$selectedTemplateId]['checked'] = true;
 
         // assign in template
         $this->template->assign('defaultTemplateId', $defaultTemplateId);
@@ -779,6 +782,11 @@ class Add extends BackendBaseActionAdd
 
                     // skip empty images
                     if ($imagePath === '') {
+                        continue;
+                    }
+
+                    // skip external URLs — can't copy remote files
+                    if (filter_var($imagePath, FILTER_VALIDATE_URL)) {
                         continue;
                     }
 
