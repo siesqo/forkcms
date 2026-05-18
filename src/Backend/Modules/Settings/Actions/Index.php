@@ -144,21 +144,6 @@ class Index extends BackendBaseActionIndex
             'form-control danger code'
         );
 
-        // facebook settings
-        // @deprecated remove this in Fork 6, facebook_admin_ids / facebook_app_id / facebook_app_secret should be removed
-        $this->form->addText('facebook_admin_ids', $this->get('fork.settings')->get('Core', 'facebook_admin_ids', null));
-        $this->form->addText('facebook_application_id', $this->get('fork.settings')->get('Core', 'facebook_app_id', null));
-        $this->form->addText(
-            'facebook_application_secret',
-            $this->get('fork.settings')->get('Core', 'facebook_app_secret', null)
-        );
-
-        // twitter settings
-        $this->form->addText(
-            'twitter_site_name',
-            ltrim($this->get('fork.settings')->get('Core', 'twitter_site_name', null), '@')
-        );
-
         // ckfinder
         $this->form->addText(
             'ckfinder_license_name',
@@ -485,40 +470,6 @@ class Index extends BackendBaseActionIndex
                     'site_html_end_of_body',
                     $this->form->getField('site_html_end_of_body')->getValue()
                 );
-
-                // facebook settings
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'facebook_admin_ids',
-                    ($this->form->getField('facebook_admin_ids')->isFilled()) ? $this->form->getField(
-                        'facebook_admin_ids'
-                    )->getValue() : null
-                );
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'facebook_app_id',
-                    ($this->form->getField('facebook_application_id')->isFilled()) ? $this->form->getField(
-                        'facebook_application_id'
-                    )->getValue() : null
-                );
-                $this->get('fork.settings')->set(
-                    'Core',
-                    'facebook_app_secret',
-                    ($this->form->getField('facebook_application_secret')->isFilled()) ? $this->form->getField(
-                        'facebook_application_secret'
-                    )->getValue() : null
-                );
-
-                // twitter settings
-                /** @var \SpoonFormText $txtTwitterSiteName */
-                $txtTwitterSiteName = $this->form->getField('twitter_site_name');
-                if ($txtTwitterSiteName->isFilled()) {
-                    $this->get('fork.settings')->set(
-                        'Core',
-                        'twitter_site_name',
-                        '@' . ltrim($txtTwitterSiteName->getValue(), '@')
-                    );
-                }
 
                 // google recaptcha settings
                 $this->get('fork.settings')->set(
