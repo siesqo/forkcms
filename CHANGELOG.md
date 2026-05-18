@@ -13,6 +13,7 @@ Changed:
 * Pages: Fixed block initialization when copying a page (blocks are not re-initialized with defaults when the page is a copy)
 * Profiles: Removed deprecated `importCsv()` method in favour of `importFromArray()`
 * Core: Removed deprecated `Backend\Core\Engine\Csv` class
+* Analytics: Removed the Analytics module entirely (unused; also removes `google/apiclient` dependency)
 
 5.13.0  (2025-02-13)
 ------------------
