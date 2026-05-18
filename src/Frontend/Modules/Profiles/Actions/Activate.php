@@ -13,6 +13,12 @@ class Activate extends FrontendBaseBlock
     {
         $this->loadTemplate();
         $profileId = $this->getProfileId();
+
+        if ($profileId === 0) {
+            $this->template->assign('activationKeyUsed', true);
+            return;
+        }
+
         $this->activateProfile($profileId);
 
         FrontendProfilesAuthentication::login($profileId);
@@ -28,13 +34,7 @@ class Activate extends FrontendBaseBlock
 
     private function getProfileId(): int
     {
-        $profileId = FrontendProfilesModel::getIdBySetting('activation_key', $this->getActivationKey());
-
-        if ($profileId === 0) {
-            throw new NotFoundHttpException();
-        }
-
-        return $profileId;
+        return FrontendProfilesModel::getIdBySetting('activation_key', $this->getActivationKey());
     }
 
     private function getActivationKey(): string
