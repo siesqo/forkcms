@@ -532,7 +532,7 @@
       {% if extrasById %}extrasById = {{ extrasById|raw }};{% endif %}
 
       // indicator that the default blocks may be set on pageload
-      var initDefaults = true;
+      var initDefaults = {{ (initDefaultBlocks ?? true) ? 'true' : 'false' }};
       //]]>
     </script>
   </div>
