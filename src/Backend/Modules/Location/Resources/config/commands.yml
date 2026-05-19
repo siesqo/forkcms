@@ -1,8 +1,8 @@
 services:
-    location.handler.copy_widgets_to_other_locale:
-        class: Backend\Modules\Location\Command\CopyLocationWidgetsToOtherLocaleHandler
+    _defaults:
+        autoconfigure: true
         public: true
+
+    Backend\Modules\Location\Command\CopyLocationWidgetsToOtherLocaleHandler:
         arguments:
             - "@database"
-        tags:
-            - { name: command_handler, handles: Backend\Modules\Location\Command\CopyLocationWidgetsToOtherLocale }

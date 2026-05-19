@@ -4,18 +4,14 @@ namespace Backend\Modules\MediaLibrary\Domain\MediaItem\Command;
 
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItem;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItemRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class CreateMediaItemFromLocalStorageTypeHandler
+#[AsMessageHandler]
+final readonly class CreateMediaItemFromLocalStorageTypeHandler
 {
-    /** @var MediaItemRepository */
-    protected $mediaItemRepository;
+    public function __construct(private readonly MediaItemRepository $mediaItemRepository) {}
 
-    public function __construct(MediaItemRepository $mediaItemRepository)
-    {
-        $this->mediaItemRepository = $mediaItemRepository;
-    }
-
-    public function handle(CreateMediaItemFromLocalStorageType $createMediaItemFromLocalStorageType): void
+    public function __invoke(CreateMediaItemFromLocalStorageType $createMediaItemFromLocalStorageType): void
     {
         /** @var MediaItem $mediaItem */
         $mediaItem = MediaItem::createFromLocalStorageType(

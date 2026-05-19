@@ -59,7 +59,7 @@ class MediaGalleryEdit extends BackendBaseActionEdit
         $updateMediaGallery = $form->getData();
 
         // Handle the MediaGallery update
-        $this->get('command_bus')->handle($updateMediaGallery);
+        $this->get('messenger.default_bus')->dispatch($updateMediaGallery);
 
         $this->redirect(
             $this->getBackLink(

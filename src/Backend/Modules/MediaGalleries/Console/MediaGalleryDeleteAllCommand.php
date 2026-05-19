@@ -4,8 +4,8 @@ namespace Backend\Modules\MediaGalleries\Console;
 
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\Command\DeleteMediaGallery;
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGalleryRepository;
-use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,13 +28,13 @@ class MediaGalleryDeleteAllCommand extends Command
     /** @var MediaGalleryRepository */
     private $mediaGalleryRepository;
 
-    /** @var MessageBus */
-    private $commandBus;
+    /** @var MessageBusInterface */
+    private $messageBus;
 
-    public function __construct(MediaGalleryRepository $mediaGalleryRepository, MessageBus $commandBus)
+    public function __construct(MediaGalleryRepository $mediaGalleryRepository, MessageBusInterface $messageBus)
     {
         $this->mediaGalleryRepository = $mediaGalleryRepository;
-        $this->commandBus = $commandBus;
+        $this->messageBus = $messageBus;
         parent::__construct('media_galleries:delete:galleries');
     }
 
@@ -80,7 +80,7 @@ class MediaGalleryDeleteAllCommand extends Command
 
         // Loop all media galleries
         foreach ($mediaGalleries as $mediaGallery) {
-            $this->commandBus->handle(
+            $this->messageBus->dispatch(
                 new DeleteMediaGallery($mediaGallery),
             );
         }

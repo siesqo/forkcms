@@ -4,18 +4,14 @@ namespace Backend\Modules\ContentBlocks\Domain\ContentBlock\Command;
 
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlock;
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlockRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class UpdateContentBlockHandler
+#[AsMessageHandler]
+final readonly class UpdateContentBlockHandler
 {
-    /** @var ContentBlockRepository */
-    private $contentBlockRepository;
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
 
-    public function __construct(ContentBlockRepository $contentBlockRepository)
-    {
-        $this->contentBlockRepository = $contentBlockRepository;
-    }
-
-    public function handle(UpdateContentBlock $updateContentBlock): void
+    public function __invoke(UpdateContentBlock $updateContentBlock): void
     {
         $contentBlock = ContentBlock::fromDataTransferObject($updateContentBlock);
         $this->contentBlockRepository->add($contentBlock);

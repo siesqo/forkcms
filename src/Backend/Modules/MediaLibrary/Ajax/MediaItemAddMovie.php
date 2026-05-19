@@ -45,7 +45,7 @@ class MediaItemAddMovie extends BackendBaseAJAXAction
         );
 
         // Handle the MediaItem create
-        $this->get('command_bus')->handle($createMediaItemFromMovieUrl);
+        $this->get('messenger.default_bus')->dispatch($createMediaItemFromMovieUrl);
 
         return $createMediaItemFromMovieUrl;
     }

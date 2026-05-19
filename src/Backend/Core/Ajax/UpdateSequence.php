@@ -27,7 +27,7 @@ class UpdateSequence extends BackendBaseAJAXAction
         $ids = (array) explode(',', rtrim($newIdSequence, ','));
 
         // Handle the Categories ReSequence
-        $this->get('command_bus')->handle(new $this->handlerClass($ids));
+        $this->get('messenger.default_bus')->dispatch(new $this->handlerClass($ids));
 
         // success output
         $this->output(Response::HTTP_OK, null, 'sequence updated');

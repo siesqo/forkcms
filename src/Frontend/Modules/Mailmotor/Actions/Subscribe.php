@@ -53,7 +53,7 @@ class Subscribe extends FrontendBaseBlock
 
         try {
             // The command bus will handle the subscription
-            $this->get('command_bus')->handle($subscription);
+            $this->get('messenger.default_bus')->dispatch($subscription);
         } catch (NotImplementedException) {
             // fallback for when no mail-engine is chosen in the Backend
             $this->get('event_dispatcher')->dispatch(

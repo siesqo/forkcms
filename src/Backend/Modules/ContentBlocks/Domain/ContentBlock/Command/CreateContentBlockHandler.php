@@ -6,18 +6,14 @@ use Backend\Core\Engine\Model;
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlock;
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlockRepository;
 use Common\ModuleExtraType;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class CreateContentBlockHandler
+#[AsMessageHandler]
+final readonly class CreateContentBlockHandler
 {
-    /** @var ContentBlockRepository */
-    private $contentBlockRepository;
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
 
-    public function __construct(ContentBlockRepository $contentBlockRepository)
-    {
-        $this->contentBlockRepository = $contentBlockRepository;
-    }
-
-    public function handle(CreateContentBlock $createContentBlock): void
+    public function __invoke(CreateContentBlock $createContentBlock): void
     {
         $createContentBlock->extraId = $this->getNewExtraId();
         $createContentBlock->id = $this->contentBlockRepository->getNextIdForLanguage($createContentBlock->locale);

@@ -2,20 +2,16 @@
 
 namespace Backend\Modules\Policies\Domain\Settings\Command;
 
-use Common\ModulesSettings;
 use Backend\Modules\Policies\Config;
+use Common\ModulesSettings;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class SaveSettingsHandler
+#[AsMessageHandler]
+final readonly class SaveSettingsHandler
 {
-    /** @var ModulesSettings */
-    private $modulesSettings;
+    public function __construct(private readonly ModulesSettings $modulesSettings) {}
 
-    public function __construct(ModulesSettings $modulesSettings)
-    {
-        $this->modulesSettings = $modulesSettings;
-    }
-
-    public function handle(SaveSettings $saveSettings): void
+    public function __invoke(SaveSettings $saveSettings): void
     {
         $this->modulesSettings->set(Config::MODULE_NAME, 'companyName', $saveSettings->companyName);
         $this->modulesSettings->set(Config::MODULE_NAME, 'streetName', $saveSettings->streetName);

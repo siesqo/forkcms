@@ -7,14 +7,13 @@ use Backend\Modules\Policies\Domain\Settings\Command\SaveSettings;
 use Backend\Modules\Policies\Domain\Settings\SettingsType;
 use Backend\Core\Engine\Model as BackendModel;
 use Common\ModulesSettings;
-use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class Settings extends ActionIndex
 {
-    /** @var MessageBus */
-    private $commandBus;
+    private MessageBusInterface $messageBus;
 
     /** @var ModulesSettings */
     private $settings;
@@ -23,7 +22,7 @@ final class Settings extends ActionIndex
     {
         parent::setKernel($kernel);
 
-        $this->commandBus = $this->get('command_bus');
+        $this->messageBus = $this->get('messenger.default_bus');
         $this->settings = $this->get('fork.settings');
     }
 
@@ -54,7 +53,7 @@ final class Settings extends ActionIndex
     {
         $saveSettings = $form->getData();
 
-        $this->get('command_bus')->handle($saveSettings);
+        $this->get('messenger.default_bus')->dispatch($saveSettings);
 
         $this->redirect(
             $this->getBackLink(
@@ -93,7 +92,7 @@ final class Settings extends ActionIndex
         $queryString = $this->getRequest()->query;
         if ($queryString->has('code')) {
             $settings = new SaveSettings($this->get('fork.settings'));
-            $this->commandBus->handle($settings);
+            $this->messageBus->dispatch($settings);
 
             $this->redirect(
                 $this->getBackLink(

@@ -4,19 +4,14 @@ namespace Backend\Modules\MediaGalleries\Domain\MediaGallery\Command;
 
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGallery;
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGalleryRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class CreateMediaGalleryHandler
+#[AsMessageHandler]
+final readonly class CreateMediaGalleryHandler
 {
-    /** @var MediaGalleryRepository */
-    private $mediaGalleryRepository;
+    public function __construct(private readonly MediaGalleryRepository $mediaGalleryRepository) {}
 
-    public function __construct(
-        MediaGalleryRepository $mediaGalleryRepository
-    ) {
-        $this->mediaGalleryRepository = $mediaGalleryRepository;
-    }
-
-    public function handle(CreateMediaGallery $createMediaGallery): void
+    public function __invoke(CreateMediaGallery $createMediaGallery): void
     {
         /** @var MediaGallery $mediaGallery */
         $mediaGallery = MediaGallery::fromDataTransferObject($createMediaGallery);

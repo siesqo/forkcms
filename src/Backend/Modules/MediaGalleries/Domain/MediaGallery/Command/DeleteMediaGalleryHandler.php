@@ -6,24 +6,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Backend\Modules\MediaGalleries\Domain\MediaGallery\MediaGalleryRepository;
 use Backend\Modules\MediaLibrary\Domain\MediaGroupMediaItem\MediaGroupMediaItem;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItemRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class DeleteMediaGalleryHandler
+#[AsMessageHandler]
+final readonly class DeleteMediaGalleryHandler
 {
-    /** @var MediaGalleryRepository */
-    private $mediaGalleryRepository;
-
-    /** @var MediaItemRepository */
-    private $mediaItemRepository;
-
     public function __construct(
-        MediaGalleryRepository $mediaGalleryRepository,
-        MediaItemRepository $mediaItemRepository
-    ) {
-        $this->mediaGalleryRepository = $mediaGalleryRepository;
-        $this->mediaItemRepository = $mediaItemRepository;
-    }
+        private readonly MediaGalleryRepository $mediaGalleryRepository,
+        private readonly MediaItemRepository $mediaItemRepository
+    ) {}
 
-    public function handle(DeleteMediaGallery $deleteMediaGallery): void
+    public function __invoke(DeleteMediaGallery $deleteMediaGallery): void
     {
         // We should delete all MediaItem entities which were connected to this MediaGallery
         if ($deleteMediaGallery->deleteAllMediaItems) {

@@ -1,8 +1,8 @@
 services:
-    form.handler.copy_widgets_to_other_locale:
-        class: Backend\Modules\FormBuilder\Command\CopyFormWidgetsToOtherLocaleHandler
+    _defaults:
+        autoconfigure: true
         public: true
+
+    Backend\Modules\FormBuilder\Command\CopyFormWidgetsToOtherLocaleHandler:
         arguments:
             - "@database"
-        tags:
-            - { name: command_handler, handles: Backend\Modules\FormBuilder\Command\CopyFormWidgetsToOtherLocale }

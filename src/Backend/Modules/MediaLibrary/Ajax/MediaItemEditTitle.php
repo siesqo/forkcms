@@ -68,7 +68,7 @@ class MediaItemEditTitle extends BackendBaseAJAXAction
         $updateMediaItem->title = $title;
 
         // Handle the MediaItem update
-        $this->get('command_bus')->handle($updateMediaItem);
+        $this->get('messenger.default_bus')->dispatch($updateMediaItem);
 
         return $updateMediaItem;
     }

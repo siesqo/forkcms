@@ -8,38 +8,31 @@ use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlock;
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\ContentBlockRepository;
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\Status;
 use Common\ModuleExtraType;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class CopyContentBlocksToOtherLocaleHandler
+#[AsMessageHandler]
+final readonly class CopyContentBlocksToOtherLocaleHandler
 {
-    /** @var ContentBlockRepository */
-    private $contentBlockRepository;
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
 
-    public function __construct(ContentBlockRepository $contentBlockRepository)
-    {
-        $this->contentBlockRepository = $contentBlockRepository;
-    }
-
-    public function handle(CopyContentBlocksToOtherLocale $copyContentBlocksToOtherLocale): void
+    public function __invoke(CopyContentBlocksToOtherLocale $copyContentBlocksToOtherLocale): void
     {
         $contentBlocksToCopy = $this->getContentBlocksToCopy($copyContentBlocksToOtherLocale->fromLocale);
         $id = $this->contentBlockRepository->getNextIdForLanguage($copyContentBlocksToOtherLocale->toLocale);
 
-        array_map(
-            function (ContentBlock $contentBlock) use ($copyContentBlocksToOtherLocale, &$id) {
-                $copyContentBlocksToOtherLocale->extraIdMap[$contentBlock->getExtraId()] = $this->getNewExtraId();
-                $dataTransferObject = $contentBlock->getDataTransferObject();
+        foreach ($contentBlocksToCopy as $contentBlock) {
+            $extraId = $this->getNewExtraId();
+            $copyContentBlocksToOtherLocale->extraIdMap[$contentBlock->getExtraId()] = $extraId;
 
-                // Overwrite some variables
-                $dataTransferObject->forOtherLocale(
-                    $id++,
-                    $copyContentBlocksToOtherLocale->extraIdMap[$contentBlock->getExtraId()],
-                    $copyContentBlocksToOtherLocale->toLocale
-                );
+            $dataTransferObject = $contentBlock->getDataTransferObject();
+            $dataTransferObject->forOtherLocale(
+                $id++,
+                $extraId,
+                $copyContentBlocksToOtherLocale->toLocale
+            );
 
-                $this->contentBlockRepository->add(ContentBlock::fromDataTransferObject($dataTransferObject));
-            },
-            $contentBlocksToCopy
-        );
+            $this->contentBlockRepository->add(ContentBlock::fromDataTransferObject($dataTransferObject));
+        }
     }
 
     private function getContentBlocksToCopy(Locale $locale): array

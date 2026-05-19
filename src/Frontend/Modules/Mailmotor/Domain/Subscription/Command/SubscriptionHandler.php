@@ -4,28 +4,19 @@ namespace Frontend\Modules\Mailmotor\Domain\Subscription\Command;
 
 use Common\ModulesSettings;
 use Frontend\Core\Language\Locale;
-use MailMotor\Bundle\MailMotorBundle\Helper\Subscriber;
 use MailMotor\Bundle\MailMotorBundle\Exception\NotImplementedException;
+use MailMotor\Bundle\MailMotorBundle\Helper\Subscriber;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class SubscriptionHandler
+#[AsMessageHandler]
+final readonly class SubscriptionHandler
 {
-    /**
-     * @var ModulesSettings
-     */
-    private $modulesSettings;
+    public function __construct(
+        private readonly Subscriber $subscriber,
+        private readonly ModulesSettings $modulesSettings
+    ) {}
 
-    /**
-     * @var Subscriber
-     */
-    private $subscriber;
-
-    public function __construct(Subscriber $subscriber, ModulesSettings $modulesSettings)
-    {
-        $this->subscriber = $subscriber;
-        $this->modulesSettings = $modulesSettings;
-    }
-
-    public function handle(Subscription $subscription): void
+    public function __invoke(Subscription $subscription): void
     {
         $mergeFields = [];
         $interests = [];

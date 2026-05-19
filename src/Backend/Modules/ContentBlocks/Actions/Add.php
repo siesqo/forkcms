@@ -53,7 +53,7 @@ class Add extends BackendBaseActionAdd
         $createContentBlock->userId = Authentication::getUser()->getUserId();
 
         // The command bus will handle the saving of the content block in the database.
-        $this->get('command_bus')->handle($createContentBlock);
+        $this->get('messenger.default_bus')->dispatch($createContentBlock);
 
         return $createContentBlock;
     }

@@ -2,24 +2,16 @@
 
 namespace Backend\Modules\MediaLibrary\Domain\MediaFolder\Command;
 
-use Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolder;
 use Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolderRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class DeleteMediaFolderHandler
+#[AsMessageHandler]
+final readonly class DeleteMediaFolderHandler
 {
-    /** @var MediaFolderRepository */
-    protected $mediaFolderRepository;
+    public function __construct(private readonly MediaFolderRepository $mediaFolderRepository) {}
 
-    public function __construct(MediaFolderRepository $mediaFolderRepository)
+    public function __invoke(DeleteMediaFolder $deleteMediaFolder): void
     {
-        $this->mediaFolderRepository = $mediaFolderRepository;
-    }
-
-    public function handle(DeleteMediaFolder $deleteMediaFolder): void
-    {
-        /** @var MediaFolder $mediaFolder */
-        $mediaFolder = $deleteMediaFolder->mediaFolder;
-
-        $this->mediaFolderRepository->remove($mediaFolder);
+        $this->mediaFolderRepository->remove($deleteMediaFolder->mediaFolder);
     }
 }

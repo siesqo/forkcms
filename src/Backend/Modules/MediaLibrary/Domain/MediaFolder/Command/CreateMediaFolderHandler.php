@@ -4,20 +4,15 @@ namespace Backend\Modules\MediaLibrary\Domain\MediaFolder\Command;
 
 use Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolder;
 use Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolderRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class CreateMediaFolderHandler
+#[AsMessageHandler]
+final readonly class CreateMediaFolderHandler
 {
-    /** @var MediaFolderRepository */
-    protected $mediaFolderRepository;
+    public function __construct(private readonly MediaFolderRepository $mediaFolderRepository) {}
 
-    public function __construct(MediaFolderRepository $mediaFolderRepository)
+    public function __invoke(CreateMediaFolder $createMediaFolder): void
     {
-        $this->mediaFolderRepository = $mediaFolderRepository;
-    }
-
-    public function handle(CreateMediaFolder $createMediaFolder): void
-    {
-        /** @var MediaFolder $mediaFolder */
         $mediaFolder = MediaFolder::fromDataTransferObject($createMediaFolder);
         $this->mediaFolderRepository->add($mediaFolder);
 

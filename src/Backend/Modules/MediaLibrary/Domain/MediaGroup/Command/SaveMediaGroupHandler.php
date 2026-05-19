@@ -6,19 +6,15 @@ use Backend\Modules\MediaLibrary\Domain\MediaGroup\MediaGroup;
 use Backend\Modules\MediaLibrary\Domain\MediaGroupMediaItem\MediaGroupMediaItem;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\Exception\MediaItemNotFound;
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItemRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Uid\Uuid;
 
-final class SaveMediaGroupHandler
+#[AsMessageHandler]
+final readonly class SaveMediaGroupHandler
 {
-    /** @var MediaItemRepository */
-    protected $mediaItemRepository;
+    public function __construct(private readonly MediaItemRepository $mediaItemRepository) {}
 
-    public function __construct(MediaItemRepository $mediaItemRepository)
-    {
-        $this->mediaItemRepository = $mediaItemRepository;
-    }
-
-    public function handle(SaveMediaGroup $saveMediaGroup): void
+    public function __invoke(SaveMediaGroup $saveMediaGroup): void
     {
         /** @var MediaGroup $mediaGroup */
         $mediaGroup = MediaGroup::fromDataTransferObject($saveMediaGroup);

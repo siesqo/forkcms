@@ -69,7 +69,7 @@ final class Ping extends ActionIndex
         $saveSettings = new SaveSettings($this->get('fork.settings'));
         $saveSettings->mailEngine = 'not_implemented';
 
-        $this->get('command_bus')->handle($saveSettings);
+        $this->get('messenger.default_bus')->dispatch($saveSettings);
 
         $this->get('event_dispatcher')->dispatch(
             new SettingsSavedEvent($saveSettings),

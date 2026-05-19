@@ -102,7 +102,7 @@ class Installer extends ModuleInstaller
     protected function loadMediaFolders(): void
     {
         // Handle the create MediaFolder
-        Model::get('command_bus')->handle(new CreateMediaFolder('default', 1));
+        Model::get('messenger.default_bus')->dispatch(new CreateMediaFolder('default', 1));
 
         // Delete cache
         Model::get('media_library.cache.media_folder')->delete();

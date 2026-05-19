@@ -3,19 +3,14 @@
 namespace Backend\Modules\MediaLibrary\Domain\MediaItem\Command;
 
 use Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItemRepository;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class DeleteMediaItemHandler
+#[AsMessageHandler]
+final readonly class DeleteMediaItemHandler
 {
-    /** @var MediaItemRepository */
-    private $mediaItemRepository;
+    public function __construct(private readonly MediaItemRepository $mediaItemRepository) {}
 
-    public function __construct(
-        MediaItemRepository $mediaItemRepository
-    ) {
-        $this->mediaItemRepository = $mediaItemRepository;
-    }
-
-    public function handle(DeleteMediaItem $deleteMediaItem): void
+    public function __invoke(DeleteMediaItem $deleteMediaItem): void
     {
         $this->mediaItemRepository->remove($deleteMediaItem->mediaItem);
     }
