@@ -284,10 +284,10 @@ class TwigTemplate extends BaseTwigTemplate
         $this->parseLabels(BL::getMessages(), $currentModule, 'msg');
 
         $interfaceLanguage = BL::getInterfaceLanguage();
-        $this->assignArray($this->prefixArrayKeys('locMonthLong', \SpoonLocale::getMonths($interfaceLanguage, false)));
-        $this->assignArray($this->prefixArrayKeys('locMonthShort', \SpoonLocale::getMonths($interfaceLanguage, true)));
-        $this->assignArray($this->prefixArrayKeys('locDayLong', \SpoonLocale::getWeekDays($interfaceLanguage, false)));
-        $this->assignArray($this->prefixArrayKeys('locDayShort', \SpoonLocale::getWeekDays($interfaceLanguage, true)));
+        $this->assignArray($this->prefixArrayKeys('locMonthLong', \Common\Core\DateFormatter::getMonths($interfaceLanguage, false)));
+        $this->assignArray($this->prefixArrayKeys('locMonthShort', \Common\Core\DateFormatter::getMonths($interfaceLanguage, true)));
+        $this->assignArray($this->prefixArrayKeys('locDayLong', \Common\Core\DateFormatter::getWeekDays($interfaceLanguage, false)));
+        $this->assignArray($this->prefixArrayKeys('locDayShort', \Common\Core\DateFormatter::getWeekDays($interfaceLanguage, true)));
     }
 
     private function parseVars(): void

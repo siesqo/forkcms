@@ -87,6 +87,54 @@ final class DateFormatter
         return sprintf($labelFn('TimeAgoYears'), $years);
     }
 
+    /**
+     * Return an array of month names for the given locale, keyed 1–12.
+     */
+    public static function getMonths(string $locale, bool $abbreviated = false): array
+    {
+        $formatter = new \IntlDateFormatter(
+            $locale,
+            \IntlDateFormatter::NONE,
+            \IntlDateFormatter::NONE,
+            null,
+            null,
+            $abbreviated ? 'MMM' : 'MMMM'
+        );
+        $months = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $months[$i] = $formatter->format(mktime(0, 0, 0, $i, 1, 2024));
+        }
+        return $months;
+    }
+
+    /**
+     * Return an array of weekday names keyed by 3-letter English abbreviation (sun, mon, …).
+     * $firstDay accepts 'monday' (default) or 'sunday'.
+     */
+    public static function getWeekDays(string $locale, bool $abbreviated = false, string $firstDay = 'monday'): array
+    {
+        $formatter = new \IntlDateFormatter(
+            $locale,
+            \IntlDateFormatter::NONE,
+            \IntlDateFormatter::NONE,
+            null,
+            null,
+            $abbreviated ? 'EEE' : 'EEEE'
+        );
+        $keys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        $base = mktime(0, 0, 0, 1, 5, 2025); // known Sunday
+        $days = [];
+        foreach ($keys as $offset => $key) {
+            $days[$key] = $formatter->format($base + $offset * 86400);
+        }
+        if ($firstDay === 'monday') {
+            $sun = $days['sun'];
+            unset($days['sun']);
+            $days['sun'] = $sun;
+        }
+        return $days;
+    }
+
     private static function toIcu(string $phpFormat): string
     {
         $icu = '';

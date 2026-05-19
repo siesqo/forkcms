@@ -53,7 +53,7 @@ class Settings extends FrontendBaseBlock
     {
         return [
             'days' => range(1, 31),
-            'months' => \SpoonLocale::getMonths(LANGUAGE),
+            'months' => \Common\Core\DateFormatter::getMonths(LANGUAGE),
             'years' => range(date('Y'), 1900),
         ];
     }

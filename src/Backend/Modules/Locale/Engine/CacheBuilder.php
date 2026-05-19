@@ -83,26 +83,26 @@ class CacheBuilder
             }
         }
 
-        $this->addSpoonLocale($json, $language);
+        $this->addLocaleNames($json, $language);
 
         return $json;
     }
 
     /**
-     * Adds months and days from spoonLocale to the json
+     * Adds months and days from locale to the json
      *
      * @param array  $json
      * @param string $language
      */
-    protected function addSpoonLocale(array &$json, string $language): void
+    protected function addLocaleNames(array &$json, string $language): void
     {
         // get months
-        $monthsLong = \SpoonLocale::getMonths($language, false);
-        $monthsShort = \SpoonLocale::getMonths($language, true);
+        $monthsLong = \Common\Core\DateFormatter::getMonths($language, false);
+        $monthsShort = \Common\Core\DateFormatter::getMonths($language, true);
 
         // get days
-        $daysLong = \SpoonLocale::getWeekDays($language, false, 'sunday');
-        $daysShort = \SpoonLocale::getWeekDays($language, true, 'sunday');
+        $daysLong = \Common\Core\DateFormatter::getWeekDays($language, false, 'sunday');
+        $daysShort = \Common\Core\DateFormatter::getWeekDays($language, true, 'sunday');
 
         // build labels
         foreach ($monthsLong as $key => $value) {

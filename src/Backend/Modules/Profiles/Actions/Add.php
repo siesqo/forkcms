@@ -65,7 +65,7 @@ class Add extends BackendBaseActionAdd
 
         // birthdate dropdown values
         $days = range(1, 31);
-        $months = \SpoonLocale::getMonths(BL::getInterfaceLanguage());
+        $months = \Common\Core\DateFormatter::getMonths(BL::getInterfaceLanguage());
         $years = range(date('Y'), 1900);
 
         // create form
