@@ -115,7 +115,7 @@ class BaseTwigModifiers
      */
     public static function uppercase(string $string): string
     {
-        return mb_convert_case($string, MB_CASE_UPPER, \Spoon::getCharset());
+        return mb_convert_case($string, MB_CASE_UPPER, 'UTF-8');
     }
 
     /**
@@ -129,7 +129,7 @@ class BaseTwigModifiers
      */
     public static function lowercase(string $string): string
     {
-        return mb_convert_case($string, MB_CASE_LOWER, \Spoon::getCharset());
+        return mb_convert_case($string, MB_CASE_LOWER, 'UTF-8');
     }
 
     /**

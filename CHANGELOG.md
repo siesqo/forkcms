@@ -24,6 +24,7 @@ Changed:
 * Core: Replaced SimpleBus command/event bus with Symfony Messenger; all handlers migrated to `#[AsMessageHandler]` + `__invoke()`, `DoctrineTransactionMiddleware` replaces per-handler `flush()` calls
 * Core: Updated Node.js to v26; removed unused npm packages (`@fancyapps/fancybox`, `@popperjs/core`, `lodash`); updated remaining packages
 * Core: Upgraded stylelint to v17; switched to `stylelint-config-standard-scss` for proper SCSS linting support; fixes postcss security vulnerabilities in the stylelint 13 dependency chain
+* Core: Replaced `Spoon::getCharset()` with hardcoded `'UTF-8'` in `BaseTwigModifiers`
 * Core: Replaced `SpoonDate` with `IntlDateFormatter` via a new `Common\Core\DateFormatter` utility class; `spoondate` Twig filter renamed to `intldate`; user format preferences are preserved; locale-aware `timeAgo` formatting no longer depends on SpoonDate
 
 5.13.0  (2025-02-13)
