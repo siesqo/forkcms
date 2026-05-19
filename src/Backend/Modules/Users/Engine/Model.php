@@ -196,9 +196,9 @@ class Model
 
         // loop available formats
         foreach ((array) BackendModel::get('fork.settings')->get('Users', 'date_formats') as $format) {
-            $possibleFormats[$format] = \SpoonDate::getDate(
-                $format,
+            $possibleFormats[$format] = \Common\Core\DateFormatter::format(
                 null,
+                $format,
                 BackendAuthentication::getUser()->getSetting('interface_language')
             );
         }
@@ -305,9 +305,9 @@ class Model
 
         // loop available formats
         foreach (BackendModel::get('fork.settings')->get('Users', 'time_formats') as $format) {
-            $possibleFormats[$format] = \SpoonDate::getDate(
-                $format,
+            $possibleFormats[$format] = \Common\Core\DateFormatter::format(
                 null,
+                $format,
                 BackendAuthentication::getUser()->getSetting('interface_language')
             );
         }

@@ -23,7 +23,7 @@
                 <li>
                   {% if month.url %}
                   <a href="{{ month.url }}">{% endif %}
-                    {{ month.label|spoondate('F',LANGUAGE ) }}
+                    {{ month.label|intldate('F',LANGUAGE ) }}
                     {% if month.url %}</a>{% endif %}
                   <span class="badge">{{ month.total }}</span>
                 </li>

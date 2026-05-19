@@ -4,7 +4,7 @@ namespace Backend\Core\Engine;
 
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Core\Language\Language as BackendLanguage;
-use SpoonDate;
+use Common\Core\DateFormatter;
 use function Symfony\Component\String\s;
 
 /**
@@ -74,7 +74,7 @@ class DataGridFunctions
         $format = Authentication::getUser()->getSetting('date_format');
 
         // format the date according the user his settings
-        return SpoonDate::getDate($format, $timestamp, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($timestamp, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**
@@ -95,7 +95,7 @@ class DataGridFunctions
         $format = Authentication::getUser()->getSetting('datetime_format');
 
         // format the date according the user his settings
-        return SpoonDate::getDate($format, $timestamp, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($timestamp, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**
@@ -116,7 +116,7 @@ class DataGridFunctions
         $format = Authentication::getUser()->getSetting('time_format');
 
         // format the date according the user his settings
-        return SpoonDate::getDate($format, $timestamp, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($timestamp, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**
@@ -128,16 +128,16 @@ class DataGridFunctions
      */
     public static function getTimeAgo(int $timestamp): string
     {
-        // get user setting for long dates
         $format = Authentication::getUser()->getSetting('datetime_format');
-
-        // get the time ago as a string
-        $timeAgo = SpoonDate::getTimeAgo($timestamp, BackendLanguage::getInterfaceLanguage(), $format);
-
+        $lang = BackendLanguage::getInterfaceLanguage();
+        $text = DateFormatter::timeAgoText(
+            $timestamp,
+            fn(string $lbl) => BackendLanguage::lbl($lbl)
+        );
         return '<time tabindex="0" data-toggle="tooltip" datetime="'
-               . SpoonDate::getDate('Y-m-d H:i:s', $timestamp)
-               . '" title="' . SpoonDate::getDate($format, $timestamp, BackendLanguage::getInterfaceLanguage())
-               . '">' . $timeAgo . '</time>';
+            . date('Y-m-d H:i:s', $timestamp)
+            . '" title="' . DateFormatter::format($timestamp, $format, $lang)
+            . '">' . $text . '</time>';
     }
 
     /**

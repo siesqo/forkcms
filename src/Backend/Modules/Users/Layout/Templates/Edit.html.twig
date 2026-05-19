@@ -32,20 +32,20 @@
             <tr>
               <th>{{ 'lbl.LastLogin'|trans|ucfirst }}:</th>
               <td>
-                {% if record.settings.last_login %}{{ record.settings.last_login|spoondate(authenticatedUserDateFormat, authenticatedUserTimeFormat, INTERFACE_LANGUAGE) }}{% endif %}
+                {% if record.settings.last_login %}{{ record.settings.last_login|formatdatetime }}{% endif %}
                 {% if not record.settings.last_login %}{{ 'lbl.NoPreviousLogin'|trans|ucfirst }}{% endif %}
               </td>
             </tr>
             {% if record.settings.last_failed_login_attempt %}
               <tr>
                 <th>{{ 'lbl.LastFailedLoginAttempt'|trans|ucfirst }}:</th>
-                <td>{{ record.settings.last_failed_login_attempt|spoondate(authenticatedUserDateFormat, authenticatedUserTimeFormat, INTERFACE_LANGUAGE) }}</td>
+                <td>{{ record.settings.last_failed_login_attempt|formatdatetime }}</td>
               </tr>
             {% endif %}
             <tr>
               <th>{{ 'lbl.LastPasswordChange'|trans|ucfirst }}:</th>
               <td>
-                {% if record.settings.last_password_change %}{{ record.settings.last_password_change|spoondate(authenticatedUserDateFormat, authenticatedUserTimeFormat, INTERFACE_LANGUAGE) }}{% endif %}
+                {% if record.settings.last_password_change %}{{ record.settings.last_password_change|formatdatetime }}{% endif %}
                 {% if not record.settings.last_password_change %}{{ 'lbl.Never'|trans|ucfirst }}{% endif %}
               </td>
             </tr>

@@ -276,9 +276,9 @@ class Model extends \Common\Core\Model
         // loop available formats
         foreach ((array) self::get('fork.settings')->get('Core', 'date_formats_long') as $format) {
             // get date based on given format
-            $possibleFormats[$format] = \SpoonDate::getDate(
-                $format,
+            $possibleFormats[$format] = \Common\Core\DateFormatter::format(
                 null,
+                $format,
                 Authentication::getUser()->getSetting('interface_language')
             );
         }
@@ -298,9 +298,9 @@ class Model extends \Common\Core\Model
         // loop available formats
         foreach ((array) self::get('fork.settings')->get('Core', 'date_formats_short') as $format) {
             // get date based on given format
-            $possibleFormats[$format] = \SpoonDate::getDate(
-                $format,
+            $possibleFormats[$format] = \Common\Core\DateFormatter::format(
                 null,
+                $format,
                 Authentication::getUser()->getSetting('interface_language')
             );
         }
@@ -463,7 +463,7 @@ class Model extends \Common\Core\Model
         $interfaceLanguage = Authentication::getUser()->getSetting('interface_language');
 
         foreach (self::get('fork.settings')->get('Core', 'time_formats') as $format) {
-            $possibleFormats[$format] = \SpoonDate::getDate($format, null, $interfaceLanguage);
+            $possibleFormats[$format] = \Common\Core\DateFormatter::format(null, $format, $interfaceLanguage);
         }
 
         return $possibleFormats;

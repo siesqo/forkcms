@@ -1969,6 +1969,62 @@
         <translation language="pl"><![CDATA[-]]></translation>
         <translation language="pt"><![CDATA[o]]></translation>
       </item>
+      <item type="label" name="TimeAgoDays">
+        <translation language="en"><![CDATA[%d days ago]]></translation>
+        <translation language="nl"><![CDATA[%d dagen geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoHour">
+        <translation language="en"><![CDATA[1 hour ago]]></translation>
+        <translation language="nl"><![CDATA[1 uur geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoHours">
+        <translation language="en"><![CDATA[%d hours ago]]></translation>
+        <translation language="nl"><![CDATA[%d uur geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoJustNow">
+        <translation language="en"><![CDATA[just now]]></translation>
+        <translation language="nl"><![CDATA[zojuist]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastMonth">
+        <translation language="en"><![CDATA[last month]]></translation>
+        <translation language="nl"><![CDATA[vorige maand]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastWeek">
+        <translation language="en"><![CDATA[last week]]></translation>
+        <translation language="nl"><![CDATA[vorige week]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastYear">
+        <translation language="en"><![CDATA[last year]]></translation>
+        <translation language="nl"><![CDATA[vorig jaar]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMinute">
+        <translation language="en"><![CDATA[1 minute ago]]></translation>
+        <translation language="nl"><![CDATA[1 minuut geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMinutes">
+        <translation language="en"><![CDATA[%d minutes ago]]></translation>
+        <translation language="nl"><![CDATA[%d minuten geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMonths">
+        <translation language="en"><![CDATA[%d months ago]]></translation>
+        <translation language="nl"><![CDATA[%d maanden geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoSeconds">
+        <translation language="en"><![CDATA[%d seconds ago]]></translation>
+        <translation language="nl"><![CDATA[%d seconden geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoWeeks">
+        <translation language="en"><![CDATA[%d weeks ago]]></translation>
+        <translation language="nl"><![CDATA[%d weken geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoYears">
+        <translation language="en"><![CDATA[%d years ago]]></translation>
+        <translation language="nl"><![CDATA[%d jaar geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoYesterday">
+        <translation language="en"><![CDATA[yesterday]]></translation>
+        <translation language="nl"><![CDATA[gisteren]]></translation>
+      </item>
       <item type="label" name="Title">
         <translation language="nl"><![CDATA[titel]]></translation>
         <translation language="en"><![CDATA[title]]></translation>
@@ -10253,6 +10309,62 @@
         <translation language="tr"><![CDATA[zaman dilimi]]></translation>
         <translation language="pt"><![CDATA[fuso horário]]></translation>
         <translation language="pl"><![CDATA[strefa czasowa]]></translation>
+      </item>
+      <item type="label" name="TimeAgoDays">
+        <translation language="en"><![CDATA[%d days ago]]></translation>
+        <translation language="nl"><![CDATA[%d dagen geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoHour">
+        <translation language="en"><![CDATA[1 hour ago]]></translation>
+        <translation language="nl"><![CDATA[1 uur geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoHours">
+        <translation language="en"><![CDATA[%d hours ago]]></translation>
+        <translation language="nl"><![CDATA[%d uur geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoJustNow">
+        <translation language="en"><![CDATA[just now]]></translation>
+        <translation language="nl"><![CDATA[zojuist]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastMonth">
+        <translation language="en"><![CDATA[last month]]></translation>
+        <translation language="nl"><![CDATA[vorige maand]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastWeek">
+        <translation language="en"><![CDATA[last week]]></translation>
+        <translation language="nl"><![CDATA[vorige week]]></translation>
+      </item>
+      <item type="label" name="TimeAgoLastYear">
+        <translation language="en"><![CDATA[last year]]></translation>
+        <translation language="nl"><![CDATA[vorig jaar]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMinute">
+        <translation language="en"><![CDATA[1 minute ago]]></translation>
+        <translation language="nl"><![CDATA[1 minuut geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMinutes">
+        <translation language="en"><![CDATA[%d minutes ago]]></translation>
+        <translation language="nl"><![CDATA[%d minuten geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoMonths">
+        <translation language="en"><![CDATA[%d months ago]]></translation>
+        <translation language="nl"><![CDATA[%d maanden geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoSeconds">
+        <translation language="en"><![CDATA[%d seconds ago]]></translation>
+        <translation language="nl"><![CDATA[%d seconden geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoWeeks">
+        <translation language="en"><![CDATA[%d weeks ago]]></translation>
+        <translation language="nl"><![CDATA[%d weken geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoYears">
+        <translation language="en"><![CDATA[%d years ago]]></translation>
+        <translation language="nl"><![CDATA[%d jaar geleden]]></translation>
+      </item>
+      <item type="label" name="TimeAgoYesterday">
+        <translation language="en"><![CDATA[yesterday]]></translation>
+        <translation language="nl"><![CDATA[gisteren]]></translation>
       </item>
       <item type="label" name="Title">
         <translation language="nl"><![CDATA[titel]]></translation>

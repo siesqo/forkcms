@@ -172,22 +172,17 @@ class BaseTwigModifiers
 
     /**
      * Formats a language specific date.
-     *    syntax: {{ $timestamp|spoondate($format, $language) }}.
+     *    syntax: {{ $timestamp|intldate($format, $language) }}.
      *
      * @param string|int $timestamp The timestamp or date that you want to apply the format to.
      * @param string $format The optional format that you want to apply on the provided timestamp.
-     * @param string $language The optional language that you want this format in (Check SpoonLocale for the possible languages).
+     * @param string $language The optional language that you want this format in.
      *
      * @return string The formatted date according to the timestamp, format and provided language.
      */
-    public static function spoonDate($timestamp, $format = 'Y-m-d H:i:s', $language = 'en')
+    public static function intlDate($timestamp, $format = 'Y-m-d H:i:s', $language = 'en')
     {
-        if (is_string($timestamp) && !is_numeric($timestamp)) {
-            // use strptime if you want to restrict the input format
-            $timestamp = strtotime($timestamp);
-        }
-
-        return \SpoonDate::getDate($format, $timestamp, $language);
+        return \Common\Core\DateFormatter::format($timestamp, $format, $language);
     }
 
     /**

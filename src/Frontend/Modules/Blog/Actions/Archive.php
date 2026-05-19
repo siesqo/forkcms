@@ -171,7 +171,7 @@ class Archive extends FrontendBaseBlock
         $this->header->setPageTitle($this->startDate->format('Y'));
         if ($this->hasMonth) {
             $this->header->setPageTitle(
-                \SpoonDate::getDate('F', $this->startDate->getTimestamp(), LANGUAGE)
+                \Common\Core\DateFormatter::format($this->startDate->getTimestamp(), 'F', LANGUAGE)
             );
         }
     }
@@ -182,11 +182,7 @@ class Archive extends FrontendBaseBlock
         $this->breadcrumb->addElement($this->startDate->format('Y'));
         if ($this->hasMonth) {
             $this->breadcrumb->addElement(
-                \SpoonDate::getDate(
-                    'F',
-                    $this->startDate->getTimestamp(),
-                    LANGUAGE
-                )
+                \Common\Core\DateFormatter::format($this->startDate->getTimestamp(), 'F', LANGUAGE)
             );
         }
     }

@@ -5,7 +5,7 @@ namespace Backend\Core\Engine;
 use Backend\Core\Engine\Model as BackendModel;
 use Common\Core\Twig\Extensions\BaseTwigModifiers;
 use Backend\Core\Language\Language as BackendLanguage;
-use SpoonDate;
+use Common\Core\DateFormatter;
 use function Symfony\Component\String\s;
 
 /**
@@ -31,7 +31,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($var, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**
@@ -52,7 +52,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($var, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**
@@ -130,7 +130,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, BackendLanguage::getInterfaceLanguage());
+        return DateFormatter::format($var, $format, BackendLanguage::getInterfaceLanguage());
     }
 
     /**

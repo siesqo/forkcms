@@ -10,7 +10,7 @@ use Frontend\Core\Language\Language;
 use Frontend\Core\Language\Locale;
 use Frontend\Modules\Profiles\Engine\Model as FrontendProfilesModel;
 use Common\Core\Twig\Extensions\BaseTwigModifiers;
-use SpoonDate;
+use Common\Core\DateFormatter;
 use Symfony\Component\Intl\Countries;
 use Twig\Error\Error;
 use function Symfony\Component\String\s;
@@ -38,7 +38,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, Locale::frontendLanguage());
+        return DateFormatter::format($var, $format, Locale::frontendLanguage());
     }
 
     /**
@@ -59,7 +59,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, Locale::frontendLanguage());
+        return DateFormatter::format($var, $format, Locale::frontendLanguage());
     }
 
     /**
@@ -125,7 +125,7 @@ class TemplateModifiers extends BaseTwigModifiers
         }
 
         // format the date
-        return SpoonDate::getDate($format, (int) $var, Locale::frontendLanguage());
+        return DateFormatter::format($var, $format, Locale::frontendLanguage());
     }
 
     /**
@@ -188,13 +188,15 @@ class TemplateModifiers extends BaseTwigModifiers
             return '';
         }
 
-        // return
-        return '<abbr title="'.\SpoonDate::getDate(
-            FrontendModel::get('fork.settings')->get('Core', 'date_format_long') .', '
-            . FrontendModel::get('fork.settings')->get('Core', 'time_format'),
-            $timestamp,
-            Locale::frontendLanguage()
-        ).'">'.\SpoonDate::getTimeAgo($timestamp, Locale::frontendLanguage()).'</abbr>';
+        $titleFormat = FrontendModel::get('fork.settings')->get('Core', 'date_format_long')
+            . ', '
+            . FrontendModel::get('fork.settings')->get('Core', 'time_format');
+        $title = DateFormatter::format($timestamp, $titleFormat, Locale::frontendLanguage());
+        $text = DateFormatter::timeAgoText(
+            (int) $timestamp,
+            fn(string $lbl) => Language::lbl($lbl)
+        );
+        return '<abbr title="' . $title . '">' . $text . '</abbr>';
     }
 
     /**

@@ -187,11 +187,7 @@ class ExportData extends BackendBaseAction
             // first row of a submission
             if (!isset($data[$row['data_id']])) {
                 $data[$row['data_id']][$lblSessionId] = $row['session_id'];
-                $data[$row['data_id']][$lblSentOn] = \SpoonDate::getDate(
-                    'Y-m-d H:i:s',
-                    $row['sent_on'],
-                    BL::getWorkingLanguage()
-                );
+                $data[$row['data_id']][$lblSentOn] = date('Y-m-d H:i:s', $row['sent_on']);
             }
 
             // value is serialized

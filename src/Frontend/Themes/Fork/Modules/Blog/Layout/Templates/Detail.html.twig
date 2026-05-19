@@ -11,7 +11,7 @@
         {{ 'msg.WrittenBy'|trans|ucfirst|format(item.user_id|usersetting('nickname')) }}
         {{ 'lbl.On'|trans }}
         <time itemprop="datePublished" datetime="{{ item.publish_on|date('Y-m-d\\TH:i:s') }}">
-          {{ item.publish_on|spoondate(dateFormatLong, LANGUAGE) }}
+          {{ item.publish_on|intldate(dateFormatLong, LANGUAGE) }}
         </time>
       </div>
       <div class="col-xs-12 col-md-6">
