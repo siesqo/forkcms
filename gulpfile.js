@@ -31,13 +31,11 @@ gulp.task('build:backend:assets:copy-fonts-vendors', function () {
 })
 
 gulp.task('build:backend:assets:copy-ckeditor', function () {
-  const pluginFiles = '/**/*.@(js|png|jpg|jpeg|gif|css|html|svg)'
+  const pluginFiles = '/**/*.@(js|css|html)'
   return gulp.src(
     [
       'node_modules/ckeditor/adapters/*.js',
       'node_modules/ckeditor/lang/*.js',
-      'node_modules/ckeditor/plugins/icons.png',
-      'node_modules/ckeditor/plugins/icons_hidpi.png',
       'node_modules/ckeditor/plugins/clipboard' + pluginFiles,
       'node_modules/ckeditor/plugins/codemirror' + pluginFiles,
       'node_modules/ckeditor/plugins/colordialog' + pluginFiles,
@@ -46,7 +44,6 @@ gulp.task('build:backend:assets:copy-ckeditor', function () {
       'node_modules/ckeditor/plugins/dialogadvtab' + pluginFiles,
       'node_modules/ckeditor/plugins/div' + pluginFiles,
       'node_modules/ckeditor/plugins/docprops' + pluginFiles,
-      'node_modules/ckeditor/plugins/iframe' + pluginFiles,
       'node_modules/ckeditor/plugins/iframe' + pluginFiles,
       'node_modules/ckeditor/plugins/image' + pluginFiles,
       'node_modules/ckeditor/plugins/link' + pluginFiles,
@@ -61,7 +58,7 @@ gulp.task('build:backend:assets:copy-ckeditor', function () {
       'node_modules/ckeditor/plugins/widget' + pluginFiles,
       'node_modules/ckeditor/plugins/wsc' + pluginFiles,
       'node_modules/ckeditor/plugins/lineutils' + pluginFiles,
-      'node_modules/ckeditor/skins/moono-lisa/**/*.@(css|png|gif)',
+      'node_modules/ckeditor/skins/moono-lisa/**/*.css',
       'node_modules/ckeditor/ckeditor.js',
       'node_modules/ckeditor/contents.css',
       'node_modules/ckeditor/styles.js',
@@ -72,16 +69,7 @@ gulp.task('build:backend:assets:copy-ckeditor', function () {
 
 gulp.task('build:backend:assets:copy-fine-uploader-css-and-images', function () {
   return gulp.src([
-    'node_modules/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css',
-    'node_modules/fine-uploader/jquery.fine-uploader/continue.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/edit.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/loading.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/pause.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/processing.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/retry.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/trash.gif',
-    'node_modules/fine-uploader/jquery.fine-uploader/placeholders/waiting-generic.png',
-    'node_modules/fine-uploader/jquery.fine-uploader/placeholders/not_available-generic.png'
+    'node_modules/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
   ])
     .pipe(gulp.dest('./css/vendors/fine-uploader'))
 })
@@ -155,7 +143,7 @@ gulp.task('build:frontend:assets:copy-js-vendors', function () {
 gulp.task('build:frontend:assets:copy-photoswipe-css-and-images', function () {
   return gulp.src([
     'node_modules/photoswipe/dist/photoswipe.css',
-    'node_modules/photoswipe/dist/default-skin/*.{png,svg,gif,jpg,css}'
+    'node_modules/photoswipe/dist/default-skin/*.css'
   ])
     .pipe(gulp.dest('css/vendors/photoswipe'))
 })
