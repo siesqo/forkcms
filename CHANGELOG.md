@@ -21,6 +21,7 @@ Changed:
 * FormBuilder: Reset all field checkboxes when switching between fields in the backend editor
 * Pages: Skip removal request for user template images when no previous image exists
 * Core: Replaced `ramsey/uuid` with Symfony's built-in `symfony/uid` component for UUID generation
+* Core: Replaced SimpleBus command/event bus with Symfony Messenger; all handlers migrated to `#[AsMessageHandler]` + `__invoke()`, `DoctrineTransactionMiddleware` replaces per-handler `flush()` calls
 
 5.13.0  (2025-02-13)
 ------------------

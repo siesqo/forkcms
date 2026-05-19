@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9ecc79d7869bfef7340efe69d4bb95b",
+    "content-hash": "130481a66e52a9689a25209b5b457ffb",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -4018,226 +4018,6 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
-        },
-        {
-            "name": "simple-bus/doctrine-orm-bridge",
-            "version": "v6.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SimpleBus/doctrine-orm-bridge.git",
-                "reference": "7d7bf7fd0c2cdc6512a0bd1978663fb15eda45a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SimpleBus/doctrine-orm-bridge/zipball/7d7bf7fd0c2cdc6512a0bd1978663fb15eda45a6",
-                "reference": "7d7bf7fd0c2cdc6512a0bd1978663fb15eda45a6",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "^2.12 || ^3.0",
-                "doctrine/orm": "^2.8.5",
-                "php": "^8.0",
-                "simple-bus/message-bus": "^6.0"
-            },
-            "conflict": {
-                "doctrine/dbal": "<2.13.3",
-                "doctrine/persistence": "<2.2.2"
-            },
-            "require-dev": {
-                "ergebnis/composer-normalize": "^2.11",
-                "phpunit/phpunit": "^9.5.5",
-                "pimple/pimple": "^3.5",
-                "symfony/cache": "^5.4 || ^6.0",
-                "symfony/phpunit-bridge": "^6.0"
-            },
-            "suggest": {
-                "simple-bus/symfony-bridge": "Bridge for using command buses and event buses with Symfony"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SimpleBus\\DoctrineORMBridge\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cliff Odijk",
-                    "email": "cliff@jcid.nl"
-                },
-                {
-                    "name": "Ruud Kamphuis",
-                    "homepage": "https://github.com/ruudk"
-                },
-                {
-                    "name": "Matthias Noback",
-                    "email": "matthiasnoback@gmail.com",
-                    "homepage": "http://php-and-symfony.matthiasnoback.nl"
-                }
-            ],
-            "description": "Doctrine ORM bridge for using command and event buses",
-            "homepage": "http://github.com/SimpleBus/DoctrineORMBridge",
-            "keywords": [
-                "command bus",
-                "doctrine",
-                "event bus"
-            ],
-            "support": {
-                "source": "https://github.com/SimpleBus/doctrine-orm-bridge/tree/v6.3.1"
-            },
-            "time": "2022-01-04T14:37:26+00:00"
-        },
-        {
-            "name": "simple-bus/message-bus",
-            "version": "v6.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SimpleBus/message-bus.git",
-                "reference": "d3b6f4d70a2c35d9df93803c7cebefc17ef9e023"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SimpleBus/message-bus/zipball/d3b6f4d70a2c35d9df93803c7cebefc17ef9e023",
-                "reference": "d3b6f4d70a2c35d9df93803c7cebefc17ef9e023",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "psr/log": "^1.1.4 || ^2.0 || ^3.0"
-            },
-            "require-dev": {
-                "ergebnis/composer-normalize": "^2.11",
-                "phpunit/phpunit": "^9.5.5",
-                "symfony/phpunit-bridge": "^6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SimpleBus\\Message\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cliff Odijk",
-                    "email": "cliff@jcid.nl"
-                },
-                {
-                    "name": "Ruud Kamphuis",
-                    "homepage": "https://github.com/ruudk"
-                },
-                {
-                    "name": "Matthias Noback",
-                    "email": "matthiasnoback@gmail.com",
-                    "homepage": "http://php-and-symfony.matthiasnoback.nl"
-                }
-            ],
-            "description": "Generic classes and interfaces for messages and message buses",
-            "homepage": "http://github.com/SimpleBus/MessageBus",
-            "keywords": [
-                "command bus",
-                "event bus",
-                "message",
-                "message bus"
-            ],
-            "support": {
-                "source": "https://github.com/SimpleBus/message-bus/tree/v6.3.1"
-            },
-            "time": "2021-11-30T15:29:30+00:00"
-        },
-        {
-            "name": "simple-bus/symfony-bridge",
-            "version": "v6.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SimpleBus/symfony-bridge.git",
-                "reference": "ce87332bf5f0021d2b6a04dfda7e7ee69b970e4a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SimpleBus/symfony-bridge/zipball/ce87332bf5f0021d2b6a04dfda7e7ee69b970e4a",
-                "reference": "ce87332bf5f0021d2b6a04dfda7e7ee69b970e4a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "simple-bus/message-bus": "^6.0",
-                "symfony/config": "^5.4 || ^6.0",
-                "symfony/dependency-injection": "^5.4 || ^6.0",
-                "symfony/http-kernel": "^5.4 || ^6.0",
-                "symfony/yaml": "^5.4 || ^6.0"
-            },
-            "conflict": {
-                "doctrine/dbal": "<2.13.3",
-                "doctrine/persistence": "<2.2.2",
-                "friendsofphp/proxy-manager-lts": "<1.0.5",
-                "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0",
-                "zendframework/zend-code": "<3.3.1"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "^2.5",
-                "doctrine/orm": "^2.8.5",
-                "ergebnis/composer-normalize": "^2.11",
-                "friendsofphp/proxy-manager-lts": "^1.0",
-                "laminas/laminas-code": "^4.5",
-                "phpunit/phpunit": "^9.5.5",
-                "simple-bus/doctrine-orm-bridge": "^6.0",
-                "symfony/framework-bundle": "^5.4 || ^6.0",
-                "symfony/monolog-bridge": "^5.4 || ^6.0",
-                "symfony/monolog-bundle": "^3.4",
-                "symfony/phpunit-bridge": "^6.0",
-                "symfony/proxy-manager-bridge": "^5.4 || ^6.0"
-            },
-            "suggest": {
-                "doctrine/doctrine-bundle": "For integration with Doctrine ORM",
-                "doctrine/orm": "For integration with Doctrine ORM",
-                "simple-bus/doctrine-orm-bridge": "For integration with Doctrine ORM",
-                "symfony/monolog-bundle": "For logging messages",
-                "symfony/proxy-manager-bridge": "For integration with Symfony and Doctrine ORM"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "SimpleBus\\SymfonyBridge\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cliff Odijk",
-                    "email": "cliff@jcid.nl"
-                },
-                {
-                    "name": "Ruud Kamphuis",
-                    "homepage": "https://github.com/ruudk"
-                },
-                {
-                    "name": "Matthias Noback",
-                    "email": "matthiasnoback@gmail.com",
-                    "homepage": "http://php-and-symfony.matthiasnoback.nl"
-                }
-            ],
-            "description": "Bridge for using command buses and event buses in Symfony projects",
-            "homepage": "http://github.com/SimpleBus/SymfonyBridge",
-            "keywords": [
-                "command bus",
-                "doctrine",
-                "event bus",
-                "symfony"
-            ],
-            "support": {
-                "source": "https://github.com/SimpleBus/symfony-bridge/tree/v6.3.1"
-            },
-            "time": "2021-12-22T08:17:14+00:00"
         },
         {
             "name": "spoon/library",
@@ -9348,28 +9128,31 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.4.39",
+            "version": "v5.4.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e4fb993188404155c2660c2f33be52c22e2de3ab"
+                "reference": "a454d47278cc16a5db371fe73ae66a78a633371e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e4fb993188404155c2660c2f33be52c22e2de3ab",
-                "reference": "e4fb993188404155c2660c2f33be52c22e2de3ab",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a454d47278cc16a5db371fe73ae66a78a633371e",
+                "reference": "a454d47278cc16a5db371fe73ae66a78a633371e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/deprecation-contracts": "^2.5|^3",
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1|^3",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<5.4"
+                "symfony/console": "<5.3"
             },
             "require-dev": {
-                "symfony/console": "^5.4|^6.0|^7.0"
+                "symfony/console": "^5.3|^6.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
             },
             "bin": [
                 "Resources/bin/yaml-lint"
@@ -9400,7 +9183,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.4.39"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.45"
             },
             "funding": [
                 {
@@ -9412,15 +9195,11 @@
                     "type": "github"
                 },
                 {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-13T08:26:06+00:00"
+            "time": "2024-09-25T14:11:13+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

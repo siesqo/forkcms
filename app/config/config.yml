@@ -27,6 +27,11 @@ framework:
                 public: true
                 default_lifetime: 3600
     messenger:
+        buses:
+            messenger.bus.default:
+                middleware:
+                    - messenger.middleware.doctrine_transaction
+
         transports:
             async:
                 dsn: 'doctrine://default'
@@ -129,14 +134,16 @@ liip_imagine:
                 thumbnail: { size : [1600, 500], mode : inbound }
 
 services:
+    messenger.middleware.doctrine_transaction:
+        class: Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware
+        arguments:
+            - '@doctrine'
+
     file_locator.public:
         alias: file_locator
         public: true
     logger.public:
         alias: logger
-        public: true
-    command_bus.public:
-        alias: command_bus
         public: true
     liip_imagine.cache.manager.public:
         alias: liip_imagine.cache.manager

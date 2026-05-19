@@ -40,10 +40,6 @@ doctrine:
                         alias: Common
                         prefix: Common\Doctrine\Entity
 
-doctrine_orm_bridge:
-    entity_manager: default
-    connection: default
-
 services:
     fork.entity.create_schema:
         class: Common\Doctrine\Entity\CreateSchema
