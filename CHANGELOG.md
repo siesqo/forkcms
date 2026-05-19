@@ -22,6 +22,7 @@ Changed:
 * Pages: Skip removal request for user template images when no previous image exists
 * Core: Replaced `ramsey/uuid` with Symfony's built-in `symfony/uid` component for UUID generation
 * Core: Replaced SimpleBus command/event bus with Symfony Messenger; all handlers migrated to `#[AsMessageHandler]` + `__invoke()`, `DoctrineTransactionMiddleware` replaces per-handler `flush()` calls
+* Core: Updated Node.js to v26; removed unused npm packages (`@fancyapps/fancybox`, `@popperjs/core`, `lodash`); updated remaining packages
 
 5.13.0  (2025-02-13)
 ------------------
