@@ -11,19 +11,19 @@ class CoreInstaller extends ModuleInstaller
     {
         // validate variables
         if ($this->getVariable('default_language') === null) {
-            throw new \SpoonException('Default frontend language is not provided.');
+            throw new \RuntimeException('Default frontend language is not provided.');
         }
         if ($this->getVariable('default_interface_language') === null) {
-            throw new \SpoonException('Default backend language is not provided.');
+            throw new \RuntimeException('Default backend language is not provided.');
         }
         if ($this->getVariable('site_domain') === null) {
-            throw new \SpoonException('Site domain is not provided.');
+            throw new \RuntimeException('Site domain is not provided.');
         }
         if ($this->getVariable('spoon_debug_email') === null) {
-            throw new \SpoonException('Spoon debug email is not provided.');
+            throw new \RuntimeException('Spoon debug email is not provided.');
         }
         if ($this->getVariable('site_title') === null) {
-            throw new \SpoonException('Site title is not provided.');
+            throw new \RuntimeException('Site title is not provided.');
         }
 
         // import SQL

@@ -724,7 +724,7 @@ class ModuleInstaller
      * @param array[] $blocks The blocks.
      *
      * @throws \SpoonDatabaseException
-     * @throws \SpoonException
+     * @throws \RuntimeException
      *
      * @return int
      */
@@ -732,10 +732,10 @@ class ModuleInstaller
     {
         // build revision
         if (!isset($revision['language'])) {
-            throw new \SpoonException('language is required for installing pages');
+            throw new \RuntimeException('language is required for installing pages');
         }
         if (!isset($revision['title'])) {
-            throw new \SpoonException('title is required for installing pages');
+            throw new \RuntimeException('title is required for installing pages');
         }
         // deactivate previous page revisions
         if (isset($revision['id'])) {

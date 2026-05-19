@@ -5,7 +5,7 @@ namespace Backend\Core\Engine;
 /**
  * This exception is used to handle backend related exceptions.
  */
-class Exception extends \SpoonException
+class Exception extends \RuntimeException
 {
     /**
      * @param string $message The message of the exception.
