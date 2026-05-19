@@ -1,35 +1,38 @@
-5.13.1  (2026-05-12)
+5.14.0  (2026-05-19)
 ------------------
 
 Changed:
-* Core: Removed cookiebar in favour of always using the privacy consent dialog
-* Core: Upgraded privacy consent dialog to Google Consent Mode v2
-* Core: Removed deprecated visitor tracking cookie (`getVisitorId`)
-* Settings: Removed deprecated Facebook integration (settings fields, frontend injection, Twig globals, locale strings)
-* Settings: Removed deprecated Twitter integration (settings fields, Twig global, locale strings)
-* Core: Removed deprecated `site_start_of_body_scripts` and `site_html_footer` setting fallbacks and duplicate writes
-* Core: Removed deprecated `siteHTMLHeader` and `siteHTMLFooter` Twig globals in favor of `siteHTMLHead` and `siteHTMLEndOfBody`
-* Core: Fixed various other deprecations
-* Pages: Fixed block initialization when copying a page (blocks are not re-initialized with defaults when the page is a copy)
-* Profiles: Removed deprecated `importCsv()` method in favour of `importFromArray()`
-* Core: Removed deprecated `Backend\Core\Engine\Csv` class
-* Analytics: Removed the Analytics module entirely (unused; also removes `google/apiclient` dependency)
-* Core: Replaced all `SpoonFilter` calls with native PHP/Symfony equivalents (`htmlspecialchars`, `htmlspecialchars_decode`, `htmlentities`, `in_array`, `Symfony\Component\String\s()`); removes the last runtime dependency on SpoonFilter
-* Core: Removed Akismet spam filtering integration (was never active without an API key)
-* Core: Replaced `behat/transliterator` with Symfony's `AsciiSlugger` in `Common\Uri`; removes the `behat/transliterator` dependency
-* Core: Upgraded to PHP 8.5; updated dependencies and codebase for full compatibility
-* FormBuilder: Reset all field checkboxes when switching between fields in the backend editor
-* Pages: Skip removal request for user template images when no previous image exists
-* Core: Replaced `ramsey/uuid` with Symfony's built-in `symfony/uid` component for UUID generation
-* Core: Replaced SimpleBus command/event bus with Symfony Messenger; all handlers migrated to `#[AsMessageHandler]` + `__invoke()`, `DoctrineTransactionMiddleware` replaces per-handler `flush()` calls
-* Core: Updated Node.js to v26; removed unused npm packages (`@fancyapps/fancybox`, `@popperjs/core`, `lodash`); updated remaining packages
-* Core: Upgraded stylelint to v17; switched to `stylelint-config-standard-scss` for proper SCSS linting support; fixes postcss security vulnerabilities in the stylelint 13 dependency chain
-* Core: Replaced `Spoon::getCharset()` with hardcoded `'UTF-8'` in `BaseTwigModifiers`
-* Core: Replaced `SpoonLocale::getMonths()` and `::getWeekDays()` with `DateFormatter::getMonths()` / `::getWeekDays()` backed by `IntlDateFormatter`; same key format preserved
-* Core: Replaced `SpoonException` with `\RuntimeException` in Fork's own `Exception` classes and all installer throw sites
-* Core: Replaced `SpoonFeedRSS` and `SpoonFeedRSSItem` with standalone `Rss` and `RssItem` classes; XML output generated via `DOMDocument` with CDATA-wrapped descriptions; public API unchanged
-* Core: Replaced `SpoonDate` with `IntlDateFormatter` via a new `Common\Core\DateFormatter` utility class; `spoondate` Twig filter renamed to `intldate`; user format preferences are preserved; locale-aware `timeAgo` formatting no longer depends on SpoonDate
-* Core: Replaced load blocking synchronous `async: false` jQuery locale loading with async `fetch()` in backend and frontend JS; added `refreshDom()` to swap in translations once loaded; added `<link rel="preload">` hints for locale JSON files
+* Core: Upgraded to PHP 8.5; updated dependencies and codebase for full compatibility [8f8c463](https://github.com/siesqo/forkcms/commit/8f8c463ce39cd51c61d0f01ce8a092fe2616e918)
+* Core: Replaced SimpleBus command/event bus with Symfony Messenger; all handlers migrated to `#[AsMessageHandler]` + `__invoke()`, `DoctrineTransactionMiddleware` replaces per-handler `flush()` calls [84b94ee](https://github.com/siesqo/forkcms/commit/84b94eedca33ae2e215e851acb3f1483c6a28fc0), [0990b74](https://github.com/siesqo/forkcms/commit/0990b7413d11067e2bf0683851aabfc610a83050)
+* Core: Upgraded privacy consent dialog to Google Consent Mode v2 [cb2c158](https://github.com/siesqo/forkcms/commit/cb2c1583147441eeaba3380e070ffd901135b373)
+* Core: Removed cookiebar in favour of always using the privacy consent dialog [cb2c158](https://github.com/siesqo/forkcms/commit/cb2c1583147441eeaba3380e070ffd901135b373)
+* Core: Replaced `SpoonDate` with `IntlDateFormatter` via a new `Common\Core\DateFormatter` utility class; `spoondate` Twig filter renamed to `intldate`; user format preferences are preserved; locale-aware `timeAgo` formatting no longer depends on SpoonDate [3ded0b7](https://github.com/siesqo/forkcms/commit/3ded0b74fee0ed0540be265142fa53646074f64b)
+* Core: Replaced `SpoonFeedRSS` and `SpoonFeedRSSItem` with standalone `Rss` and `RssItem` classes; XML output generated via `DOMDocument` with CDATA-wrapped descriptions; public API unchanged [d549d4d](https://github.com/siesqo/forkcms/commit/d549d4d3d1c06c1fc70c14f9926c8f8a23fe8ed9)
+* Core: Replaced `SpoonLocale::getMonths()` and `::getWeekDays()` with `DateFormatter::getMonths()` / `::getWeekDays()` backed by `IntlDateFormatter`; same key format preserved [db4287c](https://github.com/siesqo/forkcms/commit/db4287c03f07e1b2ed2485cbd9d608dc95d58c32)
+* Core: Replaced all `SpoonFilter` calls with native PHP/Symfony equivalents (`htmlspecialchars`, `htmlspecialchars_decode`, `htmlentities`, `in_array`, `Symfony\Component\String\s()`); removes the last runtime dependency on SpoonFilter [756b108](https://github.com/siesqo/forkcms/commit/756b1086457d47cf3f3183ce0128848402209c04)
+* Core: Replaced `SpoonException` with `\RuntimeException` in Fork's own `Exception` classes and all installer throw sites [bd5848f](https://github.com/siesqo/forkcms/commit/bd5848f509435a3efe6a06bb97c9a1c71d8da890)
+* Core: Replaced `Spoon::getCharset()` with hardcoded `'UTF-8'` in `BaseTwigModifiers` [144b022](https://github.com/siesqo/forkcms/commit/144b02236485225e8bee95e23588353a503e4230)
+* Core: Replaced `ramsey/uuid` with Symfony's built-in `symfony/uid` component for UUID generation [9958be8](https://github.com/siesqo/forkcms/commit/9958be893776488b37b3900653933875345d517e), [c0a59fa](https://github.com/siesqo/forkcms/commit/c0a59fa7535222f1f2e946a8a90947b525d199c8)
+* Core: Replaced `behat/transliterator` with Symfony's `AsciiSlugger` in `Common\Uri`; removes the `behat/transliterator` dependency [8010adb](https://github.com/siesqo/forkcms/commit/8010adbe7c13a0771376424532a0c32a97234ebe)
+* Core: Replaced load blocking synchronous `async: false` jQuery locale loading with async `fetch()` in backend and frontend JS; added `refreshDom()` to swap in translations once loaded; added `<link rel="preload">` hints for locale JSON files [d0f5436](https://github.com/siesqo/forkcms/commit/d0f5436454738ed4393fbad0b3b0af8f8fdba53c)
+* Core: Updated Node.js to v26; removed unused npm packages (`@fancyapps/fancybox`, `@popperjs/core`, `lodash`); updated remaining packages [fc5a5fc](https://github.com/siesqo/forkcms/commit/fc5a5fc8fc037180a8aa0262b2a0b0f684aae00f)
+* Core: Upgraded stylelint to v17; switched to `stylelint-config-standard-scss` for proper SCSS linting support; fixes postcss security vulnerabilities in the stylelint 13 dependency chain [d340cfd](https://github.com/siesqo/forkcms/commit/d340cfd811297d42aa07b5a1a5f298a38d9ec0ea)
+* Core: Updated composer packages (bugsnag/bugsnag-symfony to v2, squizlabs/php_codesniffer to v4, phpstan/phpstan-symfony to v2, various patch updates) [3fee5f6](https://github.com/siesqo/forkcms/commit/3fee5f6091e7e5709a742b12a17ab507dade2e17)
+* Analytics: Removed the Analytics module entirely (unused; also removes `google/apiclient` dependency) [0ddcbd4](https://github.com/siesqo/forkcms/commit/0ddcbd47407e908450b2c2571a97d4dd4bafc1fe)
+* Settings: Removed deprecated Facebook integration (settings fields, frontend injection, Twig globals, locale strings) [ff31b77](https://github.com/siesqo/forkcms/commit/ff31b77d47816df2dccb1a5f5d2b8b527e6993fa)
+* Settings: Removed deprecated Twitter integration (settings fields, Twig global, locale strings) [ff31b77](https://github.com/siesqo/forkcms/commit/ff31b77d47816df2dccb1a5f5d2b8b527e6993fa)
+* Core: Removed Akismet spam filtering integration (was never active without an API key) [41b25e1](https://github.com/siesqo/forkcms/commit/41b25e1bf8d23239c30477918fef74d439afaa26)
+* Core: Removed deprecated visitor tracking cookie (`getVisitorId`) [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Core: Removed deprecated `site_start_of_body_scripts` and `site_html_footer` setting fallbacks and duplicate writes [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Core: Removed deprecated `siteHTMLHeader` and `siteHTMLFooter` Twig globals in favor of `siteHTMLHead` and `siteHTMLEndOfBody` [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Core: Removed deprecated `Backend\Core\Engine\Csv` class [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Profiles: Removed deprecated `importCsv()` method in favour of `importFromArray()` [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Core: Fixed various other deprecations [5fe23a0](https://github.com/siesqo/forkcms/commit/5fe23a078ab9d8a6c3be0a74d2041353a5111bc0)
+* Core: Fixed gulp build overwriting committed vendor images [1eef15c](https://github.com/siesqo/forkcms/commit/1eef15c89ebc297d75e330537f2cdebc5fc812cd)
+* Core: Updated schema.org microdata URLs from http to https across all templates [ed12774](https://github.com/siesqo/forkcms/commit/ed1277453252bb24babfb8fdd775635d56b11b3f)
+* Pages: Fixed block initialization when copying a page (blocks are not re-initialized with defaults when the page is a copy) [fad4189](https://github.com/siesqo/forkcms/commit/fad4189ce7e025b43816c33665dce48c39dd57c5), [a38ea94](https://github.com/siesqo/forkcms/commit/a38ea94041f833d8421f8a7b8b31db5b36d628da)
+* Pages: Skip removal request for user template images when no previous image exists [618e38b](https://github.com/siesqo/forkcms/commit/618e38b5750734ad5f723e2dfa0b2e93e26ec1c6)
+* FormBuilder: Reset all field checkboxes when switching between fields in the backend editor [09cb71e](https://github.com/siesqo/forkcms/commit/09cb71e350b9052d09b06217a3a18ac49536cb29)
 
 5.13.0  (2025-02-13)
 ------------------
@@ -40,7 +43,15 @@ Changed:
 * Core: Switched to symfony 5.4 [c872c2d](https://github.com/siesqo/forkcms/commit/c872c2d937544a697138ead3699f486c8c18329e), [c1ece6b](https://github.com/siesqo/forkcms/commit/c1ece6bb1e4d0561c3648da2dbd50c6ca55962bd) (+ later fixes)
 * Core: Added PHP8 support and bumped minimum to 8.1 [c872c2d](https://github.com/siesqo/forkcms/commit/c872c2d937544a697138ead3699f486c8c18329e), [f4749a2](https://github.com/siesqo/forkcms/commit/f4749a2e5fda07fa97634b125af0de7c2ea5a690)
 * Core: Replaced abandoned swiftmailer to symfony mailer [c9c0e20](https://github.com/siesqo/forkcms/commit/c9c0e20ca6bbef3cb8e3a08824bc4b6c2cead34a), [fb47b4f](https://github.com/siesqo/forkcms/commit/fb47b4f3a27f4948c9ab18c817e800d8a23fe18a)
-* Core: Removed Google sitelinks search box integration (since it was removed in 2024)
+* Core: Removed Google sitelinks search box integration (since it was removed in 2024) [9a9e363](https://github.com/siesqo/forkcms/commit/9a9e36326)
+* Core: Updated Bugsnag and switched to async loading [026a6e7](https://github.com/siesqo/forkcms/commit/026a6e739)
+* Core: Switched to WebP image format [bc0342194](https://github.com/siesqo/forkcms/commit/bc0342194)
+* Core: Improved CSS minification [61394ef](https://github.com/siesqo/forkcms/commit/61394efea)
+* Core: Tree-shake Bootstrap to reduce bundle size [1267d68](https://github.com/siesqo/forkcms/commit/1267d685a)
+* Core: Updated Bootstrap [442351c](https://github.com/siesqo/forkcms/commit/442351cf5)
+* Core: Updated dependencies [0c042fb](https://github.com/siesqo/forkcms/commit/0c042fb3f)
+* Core: Updated reCAPTCHA for updated legal requirements [87a070e](https://github.com/siesqo/forkcms/commit/87a070e68)
+* Core: Updated PHPStan for PHP 8 compatibility [3312c93](https://github.com/siesqo/forkcms/commit/3312c93cf)
 
 Security:
 * Core: Updated various outdated dependencies [f627e5d](https://github.com/siesqo/forkcms/commit/f627e5d8e95f9835f83f6fd9152bd24760a01c00), [2b6fbd3](https://github.com/siesqo/forkcms/commit/2b6fbd31b9a1971fe3750b0dc4bc521d662358af), [21f9853](https://github.com/siesqo/forkcms/commit/21f98537ace6041b5a948700df00fec3ff013211)
@@ -49,7 +60,17 @@ Security:
     * ...
 
 Fixed:
-* Core: Fix missing self-referencing hreflang links.
+* Core: Fix missing self-referencing hreflang links [014a35f](https://github.com/siesqo/forkcms/commit/014a35fdd)
+* Core: Fix twig templates [e176ac9](https://github.com/siesqo/forkcms/commit/e176ac97c)
+* Core: Fix deprecated DBALException usage [496108d](https://github.com/siesqo/forkcms/commit/496108d5b)
+* Core: Fix missing symfony package dependency [c98023f](https://github.com/siesqo/forkcms/commit/c98023f0d)
+* Core: Fix mailer configurator service [c81c285](https://github.com/siesqo/forkcms/commit/c81c28583)
+* Core: Specify collation for utf8mb3 columns [1de1ef1](https://github.com/siesqo/forkcms/commit/1de1ef119)
+* Core: Fix checkValidity JS error [2bcfb0e](https://github.com/siesqo/forkcms/commit/2bcfb0e4c)
+* Core: Fix media upload type detection getting stuck on 'movie' [595632f](https://github.com/siesqo/forkcms/commit/595632f83)
+* Core: Fix radio button rendering [2eb5d7f](https://github.com/siesqo/forkcms/commit/2eb5d7f14)
+* Core: Fix new UUID setup [c0a59fa](https://github.com/siesqo/forkcms/commit/c0a59fa75)
+* FormBuilder: Various fixes [93691af](https://github.com/siesqo/forkcms/commit/93691af0b)
 
 5.12.0  (2023-07-31)
 ------------------

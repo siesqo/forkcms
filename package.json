@@ -71,7 +71,6 @@
       "/js/",
       "src/Backend/Core/Js/ckeditor/",
       "src/Backend/Core/Js/ckfinder/",
-      "src/Backend/Core/Js/highcharts.js",
       "src/Backend/Core/Layout/EditorTemplates/templates.js",
       "src/Backend/Modules/Pages/Js/jstree/",
       "src/Frontend/Cache/",

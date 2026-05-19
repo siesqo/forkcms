@@ -20,14 +20,14 @@
         {% endif %}
       </div>
       <div class="col-md-6">
-        <div data-role="fork-marker-data-container" data-map-id="{{ widgetLocationItem.id }}" itemscope itemtype="http://schema.org/Place">
-          <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+        <div data-role="fork-marker-data-container" data-map-id="{{ widgetLocationItem.id }}" itemscope itemtype="https://schema.org/Place">
+          <div itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates">
             <meta itemprop="latitude" content="{{ widgetLocationItem.lat }}" />
             <meta itemprop="longitude" content="{{ widgetLocationItem.lng }}" />
           </div>
 
           <div itemprop="name"><strong>{{ widgetLocationItem.title }}</strong></div>
-          <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+          <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
             <span itemprop="streetAddress">{{ widgetLocationItem.street }} {{ widgetLocationItem.number }}</span><br>
             <span itemprop="postalCode">{{ widgetLocationItem.zip }}</span> <span itemprop="addressLocality">{{ widgetLocationItem.city }}</span><br>
             <span itemprop="addressCountry">{{ widgetLocationItem.country }}</span>

@@ -6,7 +6,7 @@
 #}
 
 {% if mediaItem %}
-  <section class="module-media-library widget-media-library-one-random-image" itemscope itemtype="http://schema.org/ImageGallery">
+  <section class="module-media-library widget-media-library-one-random-image" itemscope itemtype="https://schema.org/ImageGallery">
     {% block widget_heading %}
       {% if title %}
         <header class="widget-heading">
@@ -17,7 +17,7 @@
 
     {% block widget_body %}
       <div class="widget-body">
-        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <figure itemprop="associatedMedia" itemscope itemtype="https://schema.org/ImageObject">
           {% if mediaItem.type == 'movie' %}
             {{ mediaItem.getIncludeHTML()|raw }}
           {% else %}

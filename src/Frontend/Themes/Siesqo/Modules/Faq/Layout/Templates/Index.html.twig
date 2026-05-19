@@ -4,7 +4,7 @@
 #}
 {% import 'Core/Layout/Templates/Alerts.html.twig' as alerts %}
 
-<div id="faqIndex" class="faq" itemscope itemtype="http://schema.org/Question">
+<div id="faqIndex" class="faq" itemscope itemtype="https://schema.org/Question">
   {% if not faqCategories %}
     {{ alerts.alert('info', 'msg.FaqNoItems'|trans) }}
   {% else %}

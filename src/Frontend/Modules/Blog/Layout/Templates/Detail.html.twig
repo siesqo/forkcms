@@ -9,7 +9,7 @@
 {% import "Core/Layout/Templates/Macros.html.twig" as macro %}
 
 <section class="module-blog block-blog-index">
-  <article itemscope itemtype="http://schema.org/Blog" role="main">
+  <article itemscope itemtype="https://schema.org/Blog" role="main">
     <meta itemprop="interactionCount" content="UserComments:commentsCount">
     <meta itemprop="author" content="{{ item.user_id|usersetting('nickname' ) }}">
 
@@ -122,7 +122,7 @@
               id="comment-{{ comment.id }}" class="block-blog-article-comments-comment row"
               itemprop="comment"
               itemscope
-              itemtype="http://schema.org/UserComments"
+              itemtype="https://schema.org/UserComments"
             >
               <div class="col-sm-1 block-blog-article-comments-comment-avatar">
                 <meta itemprop="discusses" content="{{ item.title }}" />
@@ -136,7 +136,7 @@
               </div>
 
               <div class="col-sm-7">
-                <div class="block-blog-article-comments-comment-meta" itemscope itemtype="http://schema.org/Person">
+                <div class="block-blog-article-comments-comment-meta" itemscope itemtype="https://schema.org/Person">
                   {% if comment.website %}
                   <a href="{{ comment.website }}" itemprop="url">
                     {% endif %}

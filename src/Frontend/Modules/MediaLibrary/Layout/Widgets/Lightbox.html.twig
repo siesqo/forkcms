@@ -19,7 +19,7 @@
 #}
 
 {% if mediaItems %}
-<section class="module-media-library widget-media-library-lightbox" itemscope itemtype="http://schema.org/ImageGallery">
+<section class="module-media-library widget-media-library-lightbox" itemscope itemtype="https://schema.org/ImageGallery">
   {% block widget_heading %}
     {% if title %}
       <header class="widget-heading">
@@ -31,7 +31,7 @@
   {% block widget_body %}
     <div class="widget-body">
       {% for mediaItem in mediaItems %}
-        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <figure itemprop="associatedMedia" itemscope itemtype="https://schema.org/ImageObject">
           <a href="{{ (mediaItem.getWebPath('media_library_lightbox_large')) }}" itemprop="contentUrl" data-size="{{ mediaItem.width }}x{{ mediaItem.height }}">
             <img itemprop="thumbnail" src="{{ (mediaItem.getThumbnail('media_library_lightbox_small')) }}" alt="{{ mediaItem.title }}" />
           </a>
