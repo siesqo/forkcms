@@ -1709,79 +1709,144 @@ jsBackend.layout = {
  */
 jsBackend.locale = {
   initialized: false,
+  initializing: false,
   data: {},
 
   // init, something like a constructor
   init: function () {
-    $.ajax({
-      url: '/src/Backend/Cache/Locale/' + jsBackend.data.get('interface_language') + '.json',
-      type: 'GET',
-      dataType: 'json',
-      async: false,
-      success: function (data) {
-        jsBackend.locale.data = data
-        jsBackend.locale.initialized = true
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        throw new Error('Regenerate your locale-files.')
+    if (this.initialized || this.initializing) return
+    if (!jsBackend.data || !jsBackend.data.get('interface_language')) return
+
+    this.initializing = true
+
+    fetch('/src/Backend/Cache/Locale/' + jsBackend.data.get('interface_language') + '.json', {
+      credentials: 'same-origin'
+    })
+      .then(r => r.json())
+      .then(data => {
+        this.data = data
+        this.initialized = true
+        this.initializing = false
+        this.refreshDom()
+      })
+      .catch(() => {
+        this.initializing = false
+        console.error('Regenerate your locale-files.')
+      })
+  },
+
+  // replace placeholders with actual translations
+  refreshDom: function () {
+    if (!this.initialized) return
+
+    const tokenRegex = /\{\$(act|err|lbl|loc|msg)([A-Za-z0-9_]+)\}/g
+
+    // 1) Replace text nodes
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    )
+
+    let node
+    while ((node = walker.nextNode())) {
+      const txt = node.nodeValue
+      if (txt && txt.includes('{$')) {
+        node.nodeValue = txt.replace(tokenRegex, (_, type, key) =>
+          this.get(type, key)
+        )
       }
+    }
+
+    // 2) Replace attributes (title, placeholder, aria-label, etc.)
+    const ATTRS = [
+      'title',
+      'placeholder',
+      'aria-label',
+      'aria-describedby',
+      'alt',
+      'value'
+    ]
+
+    document.querySelectorAll('*').forEach(el => {
+      ATTRS.forEach(attr => {
+        if (!el.hasAttribute(attr)) return
+
+        const val = el.getAttribute(attr)
+        if (val && val.includes('{$')) {
+          el.setAttribute(
+            attr,
+            val.replace(tokenRegex, (_, type, key) =>
+              this.get(type, key)
+            )
+          )
+        }
+      })
     })
   },
 
   // get an item from the locale
   get: function (type, key, module) {
-    // initialize if needed
-    if (!jsBackend.locale.initialized) {
-      jsBackend.locale.init()
+    // Kick off async loading if needed
+    if (!this.initialized && !this.initializing) {
+      this.init()
     }
-    var data = jsBackend.locale.data
 
-    // value to use when the translation was not found
-    var missingTranslation = '{$' + type + key + '}'
+    const missingTranslation = '{$' + type + key + '}'
 
-    // validate
-    if (data === null || !data.hasOwnProperty(type) || data[type] === null) {
+    if (!this.initialized) {
       return missingTranslation
     }
 
-    // this is for the labels prefixed with "loc"
-    if (typeof (data[type][key]) === 'string') {
+    const data = this.data
+
+    // validate root
+    if (!data || !data[type]) {
+      return missingTranslation
+    }
+
+    // direct string (e.g. loc)
+    if (typeof data[type][key] === 'string') {
       return data[type][key]
     }
 
-    // if the translation does not exist for the given module, try to fall back to the core
-    if (!data[type].hasOwnProperty(module) || data[type][module] === null || !data[type][module].hasOwnProperty(key) || data[type][module][key] === null) {
-      if (!data[type].hasOwnProperty('Core') || data[type]['Core'] === null || !data[type]['Core'].hasOwnProperty(key) || data[type]['Core'][key] === null) {
-        return missingTranslation
+    // module fallback
+    if (module) {
+      if (data[type][module] && data[type][module][key]) {
+        return data[type][module][key]
       }
+    }
 
+    // Core fallback
+    if (data[type]['Core'] && data[type]['Core'][key]) {
       return data[type]['Core'][key]
     }
 
-    return data[type][module][key]
+    return missingTranslation
   },
 
   // get an error
   err: function (key, module) {
     if (typeof module === 'undefined') module = jsBackend.current.module
-    return jsBackend.locale.get('err', key, module)
+    return this.get('err', key, module)
   },
 
   // get a label
   lbl: function (key, module) {
     if (typeof module === 'undefined') module = jsBackend.current.module
-    return jsBackend.locale.get('lbl', key, module)
+    return this.get('lbl', key, module)
   },
 
   // get localization
   loc: function (key) {
-    return jsBackend.locale.get('loc', key)
+    return this.get('loc', key)
   },
 
   // get a message
   msg: function (key, module) {
     if (typeof module === 'undefined') module = jsBackend.current.module
-    return jsBackend.locale.get('msg', key, module)
+    return this.get('msg', key, module)
   }
 }
 

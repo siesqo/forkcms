@@ -22,6 +22,9 @@
     <title>{{ pageTitle }}</title>
   {% endblock %}
 
+  {# Preload jsFrontend translations #}
+  <link rel="preload" href="/src/Frontend/Cache/Locale/{{ FRONTEND_LANGUAGE }}.json" as="fetch" type="application/json" crossorigin>
+
   {# Stylesheets #}
   {% block stylesheets %}
     {% for css in cssFiles %}

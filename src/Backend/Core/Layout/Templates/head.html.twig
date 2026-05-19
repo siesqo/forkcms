@@ -7,6 +7,8 @@
   <title>{% if page_title %}{{ page_title|ucfirst }} - {% endif %}{{ SITE_TITLE }} - Fork CMS</title>
   <link rel="shortcut icon" href="/src/Backend/favicon.ico" />
 
+  {# Preload jsBackend translations #}
+  <link rel="preload" href="/src/Backend/Cache/Locale/{{ INTERFACE_LANGUAGE }}.json" as="fetch" type="application/json" crossorigin>
   <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro%7COpen+Sans:400,600' rel='stylesheet' type='text/css'>
 
   {% for cssFile in cssFiles %}

@@ -586,77 +586,105 @@ jsFrontend.locale = {
 
   // init, something like a constructor
   init: function () {
-    if (typeof jsFrontend.current.language === 'undefined') {
-      return
+    if (this.initialized || this.initializing) return
+    if (!jsFrontend.current || !jsFrontend.current.language) return
+
+    this.initializing = true
+
+    fetch('/src/Frontend/Cache/Locale/' + jsFrontend.current.language + '.json', {
+      credentials: 'same-origin'
+    })
+      .then(r => r.json())
+      .then(data => {
+        this.data = data
+        this.initialized = true
+        this.initializing = false
+        this.refreshDom()
+      })
+      .catch(() => {
+        this.initializing = false
+        console.error('Regenerate your locale-files.')
+      })
+  },
+
+  // replace placeholders with actual translations
+  refreshDom: function () {
+    if (!this.initialized) return
+
+    const tokenRegex = /\{\$(act|err|lbl|loc|msg)([A-Za-z0-9_]+)\}/g
+
+    // 1) Replace text nodes
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    )
+
+    let node
+    while ((node = walker.nextNode())) {
+      const txt = node.nodeValue
+      if (txt && txt.includes('{$')) {
+        node.nodeValue = txt.replace(tokenRegex, (_, type, key) =>
+          this.get(type, key)
+        )
+      }
     }
 
-    jsFrontend.locale.initializing = true
+    // 2) Replace attributes (title, placeholder, aria-label, etc.)
+    const ATTRS = [
+      'title',
+      'placeholder',
+      'aria-label',
+      'aria-describedby',
+      'alt',
+      'value'
+    ]
 
-    $.ajax({
-      url: '/src/Frontend/Cache/Locale/' + jsFrontend.current.language + '.json',
-      type: 'GET',
-      dataType: 'json',
-      async: false,
-      success: function (data) {
-        jsFrontend.locale.data = data
-        jsFrontend.locale.initialized = true
-        jsFrontend.locale.initializing = true
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        throw new Error('Regenerate your locale-files.')
-      }
+    document.querySelectorAll('*').forEach(el => {
+      ATTRS.forEach(attr => {
+        if (!el.hasAttribute(attr)) return
+
+        const val = el.getAttribute(attr)
+        if (val && val.includes('{$')) {
+          el.setAttribute(
+            attr,
+            val.replace(tokenRegex, (_, type, key) =>
+              this.get(type, key)
+            )
+          )
+        }
+      })
     })
   },
 
   // get an item from the locale
   get: function (type, key) {
-    // initialize if needed
-    if (!jsFrontend.locale.initialized && !jsFrontend.locale.initializing) jsFrontend.locale.init()
-
-    if (!jsFrontend.locale.initialized) {
-      setTimeout(
-        function () {
-          return jsFrontend.locale.get(type, key)
-        },
-        30
-      )
-
-      return
+    // Kick off async loading if needed
+    if (!this.initialized && !this.initializing) {
+      this.init()
     }
 
-    // validate
-    if (typeof jsFrontend.locale.data[type] === 'undefined' ||
-      typeof jsFrontend.locale.data[type][key] === 'undefined') {
-      return '{$' + type + key + '}'
+    // If ready → normal behavior
+    if (this.initialized) {
+      if (
+        typeof this.data[type] === 'undefined' ||
+        typeof this.data[type][key] === 'undefined'
+      ) {
+        return '{$' + type + key + '}'
+      }
+      return this.data[type][key]
     }
 
-    return jsFrontend.locale.data[type][key]
+    // Not ready yet → return placeholder token
+    return '{$' + type + key + '}'
   },
 
-  // get an action
-  act: function (key) {
-    return jsFrontend.locale.get('act', key)
-  },
-
-  // get an error
-  err: function (key) {
-    return jsFrontend.locale.get('err', key)
-  },
-
-  // get a label
-  lbl: function (key) {
-    return jsFrontend.locale.get('lbl', key)
-  },
-
-  // get localization
-  loc: function (key) {
-    return jsFrontend.locale.get('loc', key)
-  },
-
-  // get a message
-  msg: function (key) {
-    return jsFrontend.locale.get('msg', key)
-  }
+  act: function (key) { return this.get('act', key) },
+  err: function (key) { return this.get('err', key) },
+  lbl: function (key) { return this.get('lbl', key) },
+  loc: function (key) { return this.get('loc', key) },
+  msg: function (key) { return this.get('msg', key) }
 }
 
 /**

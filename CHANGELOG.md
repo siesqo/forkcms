@@ -29,6 +29,7 @@ Changed:
 * Core: Replaced `SpoonException` with `\RuntimeException` in Fork's own `Exception` classes and all installer throw sites
 * Core: Replaced `SpoonFeedRSS` and `SpoonFeedRSSItem` with standalone `Rss` and `RssItem` classes; XML output generated via `DOMDocument` with CDATA-wrapped descriptions; public API unchanged
 * Core: Replaced `SpoonDate` with `IntlDateFormatter` via a new `Common\Core\DateFormatter` utility class; `spoondate` Twig filter renamed to `intldate`; user format preferences are preserved; locale-aware `timeAgo` formatting no longer depends on SpoonDate
+* Core: Replaced load blocking synchronous `async: false` jQuery locale loading with async `fetch()` in backend and frontend JS; added `refreshDom()` to swap in translations once loaded; added `<link rel="preload">` hints for locale JSON files
 
 5.13.0  (2025-02-13)
 ------------------
