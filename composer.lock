@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "130481a66e52a9689a25209b5b457ffb",
+    "content-hash": "d9485642ca290c133a3631cd133e3f26",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -71,27 +71,27 @@
         },
         {
             "name": "bugsnag/bugsnag-symfony",
-            "version": "v1.14.3",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-symfony.git",
-                "reference": "6d4b47a45970d6e4647c6ea62e57637a5ee959bd"
+                "reference": "316eddd367bb1c6325ef09fab1c45f22a2ee36e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-symfony/zipball/6d4b47a45970d6e4647c6ea62e57637a5ee959bd",
-                "reference": "6d4b47a45970d6e4647c6ea62e57637a5ee959bd",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-symfony/zipball/316eddd367bb1c6325ef09fab1c45f22a2ee36e5",
+                "reference": "316eddd367bb1c6325ef09fab1c45f22a2ee36e5",
                 "shasum": ""
             },
             "require": {
                 "bugsnag/bugsnag": "^3.29.0",
-                "php": ">=5.5",
-                "symfony/config": "^2.7|^3|^4|^5|^6|^7",
-                "symfony/console": "^2.7|^3|^4|^5|^6|^7",
-                "symfony/dependency-injection": "^2.7|^3|^4|^5|^6|^7",
-                "symfony/http-foundation": "^2.7|^3|^4|^5|^6|^7",
-                "symfony/http-kernel": "^2.7|^3|^4|^5|^6|^7",
-                "symfony/security-core": "^2.7|^3|^4|^5|^6|^7"
+                "php": ">=7.2",
+                "symfony/config": "^5|^6|^7|^8",
+                "symfony/console": "^5|^6|^7|^8",
+                "symfony/dependency-injection": "^5|^6|^7|^8",
+                "symfony/http-foundation": "^5|^6|^7|^8",
+                "symfony/http-kernel": "^5|^6|^7|^8",
+                "symfony/security-core": "^5|^6|^7|^8"
             },
             "require-dev": {
                 "graham-campbell/testbench-core": "^1.1",
@@ -118,11 +118,11 @@
             ],
             "authors": [
                 {
-                    "name": "James Smith",
+                    "name": "SmartBear Software",
                     "email": "notifiers@bugsnag.com"
                 }
             ],
-            "description": "Official Bugsnag notifier for Symfony applications.",
+            "description": "Official BugSnag notifier for Symfony applications.",
             "homepage": "https://github.com/bugsnag/bugsnag-symfony",
             "keywords": [
                 "bugsnag",
@@ -134,9 +134,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bugsnag/bugsnag-symfony/issues",
-                "source": "https://github.com/bugsnag/bugsnag-symfony/tree/v1.14.3"
+                "source": "https://github.com/bugsnag/bugsnag-symfony/tree/v2.0.0"
             },
-            "time": "2025-01-30T13:59:47+00:00"
+            "time": "2025-12-09T12:30:40+00:00"
         },
         {
             "name": "campaignmonitor/createsend-php",
@@ -9447,16 +9447,16 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "2.0.17",
+            "version": "2.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "fdd0cb5f08d1980c612d6f259d825ea644ed03f4"
+                "reference": "a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/fdd0cb5f08d1980c612d6f259d825ea644ed03f4",
-                "reference": "fdd0cb5f08d1980c612d6f259d825ea644ed03f4",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d",
+                "reference": "a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d",
                 "shasum": ""
             },
             "require": {
@@ -9515,32 +9515,32 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.17"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.18"
             },
-            "time": "2026-05-10T08:14:07+00:00"
+            "time": "2026-05-18T14:51:49+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.13.5",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "0ca86845ce43291e8f5692c7356fccf3bcf02bf4"
+                "reference": "0525c73950de35ded110cffafb9892946d7771b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/0ca86845ce43291e8f5692c7356fccf3bcf02bf4",
-                "reference": "0ca86845ce43291e8f5692c7356fccf3bcf02bf4",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/0525c73950de35ded110cffafb9892946d7771b5",
+                "reference": "0525c73950de35ded110cffafb9892946d7771b5",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
-                "php": ">=5.4.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4"
+                "phpunit/phpunit": "^8.4.0 || ^9.3.4 || ^10.5.32 || 11.3.3 - 11.5.28 || ^11.5.31"
             },
             "bin": [
                 "bin/phpcbf",
@@ -9565,7 +9565,7 @@
                     "homepage": "https://github.com/PHPCSStandards/PHP_CodeSniffer/graphs/contributors"
                 }
             ],
-            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "description": "PHP_CodeSniffer tokenizes PHP files and detects violations of a defined set of coding standards.",
             "homepage": "https://github.com/PHPCSStandards/PHP_CodeSniffer",
             "keywords": [
                 "phpcs",
@@ -9596,7 +9596,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-11-04T16:30:35+00:00"
+            "time": "2025-11-10T16:43:36+00:00"
         },
         {
             "name": "symfony/debug-bundle",
