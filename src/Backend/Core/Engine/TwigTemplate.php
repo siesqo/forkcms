@@ -249,7 +249,7 @@ class TwigTemplate extends BaseTwigTemplate
 
     private function parseLabels(array $labels, string $module, string $key): void
     {
-        $realLabels = $this->prefixArrayKeys('Core', $labels['Core']);
+        $realLabels = $this->prefixArrayKeys('Core', $labels['Core'] ?? []);
 
         if (array_key_exists($module, $labels)) {
             $realLabels = array_merge($realLabels, $labels[$module]);

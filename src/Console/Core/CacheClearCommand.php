@@ -2,6 +2,8 @@
 
 namespace Console\Core;
 
+use Backend\Core\Language\Language as BL;
+use Backend\Modules\Locale\Engine\Model as BackendLocaleModel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,12 +39,34 @@ class CacheClearCommand extends Command
         $symfonyCacheClearCommand = $this->getApplication()->find('cache:clear');
         $symfonyCacheClearCommand->run(new ArrayInput(['--no-warmup' => true]), $output);
 
+        $this->rebuildLocaleCache($io);
+
         // clear file info cache
         clearstatcache();
 
         $io->success('Cache is cleared');
 
         return Command::SUCCESS;
+    }
+
+    private function rebuildLocaleCache(SymfonyStyle $io): void
+    {
+        try {
+            $siteLanguages = BL::getActiveLanguages();
+            $interfaceLanguages = BL::getInterfaceLanguages();
+
+            foreach ($siteLanguages as $language) {
+                BackendLocaleModel::buildCache($language, 'Frontend');
+            }
+
+            foreach (array_keys($interfaceLanguages) as $language) {
+                BackendLocaleModel::buildCache($language, 'Backend');
+            }
+
+            $io->comment('Rebuilt locale cache');
+        } catch (\Throwable $e) {
+            $io->warning('Could not rebuild locale cache: ' . $e->getMessage());
+        }
     }
 
     /**

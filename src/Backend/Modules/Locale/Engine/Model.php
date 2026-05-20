@@ -484,8 +484,9 @@ class Model
                 foreach ($items as $item) {
                     // attributes
                     $attributes = $item->attributes();
-                    $type = in_array($attributes['type'], $possibleTypes, true) ? $attributes['type'] : '';
-                    $name = s($attributes['name'] ?? '')->title()->toString();
+                    $typeValue = (string) ($attributes['type'] ?? '');
+                    $type = in_array($typeValue, $possibleTypes, true) ? $typeValue : '';
+                    $name = s((string) ($attributes['name'] ?? ''))->title()->toString();
 
                     // missing attributes
                     if ($type == '' || $name == '') {
@@ -502,7 +503,7 @@ class Model
 
                         // attributes
                         $attributes = $translation->attributes();
-                        $language = in_array($attributes['language'], $possibleLanguages[$application], true) ? $attributes['language'] : '';
+                        $language = in_array((string) $attributes['language'], $possibleLanguages[$application], true) ? (string) $attributes['language'] : '';
 
                         // language does not exist
                         if ($language == '') {
