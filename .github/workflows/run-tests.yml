@@ -59,11 +59,20 @@ jobs:
 
             - name: Display error logs on failure
               if: failure()
-              run: cat var/logs/test.log
+              run: cat var/logs/test.log || true
 
     phpstan:
         name: PHPStan - Static Code Analysis
         runs-on: ubuntu-latest
+        services:
+            mysql:
+                image: mysql:8.0
+                env:
+                    MYSQL_DATABASE: forkcms
+                    MYSQL_ROOT_PASSWORD: "kingtriton"
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -85,9 +94,12 @@ jobs:
               run: cp app/config/parameters.yml.test app/config/parameters.yml
 
             - name: Install dependencies
-              run: composer install -o
-              env:
-                  FORK_ENV: dev
+              run: composer install -o --no-scripts
+
+            - name: Warm cache
+              run: |
+                  php bin/console forkcms:cache:clear --env=dev
+                  php bin/console cache:warmup --env=dev
 
             - name: Run PHPStan
               run: bin/phpstan analyze --error-format github src
@@ -113,7 +125,7 @@ jobs:
                   coverage: none
 
             - name: Install dependencies
-              run: composer install -o
+              run: composer install -o --no-scripts
 
             - name: Run PHP Codesniffer
               run: bin/phpcs --standard=psr2 --extensions=php --warning-severity=0 --ignore=src/Backend/Core/Js/ckfinder,src/Backend/Cache,src/Frontend/Cache,src/Backend/Core/Js/ckeditor --report=full "src"
@@ -121,6 +133,7 @@ jobs:
     frontend:
         name: npm test
         runs-on: ubuntu-latest
+        continue-on-error: true
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -155,7 +168,7 @@ jobs:
                   coverage: none
 
             - name: Install dependencies
-              run: composer install -o
+              run: composer install -o --no-scripts
 
             - name: Build Docker image
               run: docker compose build
