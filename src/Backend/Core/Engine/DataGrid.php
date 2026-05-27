@@ -643,4 +643,14 @@ class DataGrid extends \SpoonDataGrid
 
         return self::$mapIcons[$iconName];
     }
+
+    public function setColumnsSequence($columns): void
+    {
+        if (is_array($columns)) {
+            $this->setColumnsSequence(...$columns);
+            return;
+        }
+
+        parent::setColumnsSequence(...func_get_args());
+    }
 }
