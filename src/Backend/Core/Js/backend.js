@@ -556,7 +556,7 @@ jsBackend.ckeditor = {
   fallBackBootstrapModals: function () {
     $.fn.modal.Constructor.prototype.enforceFocus = function () {
       var modalThis = this
-      $(document).on('focusin.modal', function (e) {
+      $(document).off('focusin.modal').on('focusin.modal', function (e) {
         if (modalThis.$element[0] !== e.target &&
           !modalThis.$element.has(e.target).length &&
           !$(e.target.parentNode).hasClass('cke_dialog_ui_input_select') &&
