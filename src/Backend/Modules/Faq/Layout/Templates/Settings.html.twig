@@ -1,33 +1,18 @@
 {% extends 'Layout/Templates/base.html.twig' %}
-{% import "Layout/Templates/macros.html.twig" as macro %}
-
-{% block actionbar %}
-
-{% endblock %}
+{% import 'Layout/Templates/macros.html.twig' as macro %}
 
 {% block content %}
-  {% form settings %}
+  {{ form_start(form) }}
   <div class="row fork-module-content">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">
-            {{ 'lbl.Pagination'|trans|ucfirst }}
-          </h2>
+          <h2 class="panel-title">{{ 'lbl.Pagination'|trans|ucfirst }}</h2>
         </div>
         <div class="panel-body">
-          <div class="form-group">
-            <label for="overviewNumberOfItemsPerCategory" class="control-label">{{ 'lbl.ItemsPerCategory'|trans|ucfirst }}</label>
-            {% form_field overview_number_of_items_per_category %} {% form_field_error overview_number_of_items_per_category %}
-          </div>
-          <div class="form-group">
-            <label for="mostReadNumberOfItems" class="control-label">{{ 'msg.NumMostReadItems'|trans }}</label>
-            {% form_field most_read_number_of_items %} {% form_field_error most_read_number_of_items %}
-          </div>
-          <div class="form-group last">
-            <label for="relatedNumberOfItems" class="control-label">{{ 'msg.NumRelatedItems'|trans }}</label>
-            {% form_field related_number_of_items %} {% form_field_error related_number_of_items %}
-          </div>
+          {{ form_row(form.overviewNumItemsPerCategory, {'label': 'lbl.ItemsPerCategory'|trans|ucfirst}) }}
+          {{ form_row(form.mostReadNumItems, {'label': 'msg.NumMostReadItems'|trans}) }}
+          {{ form_row(form.relatedNumItems, {'label': 'msg.NumRelatedItems'|trans}) }}
         </div>
       </div>
     </div>
@@ -36,16 +21,14 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">
-            {{ 'lbl.Categories'|trans|ucfirst }}
-          </h2>
+          <h2 class="panel-title">{{ 'lbl.Categories'|trans|ucfirst }}</h2>
         </div>
         <div class="panel-body">
           <div class="form-group last">
             <ul class="list-unstyled">
               <li class="checkbox">
-                <label for="allowMultipleCategories" class="control-label">
-                  {% form_field allow_multiple_categories %} {{ 'lbl.AllowMultipleCategories'|trans|ucfirst }}
+                <label>
+                  {{ form_widget(form.allowMultipleCategories) }} {{ 'lbl.AllowMultipleCategories'|trans|ucfirst }}
                 </label>
               </li>
             </ul>
@@ -58,26 +41,24 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">
-            {{ 'lbl.Feedback'|trans|ucfirst }}
-          </h2>
+          <h2 class="panel-title">{{ 'lbl.Feedback'|trans|ucfirst }}</h2>
         </div>
         <div class="panel-body">
           <div class="form-group last">
             <ul class="list-unstyled">
               <li class="checkbox">
-                <label for="allowFeedback" class="control-label">
-                  {% form_field allow_feedback %} {{ 'lbl.AllowFeedback'|trans|ucfirst }}
+                <label>
+                  {{ form_widget(form.allowFeedback) }} {{ 'lbl.AllowFeedback'|trans|ucfirst }}
                 </label>
               </li>
               <li class="checkbox">
-                <label for="allowOwnQuestion" class="control-label">
-                  {% form_field allow_own_question %} {{ 'lbl.AllowOwnQuestion'|trans|ucfirst }}
+                <label>
+                  {{ form_widget(form.allowOwnQuestion) }} {{ 'lbl.AllowOwnQuestion'|trans|ucfirst }}
                 </label>
               </li>
               <li class="checkbox">
-                <label for="sendEmailOnNewFeedback" class="control-label">
-                  {% form_field send_email_on_new_feedback %} {{ 'lbl.SendEmailOnNewFeedback'|trans|ucfirst }}
+                <label>
+                  {{ form_widget(form.sendEmailOnNewFeedback) }} {{ 'lbl.SendEmailOnNewFeedback'|trans|ucfirst }}
                 </label>
               </li>
             </ul>
@@ -86,14 +67,15 @@
       </div>
     </div>
   </div>
+  {{ form_rest(form) }}
   <div class="row fork-module-actions">
     <div class="col-md-12">
       <div class="btn-toolbar">
         <div class="btn-group pull-right" role="group">
-          {{ macro.buttonIcon('', 'floppy-o', 'lbl.Save'|trans|ucfirst, 'btn-primary', { "id":"save", "type":"submit", "name":"save" } ) }}
+          {{ macro.buttonIcon('', 'floppy-o', 'lbl.Save'|trans|ucfirst, 'btn-primary', { "type":"submit", "id":"save", "name":"save" }) }}
         </div>
       </div>
     </div>
   </div>
-  {% endform %}
+  {{ form_end(form) }}
 {% endblock %}

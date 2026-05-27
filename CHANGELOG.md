@@ -33,6 +33,7 @@ Changed:
 * Pages: Fixed block initialization when copying a page (blocks are not re-initialized with defaults when the page is a copy) [fad4189](https://github.com/siesqo/forkcms/commit/fad4189ce7e025b43816c33665dce48c39dd57c5), [a38ea94](https://github.com/siesqo/forkcms/commit/a38ea94041f833d8421f8a7b8b31db5b36d628da)
 * Pages: Skip removal request for user template images when no previous image exists [618e38b](https://github.com/siesqo/forkcms/commit/618e38b5750734ad5f723e2dfa0b2e93e26ec1c6)
 * FormBuilder: Reset all field checkboxes when switching between fields in the backend editor [09cb71e](https://github.com/siesqo/forkcms/commit/09cb71e350b9052d09b06217a3a18ac49536cb29)
+* Faq: Rebuilt module with Doctrine ORM entities, command/handler pattern via Symfony Messenger, and optional Tags/Search integration guards; added JSON-LD FAQPage structured data to detail page [6b89d4e](https://github.com/siesqo/forkcms/commit/6b89d4e3b45633a281f737cf4f5a3da006751f1f)
 
 5.13.0  (2025-02-13)
 ------------------

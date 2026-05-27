@@ -2,15 +2,16 @@
 
 namespace Backend\Modules\Faq\Ajax;
 
-use Backend\Core\Engine\Base\AjaxAction as BackendBaseAJAXAction;
+use Backend\Core\Engine\Base\AjaxAction;
 use Backend\Core\Language\Language;
-use Backend\Modules\Faq\Engine\Model as BackendFaqModel;
+use Backend\Modules\Faq\Domain\FaqCategory\FaqCategoryRepository;
+use Backend\Modules\Faq\Domain\FaqQuestion\Command\ReSequenceFaqQuestions;
+use Backend\Modules\Faq\Domain\FaqQuestion\Command\ReSequenceFaqQuestionsHandler;
+use Backend\Modules\Faq\Domain\FaqQuestion\FaqQuestion;
+use Backend\Modules\Faq\Domain\FaqQuestion\FaqQuestionRepository;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Reorder questions
- */
-class SequenceQuestions extends BackendBaseAJAXAction
+class SequenceQuestions extends AjaxAction
 {
     public function execute(): void
     {
@@ -22,50 +23,30 @@ class SequenceQuestions extends BackendBaseAJAXAction
         $fromCategorySequence = $this->getRequest()->request->get('fromCategorySequence', '');
         $toCategorySequence = $this->getRequest()->request->get('toCategorySequence', '');
 
-        // invalid question id
-        if (!BackendFaqModel::exists($questionId)) {
+        $questionRepository = $this->get(FaqQuestionRepository::class);
+        $faqQuestion = $questionRepository->find($questionId);
+
+        if (!$faqQuestion instanceof FaqQuestion) {
             $this->output(Response::HTTP_BAD_REQUEST, null, 'question does not exist');
 
             return;
         }
 
-        // list ids
-        $fromCategorySequence = (array) explode(',', ltrim($fromCategorySequence, ','));
-        $toCategorySequence = (array) explode(',', ltrim($toCategorySequence, ','));
+        $fromIds = (array) explode(',', ltrim($fromCategorySequence, ','));
+        $toIds = (array) explode(',', ltrim($toCategorySequence, ','));
 
-        // is the question moved to a new category?
-        if ($fromCategoryId != $toCategoryId) {
-            $item = [];
-            $item['id'] = $questionId;
-            $item['category_id'] = $toCategoryId;
-
-            BackendFaqModel::update($item);
-
-            // loop id's and set new sequence
-            foreach ($toCategorySequence as $i => $id) {
-                $item = [];
-                $item['id'] = (int) $id;
-                $item['sequence'] = $i + 1;
-
-                // update sequence if the item exists
-                if (BackendFaqModel::exists($item['id'])) {
-                    BackendFaqModel::update($item);
-                }
+        if ($fromCategoryId !== $toCategoryId) {
+            $toCategory = $this->get(FaqCategoryRepository::class)->find($toCategoryId);
+            if ($toCategory !== null) {
+                $faqQuestion->setCategory($toCategory);
+                $questionRepository->flush();
             }
+
+            $this->get(ReSequenceFaqQuestionsHandler::class)->__invoke(new ReSequenceFaqQuestions($toIds));
         }
 
-        // loop id's and set new sequence
-        foreach ($fromCategorySequence as $i => $id) {
-            $item['id'] = (int) $id;
-            $item['sequence'] = $i + 1;
+        $this->get(ReSequenceFaqQuestionsHandler::class)->__invoke(new ReSequenceFaqQuestions($fromIds));
 
-            // update sequence if the item exists
-            if (BackendFaqModel::exists($item['id'])) {
-                BackendFaqModel::update($item);
-            }
-        }
-
-        // success output
         $this->output(Response::HTTP_OK, null, Language::msg('SequenceSaved'));
     }
 }

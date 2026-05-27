@@ -1,0 +1,37 @@
+doctrine:
+  orm:
+    mappings:
+      FaqCategory:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/Faq/Domain/FaqCategory"
+        alias: FaqCategory
+        prefix: Backend\Modules\Faq\Domain\FaqCategory
+
+      FaqCategoryTranslation:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/Faq/Domain/FaqCategory/Translation"
+        alias: FaqCategoryTranslation
+        prefix: Backend\Modules\Faq\Domain\FaqCategory\Translation
+
+      FaqQuestion:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/Faq/Domain/FaqQuestion"
+        alias: FaqQuestion
+        prefix: Backend\Modules\Faq\Domain\FaqQuestion
+
+      FaqQuestionTranslation:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/Faq/Domain/FaqQuestion/Translation"
+        alias: FaqQuestionTranslation
+        prefix: Backend\Modules\Faq\Domain\FaqQuestion\Translation
+
+      FaqFeedback:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/Faq/Domain/FaqFeedback"
+        alias: FaqFeedback
+        prefix: Backend\Modules\Faq\Domain\FaqFeedback

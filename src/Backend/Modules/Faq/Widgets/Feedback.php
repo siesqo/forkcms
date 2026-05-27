@@ -4,20 +4,11 @@ namespace Backend\Modules\Faq\Widgets;
 
 use Backend\Core\Engine\Base\Widget as BackendBaseWidget;
 use Backend\Core\Engine\Model as BackendModel;
-use Backend\Modules\Faq\Engine\Model as BackendFaqModel;
+use Backend\Core\Language\Locale;
+use Backend\Modules\Faq\Domain\FaqFeedback\FaqFeedbackRepository;
 
-/**
- * This widget will show the latest feedback
- */
 class Feedback extends BackendBaseWidget
 {
-    /**
-     * The feedback
-     *
-     * @var array
-     */
-    private $feedback = [];
-
     public function execute(): void
     {
         $this->setColumn('middle');
@@ -29,18 +20,23 @@ class Feedback extends BackendBaseWidget
 
     private function loadData(): void
     {
-        $allFeedback = BackendFaqModel::getAllFeedback();
+        $locale = Locale::workingLocale();
+        $allFeedback = $this->get(FaqFeedbackRepository::class)->findUnprocessed(5);
+        $items = [];
 
-        // build the urls
         foreach ($allFeedback as $feedback) {
-            $feedback['full_url'] = BackendModel::createUrlForAction('Edit', 'Faq') .
-                                    '&id=' . $feedback['question_id'] . '#tabFeedback';
-            $this->feedback[] = $feedback;
+            $items[] = [
+                'id' => $feedback->getId(),
+                'text' => $feedback->getText(),
+                'full_url' => BackendModel::createUrlForAction('Edit', 'Faq') .
+                    '&id=' . $feedback->getQuestion()->getId() . '#tabFeedback',
+            ];
         }
+
+        $this->template->assign('faqFeedback', $items);
     }
 
     private function parse(): void
     {
-        $this->template->assign('faqFeedback', $this->feedback);
     }
 }

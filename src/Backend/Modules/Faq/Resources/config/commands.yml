@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Backend\Modules\Faq\Domain\FaqCategory\Command\CreateFaqCategoryHandler: ~
+    Backend\Modules\Faq\Domain\FaqCategory\Command\UpdateFaqCategoryHandler: ~
+    Backend\Modules\Faq\Domain\FaqCategory\Command\DeleteFaqCategoryHandler: ~
+    Backend\Modules\Faq\Domain\FaqCategory\Command\ReSequenceFaqCategoriesHandler: ~
+
+    Backend\Modules\Faq\Domain\FaqQuestion\Command\CreateFaqQuestionHandler: ~
+    Backend\Modules\Faq\Domain\FaqQuestion\Command\UpdateFaqQuestionHandler: ~
+    Backend\Modules\Faq\Domain\FaqQuestion\Command\DeleteFaqQuestionHandler: ~
+    Backend\Modules\Faq\Domain\FaqQuestion\Command\ReSequenceFaqQuestionsHandler: ~
+
+    Backend\Modules\Faq\Domain\FaqFeedback\Command\DeleteFaqFeedbackHandler: ~
+
+    Backend\Modules\Faq\Domain\Settings\SaveSettingsHandler: ~

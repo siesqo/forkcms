@@ -1,56 +1,83 @@
 {% extends 'Layout/Templates/base.html.twig' %}
-{% import "Layout/Templates/macros.html.twig" as macro %}
+{% import 'Layout/Templates/macros.html.twig' as macro %}
 
-{% block actionbar %}
-
-{% endblock %}
+{% block actionbar %}{% endblock %}
 
 {% block content %}
-  {% form add %}
+  {{ form_start(form) }}
   <div class="row fork-module-content">
     <div class="col-md-12">
-      <div class="form-group">
-        <label for="title" class="control-label">{{ 'lbl.Question'|trans|ucfirst }} {{ macro.required }}</label>
-        {% form_field title %} {% form_field_error title %}
-        {% if detailURL %}
-          <a class="site-url" href="{{ detailURL }}">{{ detailURL }}/<span id="generatedUrl"></span></a>{% endif %}
-        {% if not detailURL %}
-          <p class="text-warning">{{ macro.icon('warning') }} {{ 'err.NoModuleLinked'|trans|ucfirst }}</p>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="row fork-module-content">
-    <div class="col-md-12">
-      <div>
+      <div role="tabpanel">
         <ul class="nav nav-tabs nav-tabs-flex" role="tablist">
           <li role="presentation" class="active mr-auto">
             <a href="#tabContent" aria-controls="tabContent" role="tab" data-toggle="tab">{{ 'lbl.Content'|trans|ucfirst }}</a>
           </li>
-          <li role="presentation">
+          <li role="presentation" class="pull-right">
             <a href="#tabSEO" aria-controls="tabSEO" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
           </li>
         </ul>
         <div class="tab-content">
+          <div role="tabpanel" class="tab-pane" id="tabSEO">
+            <div class="row fork-module-content">
+              <ul class="nav nav-tabs" role="tablist">
+                {% for locale, translationField in form.translations %}
+                  {% set tabName = 'tabSEO' ~ locale|ucfirst %}
+                  <li role="presentation"{% if loop.first %} class="active"{% endif %}>
+                    <a href="#{{ tabName }}" aria-controls="{{ tabName }}" role="tab" data-toggle="tab">{{ locale|upper|tolabel|ucfirst }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+              <div class="tab-content">
+                {% for locale, translationField in form.translations %}
+                  {% set tabName = 'tabSEO' ~ locale|ucfirst %}
+                  <div role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}" id="{{ tabName }}">
+                    <div class="row">{{ form_widget(translationField.meta) }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
           <div role="tabpanel" class="tab-pane active" id="tabContent">
             <div class="row">
               <div class="col-md-8">
-                <div class="panel panel-default panel-editor optionsRTE">
-                  <div class="panel-heading">
-                    <label for="answer" class="control-label">{{ 'lbl.Answer'|trans|ucfirst }}
-                      {{ macro.required }}<br>
-                    </label>
-                  </div>
-                  <div class="panel-body">
-                    {% form_field answer %}
-                  </div>
-                  {% if txtAnswerError %}
-                    <div class="panel-footer">
-                      {% form_field_error answer %}
+                <ul class="nav nav-tabs" role="tablist">
+                  {% for locale, translationField in form.translations %}
+                    {% set tabName = 'tab' ~ locale|ucfirst %}
+                    <li role="presentation"{% if activeTranslationTab == tabName %} class="active"{% endif %}>
+                      <a href="#{{ tabName }}" aria-controls="{{ tabName }}" role="tab" data-toggle="tab">{{ locale|upper|tolabel|ucfirst }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">
+                  {% for locale, translationField in form.translations %}
+                    {% set tabName = 'tab' ~ locale|ucfirst %}
+                    <div role="tabpanel" class="tab-pane{% if activeTranslationTab == tabName %} active{% endif %}" id="{{ tabName }}">
+                      <div class="form-group">
+                        {{ form_label(translationField.question) }}
+                        {{ form_widget(translationField.question) }}
+                        {{ form_errors(translationField.question) }}
+                        {% if detailURL %}
+                          <a class="site-url" href="{{ detailURL }}">{{ detailURL }}/<span id="generatedUrl-{{ locale }}"></span></a>
+                        {% else %}
+                          <p class="alert alert-warning alert-xs">{{ macro.icon('exclamation-triangle') }}{{ 'err.NoModuleLinked'|trans|ucfirst }}</p>
+                        {% endif %}
+                      </div>
+                      <div class="panel panel-default panel-editor optionsRTE">
+                        <div class="panel-heading">
+                          {{ form_label(translationField.answer) }}
+                        </div>
+                        <div class="panel-body">
+                          {{ form_widget(translationField.answer) }}
+                        </div>
+                        {{ form_errors(translationField.answer) }}
+                      </div>
+                      {{ form_rest(translationField) }}
                     </div>
-                  {% endif %}
+                  {% endfor %}
                 </div>
               </div>
+
               <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -58,13 +85,8 @@
                   </div>
                   <div class="panel-body">
                     <div class="form-group last">
-                      <ul class="list-unstyled">
-                        {% for _itr_9 in hidden %}
-                          <li class="radio">
-                            <label for="{{ _itr_9.id }}">{{ _itr_9.rbtHidden|raw }} {{ _itr_9.label }}</label>
-                          </li>
-                        {% endfor %}
-                      </ul>
+                      {{ form_label(form.hidden) }}
+                      {{ form_widget(form.hidden) }}
                     </div>
                   </div>
                 </div>
@@ -74,37 +96,36 @@
                   </div>
                   <div class="panel-body">
                     <div class="form-group">
-                      <label for="categoryId" class="control-label">{{ 'lbl.Category'|trans|ucfirst }}</label>
-                      {% form_field category_id %} {% form_field_error category_id %}
+                      {{ form_row(form.category, {'label': 'lbl.Category'|trans|ucfirst}) }}
                     </div>
+                    {% if tagsEnabled %}
                     <div class="form-group last">
-                      <label for="tags" class="control-label">{{ 'lbl.Tags'|trans|ucfirst }}</label>
-                      {% form_field tags %} {% form_field_error tags %}
+                      {{ form_row(form.tags, {'label': 'lbl.Tags'|trans|ucfirst}) }}
                       <div class="help-block">{{ 'msg.HelpTextTags'|trans }}</div>
                     </div>
+                    {% endif %}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="tabSEO">
-            {% seo %}
+            {{ form_rest(form) }}
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row fork-module-actions">
     <div class="col-md-12">
       <div class="btn-toolbar">
         <div class="btn-group" role="group">
-          {{ macro.buttonIcon(geturl('Index'), 'times', 'lbl.Cancel'|trans|ucfirst, 'btn-default') }}
+          {{ macro.buttonIcon(backLink, 'times', 'lbl.Cancel'|trans|ucfirst, 'btn-default') }}
         </div>
         <div class="btn-group pull-right" role="group">
-          {{ macro.buttonIcon('', 'plus-square', 'lbl.Add'|trans|ucfirst, 'btn-primary', { "id":"addButton", "type":"submit", "name":"add" }) }}
+          {{ macro.buttonIcon('', 'plus-square', 'lbl.Add'|trans|ucfirst, 'btn-primary', { "type":"submit", "id":"addButton", "name":"add" }) }}
         </div>
       </div>
     </div>
   </div>
-  {% endform %}
+  {{ form_end(form) }}
 {% endblock %}

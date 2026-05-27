@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Backend\Modules\Faq\Domain\FaqCategory\FaqCategoryRepository: ~
+    Backend\Modules\Faq\Domain\FaqCategory\Translation\FaqCategoryTranslationRepository: ~
+    Backend\Modules\Faq\Domain\FaqQuestion\FaqQuestionRepository: ~
+    Backend\Modules\Faq\Domain\FaqQuestion\Translation\FaqQuestionTranslationRepository: ~
+    Backend\Modules\Faq\Domain\FaqFeedback\FaqFeedbackRepository: ~

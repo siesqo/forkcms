@@ -1,0 +1,13 @@
+imports:
+    - { resource: commands.yml }
+    - { resource: repositories.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Backend\Modules\Faq\Domain\Settings\SaveSettingsHandler:
+        arguments:
+            - "@fork.settings"

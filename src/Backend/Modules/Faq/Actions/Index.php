@@ -2,36 +2,17 @@
 
 namespace Backend\Modules\Faq\Actions;
 
-use Backend\Core\Engine\Base\ActionIndex as BackendBaseActionIndex;
-use Backend\Core\Engine\Authentication as BackendAuthentication;
-use Backend\Core\Engine\DataGridArray as BackendDataGridArray;
-use Backend\Core\Engine\DataGridDatabase as BackendDataGridDatabase;
-use Backend\Core\Language\Language as BL;
-use Backend\Core\Engine\Model as BackendModel;
-use Backend\Modules\Faq\Engine\Model as BackendFaqModel;
+use Backend\Core\Engine\Base\ActionIndex;
+use Backend\Core\Language\Locale;
+use Backend\Modules\Faq\Domain\FaqCategory\FaqCategoryRepository;
+use Backend\Modules\Faq\Domain\FaqQuestion\FaqQuestionIndexDataGrid;
 
-/**
- * This is the index-action (default), it will display the overview
- */
-class Index extends BackendBaseActionIndex
+final class Index extends ActionIndex
 {
-    /**
-     * The dataGrids
-     *
-     * @var array
-     */
-    private $dataGrids;
-
-    /**
-     * Default dataGird
-     *
-     * @var BackendDataGridArray
-     */
-    private $emptyDatagrid;
-
     public function execute(): void
     {
         parent::execute();
+
         $this->loadDatagrids();
 
         $this->parse();
@@ -40,61 +21,20 @@ class Index extends BackendBaseActionIndex
 
     private function loadDatagrids(): void
     {
-        // load all categories
-        $categories = BackendFaqModel::getCategories(true);
+        $locale = Locale::workingLocale();
+        $categories = $this->get(FaqCategoryRepository::class)->findAllOrdered();
+        $dataGrids = [];
 
-        // loop categories and create a dataGrid for each one
-        foreach ($categories as $categoryId => $categoryTitle) {
-            $dataGrid = new BackendDataGridDatabase(
-                BackendFaqModel::QUERY_DATAGRID_BROWSE,
-                [BL::getWorkingLanguage(), $categoryId]
-            );
-            $dataGrid->setColumnFunction('htmlspecialchars', ['[question]'], 'question', false);
-            $dataGrid->enableSequenceByDragAndDrop();
-            $dataGrid->setColumnsHidden(['category_id', 'sequence']);
-            $dataGrid->setColumnAttributes('question', ['class' => 'title']);
-            $dataGrid->setRowAttributes(['id' => '[id]']);
-
-            // check if this action is allowed
-            if (BackendAuthentication::isAllowedAction('Edit')) {
-                $dataGrid->setColumnURL('question', BackendModel::createUrlForAction('Edit') . '&amp;id=[id]');
-                $dataGrid->addColumn(
-                    'edit',
-                    null,
-                    BL::lbl('Edit'),
-                    BackendModel::createUrlForAction('Edit') . '&amp;id=[id]',
-                    BL::lbl('Edit')
-                );
-            }
-
-            // add dataGrid to list
-            $this->dataGrids[] = [
-                'id' => $categoryId,
-                'title' => $categoryTitle,
-                'content' => $dataGrid->getContent(),
+        foreach ($categories as $category) {
+            $dataGrids[] = [
+                'id' => $category->getId(),
+                'title' => $category->getTranslation($locale)->getTitle(),
+                'content' => FaqQuestionIndexDataGrid::getHtml($locale, $category->getId()),
             ];
         }
 
-        // set empty datagrid
-        $this->emptyDatagrid = new BackendDataGridArray(
-            [[
-                'dragAndDropHandle' => '',
-                'question' => BL::msg('NoQuestionInCategory'),
-                'edit' => '',
-            ]]
-        );
-        $this->emptyDatagrid->setAttributes(['class' => 'table table-hover table-striped fork-data-grid jsDataGrid sequenceByDragAndDrop emptyGrid']);
-        $this->emptyDatagrid->setHeaderLabels(['edit' => null, 'dragAndDropHandle' => null]);
-    }
-
-    protected function parse(): void
-    {
-        parent::parse();
-
-        // parse dataGrids
-        if (!empty($this->dataGrids)) {
-            $this->template->assign('dataGrids', $this->dataGrids);
+        if (!empty($dataGrids)) {
+            $this->template->assign('dataGrids', $dataGrids);
         }
-        $this->template->assign('emptyDatagrid', $this->emptyDatagrid->getContent());
     }
 }

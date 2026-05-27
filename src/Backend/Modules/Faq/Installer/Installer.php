@@ -19,7 +19,9 @@ class Installer extends ModuleInstaller
     public function install(): void
     {
         $this->addModule('Faq');
-        $this->makeSearchable($this->getModule());
+        if (in_array('search_modules', $this->getDatabase()->getTables(), true)) {
+            $this->makeSearchable($this->getModule());
+        }
         $this->importSQL(__DIR__ . '/Data/install.sql');
         $this->importLocale(__DIR__ . '/Data/locale.xml');
         $this->configureSettings();
@@ -154,73 +156,59 @@ class Installer extends ModuleInstaller
     private function getDefaultCategoryIdForLanguage(string $language): int
     {
         return (int) $this->getDatabase()->getVar(
-            'SELECT id
-             FROM faq_categories
-             WHERE language = ?',
+            'SELECT c.id
+             FROM FaqCategory AS c
+             INNER JOIN FaqCategoryTranslation ct ON ct.categoryId = c.id AND ct.locale = ?
+             LIMIT 1',
             [$language]
         );
     }
 
-    /**
-     * @todo: When FAQ entities are available, use DataFixtures instead of this method.
-     *
-     * @param string $language
-     * @param string $title
-     * @param string $url
-     *
-     * @return int
-     */
     private function insertCategory(string $language, string $title, string $url): int
     {
         $database = $this->getDatabase();
+        $now = date('Y-m-d H:i:s');
 
-        // get sequence for widget
-        $sequenceExtra = $database->getVar(
-            'SELECT MAX(i.sequence) + 1
-             FROM modules_extras AS i
-             WHERE i.module = ?',
-            ['faq']
-        );
+        $metaId = $this->insertMeta($title, $title, $title, $url);
 
-        // build array
-        $item = [];
-        $item['meta_id'] = $this->insertMeta($title, $title, $title, $url);
-        $item['extra_id'] = $this->insertExtra(
+        $extraId = $this->insertExtra(
             $this->getModule(),
             ModuleExtraType::widget(),
             $this->getModule(),
             'CategoryList',
             null,
             false,
-            $sequenceExtra
+            null
         );
-        $item['language'] = $language;
-        $item['title'] = $title;
-        $item['sequence'] = 1;
 
-        // insert category
-        $item['id'] = (int) $database->insert('faq_categories', $item);
+        $categoryId = (int) $database->insert('FaqCategory', [
+            'sequence' => 1,
+            'extraId' => $extraId,
+            'createdOn' => $now,
+            'editedOn' => $now,
+        ]);
 
-        // build data for widget
-        $extra = [
-            'data' => serialize(
-                [
-                    'id' => $item['id'],
-                    'extra_label' => 'Category: ' . $item['title'],
-                    'language' => $item['language'],
-                    'edit_url' => '/private/' . $language . '/faq/edit_category?id=' . $item['id'],
-                ]
-            ),
-        ];
+        $database->insert('FaqCategoryTranslation', [
+            'locale' => $language,
+            'categoryId' => $categoryId,
+            'title' => $title,
+            'meta_id' => $metaId,
+        ]);
 
-        // update widget
         $database->update(
             'modules_extras',
-            $extra,
+            [
+                'data' => serialize([
+                    'id' => $categoryId,
+                    'extra_label' => 'Category: ' . $title,
+                    'language' => $language,
+                    'edit_url' => '/private/' . $language . '/faq/edit_category?id=' . $categoryId,
+                ]),
+            ],
             'id = ?',
-            [$item['extra_id']]
+            [$extraId]
         );
 
-        return $item['id'];
+        return $categoryId;
     }
 }

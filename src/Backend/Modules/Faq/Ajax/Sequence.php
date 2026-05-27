@@ -2,41 +2,26 @@
 
 namespace Backend\Modules\Faq\Ajax;
 
-use Backend\Core\Engine\Base\AjaxAction as BackendBaseAJAXAction;
-use Backend\Modules\Faq\Engine\Model as BackendFaqModel;
+use Backend\Core\Engine\Base\AjaxAction;
+use Backend\Modules\Faq\Domain\FaqCategory\Command\ReSequenceFaqCategories;
+use Backend\Modules\Faq\Domain\FaqCategory\Command\ReSequenceFaqCategoriesHandler;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Reorder categories
- */
-class Sequence extends BackendBaseAJAXAction
+class Sequence extends AjaxAction
 {
     public function execute(): void
     {
         parent::execute();
 
-        // get parameters
         $newIdSequence = trim($this->getRequest()->request->get('new_id_sequence', ''));
-
-        // list id
         $ids = (array) explode(',', rtrim($newIdSequence, ','));
 
-        // loop id's and set new sequence
-        foreach ($ids as $i => $id) {
-            // define category
-            $category = BackendFaqModel::getCategory((int) $id);
+        if ($this->get(ReSequenceFaqCategoriesHandler::class)->__invoke(new ReSequenceFaqCategories($ids))) {
+            $this->output(Response::HTTP_OK, null, 'sequence updated');
 
-            // update sequence
-            if (!empty($category)) {
-                // change sequence
-                $category['sequence'] = $i + 1;
-
-                // update category
-                BackendFaqModel::updateCategory($category);
-            }
+            return;
         }
 
-        // success output
-        $this->output(Response::HTTP_OK, null, 'sequence updated');
+        $this->output(Response::HTTP_BAD_REQUEST, null, 'something went wrong');
     }
 }

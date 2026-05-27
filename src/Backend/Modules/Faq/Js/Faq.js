@@ -15,7 +15,7 @@ jsBackend.faq = {
     }
 
     // do meta
-    if ($('#title').length > 0) $('#title').doMeta()
+    if ($('#question').length > 0) $('#question').doMeta()
   },
 
   /**

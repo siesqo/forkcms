@@ -2,120 +2,101 @@
 
 namespace Backend\Modules\Faq\Actions;
 
-use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
-use Backend\Core\Engine\Authentication as BackendAuthentication;
-use Backend\Core\Engine\Form as BackendForm;
-use Backend\Core\Engine\Meta as BackendMeta;
-use Backend\Core\Language\Language as BL;
+use Backend\Core\Engine\Base\ActionEdit;
 use Backend\Core\Engine\Model as BackendModel;
+use Backend\Core\Language\Locale;
 use Backend\Form\Type\DeleteType;
-use Backend\Modules\Faq\Engine\Model as BackendFaqModel;
+use Backend\Modules\Faq\Domain\FaqCategory\Command\UpdateFaqCategory;
+use Backend\Modules\Faq\Domain\FaqCategory\FaqCategory;
+use Backend\Modules\Faq\Domain\FaqCategory\FaqCategoryRepository;
+use Backend\Modules\Faq\Domain\FaqCategory\FaqCategoryType;
+use Symfony\Component\Form\Form;
 
-/**
- * This is the edit category action, it will display a form to edit an existing category.
- */
-class EditCategory extends BackendBaseActionEdit
+final class EditCategory extends ActionEdit
 {
     public function execute(): void
     {
-        $this->id = $this->getRequest()->query->getInt('id');
+        parent::execute();
 
-        // does the item exist?
-        if ($this->id !== 0 && BackendFaqModel::existsCategory($this->id)) {
-            parent::execute();
+        $faqCategory = $this->getFaqCategory();
 
-            $this->getData();
-            $this->loadForm();
-            $this->validateForm();
-            $this->loadDeleteForm();
+        if (!$faqCategory instanceof FaqCategory) {
+            $this->redirect($this->getBackLink(['error' => 'non-existing']));
 
-            $this->parse();
-            $this->display();
-        } else {
-            $this->redirect(BackendModel::createUrlForAction('Categories') . '&error=non-existing');
-        }
-    }
-
-    private function getData(): void
-    {
-        $this->record = BackendFaqModel::getCategory($this->id);
-    }
-
-    private function loadForm(): void
-    {
-        // create form
-        $this->form = new BackendForm('editCategory');
-        $this->form->addText('title', $this->record['title'])->makeRequired();
-
-        $this->meta = new BackendMeta($this->form, $this->record['meta_id'], 'title', true);
-    }
-
-    protected function parse(): void
-    {
-        parent::parse();
-
-        // assign the data
-        $this->template->assign('item', $this->record);
-        $this->template->assign(
-            'showFaqDeleteCategory',
-            (
-                BackendFaqModel::deleteCategoryAllowed($this->id) &&
-                BackendAuthentication::isAllowedAction('DeleteCategory')
-            )
-        );
-
-        $url = BackendModel::getUrlForBlock($this->url->getModule(), 'Category');
-        $url404 = BackendModel::getUrl(BackendModel::ERROR_PAGE_ID);
-        if ($url404 != $url) {
-            $this->template->assign('detailURL', SITE_URL . $url);
+            return;
         }
 
-        $this->header->appendDetailToBreadcrumbs($this->record['title']);
-    }
+        $form = $this->getForm($faqCategory);
 
-    private function validateForm(): void
-    {
-        if ($this->form->isSubmitted()) {
-            $this->meta->setUrlCallback(
-                'Backend\Modules\Faq\Engine\Model',
-                'getUrlForCategory',
-                [$this->record['id']]
-            );
-
-            $this->form->cleanupFields();
-
-            // validate fields
-            $this->form->getField('title')->isFilled(BL::err('TitleIsRequired'));
-            $this->meta->validate();
-
-            if ($this->form->isCorrect()) {
-                // build item
-                $item = [];
-                $item['id'] = $this->id;
-                $item['language'] = $this->record['language'];
-                $item['title'] = $this->form->getField('title')->getValue();
-                $item['extra_id'] = $this->record['extra_id'];
-                $item['meta_id'] = $this->meta->save(true);
-
-                // update the item
-                BackendFaqModel::updateCategory($item);
-
-                // everything is saved, so redirect to the overview
-                $this->redirect(
-                    BackendModel::createUrlForAction('Categories') . '&report=edited-category&var=' .
-                    rawurlencode($item['title']) . '&highlight=row-' . $item['id']
-                );
-            }
-        }
-    }
-
-    private function loadDeleteForm(): void
-    {
         $deleteForm = $this->createForm(
             DeleteType::class,
-            ['id' => $this->record['id']],
+            ['id' => $faqCategory->getId()],
             ['module' => $this->getModule(), 'action' => 'DeleteCategory']
         );
         $this->template->assign('deleteForm', $deleteForm->createView());
+
+        $multipleAllowed = $this->get('fork.settings')->get('Faq', 'allow_multiple_categories', true);
+        $canDelete = $multipleAllowed && $this->get(FaqCategoryRepository::class)->findCount() > 1;
+        $this->template->assign('showFaqDeleteCategory', $canDelete);
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            $locale = Locale::workingLocale();
+
+            $this->template->assign('activeTranslationTab', 'tab' . ucfirst($locale));
+            $this->template->assign('locale', $locale);
+            $this->template->assign('form', $form->createView());
+            $this->template->assign('faqCategory', $faqCategory);
+
+            $url = BackendModel::getUrlForBlock($this->url->getModule(), 'Category');
+            $url404 = BackendModel::getUrl(BackendModel::ERROR_PAGE_ID);
+            if ($url404 !== $url) {
+                $this->template->assign('detailURL', SITE_URL . $url);
+            }
+
+            $this->header->appendDetailToBreadcrumbs(
+                $faqCategory->getTranslation($locale)->getTitle()
+            );
+
+            $this->parse();
+            $this->display();
+
+            return;
+        }
+
+        $this->handleForm($form);
+    }
+
+    private function handleForm(Form $form): void
+    {
+        /** @var UpdateFaqCategory $updateFaqCategory */
+        $updateFaqCategory = $form->getData();
+
+        $this->get('messenger.default_bus')->dispatch($updateFaqCategory);
+
+        $title = $updateFaqCategory->translations[(string) Locale::workingLocale()]->title;
+
+        $this->redirect($this->getBackLink([
+            'report' => 'edited-category',
+            'var' => $title,
+            'highlight' => 'row-' . $updateFaqCategory->getFaqCategoryEntity()->getId(),
+        ]));
+    }
+
+    private function getFaqCategory(): ?FaqCategory
+    {
+        return $this->get(FaqCategoryRepository::class)->find($this->getRequest()->query->getInt('id'));
+    }
+
+    private function getForm(FaqCategory $faqCategory): Form
+    {
+        $form = $this->createForm(FaqCategoryType::class, new UpdateFaqCategory($faqCategory));
+        $form->handleRequest($this->getRequest());
+
+        return $form;
+    }
+
+    private function getBackLink(array $parameters = []): string
+    {
+        return BackendModel::createUrlForAction('Categories', null, null, $parameters);
     }
 }

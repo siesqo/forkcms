@@ -24,11 +24,8 @@
               <div class="table-responsive">
                 {{ dataGrid.content | raw }}
               </div>
-            {% endif %}
-            {% if not dataGrid.content %}
-              <div class="table-responsive">
-                {{ emptyDatagrid | raw }}
-              </div>
+            {% else %}
+              <p class="alert alert-info">{{ 'msg.NoQuestionInCategory'|trans }}</p>
             {% endif %}
           </div>
         {% endfor %}

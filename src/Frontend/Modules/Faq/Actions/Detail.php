@@ -9,7 +9,6 @@ use Frontend\Core\Language\Language as FL;
 use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Core\Engine\Navigation as FrontendNavigation;
 use Frontend\Modules\Faq\Engine\Model as FrontendFaqModel;
-use Frontend\Modules\Tags\Engine\Model as FrontendTagsModel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Address;
@@ -42,6 +41,7 @@ class Detail extends FrontendBaseBlock
         $this->buildForm();
         $this->handleForm();
         $this->parse();
+        $this->addStructuredData();
     }
 
     /**
@@ -73,7 +73,9 @@ class Detail extends FrontendBaseBlock
         $question['category_full_url'] = $baseCategoryUrl . '/' . $question['category_url'];
         $baseQuestionUrl = FrontendNavigation::getUrlForBlock($this->getModule(), $this->getAction());
         $question['full_url'] = $baseQuestionUrl . '/' . $question['url'];
-        $question['tags'] = FrontendTagsModel::getForItem($this->getModule(), $question['id']);
+        $question['tags'] = in_array('Tags', FrontendModel::getModules(), true)
+            ? \Frontend\Modules\Tags\Engine\Model::getForItem($this->getModule(), $question['id'])
+            : [];
         $question['allow_feedback'] = $this->isFeedbackAllowed();
 
         return $question;
@@ -255,7 +257,7 @@ class Detail extends FrontendBaseBlock
     private function getRelatedQuestionsFromTheSameCategory(): array
     {
         return FrontendFaqModel::getAllForCategory(
-            $this->question['category_id'],
+            $this->question['categoryId'],
             $this->getSetting('related_num_items', 5),
             $this->question['id']
         );
@@ -282,6 +284,28 @@ class Detail extends FrontendBaseBlock
         FrontendModel::getSession()->set(
             'faq_feedback_' . $this->question['id'],
             $this->isVisitorSayingTheAnswerWasUseful()
+        );
+    }
+
+    private function addStructuredData(): void
+    {
+        $json = json_encode([
+            '@context' => 'https://schema.org/',
+            '@type' => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type' => 'Question',
+                    'name' => $this->question['question'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => strip_tags($this->question['answer']),
+                    ],
+                ],
+            ],
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $this->header->addToSiteHTMLHead(
+            '<script type="application/ld+json">' . $json . '</script>'
         );
     }
 
