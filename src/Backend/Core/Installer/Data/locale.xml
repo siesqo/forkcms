@@ -6356,6 +6356,11 @@
         <translation language="pl"><![CDATA[edytor]]></translation>
         <translation language="pt"><![CDATA[editor]]></translation>
       </item>
+      <item type="label" name="UserTemplate">
+        <translation language="en"><![CDATA[user template]]></translation>
+        <translation language="nl"><![CDATA[user template]]></translation>
+        <translation language="fr"><![CDATA[user template]]></translation>
+      </item>
       <item type="label" name="EditProfile">
         <translation language="nl"><![CDATA[bewerk profiel]]></translation>
         <translation language="en"><![CDATA[edit profile]]></translation>

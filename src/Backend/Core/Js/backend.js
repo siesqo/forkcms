@@ -1753,9 +1753,10 @@ jsBackend.locale = {
     while ((node = walker.nextNode())) {
       const txt = node.nodeValue
       if (txt && txt.includes('{$')) {
-        node.nodeValue = txt.replace(tokenRegex, (_, type, key) =>
-          this.get(type, key)
-        )
+        node.nodeValue = txt.replace(tokenRegex, (_, type, key) => {
+          const val = this.get(type, key)
+          return type === 'lbl' ? utils.string.ucfirst(val) : val
+        })
       }
     }
 
