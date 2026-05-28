@@ -7,7 +7,7 @@ use ForkCMS\App\BaseModel;
 use SpoonDatabase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\FileSystem\Filesystem;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\DomCrawler\Crawler;
 use Backend\Core\Engine\Authentication;
@@ -59,17 +59,18 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * Creates a Client.
+     * Creates a KernelBrowser.
      *
      * @param array $options An array of options to pass to the createKernel class
      * @param array $server An array of server parameters
      *
-     * @return Client A Client instance
+     * @return KernelBrowser A KernelBrowser instance
      */
-    protected static function createClient(array $options = [], array $server = []): Client
+    protected static function createClient(array $options = [], array $server = []): KernelBrowser
     {
         if (null !== static::$kernel) {
             static::$kernel->shutdown();
+            static::$booted = false;
         }
 
         if (!array_key_exists('environment', $options)) {
@@ -105,10 +106,10 @@ abstract class WebTestCase extends BaseWebTestCase
      */
     protected function importSQL(SpoonDatabase $database, string $sql): void
     {
-        $database->execute(trim($sql));
+        $database->getHandler()->exec(trim($sql));
     }
 
-    protected function resetDataBase(Client $client): void
+    protected function resetDataBase(KernelBrowser $client): void
     {
         $database = $client->getContainer()->get('database');
 
@@ -121,7 +122,7 @@ abstract class WebTestCase extends BaseWebTestCase
         );
     }
 
-    protected function loadFixtures(Client $client, array $fixtureClasses = []): void
+    protected function loadFixtures(KernelBrowser $client, array $fixtureClasses = []): void
     {
         $database = $client->getContainer()->get('database');
 
@@ -177,7 +178,7 @@ abstract class WebTestCase extends BaseWebTestCase
         }
     }
 
-    protected static function assertIs404(Client $client): void
+    protected static function assertIs404(KernelBrowser $client): void
     {
         self::assertEquals(
             Response::HTTP_NOT_FOUND,
@@ -185,7 +186,7 @@ abstract class WebTestCase extends BaseWebTestCase
         );
     }
 
-    protected static function assertIs200(Client $client): void
+    protected static function assertIs200(KernelBrowser $client): void
     {
         self::assertEquals(
             Response::HTTP_OK,
@@ -197,12 +198,12 @@ abstract class WebTestCase extends BaseWebTestCase
      * Submits the form and mimics the GET parameters, since they aren't added
      * by default in the functional tests
      *
-     * @param Client $client
+     * @param KernelBrowser $client
      * @param Form $form
      * @param array $data
      * @param bool $setValues set to true for symfony @TODO set default true in Fork 6
      */
-    protected function submitForm(Client $client, Form $form, array $data = [], bool $setValues = false): void
+    protected function submitForm(KernelBrowser $client, Form $form, array $data = [], bool $setValues = false): void
     {
         $values = $data;
         // @TODO remove this once SpoonForm has been removed
@@ -231,11 +232,11 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * Edits the data of a form
      *
-     * @param Client $client
+     * @param KernelBrowser $client
      * @param Form $form
      * @param array $data
      */
-    protected function submitEditForm(Client $client, Form $form, array $data = []): void
+    protected function submitEditForm(KernelBrowser $client, Form $form, array $data = []): void
     {
         $originalData = [];
         foreach ($form->all() as $fieldName => $formField) {
@@ -250,14 +251,14 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * Do a request with the given GET parameters
      *
-     * @param Client $client
+     * @param KernelBrowser $client
      * @param string $url
      * @param array $data
      *
      * @return Crawler
      */
     protected function requestWithGetParameters(
-        Client $client,
+        KernelBrowser $client,
         string $url,
         array $data = []
     ): Crawler {
@@ -303,9 +304,9 @@ abstract class WebTestCase extends BaseWebTestCase
      *
      * Logging in using the forms is tested in the Authentication module
      *
-     * @param Client $client
+     * @param KernelBrowser $client
      */
-    protected function login(Client $client): void
+    protected function login(KernelBrowser $client): void
     {
         $this->logout($client);
         self::assertHttpStatusCode200($client, '/private/en/authentication');
@@ -325,9 +326,9 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * Logs the client out
      *
-     * @param Client $client
+     * @param KernelBrowser $client
      */
-    protected function logout(Client $client): void
+    protected function logout(KernelBrowser $client): void
     {
         $client->setMaxRedirects(-1);
         $client->request('GET', '/private/en/authentication/logout');
@@ -335,7 +336,7 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     protected static function assertGetsRedirected(
-        Client $client,
+        KernelBrowser $client,
         string $initialUrl,
         string $expectedUrl,
         string $requestMethod = 'GET',
@@ -355,7 +356,7 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * @param Client $client
+     * @param KernelBrowser $client
      * @param string $url
      * @param string[] $expectedContent
      * @param int $httpStatusCode
@@ -363,7 +364,7 @@ abstract class WebTestCase extends BaseWebTestCase
      * @param array $requestParameters
      */
     protected static function assertPageLoadedCorrectly(
-        Client $client,
+        KernelBrowser $client,
         string $url,
         array $expectedContent,
         int $httpStatusCode = Response::HTTP_OK,
@@ -378,7 +379,7 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * @param Client $client
+     * @param KernelBrowser $client
      * @param string $linkText
      * @param string[] $expectedContent
      * @param int $httpStatusCode
@@ -386,7 +387,7 @@ abstract class WebTestCase extends BaseWebTestCase
      * @param array $requestParameters
      */
     protected static function assertClickOnLink(
-        Client $client,
+        KernelBrowser $client,
         string $linkText,
         array $expectedContent,
         int $httpStatusCode = Response::HTTP_OK,
@@ -417,20 +418,20 @@ abstract class WebTestCase extends BaseWebTestCase
         }
     }
 
-    protected static function assertCurrentUrlContains(Client $client, string ...$partialUrls): void
+    protected static function assertCurrentUrlContains(KernelBrowser $client, string ...$partialUrls): void
     {
         foreach ($partialUrls as $partialUrl) {
             self::assertStringContainsString($partialUrl, $client->getHistory()->current()->getUri());
         }
     }
 
-    protected static function assertCurrentUrlEndsWith(Client $client, string $partialUrl): void
+    protected static function assertCurrentUrlEndsWith(KernelBrowser $client, string $partialUrl): void
     {
         self::assertStringEndsWith($partialUrl, $client->getHistory()->current()->getUri());
     }
 
     protected static function assertHttpStatusCode(
-        Client $client,
+        KernelBrowser $client,
         string $url,
         int $httpStatusCode,
         string $requestMethod = 'GET',
@@ -443,7 +444,7 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     protected static function assertHttpStatusCode200(
-        Client $client,
+        KernelBrowser $client,
         string $url,
         string $requestMethod = 'GET',
         array $requestParameters = []
@@ -458,7 +459,7 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     protected static function assertHttpStatusCode404(
-        Client $client,
+        KernelBrowser $client,
         string $url,
         string $requestMethod = 'GET',
         array $requestParameters = []
@@ -472,7 +473,7 @@ abstract class WebTestCase extends BaseWebTestCase
         );
     }
 
-    protected function getFormForSubmitButton(Client $client, string $buttonText, ?string $filterSelector = null): Form
+    protected function getFormForSubmitButton(KernelBrowser $client, string $buttonText, ?string $filterSelector = null): Form
     {
         $crawler = $client->getCrawler();
 

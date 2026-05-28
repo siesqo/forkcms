@@ -121,7 +121,8 @@ PSR-2 is enforced in CI. Run `bin/phpcbf --standard=psr2 src` to auto-fix before
 
 The Symfony 5 upgrade was done incrementally and some things were never fully finished:
 
-- **Tests are broken** — the existing test suite has not been updated for the Symfony 5 structure. Do not treat failing tests as regressions; they were already failing. Don't spend time fixing the test runner unless that is the explicit goal.
+- **Tests have been updated for Symfony 5** — unit and functional test suites should pass in CI (MySQL 8.0). If you add new functionality, write tests for it. The installer test suite may still have pre-existing failures due to a known installer bug in dev/debug mode (separate from the test runner itself).
+- **Running tests locally** — CI uses MySQL 8.0. If you run tests locally against MariaDB 12+ with `lower_case_table_names=2` (default on macOS Docker), PascalCase Doctrine tables (FaqCategory, MediaFolder, etc.) will fail to recreate after being dropped due to a MariaDB bug. Use `mysql:8.0` in your local Docker setup to match CI.
 - **Module installer errors in debug mode** — installing a module via the backend while `FORK_DEBUG=1` (or `FORK_ENV=dev`) throws an error. This is a known bug, not something introduced by recent changes.
 
 ## Privacy / Consent Mode v2

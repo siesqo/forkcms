@@ -7,12 +7,12 @@ use Backend\Modules\Blog\DataFixtures\LoadBlogPostComments;
 use Backend\Modules\Blog\DataFixtures\LoadBlogPosts;
 use Backend\Modules\Blog\Engine\Model;
 use Backend\Core\Tests\BackendWebTestCase;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class ModelTest extends BackendWebTestCase
 {
     // comments
-    public function testCreateComment(Client $client): void
+    public function testCreateComment(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -51,7 +51,7 @@ class ModelTest extends BackendWebTestCase
         self::assertEquals(LoadBlogPosts::BLOG_POST_TITLE, $addedComment['post_title']);
     }
 
-    public function testIfCommentExists(Client $client): void
+    public function testIfCommentExists(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -66,7 +66,7 @@ class ModelTest extends BackendWebTestCase
         self::assertFalse(Model::existsComment(2));
     }
 
-    public function testUpdateComment(Client $client): void
+    public function testUpdateComment(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -108,7 +108,7 @@ class ModelTest extends BackendWebTestCase
         self::assertEquals(LoadBlogPosts::BLOG_POST_TITLE, $editedComment['post_title']);
     }
 
-    public function testGettingAllComments(Client $client): void
+    public function testGettingAllComments(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -141,7 +141,7 @@ class ModelTest extends BackendWebTestCase
         self::assertEquals(LoadBlogPosts::BLOG_POST_DATA['language'], $firstComment['post_language']);
     }
 
-    public function testDeleteComment(Client $client): void
+    public function testDeleteComment(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -172,7 +172,7 @@ class ModelTest extends BackendWebTestCase
         self::assertEquals(LoadBlogCategories::BLOG_CATEGORY_DATA['title'], $createdCategory['title']);
     }
 
-    public function testIfCategoryExists(Client $client): void
+    public function testIfCategoryExists(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -185,7 +185,7 @@ class ModelTest extends BackendWebTestCase
         self::assertFalse(Model::existsCategory(1337));
     }
 
-    public function testUpdateCategory(Client $client): void
+    public function testUpdateCategory(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -222,7 +222,7 @@ class ModelTest extends BackendWebTestCase
         self::assertEquals($newCategoryData['title'], $updatedCategory['title']);
     }
 
-    public function testDeleteCategory(Client $client): void
+    public function testDeleteCategory(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -238,7 +238,7 @@ class ModelTest extends BackendWebTestCase
         self::assertFalse(Model::existsCategory($id));
     }
 
-    public function testCalculatingCategoryUrl(Client $client): void
+    public function testCalculatingCategoryUrl(KernelBrowser $client): void
     {
         self::assertEquals(
             LoadBlogCategories::BLOG_CATEGORY_SLUG,

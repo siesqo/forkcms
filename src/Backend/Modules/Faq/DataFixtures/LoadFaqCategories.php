@@ -32,9 +32,31 @@ class LoadFaqCategories
             self::FAQ_CATEGORY_META_DATA
         );
 
+        // old table (used by Backend Engine/Model.php)
         self::$categoryId = $database->insert(
             'faq_categories',
             ['meta_id' => self::$metaId, 'extra_id' => 0] + self::FAQ_CATEGORY_DATA
+        );
+
+        // new Doctrine ORM tables (used by Frontend Engine/Model.php)
+        $database->insert(
+            'FaqCategory',
+            [
+                'id' => self::$categoryId,
+                'sequence' => self::FAQ_CATEGORY_DATA['sequence'],
+                'extraId' => 0,
+                'createdOn' => '2015-02-23 00:00:00',
+                'editedOn' => '2015-02-23 00:00:00',
+            ]
+        );
+        $database->insert(
+            'FaqCategoryTranslation',
+            [
+                'locale' => self::FAQ_CATEGORY_DATA['language'],
+                'categoryId' => self::$categoryId,
+                'title' => self::FAQ_CATEGORY_DATA['title'],
+                'meta_id' => self::$metaId,
+            ]
         );
     }
 

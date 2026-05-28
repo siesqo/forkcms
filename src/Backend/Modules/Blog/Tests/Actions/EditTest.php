@@ -5,17 +5,17 @@ namespace Backend\Modules\Blog\Tests\Action;
 use Backend\Core\Tests\BackendWebTestCase;
 use Backend\Modules\Blog\DataFixtures\LoadBlogCategories;
 use Backend\Modules\Blog\DataFixtures\LoadBlogPosts;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Response;
 
 class EditTest extends BackendWebTestCase
 {
-    public function testAuthenticationIsNeeded(Client $client): void
+    public function testAuthenticationIsNeeded(KernelBrowser $client): void
     {
         self::assertAuthenticationIsNeeded($client, '/private/en/extensions/detail_theme?theme=Fork');
     }
 
-    public function testWeCanGoToEditFromTheIndexPage(Client $client): void
+    public function testWeCanGoToEditFromTheIndexPage(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -32,7 +32,7 @@ class EditTest extends BackendWebTestCase
         self::assertCurrentUrlContains($client, '&id=' . LoadBlogPosts::BLOG_POST_ID);
     }
 
-    public function testEditingOurBlogPost(Client $client): void
+    public function testEditingOurBlogPost(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -72,7 +72,7 @@ class EditTest extends BackendWebTestCase
         self::assertResponseHasContent($client->getResponse(), $newBlogPostTitle);
     }
 
-    public function testSubmittingInvalidData(Client $client): void
+    public function testSubmittingInvalidData(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,
@@ -102,7 +102,7 @@ class EditTest extends BackendWebTestCase
         self::assertResponseHasContent($client->getResponse(), 'Something went wrong', 'Provide a title.');
     }
 
-    public function testInvalidIdShouldShowAnError(Client $client): void
+    public function testInvalidIdShouldShowAnError(KernelBrowser $client): void
     {
         $this->loadFixtures(
             $client,

@@ -226,6 +226,70 @@ CREATE TABLE `faq_questions` (
 
 
 
+# Dump of table FaqCategory (Doctrine ORM)
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `FaqFeedback`;
+DROP TABLE IF EXISTS `FaqQuestionTranslation`;
+DROP TABLE IF EXISTS `FaqCategoryTranslation`;
+DROP TABLE IF EXISTS `FaqQuestion`;
+DROP TABLE IF EXISTS `FaqCategory`;
+
+CREATE TABLE `FaqCategory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sequence` int(11) NOT NULL DEFAULT '0',
+  `extraId` int(11) DEFAULT NULL,
+  `createdOn` datetime NOT NULL,
+  `editedOn` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `FaqCategoryTranslation` (
+  `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoryId` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`locale`, `categoryId`),
+  KEY `IDX_FaqCategoryTranslation_category` (`categoryId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `FaqQuestion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) DEFAULT NULL,
+  `sequence` int(11) NOT NULL DEFAULT '0',
+  `numViews` int(11) NOT NULL DEFAULT '0',
+  `numUsefulYes` int(11) NOT NULL DEFAULT '0',
+  `numUsefulNo` int(11) NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+  `createdOn` datetime NOT NULL,
+  `editedOn` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_FaqQuestion_category` (`categoryId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `FaqQuestionTranslation` (
+  `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `questionId` int(11) NOT NULL,
+  `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`locale`, `questionId`),
+  KEY `IDX_FaqQuestionTranslation_question` (`questionId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `FaqFeedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `questionId` int(11) NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` tinyint(1) NOT NULL DEFAULT '0',
+  `createdOn` datetime NOT NULL,
+  `editedOn` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_FaqFeedback_question` (`questionId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
 # Dump of table forms
 # ------------------------------------------------------------
 

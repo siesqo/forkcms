@@ -3,7 +3,7 @@
 namespace ForkCMS\Bundle\InstallerBundle\Tests\Controller;
 
 use Common\WebTestCase;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -43,7 +43,7 @@ class InstallerControllerTest extends WebTestCase
         self::assertCurrentUrlEndsWith($client, '/install/1');
     }
 
-    public function testInstallationProcess(Client $client): void
+    public function testInstallationProcess(KernelBrowser $client): void
     {
         $container = $client->getContainer();
         $filesystem = new Filesystem();
@@ -73,7 +73,7 @@ class InstallerControllerTest extends WebTestCase
         $this->putParametersFileBack($filesystem, $this->kernelDir);
     }
 
-    private function runTroughStep2(Client $client): void
+    private function runTroughStep2(KernelBrowser $client): void
     {
         self::assertCurrentUrlEndsWith($client, '/install/2');
 
@@ -95,7 +95,7 @@ class InstallerControllerTest extends WebTestCase
         self::assertCurrentUrlEndsWith($client, '/install/3');
     }
 
-    private function runTroughStep3(Client $client): void
+    private function runTroughStep3(KernelBrowser $client): void
     {
         $form = $this->getFormForSubmitButton($client, 'Next');
         $form['install_modules[modules][0]']->tick();
@@ -113,7 +113,7 @@ class InstallerControllerTest extends WebTestCase
         self::assertCurrentUrlEndsWith($client, '/install/4');
     }
 
-    private function runTroughStep4(Client $client, array $installDatabaseConfig): void
+    private function runTroughStep4(KernelBrowser $client, array $installDatabaseConfig): void
     {
         // first submit with incorrect data
         $form = $this->getFormForSubmitButton($client, 'Next');
@@ -132,7 +132,7 @@ class InstallerControllerTest extends WebTestCase
         self::assertCurrentUrlEndsWith($client, '/install/5');
     }
 
-    private function runTroughStep5(Client $client): void
+    private function runTroughStep5(KernelBrowser $client): void
     {
         $form = $this->getFormForSubmitButton($client, 'Finish installation');
         $this->submitForm(
