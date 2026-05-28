@@ -65,6 +65,9 @@ class Header extends KernelLoader
      */
     private $metaCustom = '';
 
+    /** @var string */
+    private $addToHTMLHead = '';
+
     /**
      * Page title
      *
@@ -380,6 +383,7 @@ class Header extends KernelLoader
             ) . "\n";
         }
 
+        $siteHTMLHead .= $this->addToHTMLHead;
         $siteHTMLHead .= (string) $this->get('fork.settings')->get('Core', 'site_html_head') . "\n";
         $siteHTMLHead .= "\n" . $this->jsData;
         $this->template->assignGlobal('siteHTMLHead', trim($siteHTMLHead));
@@ -467,6 +471,17 @@ class Header extends KernelLoader
     public function setMetaCustom(?string $meta = null): void
     {
         $this->metaCustom = $meta;
+    }
+
+    public function addToSiteHTMLHead(string $value, bool $overwrite = false): void
+    {
+        if ($overwrite) {
+            $this->addToHTMLHead = $value;
+
+            return;
+        }
+
+        $this->addToHTMLHead .= $value;
     }
 
     public function setContentTitle(string $contentTitle): void
