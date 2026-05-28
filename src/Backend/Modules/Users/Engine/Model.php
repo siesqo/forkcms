@@ -226,7 +226,7 @@ class Model
     {
         return (array) BackendModel::get('database')->getRecords(
             'SELECT a.module, a.action
-            FROM groups AS g
+            FROM `groups` AS g
                 INNER JOIN users_groups AS u ON u.group_id = g.id
                 INNER JOIN groups_rights_modules AS m ON m.group_id = g.id
                 INNER JOIN groups_rights_actions AS a ON a.group_id = g.id
