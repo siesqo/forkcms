@@ -1,9 +1,7 @@
 export class FormBuilder {
-  constructor() {
-    var $formHolder = $('.widget-formbuilder-form')
-
+  constructor () {
+    const $formHolder = $('.widget-formbuilder-form') // eslint-disable-line no-unused-vars
     // Custom form theming
     // ...
-
   }
 }

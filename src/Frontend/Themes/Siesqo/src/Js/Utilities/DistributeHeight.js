@@ -9,11 +9,10 @@ export class DistributeHeight {
     // Variables
     let $item
     let key
-    let keys
     let height
 
     // Reset maxHeights object
-    let maxHeights = []
+    const maxHeights = []
 
     // Reset the height of all items so they can be recalculated
     this.items.height('auto')
@@ -29,7 +28,7 @@ export class DistributeHeight {
       height = $item.height()
 
       // First, set the max-height for each type to zero (if it doesn't exist yet)
-      if (!maxHeights.hasOwnProperty(key)) {
+      if (!Object.prototype.hasOwnProperty.call(maxHeights, key)) {
         maxHeights[key] = 0
       }
 
@@ -40,7 +39,7 @@ export class DistributeHeight {
     })
 
     // Set the height of the same types of items
-    keys = Object.keys(maxHeights)
+    const keys = Object.keys(maxHeights)
     for (let i = 0; i < keys.length; i++) {
       key = keys[i]
       this.element.find('[data-mh=' + key + ']').height(maxHeights[key])

@@ -10,8 +10,8 @@ export class ScrollTo {
   scrollTo (event) {
     /* prevent the anchor link from being added to the url */
     event.preventDefault()
-    let $anchor = $(event.currentTarget)
-    let target = $anchor.attr('href')
+    const $anchor = $(event.currentTarget)
+    const target = $anchor.attr('href')
     let offset = 0
 
     // If there is a custom offset
@@ -21,7 +21,7 @@ export class ScrollTo {
 
     /* check if we have an anchor link, and if it exists on the current page - disabled for nav-tabs */
     if ($(target).length > 0) {
-      let $htmlBody = $('html, body')
+      const $htmlBody = $('html, body')
       $htmlBody.stop()
       $htmlBody.animate({
         scrollTop: $(target).offset().top - offset
