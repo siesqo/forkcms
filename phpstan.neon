@@ -6,7 +6,6 @@ parameters:
   paths:
     - src
   scanFiles:
-    - vendor/google/apiclient/src/Google/Task/Retryable.php
     - vendor/spoon/library/spoon/form/form.php
   bootstrapFiles:
     - autoload.php
@@ -43,7 +42,6 @@ parameters:
     - '#Constant PATH_WWW not found.#'
     - '#Constant FRONTEND_PATH not found.#'
     - '#Constant NAMED_APPLICATION not found.#'
-    - '#Constant FORK_VERSION not found.#'
     - '#Constant BACKEND_CACHE_URL not found.#'
     - '#Constant BACKEND_PATH not found.#'
     - '#Constant BACKEND_CORE_PATH not found.#'
@@ -56,6 +54,8 @@ parameters:
     - '#Constant APPLICATION not found.#'
     - '#Constant BACKEND_CACHE_PATH not found.#'
     - '#Constant SITE_DEFAULT_TITLE not found.#'
+    - '#Variable \$[a-zA-Z_]+ on left side of \?\? always exists and is not nullable\.#'
+    - '#Variable \$[a-zA-Z_]+ in empty\(\) always exists and is not falsy\.#'
   symfony:
     containerXmlPath: var/cache/dev/ForkCMS_App_AppKernelDevDebugContainer.xml
   parallel:

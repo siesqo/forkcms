@@ -58,7 +58,7 @@ class FaqQuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByCategory(FaqCategory $category, int $limit = null, array $excludeIds = []): array
+    public function findByCategory(FaqCategory $category, ?int $limit = null, array $excludeIds = []): array
     {
         $qb = $this->createQueryBuilder('q')
             ->where('q.category = :category')

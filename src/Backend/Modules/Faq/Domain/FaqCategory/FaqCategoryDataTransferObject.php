@@ -25,7 +25,7 @@ class FaqCategoryDataTransferObject
      */
     public $translations;
 
-    public function __construct(FaqCategory $faqCategory = null)
+    public function __construct(?FaqCategory $faqCategory = null)
     {
         $this->faqCategoryEntity = $faqCategory;
         $this->translations = new ArrayCollection();

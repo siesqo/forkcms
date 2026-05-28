@@ -20,7 +20,7 @@ class FaqCategoryTranslationRepository extends ServiceEntityRepository
         $this->getEntityManager()->persist($translation);
     }
 
-    public static function getUrl(string $url, Locale $locale, string $id = null): string
+    public static function getUrl(string $url, Locale $locale, ?string $id = null): string
     {
         $url = (string) $url;
 

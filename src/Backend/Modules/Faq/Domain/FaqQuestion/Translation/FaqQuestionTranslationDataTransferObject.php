@@ -41,7 +41,7 @@ class FaqQuestionTranslationDataTransferObject
      */
     private $faqQuestion;
 
-    public function __construct(FaqQuestionTranslation $translation = null, Locale $locale = null)
+    public function __construct(?FaqQuestionTranslation $translation = null, ?Locale $locale = null)
     {
         $this->faqQuestionTranslationEntity = $translation;
 

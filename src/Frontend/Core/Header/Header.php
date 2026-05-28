@@ -376,8 +376,7 @@ class Header extends KernelLoader
         if ($googleAnalyticsTrackingId !== '') {
             $siteHTMLHead .= new GoogleAnalytics(
                 $this->get('fork.settings'),
-                $this->get(ConsentDialog::class),
-                $this->get('fork.cookie')
+                $this->get(ConsentDialog::class)
             ) . "\n";
         }
 

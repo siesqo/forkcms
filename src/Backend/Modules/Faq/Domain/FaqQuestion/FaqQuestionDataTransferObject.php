@@ -44,7 +44,7 @@ class FaqQuestionDataTransferObject
      */
     public $translations;
 
-    public function __construct(FaqQuestion $faqQuestion = null)
+    public function __construct(?FaqQuestion $faqQuestion = null)
     {
         $this->faqQuestionEntity = $faqQuestion;
         $this->translations = new ArrayCollection();
