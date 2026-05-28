@@ -9,7 +9,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class CopyLocationWidgetsToOtherLocaleHandler
 {
-    public function __construct(private readonly SpoonDatabase $database) {}
+    public function __construct(private readonly SpoonDatabase $database)
+    {
+    }
 
     public function __invoke(CopyLocationWidgetsToOtherLocale $copyLocationWidgetsToOtherLocale): void
     {

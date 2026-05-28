@@ -9,7 +9,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class UpdateContentBlockHandler
 {
-    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository)
+    {
+    }
 
     public function __invoke(UpdateContentBlock $updateContentBlock): void
     {

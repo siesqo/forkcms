@@ -9,7 +9,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class SaveSettingsHandler
 {
-    public function __construct(private readonly ModulesSettings $modulesSettings) {}
+    public function __construct(private readonly ModulesSettings $modulesSettings)
+    {
+    }
 
     public function __invoke(SaveSettings $saveSettings): void
     {

@@ -14,7 +14,8 @@ final readonly class SubscriptionHandler
     public function __construct(
         private readonly Subscriber $subscriber,
         private readonly ModulesSettings $modulesSettings
-    ) {}
+    ) {
+    }
 
     public function __invoke(Subscription $subscription): void
     {

@@ -29,7 +29,8 @@ class MediaGroupType extends AbstractType
     public function __construct(
         private readonly MediaGroupRepository $mediaGroupRepository,
         private readonly MessageBusInterface $messageBus
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

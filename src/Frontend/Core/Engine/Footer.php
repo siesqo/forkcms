@@ -48,5 +48,4 @@ class Footer extends KernelLoader
         // assign site wide html
         $this->template->assignGlobal('siteHTMLEndOfBody', $siteHTMLEndOfBody);
     }
-
 }

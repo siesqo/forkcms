@@ -9,7 +9,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class CreateMediaGalleryHandler
 {
-    public function __construct(private readonly MediaGalleryRepository $mediaGalleryRepository) {}
+    public function __construct(private readonly MediaGalleryRepository $mediaGalleryRepository)
+    {
+    }
 
     public function __invoke(CreateMediaGallery $createMediaGallery): void
     {

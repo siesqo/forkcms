@@ -8,7 +8,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class DeleteMediaItemHandler
 {
-    public function __construct(private readonly MediaItemRepository $mediaItemRepository) {}
+    public function __construct(private readonly MediaItemRepository $mediaItemRepository)
+    {
+    }
 
     public function __invoke(DeleteMediaItem $deleteMediaItem): void
     {

@@ -10,7 +10,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class CopyFormWidgetsToOtherLocaleHandler
 {
-    public function __construct(private readonly SpoonDatabase $database) {}
+    public function __construct(private readonly SpoonDatabase $database)
+    {
+    }
 
     public function __invoke(CopyFormWidgetsToOtherLocale $command): void
     {

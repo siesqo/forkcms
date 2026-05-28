@@ -12,7 +12,9 @@ use Symfony\Component\Uid\Uuid;
 #[AsMessageHandler]
 final readonly class SaveMediaGroupHandler
 {
-    public function __construct(private readonly MediaItemRepository $mediaItemRepository) {}
+    public function __construct(private readonly MediaItemRepository $mediaItemRepository)
+    {
+    }
 
     public function __invoke(SaveMediaGroup $saveMediaGroup): void
     {

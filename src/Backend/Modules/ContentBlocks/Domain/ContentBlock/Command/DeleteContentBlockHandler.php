@@ -9,7 +9,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class DeleteContentBlockHandler
 {
-    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository)
+    {
+    }
 
     public function __invoke(DeleteContentBlock $deleteContentBlock): void
     {

@@ -14,7 +14,8 @@ final readonly class DeleteMediaGalleryHandler
     public function __construct(
         private readonly MediaGalleryRepository $mediaGalleryRepository,
         private readonly MediaItemRepository $mediaItemRepository
-    ) {}
+    ) {
+    }
 
     public function __invoke(DeleteMediaGallery $deleteMediaGallery): void
     {

@@ -11,7 +11,9 @@ final readonly class SaveSettingsHandler
 {
     private const string MODULE_NAME = 'Mailmotor';
 
-    public function __construct(private readonly ModulesSettings $modulesSettings) {}
+    public function __construct(private readonly ModulesSettings $modulesSettings)
+    {
+    }
 
     public function __invoke(SaveSettings $settings): void
     {

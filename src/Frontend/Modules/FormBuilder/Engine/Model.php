@@ -78,9 +78,8 @@ class Model
                                 $item['value'] = html_entity_decode($item['value'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
                             }
                             return $item;
-                        }
-                        // Handle simple string array
-                        elseif (is_string($item)) {
+                        } elseif (is_string($item)) {
+                            // Handle simple string array
                             return html_entity_decode($item, ENT_QUOTES | ENT_HTML5, 'UTF-8');
                         }
                         // Return anything else as-is

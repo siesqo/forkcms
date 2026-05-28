@@ -8,7 +8,9 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 readonly class MediaItemManager
 {
-    public function __construct(private readonly MessageBusInterface $messageBus) {}
+    public function __construct(private readonly MessageBusInterface $messageBus)
+    {
+    }
 
     public function delete(MediaItem $mediaItem): DeleteMediaItem
     {

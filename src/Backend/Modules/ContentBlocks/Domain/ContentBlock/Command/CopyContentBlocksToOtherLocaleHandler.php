@@ -13,7 +13,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final readonly class CopyContentBlocksToOtherLocaleHandler
 {
-    public function __construct(private readonly ContentBlockRepository $contentBlockRepository) {}
+    public function __construct(private readonly ContentBlockRepository $contentBlockRepository)
+    {
+    }
 
     public function __invoke(CopyContentBlocksToOtherLocale $copyContentBlocksToOtherLocale): void
     {
