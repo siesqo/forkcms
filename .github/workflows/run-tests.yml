@@ -100,8 +100,7 @@ jobs:
 
             - name: Warm cache
               run: |
-                  php bin/console assets:install .
-                  php bin/console forkcms:cache:clear --env=dev
+                  rm -rf var/cache/dev
                   php bin/console cache:warmup --env=dev
 
             - name: Run PHPStan
