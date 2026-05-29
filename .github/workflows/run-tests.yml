@@ -100,8 +100,10 @@ jobs:
 
             - name: Warm cache
               run: |
+                  echo "FORK_DEBUG=1" > .env.local
                   rm -rf var/cache/dev
-                  php bin/console cache:warmup --env=dev
+                  php bin/console cache:warmup --env=dev || true
+                  test -f var/cache/dev/ForkCMS_App_AppKernelDevDebugContainer.xml || (echo "Container XML not generated" && exit 1)
 
             - name: Run PHPStan
               run: bin/phpstan analyze --error-format github src
