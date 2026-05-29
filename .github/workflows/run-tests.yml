@@ -28,10 +28,10 @@ jobs:
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Cache dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ~/.composer/cache/files
                   key: dependencies-php-8.5-composer-${{ hashFiles('composer.json') }}
@@ -75,10 +75,10 @@ jobs:
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Cache dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ~/.composer/cache/files
                   key: dependencies-php-8.5-composer-${{ hashFiles('composer.json') }}
@@ -100,7 +100,8 @@ jobs:
 
             - name: Warm cache
               run: |
-                  php bin/console cache:clear --no-warmup --env=dev
+                  php bin/console assets:install .
+                  php bin/console forkcms:cache:clear --env=dev
                   php bin/console cache:warmup --env=dev
 
             - name: Run PHPStan
@@ -111,10 +112,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Cache dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ~/.composer/cache/files
                   key: dependencies-php-8.5-composer-${{ hashFiles('composer.json') }}
@@ -138,10 +139,10 @@ jobs:
         continue-on-error: true
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Install Node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
                   node-version: '26'
                   cache: 'npm'
@@ -154,10 +155,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Cache dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ~/.composer/cache/files
                   key: dependencies-php-8.5-composer-${{ hashFiles('composer.json') }}
