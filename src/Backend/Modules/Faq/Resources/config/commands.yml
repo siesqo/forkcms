@@ -17,3 +17,5 @@ services:
     Backend\Modules\Faq\Domain\FaqFeedback\Command\DeleteFaqFeedbackHandler: ~
 
     Backend\Modules\Faq\Domain\Settings\SaveSettingsHandler: ~
+
+    Backend\Modules\Faq\Domain\Command\CopyFaqToOtherLocaleHandler: ~

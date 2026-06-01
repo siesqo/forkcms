@@ -3,6 +3,7 @@
 namespace Backend\Modules\Pages\Engine;
 
 use Backend\Modules\ContentBlocks\Domain\ContentBlock\Command\CopyContentBlocksToOtherLocale;
+use Backend\Modules\Faq\Domain\Command\CopyFaqToOtherLocale;
 use Backend\Modules\FormBuilder\Command\CopyFormWidgetsToOtherLocale;
 use Backend\Modules\Location\Command\CopyLocationWidgetsToOtherLocale;
 use Common\Doctrine\Entity\Meta;
@@ -130,6 +131,10 @@ class Model
 
             // define old block ids
             $formWidgetOldIds = array_keys($formWidgetIds);
+        }
+
+        if (BackendModel::isModuleInstalled('Faq')) {
+            $messageBus->dispatch(new CopyFaqToOtherLocale($toLocale, $fromLocale));
         }
 
         // get all old pages
