@@ -301,21 +301,21 @@ class Model
                 $toLanguage
             );
 
-            // get tags
-            $tags = BackendTagsModel::getTags('pages', $id, 'string', $fromLanguage);
+            if (BackendModel::isModuleInstalled('Tags')) {
+                $tags = BackendTagsModel::getTags('pages', $id, 'string', $fromLanguage);
 
-            // save tags
-            if ($tags != '') {
-                $saveWorkingLanguage = BL::getWorkingLanguage();
+                if ($tags != '') {
+                    $saveWorkingLanguage = BL::getWorkingLanguage();
 
-                // If we don't set the working language to the target language,
-                // BackendTagsModel::getUrl() will use the current working
-                // language, possibly causing unnecessary '-2' suffixes in
-                // tags.url
-                BL::setWorkingLanguage($toLanguage);
+                    // If we don't set the working language to the target language,
+                    // BackendTagsModel::getUrl() will use the current working
+                    // language, possibly causing unnecessary '-2' suffixes in
+                    // tags.url
+                    BL::setWorkingLanguage($toLanguage);
 
-                BackendTagsModel::saveTags($page['id'], $tags, 'pages', $toLanguage);
-                BL::setWorkingLanguage($saveWorkingLanguage);
+                    BackendTagsModel::saveTags($page['id'], $tags, 'pages', $toLanguage);
+                    BL::setWorkingLanguage($saveWorkingLanguage);
+                }
             }
         }
 
@@ -420,8 +420,9 @@ class Model
             $database->delete('pages', 'revision_id IN (' . implode(',', $revisionIDs) . ')');
         }
 
-        // delete tags
-        BackendTagsModel::saveTags($id, '', 'Pages');
+        if (BackendModel::isModuleInstalled('Tags')) {
+            BackendTagsModel::saveTags($id, '', 'Pages');
+        }
 
         // return
         return true;
