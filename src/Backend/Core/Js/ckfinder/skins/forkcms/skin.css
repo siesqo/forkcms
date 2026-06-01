@@ -213,17 +213,3 @@ input.ui-slider-input {
     border-radius: 3px;
     top: 11px;
 }
-
-.ckf-main-region:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    width: 50px;
-    height: 30px;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-image: url('/src/Backend/Core/Layout/images/logo_footer.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
