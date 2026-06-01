@@ -26,3 +26,8 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItem
+
+    Backend\Modules\MediaLibrary\Domain\MediaFolder\MediaFolderRepository: '@media_library.repository.folder'
+    Backend\Modules\MediaLibrary\Domain\MediaGroup\MediaGroupRepository: '@media_library.repository.group'
+    Backend\Modules\MediaLibrary\Domain\MediaGroupMediaItem\MediaGroupMediaItemRepository: '@media_library.repository.group_item'
+    Backend\Modules\MediaLibrary\Domain\MediaItem\MediaItemRepository: '@media_library.repository.item'
