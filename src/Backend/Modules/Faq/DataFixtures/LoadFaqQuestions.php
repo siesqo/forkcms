@@ -20,24 +20,6 @@ class LoadFaqQuestions
             ]
         );
 
-        // old table (used by Backend Engine/Model.php)
-        $database->insert(
-            'faq_questions',
-            [
-                'id' => self::FAQ_QUESTION_ID,
-                'meta_id' => $metaId,
-                'category_id' => LoadFaqCategories::getCategoryId(),
-                'user_id' => 1,
-                'language' => 'en',
-                'question' => self::FAQ_QUESTION_TITLE,
-                'answer' => '<p>I hope so.</p>',
-                'created_on' => '2015-02-23 00:00:00',
-                'hidden' => false,
-                'sequence' => 1,
-            ]
-        );
-
-        // new Doctrine ORM tables (used by Frontend Engine/Model.php)
         $database->insert(
             'FaqQuestion',
             [
@@ -52,6 +34,7 @@ class LoadFaqQuestions
                 'editedOn' => '2015-02-23 00:00:00',
             ]
         );
+
         $database->insert(
             'FaqQuestionTranslation',
             [
