@@ -28,6 +28,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
+        enable_lazy_ghost_objects: true
         entity_managers:
             default:
                 connection: default

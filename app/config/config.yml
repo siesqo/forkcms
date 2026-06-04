@@ -12,6 +12,7 @@ framework:
     router:
         resource: "%kernel.project_dir%/app/config/routing.yml"
         strict_requirements: ~
+        utf8: true
     form:            ~
     validation:
         enable_annotations: true
@@ -19,6 +20,7 @@ framework:
     session:
         handler_id: ~
         cookie_secure: '%session.cookie_secure%'
+        storage_factory_id: session.storage.factory.native
     cache:
         app: cache.adapter.filesystem
         pools:
@@ -30,6 +32,7 @@ framework:
                 adapter: cache.app
                 public: true
     messenger:
+        reset_on_message: true
         buses:
             messenger.bus.default:
                 middleware:
