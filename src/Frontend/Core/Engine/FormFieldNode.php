@@ -2,31 +2,25 @@
 
 namespace Frontend\Core\Engine;
 
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;
 
 /**
- * Twig node for writing out the compiled version of form field.
+ * Twig node for writing out the compiled version of a form field.
  */
+#[YieldReady]
 class FormFieldNode extends Node
 {
-    /**
-     * Name of the template var holding the form this field belongs to.
-     *
-     * @var string
-     */
-    private $form;
+    /** Name of the template var holding the form this field belongs to. */
+    private string $form;
 
-    /**
-     * Name of the field to render.
-     *
-     * @var string
-     */
-    private $field;
+    /** Name of the field to render. */
+    private string $field;
 
-    public function __construct(string $form, string $field, int $lineNumber, string $tag)
+    public function __construct(string $form, string $field, int $lineNumber)
     {
-        parent::__construct([], [], $lineNumber, $tag);
+        parent::__construct([], [], $lineNumber);
         $this->form = $form;
         $this->field = $field;
     }
@@ -38,7 +32,7 @@ class FormFieldNode extends Node
 
         $compiler
             ->addDebugInfo($this)
-            ->write("echo $parseField;\n")
+            ->write("yield $parseField;\n")
         ;
     }
 }

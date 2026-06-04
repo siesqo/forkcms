@@ -2,22 +2,22 @@
 
 namespace Frontend\Core\Engine;
 
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;
 
 /**
- * Twig node for writing out the compiled representation of an opeing form tag.
+ * Twig node for writing out the compiled representation of an opening form tag.
  */
+#[YieldReady]
 class FormNode extends Node
 {
-    /**
-     * @var string Template variable holding the form.
-     */
-    private $form;
+    /** Template variable holding the form. */
+    private string $form;
 
-    public function __construct(string $form, int $lineNumber, string $tag)
+    public function __construct(string $form, int $lineNumber)
     {
-        parent::__construct([], [], $lineNumber, $tag);
+        parent::__construct([], [], $lineNumber);
         $this->form = $form;
     }
 
@@ -32,25 +32,12 @@ class FormNode extends Node
         $formToken = $form . '->getToken()';
         $formUseToken = $form . '->getUseToken()';
         $formParamsHtml = $form . '->getParametersHTML()';
-        $formAttrAction = ' action="\', ' . $formAction . ', \'"';
-        $formAttrMethod = ' method="\', ' . $formMethod . ', \'"';
-        $hiddenFormName = '<input type="hidden" name="form" value="\', ' . $formName . ', \'" id="form\', ucfirst(' . $formName . '), \'" />';
-        $hiddenFormToken = '<input type="hidden" name="form_token" value="\', ' . $formToken . ', \'" id="formToken\', ucfirst(' . $formName . '), \'" />';
 
         $compiler
             ->addDebugInfo($this)
-
-            ->write('echo \'<form')
-            ->raw($formAttrMethod)
-            ->raw($formAttrAction)
-            ->raw("', ")
-            ->raw(' ' . $formParamsHtml)
-            ->raw(', \'')
-            ->raw('>\'')
-            ->raw(";\n")
-
-            ->write("echo '$hiddenFormName';\n")
-            ->write("if($formUseToken) echo '$hiddenFormToken';")
+            ->write("yield '<form method=\"' . $formMethod . '\" action=\"' . $formAction . '\"' . $formParamsHtml . '>';\n")
+            ->write("yield '<input type=\"hidden\" name=\"form\" value=\"' . $formName . '\" id=\"form' . ucfirst($formName) . '\" />';\n")
+            ->write("if ($formUseToken) yield '<input type=\"hidden\" name=\"form_token\" value=\"' . $formToken . '\" id=\"formToken' . ucfirst($formName) . '\" />';\n")
         ;
     }
 }
