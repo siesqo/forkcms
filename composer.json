@@ -48,6 +48,7 @@
         "symfony/translation": "^5.0",
         "symfony/mailer": "^5.0",
         "symfony/intl": "^5.0",
+        "symfony/error-handler": "^5.4",
         "symfony/dom-crawler": "^5.4",
         "symfony/uid": "^5.4",
         "symfony/yaml": "^5.4",
