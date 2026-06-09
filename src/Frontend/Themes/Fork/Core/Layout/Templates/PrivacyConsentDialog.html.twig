@@ -1,4 +1,4 @@
-{% if privacyConsentEnabled and privacyConsentDialogShow %}
+{% if privacyConsentEnabled %}
   <div
     id="privacyConsentDialog"
     tabindex="-1"
@@ -6,6 +6,10 @@
     aria-labelledby="privacyConsentDialogTitle"
     data-role="privacy_consent_dialog"
     data-backdrop="false"
+    data-consent-dialog-show="{{ privacyConsentDialogShow ? 'true' : 'false' }}"
+    {% if not privacyConsentDialogShow %}
+      style="display: none"
+    {% endif %}
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -32,6 +36,19 @@
               </label>
               <small id="privacyConsentLevelFunctionalityStorageHelpBlock" class="help-block">
                 {{ 'msg.PrivacyConsentLevelFunctionalityStorageText'|trans|raw }}
+              </small>
+            </div>
+            <div class="checkbox">
+              <label id="privacyConsentLevelSecurityStorageCheckbox">
+                <input name="privacyConsentLevelSecurityStorageCheckbox" id="privacyConsentLevelSecurityStorageCheckbox"
+                       type="checkbox" checked disabled aria-describedby="privacyConsentLevelSecurityStorageHelpBlock"
+                       data-role="privacy-level"
+                       data-value="security_storage"
+                >
+                {{ 'msg.PrivacyConsentLevelSecurityStorageTitle'|trans|raw }}
+              </label>
+              <small id="privacyConsentLevelSecurityStorageHelpBlock" class="help-block">
+                {{ 'msg.PrivacyConsentLevelSecurityStorageText'|trans|raw }}
               </small>
             </div>
             {% for level in privacyConsentDialogLevels %}

@@ -96,93 +96,84 @@ jsFrontend.controls = {
  * Handles the privacy consent dialog
  */
 jsFrontend.consentDialog = {
+  _instance: function () {
+    return bootstrap.Modal.getOrCreateInstance(document.getElementById('privacyConsentDialog'))
+  },
   init: function () {
-    // if the dialogs don't exist we shouldn't do anything (not active or cookies already set)
-    if ($('*[data-role=privacy_consent_dialog]').length === 0 && $('*[data-role=privacy_consent_info]').length === 0) return
+    if ($('*[data-role=privacy_consent_dialog]').length === 0) return
 
-    // consent info vars
+    jsFrontend.consentDialog._pushConsentsToGoogleTagManager()
+
     var $consentInfo = $('*[data-role=privacy_consent_info]')
-    var $acceptAllCookies = $('*[data-role=privacy_consent_info_save_button]')
-    var $setCustomPreferences = $('*[data-role=privacy_consent_info_preferences_button]')
-    // consent dialog (preferences) vars
     var $consentDialog = $('*[data-role=privacy_consent_dialog]')
     var $consentForm = $('form[data-role=privacy_consent_dialog_form]')
-    var $acceptNecessary = $('*[data-role=privacy_consent_dialog_necessary_button]')
-    // general vars
     var $levels = $consentForm.find('input[data-role=privacy-level]')
 
-    // init preferences modal
-    var privacyConsentDialogModal = new bootstrap.Modal($consentDialog)
-
-    // button mapping
-    $setCustomPreferences.on('click', function (e) {
-      $consentInfo.hide()
-    })
-    document.getElementById('privacyConsentDialog').addEventListener('hide.bs.modal', function (e) {
-      $consentInfo.show()
-    })
-
-    // handle storing cookie preferences
-    // accept all cookies
-    $acceptAllCookies.on('click', function (e) {
+    $('*[data-role=privacy_consent_info_preferences_button]').on('click', function (e) {
       e.preventDefault()
-
-      for (var level of $levels) {
-        var name = $(level).data('value')
-        // set all levels to true
-        handlePrivacyConsentLevel(name, true)
-      }
-
-      privacyConsentChanged()
+      $consentInfo.hide()
+      jsFrontend.consentDialog.show()
     })
 
-    // custom preference
+    document.getElementById('privacyConsentDialog').addEventListener('hide.bs.modal', function () {
+      if ($consentDialog.data('consentDialogShow') && $consentInfo.length > 0) {
+        $consentInfo.show()
+      }
+    })
+
+    $('*[data-role=privacy_consent_info_save_button]').on('click', function (e) {
+      e.preventDefault()
+      for (var level of $levels) {
+        jsFrontend.consentDialog._storeLevel($(level).data('value'), true)
+      }
+      jsFrontend.consentDialog._afterSave($consentInfo)
+    })
+
     $consentForm.on('submit', function (e) {
       e.preventDefault()
-
       for (var level of $levels) {
-        var name = $(level).data('value')
-        var isChecked = $(level).is(':checked')
-
-        handlePrivacyConsentLevel(name, isChecked)
+        jsFrontend.consentDialog._storeLevel($(level).data('value'), $(level).is(':checked'))
       }
-
-      privacyConsentChanged()
+      jsFrontend.consentDialog._afterSave($consentInfo)
     })
 
-    // accept only necessary cookies
-    $acceptNecessary.on('click', function (e) {
+    $('*[data-role=privacy_consent_dialog_necessary_button]').on('click', function (e) {
       e.preventDefault()
-
       for (var level of $levels) {
         var name = $(level).data('value')
-        handlePrivacyConsentLevel(name, name === 'functionality_storage')
+        jsFrontend.consentDialog._storeLevel(name, name === 'functionality_storage' || name === 'security_storage')
       }
-
-      privacyConsentChanged()
+      jsFrontend.consentDialog._afterSave($consentInfo)
     })
-
-    function handlePrivacyConsentLevel (name, isChecked) {
-      jsData.privacyConsent.visitorChoices[name] = isChecked
-      utils.cookies.setCookie('privacy_consent_level_' + name + '_granted', isChecked ? 1 : 0, 6 * 30)
-      utils.cookies.setCookie('privacy_consent_hash', jsData.privacyConsent.levelsHash, 6 * 30)
+  },
+  show: function () {
+    for (var choice in jsData.privacyConsent.visitorChoices) {
+      $('input[data-role=privacy-level][data-value=' + choice + ']').prop('checked', jsData.privacyConsent.visitorChoices[choice])
     }
-
-    function privacyConsentChanged () {
-      if (typeof gtag !== 'undefined') {
-        var consentUpdate = {}
-        for (var level in jsData.privacyConsent.visitorChoices) {
-          if (level === 'functionality_storage') continue
-          consentUpdate[level] = jsData.privacyConsent.visitorChoices[level] ? 'granted' : 'denied'
-        }
-        gtag('consent', 'update', consentUpdate)
-      }
-
-      $(document).trigger('privacyConsentChanged')
-
-      privacyConsentDialogModal.hide()
-      $consentInfo.hide()
+    jsFrontend.consentDialog._instance().show()
+  },
+  hide: function () {
+    jsFrontend.consentDialog._instance().hide()
+  },
+  _storeLevel: function (name, isChecked) {
+    jsData.privacyConsent.visitorChoices[name] = isChecked
+    utils.cookies.setCookie('privacy_consent_level_' + name + '_granted', isChecked ? 1 : 0, 6 * 30)
+    utils.cookies.setCookie('privacy_consent_hash', jsData.privacyConsent.levelsHash, 6 * 30)
+  },
+  _afterSave: function ($consentInfo) {
+    jsFrontend.consentDialog._pushConsentsToGoogleTagManager()
+    dataLayer.push({ event: 'consentUpdate' })
+    $(document).trigger('privacyConsentChanged')
+    jsFrontend.consentDialog.hide()
+    $consentInfo.hide()
+  },
+  _pushConsentsToGoogleTagManager: function () {
+    if (typeof gtag === 'undefined') return
+    var consents = {}
+    for (var level in jsData.privacyConsent.visitorChoices) {
+      consents[level] = jsData.privacyConsent.visitorChoices[level] ? 'granted' : 'denied'
     }
+    gtag('consent', 'update', consents)
   }
 }
 

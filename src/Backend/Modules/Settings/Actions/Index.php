@@ -290,11 +290,16 @@ class Index extends BackendBaseActionIndex
         );
         $enabledLevels = $this->get('fork.settings')->get('Core', 'privacy_consent_levels', []);
         foreach (ConsentDialog::getConsentLevels() as $level) {
+            $alwaysGranted = $level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE
+                || $level === ConsentDialog::LEVEL_SECURITY_STORAGE;
+            if ($alwaysGranted) {
+                $_POST['privacy_consent_level_' . $level] = 'Y';
+            }
             $field = $this->form->addCheckbox(
                 'privacy_consent_level_' . $level,
-                $level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE || in_array($level, $enabledLevels, true)
+                $alwaysGranted || in_array($level, $enabledLevels, true)
             );
-            if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
+            if ($alwaysGranted) {
                 $field->setAttribute('disabled', 'disabled');
             }
         }
@@ -523,7 +528,8 @@ class Index extends BackendBaseActionIndex
                 );
                 $privacyConsentLevels = [];
                 foreach (ConsentDialog::getConsentLevels() as $level) {
-                    if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
+                    if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE
+                        || $level === ConsentDialog::LEVEL_SECURITY_STORAGE) {
                         continue;
                     }
                     if ($this->form->getField('privacy_consent_level_' . $level)->getChecked()) {

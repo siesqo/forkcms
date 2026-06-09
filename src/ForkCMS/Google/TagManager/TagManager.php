@@ -17,16 +17,10 @@ class TagManager
      */
     private $dataLayer;
 
-    /**
-     * @var ConsentDialog
-     */
-    private $consentDialog;
-
-    public function __construct(ModulesSettings $modulesSettings, DataLayer $dataLayer, ConsentDialog $consentDialog)
+    public function __construct(ModulesSettings $modulesSettings, DataLayer $dataLayer)
     {
         $this->modulesSettings = $modulesSettings;
         $this->dataLayer = $dataLayer;
-        $this->consentDialog = $consentDialog;
     }
 
     private function shouldAddCode(): bool
@@ -47,30 +41,15 @@ class TagManager
             $defaultState[$level] = 'denied';
         }
         $defaultState[ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE] = 'granted';
+        $defaultState[ConsentDialog::LEVEL_SECURITY_STORAGE] = 'granted';
 
         $lines = [
             '<script>',
             '  window.dataLayer = window.dataLayer || [];',
             '  function gtag(){dataLayer.push(arguments);}',
             '  gtag(\'consent\', \'default\', ' . json_encode($defaultState) . ');',
+            '</script>',
         ];
-
-        // Apply stored visitor choices before GTM fires so tags respect existing consent
-        if (!$this->consentDialog->shouldDialogBeShown()) {
-            $updateState = [];
-            foreach ($this->consentDialog->getVisitorChoices() as $level => $granted) {
-                if ($level === ConsentDialog::LEVEL_FUNCTIONALITY_STORAGE) {
-                    continue;
-                }
-                $updateState[$level] = $granted ? 'granted' : 'denied';
-            }
-
-            if (!empty($updateState)) {
-                $lines[] = '  gtag(\'consent\', \'update\', ' . json_encode($updateState) . ');';
-            }
-        }
-
-        $lines[] = '</script>';
 
         return implode("\n", $lines);
     }

@@ -66,18 +66,19 @@ class ConsentDialog
         return true;
     }
 
-    public function getLevels(bool $includeFunctionality = false): array
+    public function getLevels(bool $includeAlwaysGranted = false): array
     {
+        $alwaysGranted = [self::LEVEL_FUNCTIONALITY_STORAGE, self::LEVEL_SECURITY_STORAGE];
         $configured = array_filter(
             $this->settings->get('Core', 'privacy_consent_levels', []),
-            function (string $level): bool {
+            function (string $level) use ($alwaysGranted): bool {
                 return in_array($level, self::getConsentLevels(), true)
-                    && $level !== self::LEVEL_FUNCTIONALITY_STORAGE;
+                    && !in_array($level, $alwaysGranted, true);
             }
         );
 
-        if ($includeFunctionality) {
-            return array_values(array_merge([self::LEVEL_FUNCTIONALITY_STORAGE], $configured));
+        if ($includeAlwaysGranted) {
+            return array_values(array_merge($alwaysGranted, $configured));
         }
 
         return array_values($configured);
@@ -95,6 +96,7 @@ class ConsentDialog
     {
         $choices = [
             self::LEVEL_FUNCTIONALITY_STORAGE => true,
+            self::LEVEL_SECURITY_STORAGE => true,
         ];
 
         foreach ($this->getLevels(false) as $level) {

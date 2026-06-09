@@ -9,7 +9,7 @@
         <h4 id="privacyConsentInfoTitle" class="card-title">{{ 'msg.PrivacyConsentInfoTitle'|trans|raw }}</h4>
         <p class="card-text">{{ 'msg.PrivacyConsentInfoBody'|trans|raw }}</p>
         <div class="card-actions">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#privacyConsentDialog" data-role="privacy_consent_info_preferences_button">
+          <a href="#" data-role="privacy_consent_info_preferences_button">
             {{ 'msg.PrivacyConsentInfoSettings'|trans }}
           </a>
           <button type="submit" data-role="privacy_consent_info_save_button" class="btn btn-primary">
@@ -18,84 +18,107 @@
         </div>
       </div>
     </div>
+  {% endif %}
 
-    <div
-      id="privacyConsentDialog" class="modal fade"
-      tabindex="-1"
-      aria-hidden="true" aria-labelledby="privacyConsentDialogTitle"
-      data-role="privacy_consent_dialog"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <form data-role="privacy_consent_dialog_form">
-            <div class="modal-header">
-              <h4 id="privacyConsentDialogTitle">{{ 'msg.PrivacyConsentDialogTitle'|trans|raw }}</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'lbl.Close'|trans }}" title="{{ 'lbl.Close'|trans }}"></button>
-            </div>
-            <div class="modal-body">
-              <p>{{ 'msg.PrivacyConsentDialogBody'|trans|raw }}</p>
-              <div class="accordion" id="accordionCookies">
+  <div
+    id="privacyConsentDialog" class="modal fade"
+    tabindex="-1"
+    aria-hidden="true" aria-labelledby="privacyConsentDialogTitle"
+    data-role="privacy_consent_dialog"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    data-consent-dialog-show="{{ privacyConsentDialogShow ? 'true' : 'false' }}"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-role="privacy_consent_dialog_form">
+          <div class="modal-header">
+            <h4 id="privacyConsentDialogTitle">{{ 'msg.PrivacyConsentDialogTitle'|trans|raw }}</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'lbl.Close'|trans }}" title="{{ 'lbl.Close'|trans }}"></button>
+          </div>
+          <div class="modal-body">
+            <p>{{ 'msg.PrivacyConsentDialogBody'|trans|raw }}</p>
+            <div class="accordion" id="accordionCookies">
+              <div class="accordion-item">
+                <div class="input-group">
+                  <h2 class="accordion-header flex-grow-1" id="headingFunctionalityStorage">
+                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFunctionalityStorage" aria-expanded="false" aria-controls="collapseFunctionalityStorage">
+                      {{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}
+                    </button>
+                  </h2>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" role="switch" type="checkbox" checked disabled
+                           name="privacyConsentLevelFunctionalityStorageCheckbox" id="privacyConsentLevelFunctionalityStorageCheckbox"
+                           aria-describedby="privacyConsentLevelFunctionalityStorageHelpBlock" aria-label="{{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}"
+                           data-role="privacy-level"
+                           data-value="functionality_storage"
+                    >
+                  </div>
+                </div>
+                <div id="collapseFunctionalityStorage" class="accordion-collapse collapse" aria-labelledby="headingFunctionalityStorage" data-bs-parent="#accordionCookies">
+                  <div class="accordion-body">
+                    {{ 'msg.PrivacyConsentLevelFunctionalityStorageText'|trans|raw }}
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="input-group">
+                  <h2 class="accordion-header flex-grow-1" id="headingSecurityStorage">
+                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSecurityStorage" aria-expanded="false" aria-controls="collapseSecurityStorage">
+                      {{ 'msg.PrivacyConsentLevelSecurityStorageTitle'|trans|raw }}
+                    </button>
+                  </h2>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" role="switch" type="checkbox" checked disabled
+                           name="privacyConsentLevelSecurityStorageCheckbox" id="privacyConsentLevelSecurityStorageCheckbox"
+                           aria-describedby="privacyConsentLevelSecurityStorageHelpBlock" aria-label="{{ 'msg.PrivacyConsentLevelSecurityStorageTitle'|trans|raw }}"
+                           data-role="privacy-level"
+                           data-value="security_storage"
+                    >
+                  </div>
+                </div>
+                <div id="collapseSecurityStorage" class="accordion-collapse collapse" aria-labelledby="headingSecurityStorage" data-bs-parent="#accordionCookies">
+                  <div class="accordion-body">
+                    {{ 'msg.PrivacyConsentLevelSecurityStorageText'|trans|raw }}
+                  </div>
+                </div>
+              </div>
+              {% for level in privacyConsentDialogLevels %}
                 <div class="accordion-item">
                   <div class="input-group">
-                    <h2 class="accordion-header flex-grow-1" id="headingFunctionalityStorage">
-                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFunctionalityStorage" aria-expanded="false" aria-controls="collapseFunctionalityStorage">
-                        {{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}
+                    <h2 class="accordion-header flex-grow-1" id="heading{{ level.localeKey }}">
+                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{ level.localeKey }}" aria-expanded="false" aria-controls="collapse{{ level.localeKey }}">
+                        {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}
                       </button>
                     </h2>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" role="switch" type="checkbox" checked disabled
-                             name="privacyConsentLevelFunctionalityStorageCheckbox" id="privacyConsentLevelFunctionalityStorageCheckbox"
-                             aria-describedby="privacyConsentLevelFunctionalityStorageHelpBlock" aria-label="{{ 'msg.PrivacyConsentLevelFunctionalityStorageTitle'|trans|raw }}"
+                      <input class="form-check-input" role="switch" type="checkbox"
+                             name="privacyConsentLevel{{ level.localeKey }}Checkbox" id="privacyConsentLevel{{ level.localeKey }}Checkbox"
+                             aria-describedby="privacyConsentLevel{{ level.localeKey }}HelpBlock" aria-label="{{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}"
                              data-role="privacy-level"
-                             data-value="functionality_storage"
+                             data-value="{{ level.name }}"
                       >
                     </div>
                   </div>
-                  <div id="collapseFunctionalityStorage" class="accordion-collapse collapse" aria-labelledby="headingFunctionalityStorage" data-bs-parent="#accordionCookies">
+                  <div id="collapse{{ level.localeKey }}" class="accordion-collapse collapse" aria-labelledby="heading{{ level.localeKey }}" data-bs-parent="#accordionCookies">
                     <div class="accordion-body">
-                      {{ 'msg.PrivacyConsentLevelFunctionalityStorageText'|trans|raw }}
+                      {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Text')|trans|raw }}
                     </div>
                   </div>
                 </div>
-                {% for level in privacyConsentDialogLevels %}
-                  <div class="accordion-item">
-                    <div class="input-group">
-                      <h2 class="accordion-header flex-grow-1" id="heading{{ level.localeKey }}">
-                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{ level.localeKey }}" aria-expanded="false" aria-controls="collapse{{ level.localeKey }}">
-                          {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}
-                        </button>
-                      </h2>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" role="switch" type="checkbox"
-                               name="privacyConsentLevel{{ level.localeKey }}Checkbox" id="privacyConsentLevel{{ level.localeKey }}Checkbox"
-                               aria-describedby="privacyConsentLevel{{ level.localeKey }}HelpBlock" aria-label="{{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Title')|trans|raw }}"
-                               data-role="privacy-level"
-                               data-value="{{ level.name }}"
-                        >
-                      </div>
-                    </div>
-                    <div id="collapse{{ level.localeKey }}" class="accordion-collapse collapse" aria-labelledby="heading{{ level.localeKey }}" data-bs-parent="#accordionCookies">
-                      <div class="accordion-body">
-                        {{ ('msg.PrivacyConsentLevel' ~ level.localeKey ~ 'Text')|trans|raw }}
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
+              {% endfor %}
             </div>
-            <div class="modal-footer">
-              <a href="#" data-role="privacy_consent_dialog_necessary_button">
-                {{ 'msg.PrivacyConsentDialogAcceptNecessary'|trans }}
-              </a>
-              <button type="submit" data-role="privacy_consent_dialog_save_button" class="btn btn-primary">
-                {{ 'msg.PrivacyConsentDialogSave'|trans }}
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" data-role="privacy_consent_dialog_necessary_button">
+              {{ 'msg.PrivacyConsentDialogAcceptNecessary'|trans }}
+            </a>
+            <button type="submit" data-role="privacy_consent_dialog_save_button" class="btn btn-primary">
+              {{ 'msg.PrivacyConsentDialogSave'|trans }}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  {% endif %}
+  </div>
 {% endif %}
