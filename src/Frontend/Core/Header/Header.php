@@ -139,9 +139,9 @@ class Header extends KernelLoader
 
         // add default javascript-files
         $this->addJS('/js/vendors/jquery.min.js', false, false, Priority::core());
-        $this->addJS('/src/Frontend/Core/Js/jquery/jquery.frontend.js', true, false, Priority::core());
-        $this->addJS('/src/Frontend/Core/Js/utils.js', true, false, Priority::core());
-        $this->addJS('/src/Frontend/Core/Js/frontend.js', true, false, Priority::core());
+        $this->addJS('/src/Frontend/Core/Js/jquery/jquery.frontend.js', true, true, Priority::core());
+        $this->addJS('/src/Frontend/Core/Js/utils.js', true, true, Priority::core());
+        $this->addJS('/src/Frontend/Core/Js/frontend.js', true, true, Priority::core());
         // @custom for Siesqo
         $this->addJS('/src/Frontend/Core/Js/bundle.js', false, true, Priority::core());
     }
