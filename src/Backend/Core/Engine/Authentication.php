@@ -265,8 +265,8 @@ class Authentication
      */
     public static function isLoggedIn(): bool
     {
-        if (BackendModel::getContainer()->has('logged_in')) {
-            return (bool) BackendModel::getContainer()->get('logged_in');
+        if (self::$user !== null && self::$user->isAuthenticated()) {
+            return true;
         }
 
         // check if all needed values are set in the session
@@ -300,9 +300,6 @@ class Authentication
 
             // create a user object, it will handle stuff related to the current authenticated user
             self::$user = new User($sessionData['user_id']);
-
-            // the user is logged on
-            BackendModel::getContainer()->set('logged_in', null);
 
             return true;
         }
@@ -424,6 +421,7 @@ class Authentication
             ForkEvents::FORK_EVENTS_SESSION_ID_CHANGED
         );
 
+        self::$user = null;
         self::$alreadyLoggedOut = true;
     }
 
