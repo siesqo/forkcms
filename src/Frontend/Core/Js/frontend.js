@@ -469,7 +469,7 @@ jsFrontend.forms = {
         options[key] = value
       })
 
-      $input.html5validation(options)
+      if ($.fn.html5validation) $input.html5validation(options)
     })
   },
 
