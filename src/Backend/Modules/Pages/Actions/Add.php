@@ -14,10 +14,8 @@ use Backend\Modules\Pages\Engine\Model as BackendPagesModel;
 use Backend\Modules\Search\Engine\Model as BackendSearchModel;
 use Backend\Modules\Tags\Engine\Model as BackendTagsModel;
 use Backend\Modules\Profiles\Engine\Model as BackendProfilesModel;
-use Common\Core\Model;
 use ForkCMS\Utility\Thumbnails;
 use SpoonFormHidden;
-use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use function Symfony\Component\String\s;
@@ -760,53 +758,7 @@ class Add extends BackendBaseActionAdd
         // On changing/deleting a copied usertemplate image, the old image is deleted, breaking the usertemplate
         // with the same image on the original page
         $this->blocksContent = array_map(
-            function (array $block) {
-                // Only for usertemplates
-                if ($block['extra_type'] !== 'usertemplate') {
-                    return $block;
-                }
-
-                // Only usertemplates with image
-                if (strpos($block['html'], 'data-ft-type="image"') === false) {
-                    return $block;
-                }
-
-                // Find images in usertemplate
-                $blockElements = new Crawler($block['html']);
-                $images = $blockElements->filter('[data-ft-type="image"]');
-                $filesystem = new Filesystem();
-                $path = FRONTEND_FILES_PATH . '/Pages/UserTemplate';
-                $url = FRONTEND_FILES_URL . '/Pages/UserTemplate';
-                foreach ($images as $image) {
-                    $imagePath = $image->getAttribute('src');
-
-                    // skip empty images
-                    if ($imagePath === '') {
-                        continue;
-                    }
-
-                    // skip external URLs — can't copy remote files
-                    if (filter_var($imagePath, FILTER_VALIDATE_URL)) {
-                        continue;
-                    }
-
-                    $basename = pathinfo($imagePath, PATHINFO_FILENAME);
-                    $extension = pathinfo($imagePath, PATHINFO_EXTENSION);
-                    $originalFilename = $basename . '.' . $extension;
-                    $filename = $originalFilename;
-
-                    // Generate a non-existing filename
-                    while ($filesystem->exists($path . '/' . $filename)) {
-                        $basename = Model::addNumber($basename);
-                        $filename = $basename . '.' . $extension;
-                    }
-
-                    $block['html'] = str_replace($imagePath, $url . '/' . $filename, $block['html']);
-                    $filesystem->copy($path . '/' . $originalFilename, $path . '/' . $filename);
-                }
-
-                return $block;
-            },
+            [BackendPagesModel::class, 'duplicateUserTemplateImages'],
             BackendPagesModel::getBlocks($id, $originalPage['revision_id'])
         );
 

@@ -6,9 +6,11 @@ use Backend\Modules\ContentBlocks\Domain\ContentBlock\Command\CopyContentBlocksT
 use Backend\Modules\Faq\Domain\Command\CopyFaqToOtherLocale;
 use Backend\Modules\FormBuilder\Command\CopyFormWidgetsToOtherLocale;
 use Backend\Modules\Location\Command\CopyLocationWidgetsToOtherLocale;
+use Common\Core\Model as CommonModel;
 use Common\Doctrine\Entity\Meta;
 use ForkCMS\Utility\Thumbnails;
 use InvalidArgumentException;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Backend\Core\Engine\Authentication as BackendAuthentication;
@@ -264,7 +266,7 @@ class Model
             // loop blocks
             foreach ($sourceBlocks as $sourceBlock) {
                 // build block
-                $block = $sourceBlock;
+                $block = self::duplicateUserTemplateImages($sourceBlock);
                 $block['revision_id'] = $revisionId;
                 $block['created_on'] = BackendModel::getUTCDate();
                 $block['edited_on'] = BackendModel::getUTCDate();
@@ -1691,6 +1693,57 @@ class Model
         );
 
         $database->update('meta', ['url' => $newUrl], 'id = ?', [$page['meta_id']]);
+    }
+
+    /**
+     * Usertemplate images are referenced by filename inside the block's HTML.
+     * When a block is copied (e.g. duplicating a page or copying pages to another
+     * language) the same filename would otherwise be reused, so changing or
+     * removing the image on one copy deletes the file and breaks every other
+     * copy that still points to it. This duplicates the image under a new,
+     * non-colliding filename and rewrites the HTML to match.
+     */
+    public static function duplicateUserTemplateImages(array $block): array
+    {
+        if ($block['extra_type'] !== 'usertemplate' || strpos($block['html'], 'data-ft-type="image"') === false) {
+            return $block;
+        }
+
+        $blockElements = new Crawler($block['html']);
+        $images = $blockElements->filter('[data-ft-type="image"]');
+        $filesystem = new Filesystem();
+        $path = FRONTEND_FILES_PATH . '/Pages/UserTemplate';
+        $url = FRONTEND_FILES_URL . '/Pages/UserTemplate';
+
+        foreach ($images as $image) {
+            $imagePath = $image->getAttribute('src');
+
+            // skip empty images
+            if ($imagePath === '') {
+                continue;
+            }
+
+            // skip external URLs — can't copy remote files
+            if (filter_var($imagePath, FILTER_VALIDATE_URL)) {
+                continue;
+            }
+
+            $basename = pathinfo($imagePath, PATHINFO_FILENAME);
+            $extension = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $originalFilename = $basename . '.' . $extension;
+            $filename = $originalFilename;
+
+            // Generate a non-existing filename
+            while ($filesystem->exists($path . '/' . $filename)) {
+                $basename = CommonModel::addNumber($basename);
+                $filename = $basename . '.' . $extension;
+            }
+
+            $block['html'] = str_replace($imagePath, $url . '/' . $filename, $block['html']);
+            $filesystem->copy($path . '/' . $originalFilename, $path . '/' . $filename);
+        }
+
+        return $block;
     }
 
     private static function copyImage(?string $image, string $metaUrl): ?string
