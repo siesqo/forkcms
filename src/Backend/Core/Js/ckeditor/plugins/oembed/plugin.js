@@ -58,7 +58,7 @@
                     dialog: 'oembed',
                     allowedContent: {
                         div: {
-                            styles: 'text-align,float',
+                            styles: 'text-align,float,margin-bottom',
                             attributes: '*',
                             classes: editor.config.oembed_WrapperClass != null ? editor.config.oembed_WrapperClass : "embeddedContent"
                         },
@@ -73,7 +73,7 @@
                         }
                     },
                     template:
-                        '<div class="' + (editor.config.oembed_WrapperClass != null ? editor.config.oembed_WrapperClass : "embeddedContent") + '">' +
+                        '<div class="' + (editor.config.oembed_WrapperClass != null ? editor.config.oembed_WrapperClass : "embeddedContent") + '" style="margin-bottom: 1.5rem;">' +
                             '</div>',
                     upcast: function(element) {
                         return element.name == 'div' && element.hasClass(editor.config.oembed_WrapperClass != null ? editor.config.oembed_WrapperClass : "embeddedContent");
@@ -81,7 +81,7 @@
                     init: function() {
                         var data = {
                             oembed: this.element.data('oembed') || '',
-                            resizeType: this.element.data('resizeType') || 'noresize',
+                            resizeType: this.element.data('resizeType') || 'fluid',
                             maxWidth: this.element.data('maxWidth') || 560,
                             maxHeight: this.element.data('maxHeight') || 315,
                             align: this.element.data('align') || 'none',
@@ -110,7 +110,7 @@
                         maxSizeBox = dialog.getContentElement('general', 'maxSizeBox').getElement(),
                         sizeBox = dialog.getContentElement('general', 'sizeBox').getElement();
 
-                    if (resizetype == 'noresize') {
+                    if (resizetype == 'noresize' || resizetype == 'fluid') {
                         maxSizeBox.hide();
 
                         sizeBox.hide();
@@ -146,7 +146,52 @@
                     }
                 }
 
+                // Fills the available width while locking the iframe to whichever
+                // aspect ratio the provider actually returned (read from its own
+                // width/height attributes), instead of the fixed pixel box the
+                // provider/library would otherwise bake into the markup. Written as
+                // inline styles so it travels with the saved content regardless of
+                // which stylesheet ends up loaded.
+                function applyFluidIframeStyle(widget) {
+                    var iframes = widget.element.find('iframe');
+
+                    for (var i = 0; i < iframes.count(); i++) {
+                        var iframe = iframes.getItem(i),
+                            width = parseFloat(iframe.getAttribute('width')) || 16,
+                            height = parseFloat(iframe.getAttribute('height')) || 9;
+
+                        iframe.setStyle('display', 'block');
+                        iframe.setStyle('width', '100%');
+                        iframe.setStyle('height', 'auto');
+                        iframe.setStyle('aspect-ratio', width + ' / ' + height);
+                    }
+                }
+
+                // The library's youtube/youtubeiframe providers build the iframe
+                // locally (regex-extract the video id, substitute it into the embed
+                // src - no network call) using a hardcoded 425x349 template, which
+                // isn't the 16:9 YouTube's player actually renders at. YouTube's real
+                // oEmbed endpoint can't be called from here to get the true size: it
+                // sends no Access-Control-Allow-Origin header, so the browser blocks
+                // the cross-origin request outright. Fix the constant locally instead.
+                function fixYoutubeProvider() {
+                    if (typeof jQuery === 'undefined' || typeof jQuery.fn.oembed === 'undefined') {
+                        return;
+                    }
+
+                    var providers = jQuery.fn.oembed.providers;
+
+                    for (var i = 0; i < providers.length; i++) {
+                        if (providers[i].name === 'youtube' || providers[i].name === 'youtubeiframe') {
+                            providers[i].embedtag.width = '560';
+                            providers[i].embedtag.height = '315';
+                        }
+                    }
+                }
+
                 function embedCode(url, instance, maxWidth, maxHeight, responsiveResize, resizeType, align, widget) {
+                    fixYoutubeProvider();
+
                     jQuery('body').oembed(url, {
                         onEmbed: function(e) {
                             var elementAdded = false,
@@ -202,6 +247,10 @@
                             } else {
                                 alert(editor.lang.oembed.noEmbedCode);
                             }
+
+                            if (elementAdded && resizeType == 'fluid') {
+                                applyFluidIframeStyle(widget);
+                            }
                         },
                         onError: function(externalUrl) {
                             if (externalUrl.indexOf("vimeo.com") > 0) {
@@ -226,7 +275,7 @@
                         onShow: function() {
                             var data = {
                                 oembed: this.widget.element.data('oembed') || '',
-                                resizeType: this.widget.element.data('resizeType') || 'noresize',
+                                resizeType: this.widget.element.data('resizeType') || 'fluid',
                                 maxWidth: this.widget.element.data('maxWidth'),
                                 maxHeight: this.widget.element.data('maxHeight'),
                                 align: this.widget.element.data('align') || 'none'
@@ -242,7 +291,7 @@
                                 maxSizeBox = this.getContentElement('general', 'maxSizeBox').getElement(),
                                 sizeBox = this.getContentElement('general', 'sizeBox').getElement();
 
-                            if (resizetype == 'noresize') {
+                            if (resizetype == 'noresize' || resizetype == 'fluid') {
                                 maxSizeBox.hide();
                                 sizeBox.hide();
                             } else if (resizetype == "custom") {
@@ -297,7 +346,7 @@
                                                 return false;
                                             }
 
-                                            if (resizeType == "noresize") {
+                                            if (resizeType == "noresize" || resizeType == "fluid") {
                                                 responsiveResize = false;
                                                 maxWidth = null;
                                                 maxHeight = null;
@@ -337,13 +386,14 @@
                                                 id: 'resizeType',
                                                 type: 'select',
                                                 label: editor.lang.oembed.resizeType,
-                                                'default': 'noresize',
+                                                'default': 'fluid',
                                                 setup: function(widget) {
                                                     if (widget.data.resizeType) {
                                                         this.setValue(widget.data.resizeType);
                                                     }
                                                 },
                                                 items: [
+                                                    [editor.lang.oembed.fluid, 'fluid'],
                                                     [editor.lang.oembed.noresize, 'noresize'],
                                                     [editor.lang.oembed.responsive, 'responsive'],
                                                     [editor.lang.oembed.custom, 'custom']
