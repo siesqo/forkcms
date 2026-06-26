@@ -30,8 +30,7 @@ final class FaqQuestionType extends AbstractType
                     'choice_translation_domain' => false,
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('c')
-                            ->join('c.translations', 'ct')
-                            ->addOrderBy('ct.title', 'ASC');
+                            ->addOrderBy('c.sequence', 'ASC');
                     },
                 ]
             )

@@ -7,7 +7,7 @@ use Backend\Form\Type\MetaType;
 use Backend\Modules\Faq\Domain\FaqQuestion\Command\CreateFaqQuestion;
 use Backend\Modules\Faq\Domain\FaqQuestion\Command\UpdateFaqQuestion;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Backend\Form\Type\EditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -22,11 +22,11 @@ final class FaqQuestionTranslationType extends AbstractType
             ->add('question', TextType::class, ['label' => 'lbl.Question'])
             ->add(
                 'answer',
-                TextareaType::class,
+                EditorType::class,
                 [
                     'label' => 'lbl.Answer',
                     'required' => false,
-                    'attr' => ['class' => 'form-control', 'rows' => 12],
+                    'attr' => ['class' => 'inputEditor'],
                 ]
             )
             ->addEventListener(
