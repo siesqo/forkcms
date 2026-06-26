@@ -29,7 +29,7 @@ jsBackend.FormBuilder = {
     $('#email').multipleTextbox({
       emptyMessage: jsBackend.locale.msg('NoEmailaddresses'),
       addLabel: utils.string.ucfirst(jsBackend.locale.lbl('Add', 'Core')),
-      removeLabel: utils.string.ucfirst(jsBackend.locale.lbl('Delete')),
+      removeLabel: $('#email').closest('.form-group').data('remove-label') || utils.string.ucfirst(jsBackend.locale.lbl('Delete', 'Core')),
       errorMessage: utils.string.ucfirst(jsBackend.locale.err('AddTextBeforeSubmitting')),
       canAddNew: true
     })

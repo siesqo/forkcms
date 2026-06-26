@@ -53,7 +53,7 @@
                         {% form_field template %} {% form_field_error template %}
                       </div>
                     {% endif %}
-                    <div class="form-group">
+                    <div class="form-group" data-remove-label="{{ 'lbl.Delete'|trans|ucfirst }}">
                       <label for="email" class="control-label">
                         {{ 'lbl.Recipient'|trans|ucfirst }}
                         {{ macro.required }}
