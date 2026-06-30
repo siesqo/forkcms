@@ -148,6 +148,18 @@ deny from env=stayout
     </FilesMatch>
 </IfModule>
 
+# Cache-Control: public so CDN/reverse-proxy caches can store static assets at the edge.
+# mod_expires alone sets max-age but not "public", so shared caches ignore it.
+# Hash-based filenames (MinifiedCss, gulp bundles) make long TTLs safe — URL changes on redeploy.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(?i:css|js|woff2?|ttf|otf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(?i:ico|gif|jpe?g|png|webp|svg|svgz)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>
+
 # gzip on Apache 2
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml text/javascript text/css application/x-javascript application/xhtml+xml application/javascript application/json image/svg+xml

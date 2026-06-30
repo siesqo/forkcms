@@ -1,5 +1,3 @@
-const webpack = require('webpack')
-
 module.exports = {
   output: {
     filename: 'bundle.js'
@@ -7,13 +5,6 @@ module.exports = {
   resolve: {
     modules: ['node_modules']
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      Popper: ['popper.js', 'default']
-    })
-  ],
   module: {
     rules: [
       {

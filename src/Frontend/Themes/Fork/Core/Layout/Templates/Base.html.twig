@@ -76,7 +76,7 @@
 
 {# General Javascript #}
 {% for js in jsFiles %}
-  <script src="{{ js }}"></script>
+  <script src="{{ js }}" defer></script>
 {% endfor %}
 <script src="/js/vendors/bootstrap.min.js"></script>
 <script src="/js/vendors/bootstrap-accessibility.min.js"></script>
